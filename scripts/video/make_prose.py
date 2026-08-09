@@ -187,23 +187,23 @@ sp = A["saving_spread"]
 worst_c = max(sp, key=lambda c: max(sp[c].values(), default=0))
 worst_spread = max(sp[worst_c].values())
 best_res, worst_res = RES[0], RES[-1]
-# Where the ordering does differ, say exactly where and how.
-exceptions = []
+# Where the ordering does differ, name the swap once and list where it happens.
+alt = {}
 for r in RES:
     for t in targets:
-        o = orders[r][str(t)]
-        if o != orders["1080p"][str(t)]:
-            exceptions.append(f"{r} at VMAF {t}, where it is "
-                              + " then ".join(LABEL[c] for c in o))
-exc = ((" The exception is " + "; and ".join(exceptions[:2])
-        + (", the same swap repeating at the neighbouring targets."
-           if len(exceptions) > 2 else "."))
-       if exceptions else "")
+        o = tuple(orders[r][str(t)])
+        if o != tuple(orders["1080p"][str(t)]):
+            alt.setdefault(o, []).append(f"{r} VMAF {t}")
+exc = ""
+if alt:
+    parts = [f"{' then '.join(LABEL[c] for c in o)} at {', '.join(where)}"
+             for o, where in alt.items()]
+    exc = (" The exception is one swap: " if len(alt) == 1 else " The exceptions: ") \
+        + "; ".join(parts) + "."
+
 prose["ranking_note"] = (
     f"The ordering at VMAF {mid} is {order_1080}, and it is that same ordering at every "
-    f"resolution and every target measured"
-    + ("." if not exceptions else
-       (" bar one." if len(exceptions) == 1 else " bar a few.")) + exc + " "
+    f"resolution and every target measured" + ("." if not alt else " bar a few.") + exc + " "
     f"The margins are another matter. AV1 is {pct(sav(best_res, mid, 'AV1'))} under H.264 at "
     f"{best_res} and {pct(sav(worst_res, mid, 'AV1'))} at {worst_res}; HEVC is "
     f"{pct(sav(best_res, mid, 'HEVC'))} and {pct(sav(worst_res, mid, 'HEVC'))}. The largest "
@@ -274,7 +274,8 @@ if mts:
                      == sorted(bm["vmaf"][mt], key=lambda c: -bm["vmaf"][mt][c])
                      for m in ("psnr_y", "ssim"))
     prose["metric_note"] = (
-        f"The three metrics disagree, as they always do, but not about the answer: at VMAF "
+        f"The three metrics disagree, as they always do"
+        + (", but not about the answer" if same_order else "") + ": at VMAF "
         f"{mt} the largest gap between VMAF's verdict and another metric's is "
         f"{worst_metric[0]:.1f} percentage points ({LABEL[worst_metric[2]]} scored with "
         f"{'PSNR-Y' if worst_metric[1] == 'psnr_y' else 'SSIM'}), and "
@@ -401,9 +402,9 @@ prose["caveat_corpus"] = (
     f"bits-per-pixel numbers here are pessimistic. The compute budget for this environment was "
     f"shared with other work and libaom is very slow, which is why the corpus is this size; a "
     f"third clip was fetched and is in the repository, "
-    + ("and it is included in these results. "
-       if len(CLIPS) > 2 else
-       "but there was not time to sweep it. ")
+    + ("and it is included in these results. " if not A.get("dropped_clips") else
+       f"but only partially swept ({', '.join(A['dropped_clips'])}), so it is excluded from "
+       f"every number on this page rather than half-counted. ")
     + f"The direction of every finding is robust to corpus size; the exact percentages are not "
       f"general constants.")
 

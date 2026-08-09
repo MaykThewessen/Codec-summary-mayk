@@ -578,7 +578,7 @@ code { font-family: "GeistMono", monospace; font-size: 0.88em; }
     <div class="sec-head">
       <div class="eyebrow">Measured</div>
       <h2>Rate against quality, one resolution at a time</h2>
-      <p>CRF numbers are not comparable across encoders: x264 CRF 23 and libaom CRF 23 are unrelated settings. Every encode below was scored with VMAF, so codecs are compared at matched perceptual quality instead. Up and to the left is better. Switch the resolution: the order of the four lines never changes, but the gaps between them do.</p>
+      <p>CRF numbers are not comparable across encoders: x264 CRF 23 and libaom CRF 23 are unrelated settings. Every encode below was scored with VMAF, so codecs are compared at matched perceptual quality instead. Up and to the left is better. Switch the resolution: the order of the four lines barely moves, but the gaps between them do.</p>
     </div>
 
     <div class="card pad chart-card">
@@ -1082,7 +1082,7 @@ ffmpeg -i in.mp4 -c copy -f dash -seg_duration 4 out.mpd <span class="c"># fragm
       // the same measure in a familiar unit, not a second axis
       const t2 = el("text", { x: X_(v), y: M.t + ih + 33, "text-anchor": "middle", fill: ink3,
                               "font-size": 10, "font-family": "GeistMono, monospace", opacity: 0.8 }, svg);
-      t2.textContent = (v * 1920 * 1080 * 30 / 1e6).toFixed(v < 0.02 ? 1 : 0);
+      t2.textContent = (v * 1920 * 1080 * 30 / 1e6).toFixed(v < 0.05 ? 1 : 0);
     });
     el("line", { x1: M.l, x2: M.l + iw, y1: M.t + ih, y2: M.t + ih, stroke: axis, "stroke-width": 1 }, svg);
 

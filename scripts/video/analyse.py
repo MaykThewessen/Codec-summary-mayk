@@ -76,6 +76,10 @@ def main():
              if all(by[(res, c, cl)] for res in RES for c in CODECS)]
     if not clips:
         raise SystemExit("no clip has a complete sweep yet")
+    dropped = sorted({r["clip"] for r in rows} - set(clips))
+    # Everything downstream, including the encode counts and the CPU totals,
+    # describes only the clips that were swept end to end.
+    rows = [r for r in rows if r["clip"] in clips]
 
     # ---- span check: every codec must cover the whole target range ----------
     span = {}
@@ -254,7 +258,7 @@ def main():
                enc_cost=enc_cost, cost_by_target=cost, order=order,
                ranking_stable=stable, saving_spread=spread,
                hevc_vs_vp9=hevc_vp9, collapse=collapse, collapse_probes=probes,
-               span=span, anchors=anchors,
+               span=span, anchors=anchors, dropped_clips=dropped,
                total_enc_cpu_s=round(sum(r["enc_cpu_s"] for r in rows), 1),
                total_metric_cpu_s=round(sum(r["metric_cpu_s"] for r in rows), 1))
     (DATA / "analysis.json").write_text(json.dumps(out, indent=1))
