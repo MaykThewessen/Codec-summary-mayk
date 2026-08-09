@@ -22,6 +22,11 @@ RES = A["resolutions"]
 CODECS = A["codecs"]
 LABEL = {"H264": "H.264", "HEVC": "HEVC", "VP9": "VP9",
          "AV1": "AV1 (libaom)", "SVTAV1": "AV1 (SVT)", "VVC": "VVC"}
+# The format behind an encoder, for sentences where the bitstream is the point
+# and which encoder produced it is not.
+FORMAT = {"H264": "H.264", "HEVC": "HEVC", "VP9": "VP9",
+          "AV1": "AV1", "SVTAV1": "AV1", "VVC": "VVC"}
+WORDS = {2: "Two", 3: "Three", 4: "Four", 5: "Five", 6: "Six", 7: "Seven"}
 
 # The published figure VVC's own literature quotes, kept only so the measured
 # result can be put next to it. Everything else on the page is measured here.
@@ -195,7 +200,7 @@ conv_high = {c: mean_sav(high, c) for c in CODECS
 conv_low = {c: mean_sav(low, c) for c in conv_high}
 spread_high = max(conv_high.values()) - min(conv_high.values())
 spread_low = max(conv_low.values()) - min(conv_low.values())
-n_other = f"{len(conv_high)} non-H.264 encoders"
+n_other = f"{WORDS[len(conv_high)].lower()} non-H.264 encoders"
 if max(conv_high.values()) < max(conv_low.values()):
     prose["converge_note"] = (
         f"the best saving against H.264 falls from {pct(max(conv_low.values()))} at VMAF {low} "
@@ -258,10 +263,10 @@ prose["claim_hypothesis"] = (
     f"{pct(sav('1080p', mid, lead))} "
     f"against H.264 where HEVC manages {pct(sav('1080p', mid, 'HEVC'))}"
     + ("" if lead == lead_dep else
-       f", and among the codecs a real audience can decode it is {LABEL[lead_dep]} at "
+       f", and among the codecs a real audience can decode it is {FORMAT[lead_dep]} at "
        f"{pct(sav('1080p', mid, lead_dep))}") + ". But the intuition "
     f"that resolution matters is correct, just not in the way the question assumed: it changes "
-    f"the size of the win, not its owner. {LABEL[lead_dep]}'s lead over H.264 goes from "
+    f"the size of the win, not its owner. {FORMAT[lead_dep]}'s lead over H.264 goes from "
     f"{pct(sav('540p', mid, lead_dep))} at 540p to {pct(sav('1080p', mid, lead_dep))} at 1080p, "
     f"and HEVC's from {pct(sav('540p', mid, 'HEVC'))} to {pct(sav('1080p', mid, 'HEVC'))}: "
     f"at 540p "
@@ -273,17 +278,17 @@ prose["claim_hypothesis"] = (
 
 prose["lede"] = (
     f"Normalise the bitrate to <em>bits per pixel per frame</em> and the question becomes "
-    f"answerable. {LABEL[lead]} produced the smallest file at 540p, 720p and 1080p at every "
+    f"answerable. {FORMAT[lead]} produced the smallest file at 540p, 720p and 1080p at every "
     f"quality target measured"
-    + (f", and {LABEL[lead_dep]} came first among the codecs a real audience can decode. "
+    + (f", and {FORMAT[lead_dep]} came first among the codecs a real audience can decode. "
        if lead != lead_dep else ". ")
     + f"What moves is how much the winner wins by: the lead grows with resolution, and grows "
       f"again as bits get scarce. That is exactly the corner 4K streaming sits in.")
 
 prose["savings_lede"] = (
     f"Three bars per encoder, one per resolution. If the best codec really changed with "
-    f"resolution, the groups would reorder. They do not: {LABEL[lead]} is first at all three"
-    + (f", and {LABEL[lead_dep]} first among the deployable ones. " if lead != lead_dep else ". ")
+    f"resolution, the groups would reorder. They do not: {FORMAT[lead]} is first at all three"
+    + (f", and {FORMAT[lead_dep]} first among the deployable ones. " if lead != lead_dep else ". ")
     + f"What changes is the length of the bars, and it changes a lot. That is the answer to the "
       f"hypothesis, and it is not the answer the hypothesis expected.")
 
@@ -436,15 +441,14 @@ prose["av1_encoders_note"] = (
     f"libaom is the reference encoder and it is slow on purpose. SVT-AV1 is what production "
     f"pipelines actually run, and this sweep now has both. At matched VMAF "
     f"{A['cost_target']} and 1080p, libaom cost {ae['aom_cpu_s_per_frame']:.2f} CPU seconds per "
-    f"frame and SVT-AV1 {ae['svt_cpu_s_per_frame']:.2f}, a factor of {ae['speedup']:.0f}. The "
-    f"files are not {'better' if _ae_mean > 0 else 'worse'} for it: at VMAF {mid} SVT-AV1's "
-    f"files are {smaller(_ae_mean)} than libaom's, averaged over the three resolutions. "
-    + ("So the old caveat that AV1's cost figure is an upper bound was right, and the gap was "
-       "large: read the libaom bar as the price of the reference encoder, not the price of the "
-       "format."
-       if _ae_mean > -3 else
-       "So the speed is not free: SVT-AV1 gives some efficiency back for it, and the honest "
-       "summary is that libaom buys smaller files at a price almost nobody pays."))
+    f"frame and SVT-AV1 {ae['svt_cpu_s_per_frame']:.2f}, a factor of {ae['speedup']:.0f}. At "
+    f"VMAF {mid} SVT-AV1's files came out {smaller(_ae_mean)} than libaom's, averaged over the "
+    f"three resolutions"
+    + (", so the speed is free. " if _ae_mean >= 0 else
+       f", so the speed costs a few percent of efficiency and no more. " if _ae_mean > -5 else
+       f", so the speed is not free. ")
+    + ("Either way the page's old caveat holds and it was a large one: the libaom bar is the "
+       "price of the reference encoder, not the price of the format. Production runs SVT."))
 prose["av1_encoders_pair"] = f"{ae['speedup']:.0f}"
 
 # ---- VVC, now measured ------------------------------------------------------
@@ -515,10 +519,10 @@ prose["claim_vvc"] = (
 clip_desc = "; ".join(f"{c['name']} ({c['character'].lower()}, {c['seconds']:.0f} s, "
                       f"{c['frames']} frames at {c['fps']:.0f} fps)" for c in CLIPS)
 prose["method_corpus"] = (
-    f"{len(CLIPS)} pristine uncompressed clips from the Xiph derf collection: {clip_desc}. "
+    f"{WORDS[len(CLIPS)]} pristine uncompressed clips from the Xiph derf collection: {clip_desc}. "
     f"Each was fetched as raw 1080p y4m and downscaled with Lanczos to 720p and 540p; nothing "
     f"was ever upscaled. Every clip was swept on its own CRF ladder in "
-    f"{len(CODECS)} encoders at three "
+    f"{WORDS[len(CODECS)].lower()} encoders at three "
     f"resolutions, {A['n_encodes']} encodes in total, "
     f"{A['total_enc_cpu_s'] / 3600:.1f} CPU-hours of encoding and "
     f"{A['total_metric_cpu_s'] / 3600:.1f} CPU-hours of scoring.")
@@ -536,17 +540,34 @@ prose["method_metric"] = (
     f"libvpx-vp9, libaom-av1, libsvtav1 and libvvenc, each pinned to a single thread so encoder "
     f"CPU time is a clean cost measure.")
 
+bd = A.get("binary_delta") or {}
+
+
+def _bd(c):
+    d = bd[c]
+    r = (d["median_bpppf_ratio"] - 1) * 100
+    if abs(r) < 0.5:
+        return f"{LABEL[c]} within {abs(r):.1f}%"
+    return f"{LABEL[c]} {abs(r):.0f}% {'larger' if r > 0 else 'smaller'}"
+
+
 prose["method_binary"] = (
     f"Every row was produced by one ffmpeg build, a GPL build carrying libvvenc and libsvtav1 "
     f"alongside the four older encoders. That matters more than it sounds: an earlier version "
     f"of this page used a static ffmpeg 7.0.2 that had no VVC encoder and no SVT-AV1, so VVC "
     f"was cited from the literature and AV1 was represented only by the slow reference encoder. "
-    f"Adding the two new encoders on the new binary while keeping the old rows would have made "
-    f"part of the comparison a statement about which build produced which codec, so the whole "
-    f"sweep was re-run: all {A['n_encodes']} encodes here come from the same binary, the same "
-    f"clips and the same ladder method. The previous sweep is kept in the repository as "
-    f"rd_video_ffmpeg702.jsonl and none of its rows are mixed in. The numbers moved a little "
-    f"as a result, which is what you would expect from three years of encoder releases.")
+    f"Adding two encoders from a new binary while keeping the old rows would have made part of "
+    f"the comparison a statement about which build produced which codec, so the whole sweep was "
+    f"re-run: all {A['n_encodes']} encodes here come from the same binary, the same clips and "
+    f"the same ladder method. The previous sweep is kept in the repository as "
+    f"rd_video_ffmpeg702.jsonl and none of its rows are mixed in."
+    + ("" if not bd else
+       f" It was worth doing. Comparing the {bd['H264']['n']} settings that appear in both "
+       f"files, at identical CRF on identical sources, x264 came out byte-for-byte the same "
+       f"size, x265 and VP9 within about a percent, and libaom-AV1 "
+       f"{abs((bd['AV1']['median_bpppf_ratio'] - 1) * 100):.0f}% smaller for the same picture. "
+       f"Almost the whole difference between this page's AV1 figures and its previous ones is "
+       f"that one encoder getting better, not a change of method."))
 
 prose["caveat_presets"] = (
     f"x264 and x265 ran at -preset medium, VP9 at -cpu-used 2, libaom-AV1 at -cpu-used 6, "
@@ -571,10 +592,10 @@ prose["caveat_vmaf"] = (
 
 hard = [c["name"] for c in CLIPS if c["character"] == "High motion"]
 prose["caveat_corpus"] = (
-    f"{len(CLIPS)} clips is a small corpus, and it is deliberately a hard one: the "
+    f"{WORDS[len(CLIPS)]} clips is a small corpus, and it is deliberately a hard one: the "
     f"high-motion clip is close to the worst case for any codec, and the flat-gradient clip is "
     f"the banding worst case. Real catalogue content is easier than both, so the absolute "
-    f"bits-per-pixel numbers here are pessimistic. Two of the six encoders here, libaom and "
+    f"bits-per-pixel numbers here are pessimistic. Two of the {WORDS[len(CODECS)].lower()} encoders here, libaom and "
     f"libvvenc, are slow enough that the corpus size is a compute decision; a "
     f"third clip is fetched by the corpus script and is in the repository, "
     + ("and it is included in these results. " if not NOT_SWEPT else

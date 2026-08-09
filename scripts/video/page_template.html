@@ -501,7 +501,7 @@ code { font-family: "GeistMono", monospace; font-size: 0.88em; }
             <span class="chip serious">Modern hardware</span>
             <div class="cell-name">AV1</div>
             <div class="cell-why" data-fill="av1_mid_why"></div>
-            <div class="cell-set">1080p30 2-7 Mbit/s &middot; 4K60 17-55 Mbit/s &middot; libsvtav1 -preset 6</div>
+            <div class="cell-set">libsvtav1 -preset 6 &middot; 1080p30 2-7 Mbit/s</div>
           </div>
 
           <div class="cell void" style="grid-area: conv">
@@ -733,7 +733,7 @@ code { font-family: "GeistMono", monospace; font-size: 0.88em; }
               <td class="mark"><span class="mk y">most 2023+</span></td>
               <td class="mark"><span class="mk y">RTX 30 / RDNA2 / Arc+</span></td>
               <td class="mark"><span class="mk y">royalty-free</span></td>
-              <td class="wrap-cell">YouTube and Netflix at scale; the top rung of a modern ladder</td>
+              <td class="wrap-cell">YouTube and Netflix at scale; the top rung of a modern ladder. libaom and SVT-AV1 are two encoders for this one row: same bitstream, same decoders, same reach</td>
             </tr>
             <tr>
               <td class="name">VVC / H.266</td>
@@ -742,7 +742,7 @@ code { font-family: "GeistMono", monospace; font-size: 0.88em; }
               <td class="mark"><span class="mk n">a few 2024+</span></td>
               <td class="mark"><span class="mk n">none</span></td>
               <td class="mark"><span class="mk n">pool, unsettled</span></td>
-              <td class="wrap-cell">Broadcast trials (DVB, ATSC 3.0). Not a delivery option on the web</td>
+              <td class="wrap-cell">Broadcast trials (DVB, ATSC 3.0). Not a delivery option on the web, whatever the curves say</td>
             </tr>
           </tbody>
         </table>
@@ -921,8 +921,8 @@ ffmpeg -i in.mov -c:v libvpx-vp9 -b:v 0 -crf <span data-fill="crf_vp9"></span> -
 ffmpeg -i in.mov -c:v libx264 -preset medium -crf <span data-fill="crf_h264"></span> \
        -profile:v high -movflags +faststart out_h264.mp4
 
-<span class="c"># not a rung: VVC won every efficiency comparison on this page and nothing plays it.</span>
-<span class="c"># here for completeness, and because it is what was measured.</span>
+<span class="c"># not a rung, because nothing on the open web decodes it. here because it was measured,</span>
+<span class="c"># and because the qp below is the one that landed on the operating point, not a default.</span>
 ffmpeg -i in.mov -c:v libvvenc -preset medium -qp <span data-fill="crf_vvc"></span> -period 2 out_vvc.266</pre>
       </div>
       <div>
@@ -1308,7 +1308,7 @@ ffmpeg -i in.mp4 -c copy -f dash -seg_duration 4 out.mpd <span class="c"># fragm
         }
         const val = el("text", { x: M.l + w + 9, y: y + 16, fill: ink, "font-size": 12.5,
                                  "font-family": "GeistMono, monospace" }, svg);
-        val.textContent = neg ? pct(s[c], 1) + "  larger than H.264" : pct(s[c], 1);
+        val.textContent = neg ? pct(-s[c], 1) + "  larger than H.264" : pct(s[c], 1);
         const hit = el("rect", { x: M.l - 60, y: y - 3, width: Math.max(w, 24) + 120, height: barH + 6,
                                  fill: "transparent" }, svg);
         const mb = A.matched[r][c][savTarget], mh = A.matched[r].H264[savTarget];

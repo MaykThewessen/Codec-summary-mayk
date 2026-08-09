@@ -12,7 +12,9 @@
   "H264",
   "HEVC",
   "VP9",
-  "AV1"
+  "AV1",
+  "SVTAV1",
+  "VVC"
  ],
  "targets": [
   95,
@@ -22,365 +24,509 @@
   80
  ],
  "cost_target": 93,
- "n_encodes": 177,
+ "n_encodes": 147,
  "curves": {
   "1080p": {
    "H264": [
     {
      "vmaf": 74,
-     "bpppf": 0.038402,
-     "psnr": 30.21,
-     "ssim": 0.97458,
-     "enc_cpu_fs": 0.0882
+     "bpppf": 0.03891,
+     "psnr": 30.28,
+     "ssim": 0.97365,
+     "enc_cpu_fs": 0.0871
     },
     {
      "vmaf": 76,
-     "bpppf": 0.041094,
-     "psnr": 30.55,
-     "ssim": 0.97682,
-     "enc_cpu_fs": 0.0899
+     "bpppf": 0.041561,
+     "psnr": 30.6,
+     "ssim": 0.97607,
+     "enc_cpu_fs": 0.0883
     },
     {
      "vmaf": 78,
-     "bpppf": 0.044091,
-     "psnr": 30.89,
-     "ssim": 0.97893,
-     "enc_cpu_fs": 0.0921
+     "bpppf": 0.044393,
+     "psnr": 30.92,
+     "ssim": 0.97849,
+     "enc_cpu_fs": 0.0896
     },
     {
      "vmaf": 80,
-     "bpppf": 0.047305,
-     "psnr": 31.24,
-     "ssim": 0.98103,
-     "enc_cpu_fs": 0.0943
+     "bpppf": 0.047417,
+     "psnr": 31.25,
+     "ssim": 0.98091,
+     "enc_cpu_fs": 0.0908
     },
     {
      "vmaf": 82,
-     "bpppf": 0.051018,
-     "psnr": 31.61,
-     "ssim": 0.98288,
-     "enc_cpu_fs": 0.0965
+     "bpppf": 0.051203,
+     "psnr": 31.63,
+     "ssim": 0.9828,
+     "enc_cpu_fs": 0.0925
     },
     {
      "vmaf": 84,
-     "bpppf": 0.055461,
-     "psnr": 32.01,
-     "ssim": 0.98459,
-     "enc_cpu_fs": 0.0976
+     "bpppf": 0.056113,
+     "psnr": 32.07,
+     "ssim": 0.98438,
+     "enc_cpu_fs": 0.0947
     },
     {
      "vmaf": 86,
-     "bpppf": 0.060291,
-     "psnr": 32.42,
-     "ssim": 0.98629,
-     "enc_cpu_fs": 0.0986
+     "bpppf": 0.061494,
+     "psnr": 32.51,
+     "ssim": 0.98595,
+     "enc_cpu_fs": 0.0969
     },
     {
      "vmaf": 88,
-     "bpppf": 0.06602,
-     "psnr": 32.86,
-     "ssim": 0.98785,
-     "enc_cpu_fs": 0.1005
+     "bpppf": 0.067391,
+     "psnr": 32.95,
+     "ssim": 0.98752,
+     "enc_cpu_fs": 0.0992
     },
     {
      "vmaf": 90,
-     "bpppf": 0.073062,
-     "psnr": 33.35,
-     "ssim": 0.98926,
-     "enc_cpu_fs": 0.1047
+     "bpppf": 0.073854,
+     "psnr": 33.4,
+     "ssim": 0.98909,
+     "enc_cpu_fs": 0.1016
     },
     {
      "vmaf": 92,
-     "bpppf": 0.080855,
-     "psnr": 33.83,
-     "ssim": 0.99067,
-     "enc_cpu_fs": 0.1092
+     "bpppf": 0.080936,
+     "psnr": 33.84,
+     "ssim": 0.99066,
+     "enc_cpu_fs": 0.104
     },
     {
      "vmaf": 94,
-     "bpppf": 0.091774,
-     "psnr": 34.44,
-     "ssim": 0.99191,
-     "enc_cpu_fs": 0.1137
+     "bpppf": 0.094292,
+     "psnr": 34.55,
+     "ssim": 0.99194,
+     "enc_cpu_fs": 0.1093
     },
     {
      "vmaf": 96,
-     "bpppf": 0.104459,
-     "psnr": 35.06,
-     "ssim": 0.99312,
-     "enc_cpu_fs": 0.1184
+     "bpppf": 0.110608,
+     "psnr": 35.29,
+     "ssim": 0.99319,
+     "enc_cpu_fs": 0.1153
     },
     {
      "vmaf": 98,
-     "bpppf": 0.127211,
-     "psnr": 35.95,
-     "ssim": 0.99442,
-     "enc_cpu_fs": 0.1271
+     "bpppf": 0.129747,
+     "psnr": 36.03,
+     "ssim": 0.99444,
+     "enc_cpu_fs": 0.1216
     }
    ],
    "HEVC": [
     {
      "vmaf": 74,
-     "bpppf": 0.029818,
-     "psnr": 30.84,
-     "ssim": 0.97525,
-     "enc_cpu_fs": 0.1591
+     "bpppf": 0.030733,
+     "psnr": 30.91,
+     "ssim": 0.97469,
+     "enc_cpu_fs": 0.1564
     },
     {
      "vmaf": 76,
-     "bpppf": 0.032491,
-     "psnr": 31.19,
-     "ssim": 0.9773,
-     "enc_cpu_fs": 0.1631
+     "bpppf": 0.033418,
+     "psnr": 31.25,
+     "ssim": 0.9768,
+     "enc_cpu_fs": 0.1591
     },
     {
      "vmaf": 78,
-     "bpppf": 0.035442,
-     "psnr": 31.54,
-     "ssim": 0.97929,
-     "enc_cpu_fs": 0.1667
+     "bpppf": 0.036338,
+     "psnr": 31.58,
+     "ssim": 0.97891,
+     "enc_cpu_fs": 0.1618
     },
     {
      "vmaf": 80,
-     "bpppf": 0.038726,
-     "psnr": 31.9,
-     "ssim": 0.98118,
-     "enc_cpu_fs": 0.1696
+     "bpppf": 0.039513,
+     "psnr": 31.92,
+     "ssim": 0.98103,
+     "enc_cpu_fs": 0.1646
     },
     {
      "vmaf": 82,
-     "bpppf": 0.042442,
-     "psnr": 32.28,
-     "ssim": 0.98297,
-     "enc_cpu_fs": 0.1748
+     "bpppf": 0.04326,
+     "psnr": 32.3,
+     "ssim": 0.98288,
+     "enc_cpu_fs": 0.1684
     },
     {
      "vmaf": 84,
-     "bpppf": 0.04678,
-     "psnr": 32.69,
-     "ssim": 0.98464,
-     "enc_cpu_fs": 0.1835
+     "bpppf": 0.047832,
+     "psnr": 32.72,
+     "ssim": 0.98449,
+     "enc_cpu_fs": 0.1736
     },
     {
      "vmaf": 86,
-     "bpppf": 0.051828,
-     "psnr": 33.11,
-     "ssim": 0.98626,
-     "enc_cpu_fs": 0.1952
+     "bpppf": 0.053302,
+     "psnr": 33.18,
+     "ssim": 0.98599,
+     "enc_cpu_fs": 0.18
     },
     {
      "vmaf": 88,
-     "bpppf": 0.057663,
-     "psnr": 33.56,
-     "ssim": 0.98778,
-     "enc_cpu_fs": 0.2054
+     "bpppf": 0.059398,
+     "psnr": 33.64,
+     "ssim": 0.98749,
+     "enc_cpu_fs": 0.1866
     },
     {
      "vmaf": 90,
-     "bpppf": 0.064933,
-     "psnr": 34.06,
-     "ssim": 0.98916,
-     "enc_cpu_fs": 0.2077
+     "bpppf": 0.066191,
+     "psnr": 34.09,
+     "ssim": 0.98899,
+     "enc_cpu_fs": 0.1935
     },
     {
      "vmaf": 92,
-     "bpppf": 0.073146,
+     "bpppf": 0.073867,
      "psnr": 34.56,
-     "ssim": 0.99054,
-     "enc_cpu_fs": 0.2098
+     "ssim": 0.99048,
+     "enc_cpu_fs": 0.2007
     },
     {
      "vmaf": 94,
-     "bpppf": 0.084228,
-     "psnr": 35.16,
-     "ssim": 0.99179,
-     "enc_cpu_fs": 0.2216
+     "bpppf": 0.086822,
+     "psnr": 35.27,
+     "ssim": 0.99178,
+     "enc_cpu_fs": 0.2123
     },
     {
      "vmaf": 96,
-     "bpppf": 0.097325,
-     "psnr": 35.79,
-     "ssim": 0.99303,
-     "enc_cpu_fs": 0.2352
+     "bpppf": 0.102657,
+     "psnr": 36.0,
+     "ssim": 0.99308,
+     "enc_cpu_fs": 0.2249
     },
     {
      "vmaf": 98,
-     "bpppf": 0.119421,
-     "psnr": 36.68,
-     "ssim": 0.99433,
-     "enc_cpu_fs": 0.2537
+     "bpppf": 0.12138,
+     "psnr": 36.74,
+     "ssim": 0.99437,
+     "enc_cpu_fs": 0.2383
     }
    ],
    "VP9": [
     {
      "vmaf": 74,
-     "bpppf": 0.027615,
-     "psnr": 30.53,
-     "ssim": 0.96925,
-     "enc_cpu_fs": 0.3932
+     "bpppf": 0.02782,
+     "psnr": 30.59,
+     "ssim": 0.96914,
+     "enc_cpu_fs": 0.3229
     },
     {
      "vmaf": 76,
-     "bpppf": 0.029986,
-     "psnr": 30.85,
-     "ssim": 0.97163,
-     "enc_cpu_fs": 0.3981
+     "bpppf": 0.030389,
+     "psnr": 30.93,
+     "ssim": 0.97142,
+     "enc_cpu_fs": 0.3278
     },
     {
      "vmaf": 78,
-     "bpppf": 0.032671,
-     "psnr": 31.17,
-     "ssim": 0.97395,
-     "enc_cpu_fs": 0.3975
+     "bpppf": 0.033195,
+     "psnr": 31.27,
+     "ssim": 0.9737,
+     "enc_cpu_fs": 0.3327
     },
     {
      "vmaf": 80,
-     "bpppf": 0.035702,
-     "psnr": 31.51,
-     "ssim": 0.9761,
-     "enc_cpu_fs": 0.3983
+     "bpppf": 0.036292,
+     "psnr": 31.62,
+     "ssim": 0.97598,
+     "enc_cpu_fs": 0.3377
     },
     {
      "vmaf": 82,
-     "bpppf": 0.039343,
-     "psnr": 31.9,
-     "ssim": 0.97815,
-     "enc_cpu_fs": 0.41
+     "bpppf": 0.040093,
+     "psnr": 31.99,
+     "ssim": 0.97814,
+     "enc_cpu_fs": 0.3411
     },
     {
      "vmaf": 84,
-     "bpppf": 0.043506,
-     "psnr": 32.29,
-     "ssim": 0.98019,
-     "enc_cpu_fs": 0.4213
+     "bpppf": 0.044293,
+     "psnr": 32.36,
+     "ssim": 0.9803,
+     "enc_cpu_fs": 0.3445
     },
     {
      "vmaf": 86,
-     "bpppf": 0.048436,
-     "psnr": 32.71,
-     "ssim": 0.9821,
-     "enc_cpu_fs": 0.414
+     "bpppf": 0.049305,
+     "psnr": 32.77,
+     "ssim": 0.98221,
+     "enc_cpu_fs": 0.3485
     },
     {
      "vmaf": 88,
-     "bpppf": 0.054267,
-     "psnr": 33.15,
-     "ssim": 0.98399,
-     "enc_cpu_fs": 0.4151
+     "bpppf": 0.055535,
+     "psnr": 33.23,
+     "ssim": 0.98397,
+     "enc_cpu_fs": 0.3527
     },
     {
      "vmaf": 90,
-     "bpppf": 0.061107,
-     "psnr": 33.61,
-     "ssim": 0.98571,
-     "enc_cpu_fs": 0.4187
+     "bpppf": 0.062552,
+     "psnr": 33.7,
+     "ssim": 0.98573,
+     "enc_cpu_fs": 0.357
     },
     {
      "vmaf": 92,
-     "bpppf": 0.070046,
-     "psnr": 34.16,
-     "ssim": 0.98741,
-     "enc_cpu_fs": 0.4268
-    },
-    {
-     "vmaf": 94,
-     "bpppf": 0.080929,
-     "psnr": 34.74,
-     "ssim": 0.98909,
-     "enc_cpu_fs": 0.4332
-    },
-    {
-     "vmaf": 96,
-     "bpppf": 0.094854,
-     "psnr": 35.4,
-     "ssim": 0.9907,
-     "enc_cpu_fs": 0.435
-    },
-    {
-     "vmaf": 98,
-     "bpppf": 0.116593,
-     "psnr": 36.24,
-     "ssim": 0.99242,
-     "enc_cpu_fs": 0.4466
+     "bpppf": 0.07121,
+     "psnr": 34.22,
+     "ssim": 0.98746,
+     "enc_cpu_fs": 0.3638
     }
    ],
    "AV1": [
     {
+     "vmaf": 74,
+     "bpppf": 0.01803,
+     "psnr": 30.46,
+     "ssim": 0.9699,
+     "enc_cpu_fs": 0.5447
+    },
+    {
      "vmaf": 76,
-     "bpppf": 0.024097,
-     "psnr": 31.08,
-     "ssim": 0.97575,
-     "enc_cpu_fs": 0.583
+     "bpppf": 0.019848,
+     "psnr": 30.8,
+     "ssim": 0.97216,
+     "enc_cpu_fs": 0.5581
     },
     {
      "vmaf": 78,
-     "bpppf": 0.026622,
-     "psnr": 31.45,
-     "ssim": 0.97789,
-     "enc_cpu_fs": 0.5951
+     "bpppf": 0.021849,
+     "psnr": 31.15,
+     "ssim": 0.97443,
+     "enc_cpu_fs": 0.5717
     },
     {
      "vmaf": 80,
-     "bpppf": 0.029478,
-     "psnr": 31.83,
-     "ssim": 0.97991,
-     "enc_cpu_fs": 0.6087
+     "bpppf": 0.024052,
+     "psnr": 31.5,
+     "ssim": 0.97669,
+     "enc_cpu_fs": 0.5857
     },
     {
      "vmaf": 82,
-     "bpppf": 0.032714,
-     "psnr": 32.23,
-     "ssim": 0.98182,
-     "enc_cpu_fs": 0.6238
+     "bpppf": 0.026476,
+     "psnr": 31.85,
+     "ssim": 0.97896,
+     "enc_cpu_fs": 0.6
     },
     {
      "vmaf": 84,
-     "bpppf": 0.036438,
-     "psnr": 32.63,
-     "ssim": 0.98367,
-     "enc_cpu_fs": 0.6455
+     "bpppf": 0.029295,
+     "psnr": 32.22,
+     "ssim": 0.98104,
+     "enc_cpu_fs": 0.6143
     },
     {
      "vmaf": 86,
-     "bpppf": 0.041032,
-     "psnr": 33.08,
-     "ssim": 0.98534,
-     "enc_cpu_fs": 0.6748
+     "bpppf": 0.032611,
+     "psnr": 32.63,
+     "ssim": 0.98292,
+     "enc_cpu_fs": 0.6284
     },
     {
      "vmaf": 88,
-     "bpppf": 0.046324,
-     "psnr": 33.53,
-     "ssim": 0.98696,
-     "enc_cpu_fs": 0.7002
+     "bpppf": 0.036302,
+     "psnr": 33.03,
+     "ssim": 0.9848,
+     "enc_cpu_fs": 0.6428
     },
     {
      "vmaf": 90,
-     "bpppf": 0.052675,
-     "psnr": 34.04,
-     "ssim": 0.98844,
-     "enc_cpu_fs": 0.6992
+     "bpppf": 0.040813,
+     "psnr": 33.48,
+     "ssim": 0.98653,
+     "enc_cpu_fs": 0.6591
     },
     {
      "vmaf": 92,
-     "bpppf": 0.060523,
-     "psnr": 34.57,
-     "ssim": 0.98989,
-     "enc_cpu_fs": 0.7382
+     "bpppf": 0.046658,
+     "psnr": 33.99,
+     "ssim": 0.9881,
+     "enc_cpu_fs": 0.6794
     },
     {
      "vmaf": 94,
-     "bpppf": 0.070078,
-     "psnr": 35.17,
-     "ssim": 0.99118,
-     "enc_cpu_fs": 0.7705
+     "bpppf": 0.054424,
+     "psnr": 34.6,
+     "ssim": 0.98962,
+     "enc_cpu_fs": 0.7063
     },
     {
      "vmaf": 96,
-     "bpppf": 0.082081,
-     "psnr": 35.81,
-     "ssim": 0.99244,
-     "enc_cpu_fs": 0.816
+     "bpppf": 0.06453,
+     "psnr": 35.28,
+     "ssim": 0.99111,
+     "enc_cpu_fs": 0.7395
+    },
+    {
+     "vmaf": 98,
+     "bpppf": 0.077635,
+     "psnr": 36.01,
+     "ssim": 0.99258,
+     "enc_cpu_fs": 0.779
+    }
+   ],
+   "SVTAV1": [
+    {
+     "vmaf": 78,
+     "bpppf": 0.0218,
+     "psnr": 31.14,
+     "ssim": 0.97837,
+     "enc_cpu_fs": 0.1942
+    },
+    {
+     "vmaf": 80,
+     "bpppf": 0.02427,
+     "psnr": 31.52,
+     "ssim": 0.98004,
+     "enc_cpu_fs": 0.1954
+    },
+    {
+     "vmaf": 82,
+     "bpppf": 0.027019,
+     "psnr": 31.9,
+     "ssim": 0.98171,
+     "enc_cpu_fs": 0.1967
+    },
+    {
+     "vmaf": 84,
+     "bpppf": 0.03008,
+     "psnr": 32.28,
+     "ssim": 0.98338,
+     "enc_cpu_fs": 0.198
+    },
+    {
+     "vmaf": 86,
+     "bpppf": 0.033487,
+     "psnr": 32.66,
+     "ssim": 0.98505,
+     "enc_cpu_fs": 0.1993
+    },
+    {
+     "vmaf": 88,
+     "bpppf": 0.037369,
+     "psnr": 33.05,
+     "ssim": 0.98668,
+     "enc_cpu_fs": 0.2005
+    },
+    {
+     "vmaf": 90,
+     "bpppf": 0.042555,
+     "psnr": 33.52,
+     "ssim": 0.98808,
+     "enc_cpu_fs": 0.1992
+    },
+    {
+     "vmaf": 92,
+     "bpppf": 0.0492,
+     "psnr": 34.03,
+     "ssim": 0.98938,
+     "enc_cpu_fs": 0.194
+    },
+    {
+     "vmaf": 94,
+     "bpppf": 0.056882,
+     "psnr": 34.54,
+     "ssim": 0.99068,
+     "enc_cpu_fs": 0.189
+    },
+    {
+     "vmaf": 96,
+     "bpppf": 0.069009,
+     "psnr": 35.25,
+     "ssim": 0.99205,
+     "enc_cpu_fs": 0.1807
+    },
+    {
+     "vmaf": 98,
+     "bpppf": 0.08662,
+     "psnr": 36.1,
+     "ssim": 0.99348,
+     "enc_cpu_fs": 0.1706
+    }
+   ],
+   "VVC": [
+    {
+     "vmaf": 80,
+     "bpppf": 0.019484,
+     "psnr": 31.58,
+     "ssim": 0.98328,
+     "enc_cpu_fs": 2.8061
+    },
+    {
+     "vmaf": 82,
+     "bpppf": 0.021563,
+     "psnr": 31.97,
+     "ssim": 0.98512,
+     "enc_cpu_fs": 2.9429
+    },
+    {
+     "vmaf": 84,
+     "bpppf": 0.024255,
+     "psnr": 32.42,
+     "ssim": 0.98658,
+     "enc_cpu_fs": 3.1115
+    },
+    {
+     "vmaf": 86,
+     "bpppf": 0.027461,
+     "psnr": 32.89,
+     "ssim": 0.98796,
+     "enc_cpu_fs": 3.2984
+    },
+    {
+     "vmaf": 88,
+     "bpppf": 0.031093,
+     "psnr": 33.37,
+     "ssim": 0.98931,
+     "enc_cpu_fs": 3.493
+    },
+    {
+     "vmaf": 90,
+     "bpppf": 0.035207,
+     "psnr": 33.86,
+     "ssim": 0.99062,
+     "enc_cpu_fs": 3.6917
+    },
+    {
+     "vmaf": 92,
+     "bpppf": 0.040455,
+     "psnr": 34.37,
+     "ssim": 0.99188,
+     "enc_cpu_fs": 3.9011
+    },
+    {
+     "vmaf": 94,
+     "bpppf": 0.047865,
+     "psnr": 35.03,
+     "ssim": 0.99307,
+     "enc_cpu_fs": 4.2077
+    },
+    {
+     "vmaf": 96,
+     "bpppf": 0.058466,
+     "psnr": 35.84,
+     "ssim": 0.99417,
+     "enc_cpu_fs": 4.652
+    },
+    {
+     "vmaf": 98,
+     "bpppf": 0.071415,
+     "psnr": 36.66,
+     "ssim": 0.99527,
+     "enc_cpu_fs": 5.1432
     }
    ]
   },
@@ -388,338 +534,482 @@
    "H264": [
     {
      "vmaf": 74,
-     "bpppf": 0.044138,
-     "psnr": 29.0,
-     "ssim": 0.96534,
-     "enc_cpu_fs": 0.0393
+     "bpppf": 0.04464,
+     "psnr": 29.05,
+     "ssim": 0.96442,
+     "enc_cpu_fs": 0.0391
     },
     {
      "vmaf": 76,
-     "bpppf": 0.047425,
-     "psnr": 29.35,
-     "ssim": 0.96848,
-     "enc_cpu_fs": 0.0401
+     "bpppf": 0.047852,
+     "psnr": 29.38,
+     "ssim": 0.96784,
+     "enc_cpu_fs": 0.0397
     },
     {
      "vmaf": 78,
-     "bpppf": 0.051055,
-     "psnr": 29.7,
-     "ssim": 0.97153,
-     "enc_cpu_fs": 0.0412
+     "bpppf": 0.051295,
+     "psnr": 29.71,
+     "ssim": 0.97126,
+     "enc_cpu_fs": 0.0403
     },
     {
      "vmaf": 80,
-     "bpppf": 0.055226,
-     "psnr": 30.08,
-     "ssim": 0.9743,
-     "enc_cpu_fs": 0.0424
+     "bpppf": 0.055488,
+     "psnr": 30.1,
+     "ssim": 0.97412,
+     "enc_cpu_fs": 0.0411
     },
     {
      "vmaf": 82,
-     "bpppf": 0.059957,
-     "psnr": 30.48,
-     "ssim": 0.97692,
-     "enc_cpu_fs": 0.0436
+     "bpppf": 0.060415,
+     "psnr": 30.52,
+     "ssim": 0.9767,
+     "enc_cpu_fs": 0.042
     },
     {
      "vmaf": 84,
-     "bpppf": 0.065625,
-     "psnr": 30.91,
-     "ssim": 0.97939,
-     "enc_cpu_fs": 0.0446
+     "bpppf": 0.066678,
+     "psnr": 31.0,
+     "ssim": 0.97901,
+     "enc_cpu_fs": 0.0431
     },
     {
      "vmaf": 86,
-     "bpppf": 0.072167,
-     "psnr": 31.37,
-     "ssim": 0.98172,
-     "enc_cpu_fs": 0.0456
+     "bpppf": 0.073589,
+     "psnr": 31.48,
+     "ssim": 0.98132,
+     "enc_cpu_fs": 0.0442
     },
     {
      "vmaf": 88,
-     "bpppf": 0.079974,
-     "psnr": 31.87,
-     "ssim": 0.98388,
-     "enc_cpu_fs": 0.0466
+     "bpppf": 0.081218,
+     "psnr": 31.96,
+     "ssim": 0.98363,
+     "enc_cpu_fs": 0.0453
     },
     {
      "vmaf": 90,
-     "bpppf": 0.089169,
-     "psnr": 32.41,
-     "ssim": 0.98599,
-     "enc_cpu_fs": 0.0476
+     "bpppf": 0.089637,
+     "psnr": 32.44,
+     "ssim": 0.98594,
+     "enc_cpu_fs": 0.0465
     },
     {
      "vmaf": 92,
-     "bpppf": 0.100703,
-     "psnr": 33.03,
-     "ssim": 0.98792,
-     "enc_cpu_fs": 0.0492
+     "bpppf": 0.101894,
+     "psnr": 33.09,
+     "ssim": 0.98791,
+     "enc_cpu_fs": 0.0483
     },
     {
      "vmaf": 94,
-     "bpppf": 0.115087,
-     "psnr": 33.69,
-     "ssim": 0.98974,
-     "enc_cpu_fs": 0.0515
+     "bpppf": 0.119375,
+     "psnr": 33.88,
+     "ssim": 0.98971,
+     "enc_cpu_fs": 0.0506
     },
     {
      "vmaf": 96,
-     "bpppf": 0.13552,
-     "psnr": 34.52,
-     "ssim": 0.99154,
-     "enc_cpu_fs": 0.0561
+     "bpppf": 0.139854,
+     "psnr": 34.67,
+     "ssim": 0.99151,
+     "enc_cpu_fs": 0.0531
     }
    ],
    "HEVC": [
     {
      "vmaf": 74,
-     "bpppf": 0.039,
-     "psnr": 29.65,
-     "ssim": 0.96599,
-     "enc_cpu_fs": 0.0713
+     "bpppf": 0.039801,
+     "psnr": 29.73,
+     "ssim": 0.96524,
+     "enc_cpu_fs": 0.0672
     },
     {
      "vmaf": 76,
-     "bpppf": 0.042486,
-     "psnr": 30.0,
-     "ssim": 0.96891,
-     "enc_cpu_fs": 0.0734
+     "bpppf": 0.04335,
+     "psnr": 30.06,
+     "ssim": 0.9683,
+     "enc_cpu_fs": 0.0687
     },
     {
      "vmaf": 78,
-     "bpppf": 0.046539,
-     "psnr": 30.38,
-     "ssim": 0.97177,
-     "enc_cpu_fs": 0.0761
+     "bpppf": 0.047215,
+     "psnr": 30.4,
+     "ssim": 0.97135,
+     "enc_cpu_fs": 0.0704
     },
     {
      "vmaf": 80,
-     "bpppf": 0.051092,
-     "psnr": 30.77,
-     "ssim": 0.97447,
-     "enc_cpu_fs": 0.0784
+     "bpppf": 0.051587,
+     "psnr": 30.76,
+     "ssim": 0.97421,
+     "enc_cpu_fs": 0.0723
     },
     {
      "vmaf": 82,
-     "bpppf": 0.05626,
+     "bpppf": 0.056765,
      "psnr": 31.18,
-     "ssim": 0.97696,
-     "enc_cpu_fs": 0.0803
+     "ssim": 0.97667,
+     "enc_cpu_fs": 0.0747
     },
     {
      "vmaf": 84,
-     "bpppf": 0.062132,
-     "psnr": 31.61,
-     "ssim": 0.9793,
-     "enc_cpu_fs": 0.0815
+     "bpppf": 0.063361,
+     "psnr": 31.67,
+     "ssim": 0.97893,
+     "enc_cpu_fs": 0.0775
     },
     {
      "vmaf": 86,
-     "bpppf": 0.068868,
-     "psnr": 32.06,
-     "ssim": 0.98157,
-     "enc_cpu_fs": 0.0834
+     "bpppf": 0.070724,
+     "psnr": 32.16,
+     "ssim": 0.98119,
+     "enc_cpu_fs": 0.0804
     },
     {
      "vmaf": 88,
-     "bpppf": 0.077271,
-     "psnr": 32.57,
-     "ssim": 0.98373,
-     "enc_cpu_fs": 0.0875
+     "bpppf": 0.078941,
+     "psnr": 32.64,
+     "ssim": 0.98344,
+     "enc_cpu_fs": 0.0834
     },
     {
      "vmaf": 90,
-     "bpppf": 0.087508,
-     "psnr": 33.12,
-     "ssim": 0.98586,
-     "enc_cpu_fs": 0.093
+     "bpppf": 0.088114,
+     "psnr": 33.13,
+     "ssim": 0.9857,
+     "enc_cpu_fs": 0.0865
     },
     {
      "vmaf": 92,
-     "bpppf": 0.100147,
-     "psnr": 33.74,
-     "ssim": 0.98777,
-     "enc_cpu_fs": 0.0973
+     "bpppf": 0.101253,
+     "psnr": 33.8,
+     "ssim": 0.98766,
+     "enc_cpu_fs": 0.0913
     },
     {
      "vmaf": 94,
-     "bpppf": 0.11509,
-     "psnr": 34.4,
-     "ssim": 0.98958,
-     "enc_cpu_fs": 0.1004
+     "bpppf": 0.118851,
+     "psnr": 34.57,
+     "ssim": 0.98947,
+     "enc_cpu_fs": 0.0974
     },
     {
      "vmaf": 96,
-     "bpppf": 0.136523,
-     "psnr": 35.23,
-     "ssim": 0.99133,
-     "enc_cpu_fs": 0.1078
+     "bpppf": 0.139507,
+     "psnr": 35.34,
+     "ssim": 0.99129,
+     "enc_cpu_fs": 0.1039
     }
    ],
    "VP9": [
     {
      "vmaf": 74,
-     "bpppf": 0.035613,
-     "psnr": 29.32,
-     "ssim": 0.95762,
-     "enc_cpu_fs": 0.1968
+     "bpppf": 0.03611,
+     "psnr": 29.41,
+     "ssim": 0.95746,
+     "enc_cpu_fs": 0.1633
     },
     {
      "vmaf": 76,
-     "bpppf": 0.038968,
-     "psnr": 29.66,
-     "ssim": 0.96109,
-     "enc_cpu_fs": 0.1953
+     "bpppf": 0.039585,
+     "psnr": 29.76,
+     "ssim": 0.96084,
+     "enc_cpu_fs": 0.165
     },
     {
      "vmaf": 78,
-     "bpppf": 0.042721,
-     "psnr": 30.02,
-     "ssim": 0.96427,
-     "enc_cpu_fs": 0.1977
+     "bpppf": 0.043395,
+     "psnr": 30.11,
+     "ssim": 0.96422,
+     "enc_cpu_fs": 0.1667
     },
     {
      "vmaf": 80,
-     "bpppf": 0.046845,
-     "psnr": 30.4,
-     "ssim": 0.96744,
-     "enc_cpu_fs": 0.2005
+     "bpppf": 0.047724,
+     "psnr": 30.47,
+     "ssim": 0.96754,
+     "enc_cpu_fs": 0.1685
     },
     {
      "vmaf": 82,
-     "bpppf": 0.052277,
-     "psnr": 30.81,
-     "ssim": 0.97055,
-     "enc_cpu_fs": 0.2032
+     "bpppf": 0.052974,
+     "psnr": 30.86,
+     "ssim": 0.97063,
+     "enc_cpu_fs": 0.1703
     },
     {
      "vmaf": 84,
-     "bpppf": 0.058443,
-     "psnr": 31.24,
-     "ssim": 0.97348,
-     "enc_cpu_fs": 0.2033
+     "bpppf": 0.059149,
+     "psnr": 31.29,
+     "ssim": 0.97342,
+     "enc_cpu_fs": 0.1721
     },
     {
      "vmaf": 86,
-     "bpppf": 0.065435,
-     "psnr": 31.69,
-     "ssim": 0.97624,
-     "enc_cpu_fs": 0.2048
+     "bpppf": 0.066307,
+     "psnr": 31.75,
+     "ssim": 0.97613,
+     "enc_cpu_fs": 0.1741
     },
     {
      "vmaf": 88,
-     "bpppf": 0.073946,
-     "psnr": 32.17,
-     "ssim": 0.97877,
-     "enc_cpu_fs": 0.2077
+     "bpppf": 0.074755,
+     "psnr": 32.23,
+     "ssim": 0.97876,
+     "enc_cpu_fs": 0.1766
     },
     {
      "vmaf": 90,
-     "bpppf": 0.083999,
-     "psnr": 32.71,
-     "ssim": 0.98122,
-     "enc_cpu_fs": 0.2083
+     "bpppf": 0.085207,
+     "psnr": 32.8,
+     "ssim": 0.98118,
+     "enc_cpu_fs": 0.1806
     },
     {
      "vmaf": 92,
-     "bpppf": 0.095607,
-     "psnr": 33.28,
-     "ssim": 0.98361,
-     "enc_cpu_fs": 0.2098
-    },
-    {
-     "vmaf": 94,
-     "bpppf": 0.111371,
-     "psnr": 33.96,
-     "ssim": 0.9859,
-     "enc_cpu_fs": 0.2125
-    },
-    {
-     "vmaf": 96,
-     "bpppf": 0.131231,
-     "psnr": 34.7,
-     "ssim": 0.98817,
-     "enc_cpu_fs": 0.2138
-    },
-    {
-     "vmaf": 98,
-     "bpppf": 0.162172,
-     "psnr": 35.7,
-     "ssim": 0.99051,
-     "enc_cpu_fs": 0.217
+     "bpppf": 0.097312,
+     "psnr": 33.39,
+     "ssim": 0.98356,
+     "enc_cpu_fs": 0.1851
     }
    ],
    "AV1": [
     {
+     "vmaf": 74,
+     "bpppf": 0.022758,
+     "psnr": 29.17,
+     "ssim": 0.95807,
+     "enc_cpu_fs": 0.2427
+    },
+    {
+     "vmaf": 76,
+     "bpppf": 0.025107,
+     "psnr": 29.53,
+     "ssim": 0.96144,
+     "enc_cpu_fs": 0.2494
+    },
+    {
      "vmaf": 78,
-     "bpppf": 0.033992,
-     "psnr": 30.22,
-     "ssim": 0.9696,
-     "enc_cpu_fs": 0.2822
+     "bpppf": 0.027697,
+     "psnr": 29.88,
+     "ssim": 0.9648,
+     "enc_cpu_fs": 0.2562
     },
     {
      "vmaf": 80,
-     "bpppf": 0.03787,
-     "psnr": 30.64,
-     "ssim": 0.97239,
-     "enc_cpu_fs": 0.2901
+     "bpppf": 0.030555,
+     "psnr": 30.24,
+     "ssim": 0.96817,
+     "enc_cpu_fs": 0.2632
     },
     {
      "vmaf": 82,
-     "bpppf": 0.042191,
-     "psnr": 31.06,
-     "ssim": 0.97519,
-     "enc_cpu_fs": 0.2982
+     "bpppf": 0.033878,
+     "psnr": 30.63,
+     "ssim": 0.97131,
+     "enc_cpu_fs": 0.2702
     },
     {
      "vmaf": 84,
-     "bpppf": 0.047256,
-     "psnr": 31.5,
-     "ssim": 0.97789,
-     "enc_cpu_fs": 0.3052
+     "bpppf": 0.037837,
+     "psnr": 31.05,
+     "ssim": 0.97412,
+     "enc_cpu_fs": 0.2771
     },
     {
      "vmaf": 86,
-     "bpppf": 0.053816,
-     "psnr": 32.0,
-     "ssim": 0.98041,
-     "enc_cpu_fs": 0.3151
+     "bpppf": 0.042259,
+     "psnr": 31.48,
+     "ssim": 0.97693,
+     "enc_cpu_fs": 0.2842
     },
     {
      "vmaf": 88,
-     "bpppf": 0.061561,
-     "psnr": 32.55,
-     "ssim": 0.98284,
-     "enc_cpu_fs": 0.3294
+     "bpppf": 0.047198,
+     "psnr": 31.91,
+     "ssim": 0.97973,
+     "enc_cpu_fs": 0.2915
     },
     {
      "vmaf": 90,
-     "bpppf": 0.071192,
-     "psnr": 33.13,
-     "ssim": 0.98504,
-     "enc_cpu_fs": 0.3379
+     "bpppf": 0.053932,
+     "psnr": 32.46,
+     "ssim": 0.98215,
+     "enc_cpu_fs": 0.3014
     },
     {
      "vmaf": 92,
-     "bpppf": 0.082361,
-     "psnr": 33.76,
-     "ssim": 0.98701,
-     "enc_cpu_fs": 0.3532
+     "bpppf": 0.062514,
+     "psnr": 33.1,
+     "ssim": 0.98434,
+     "enc_cpu_fs": 0.3135
     },
     {
      "vmaf": 94,
-     "bpppf": 0.096057,
-     "psnr": 34.43,
-     "ssim": 0.9889,
-     "enc_cpu_fs": 0.3651
+     "bpppf": 0.072461,
+     "psnr": 33.73,
+     "ssim": 0.98653,
+     "enc_cpu_fs": 0.3262
     },
     {
      "vmaf": 96,
-     "bpppf": 0.114415,
-     "psnr": 35.23,
-     "ssim": 0.99066,
-     "enc_cpu_fs": 0.3872
+     "bpppf": 0.085989,
+     "psnr": 34.46,
+     "ssim": 0.98866,
+     "enc_cpu_fs": 0.3432
+    }
+   ],
+   "SVTAV1": [
+    {
+     "vmaf": 78,
+     "bpppf": 0.02712,
+     "psnr": 29.86,
+     "ssim": 0.96959,
+     "enc_cpu_fs": 0.0943
+    },
+    {
+     "vmaf": 80,
+     "bpppf": 0.030471,
+     "psnr": 30.27,
+     "ssim": 0.9721,
+     "enc_cpu_fs": 0.095
+    },
+    {
+     "vmaf": 82,
+     "bpppf": 0.034236,
+     "psnr": 30.67,
+     "ssim": 0.97461,
+     "enc_cpu_fs": 0.0958
+    },
+    {
+     "vmaf": 84,
+     "bpppf": 0.038466,
+     "psnr": 31.08,
+     "ssim": 0.97713,
+     "enc_cpu_fs": 0.0965
+    },
+    {
+     "vmaf": 86,
+     "bpppf": 0.043219,
+     "psnr": 31.49,
+     "ssim": 0.97964,
+     "enc_cpu_fs": 0.0973
+    },
+    {
+     "vmaf": 88,
+     "bpppf": 0.049158,
+     "psnr": 31.97,
+     "ssim": 0.98184,
+     "enc_cpu_fs": 0.0968
+    },
+    {
+     "vmaf": 90,
+     "bpppf": 0.056246,
+     "psnr": 32.48,
+     "ssim": 0.98398,
+     "enc_cpu_fs": 0.0955
+    },
+    {
+     "vmaf": 92,
+     "bpppf": 0.065335,
+     "psnr": 33.03,
+     "ssim": 0.98598,
+     "enc_cpu_fs": 0.0922
+    },
+    {
+     "vmaf": 94,
+     "bpppf": 0.077308,
+     "psnr": 33.68,
+     "ssim": 0.98798,
+     "enc_cpu_fs": 0.0888
+    },
+    {
+     "vmaf": 96,
+     "bpppf": 0.095531,
+     "psnr": 34.5,
+     "ssim": 0.9899,
+     "enc_cpu_fs": 0.0844
+    },
+    {
+     "vmaf": 98,
+     "bpppf": 0.11862,
+     "psnr": 35.35,
+     "ssim": 0.9918,
+     "enc_cpu_fs": 0.08
+    }
+   ],
+   "VVC": [
+    {
+     "vmaf": 80,
+     "bpppf": 0.024914,
+     "psnr": 30.39,
+     "ssim": 0.9763,
+     "enc_cpu_fs": 1.3148
+    },
+    {
+     "vmaf": 82,
+     "bpppf": 0.028069,
+     "psnr": 30.85,
+     "ssim": 0.97867,
+     "enc_cpu_fs": 1.3888
+    },
+    {
+     "vmaf": 84,
+     "bpppf": 0.031836,
+     "psnr": 31.34,
+     "ssim": 0.98083,
+     "enc_cpu_fs": 1.4709
+    },
+    {
+     "vmaf": 86,
+     "bpppf": 0.036109,
+     "psnr": 31.84,
+     "ssim": 0.983,
+     "enc_cpu_fs": 1.5578
+    },
+    {
+     "vmaf": 88,
+     "bpppf": 0.040955,
+     "psnr": 32.34,
+     "ssim": 0.98516,
+     "enc_cpu_fs": 1.6499
+    },
+    {
+     "vmaf": 90,
+     "bpppf": 0.047043,
+     "psnr": 32.89,
+     "ssim": 0.98713,
+     "enc_cpu_fs": 1.7509
+    },
+    {
+     "vmaf": 92,
+     "bpppf": 0.054341,
+     "psnr": 33.48,
+     "ssim": 0.98904,
+     "enc_cpu_fs": 1.8662
+    },
+    {
+     "vmaf": 94,
+     "bpppf": 0.065418,
+     "psnr": 34.3,
+     "ssim": 0.9907,
+     "enc_cpu_fs": 2.0534
+    },
+    {
+     "vmaf": 96,
+     "bpppf": 0.082522,
+     "psnr": 35.3,
+     "ssim": 0.99232,
+     "enc_cpu_fs": 2.3185
+    },
+    {
+     "vmaf": 98,
+     "bpppf": 0.104099,
+     "psnr": 36.3,
+     "ssim": 0.99394,
+     "enc_cpu_fs": 2.6179
     }
    ]
   },
@@ -727,331 +1017,454 @@
    "H264": [
     {
      "vmaf": 74,
-     "bpppf": 0.048314,
-     "psnr": 28.39,
-     "ssim": 0.93959,
-     "enc_cpu_fs": 0.0222
+     "bpppf": 0.048926,
+     "psnr": 28.45,
+     "ssim": 0.93837,
+     "enc_cpu_fs": 0.0221
     },
     {
      "vmaf": 76,
-     "bpppf": 0.05216,
-     "psnr": 28.74,
-     "ssim": 0.94473,
-     "enc_cpu_fs": 0.0228
+     "bpppf": 0.052633,
+     "psnr": 28.78,
+     "ssim": 0.94395,
+     "enc_cpu_fs": 0.0225
     },
     {
      "vmaf": 78,
-     "bpppf": 0.056448,
-     "psnr": 29.1,
-     "ssim": 0.94973,
-     "enc_cpu_fs": 0.0234
+     "bpppf": 0.056726,
+     "psnr": 29.12,
+     "ssim": 0.9494,
+     "enc_cpu_fs": 0.0229
     },
     {
      "vmaf": 80,
-     "bpppf": 0.061493,
-     "psnr": 29.5,
-     "ssim": 0.9544,
-     "enc_cpu_fs": 0.0241
+     "bpppf": 0.061848,
+     "psnr": 29.54,
+     "ssim": 0.9541,
+     "enc_cpu_fs": 0.0233
     },
     {
      "vmaf": 82,
-     "bpppf": 0.067292,
-     "psnr": 29.92,
-     "ssim": 0.95898,
-     "enc_cpu_fs": 0.0246
+     "bpppf": 0.067984,
+     "psnr": 29.99,
+     "ssim": 0.95857,
+     "enc_cpu_fs": 0.0238
     },
     {
      "vmaf": 84,
-     "bpppf": 0.074015,
-     "psnr": 30.37,
-     "ssim": 0.96346,
-     "enc_cpu_fs": 0.0252
+     "bpppf": 0.075358,
+     "psnr": 30.48,
+     "ssim": 0.96281,
+     "enc_cpu_fs": 0.0244
     },
     {
      "vmaf": 86,
-     "bpppf": 0.082054,
-     "psnr": 30.87,
-     "ssim": 0.96758,
-     "enc_cpu_fs": 0.026
+     "bpppf": 0.083531,
+     "psnr": 30.97,
+     "ssim": 0.96705,
+     "enc_cpu_fs": 0.025
     },
     {
      "vmaf": 88,
-     "bpppf": 0.091664,
-     "psnr": 31.41,
-     "ssim": 0.97155,
-     "enc_cpu_fs": 0.0269
+     "bpppf": 0.092592,
+     "psnr": 31.46,
+     "ssim": 0.9713,
+     "enc_cpu_fs": 0.0256
     },
     {
      "vmaf": 90,
-     "bpppf": 0.103233,
-     "psnr": 32.0,
-     "ssim": 0.97535,
-     "enc_cpu_fs": 0.0282
+     "bpppf": 0.103959,
+     "psnr": 32.04,
+     "ssim": 0.97526,
+     "enc_cpu_fs": 0.0264
     },
     {
      "vmaf": 92,
-     "bpppf": 0.118022,
-     "psnr": 32.67,
-     "ssim": 0.97896,
-     "enc_cpu_fs": 0.0299
+     "bpppf": 0.120187,
+     "psnr": 32.77,
+     "ssim": 0.97881,
+     "enc_cpu_fs": 0.0275
     },
     {
      "vmaf": 94,
-     "bpppf": 0.137324,
-     "psnr": 33.43,
-     "ssim": 0.98247,
-     "enc_cpu_fs": 0.032
+     "bpppf": 0.141131,
+     "psnr": 33.57,
+     "ssim": 0.98225,
+     "enc_cpu_fs": 0.0289
     },
     {
      "vmaf": 96,
-     "bpppf": 0.164191,
-     "psnr": 34.33,
-     "ssim": 0.98576,
-     "enc_cpu_fs": 0.0334
+     "bpppf": 0.165723,
+     "psnr": 34.38,
+     "ssim": 0.9857,
+     "enc_cpu_fs": 0.0303
     }
    ],
    "HEVC": [
     {
      "vmaf": 74,
-     "bpppf": 0.045298,
-     "psnr": 29.05,
-     "ssim": 0.94109,
-     "enc_cpu_fs": 0.0392
+     "bpppf": 0.046452,
+     "psnr": 29.13,
+     "ssim": 0.94021,
+     "enc_cpu_fs": 0.0385
     },
     {
      "vmaf": 76,
-     "bpppf": 0.04947,
-     "psnr": 29.42,
-     "ssim": 0.94585,
-     "enc_cpu_fs": 0.0404
+     "bpppf": 0.050609,
+     "psnr": 29.47,
+     "ssim": 0.94532,
+     "enc_cpu_fs": 0.0396
     },
     {
      "vmaf": 78,
-     "bpppf": 0.05403,
-     "psnr": 29.78,
-     "ssim": 0.95058,
-     "enc_cpu_fs": 0.0416
+     "bpppf": 0.055138,
+     "psnr": 29.82,
+     "ssim": 0.95043,
+     "enc_cpu_fs": 0.0406
     },
     {
      "vmaf": 80,
-     "bpppf": 0.059241,
-     "psnr": 30.17,
-     "ssim": 0.95508,
-     "enc_cpu_fs": 0.0428
+     "bpppf": 0.060522,
+     "psnr": 30.22,
+     "ssim": 0.95495,
+     "enc_cpu_fs": 0.042
     },
     {
      "vmaf": 82,
-     "bpppf": 0.065497,
-     "psnr": 30.6,
-     "ssim": 0.95944,
-     "enc_cpu_fs": 0.044
+     "bpppf": 0.066972,
+     "psnr": 30.67,
+     "ssim": 0.95919,
+     "enc_cpu_fs": 0.0435
     },
     {
      "vmaf": 84,
-     "bpppf": 0.072916,
-     "psnr": 31.06,
-     "ssim": 0.96378,
+     "bpppf": 0.074808,
+     "psnr": 31.16,
+     "ssim": 0.96326,
      "enc_cpu_fs": 0.0451
     },
     {
      "vmaf": 86,
-     "bpppf": 0.081452,
-     "psnr": 31.55,
-     "ssim": 0.96781,
-     "enc_cpu_fs": 0.0467
+     "bpppf": 0.083561,
+     "psnr": 31.66,
+     "ssim": 0.96733,
+     "enc_cpu_fs": 0.0468
     },
     {
      "vmaf": 88,
-     "bpppf": 0.091862,
-     "psnr": 32.1,
-     "ssim": 0.97162,
-     "enc_cpu_fs": 0.049
+     "bpppf": 0.093338,
+     "psnr": 32.16,
+     "ssim": 0.9714,
+     "enc_cpu_fs": 0.0485
     },
     {
      "vmaf": 90,
-     "bpppf": 0.104033,
-     "psnr": 32.67,
-     "ssim": 0.97535,
-     "enc_cpu_fs": 0.0516
+     "bpppf": 0.105224,
+     "psnr": 32.72,
+     "ssim": 0.97524,
+     "enc_cpu_fs": 0.0508
     },
     {
      "vmaf": 92,
-     "bpppf": 0.119331,
-     "psnr": 33.33,
-     "ssim": 0.97878,
-     "enc_cpu_fs": 0.0547
+     "bpppf": 0.121512,
+     "psnr": 33.43,
+     "ssim": 0.97866,
+     "enc_cpu_fs": 0.0541
     },
     {
      "vmaf": 94,
-     "bpppf": 0.137937,
-     "psnr": 34.04,
-     "ssim": 0.9821,
-     "enc_cpu_fs": 0.0584
+     "bpppf": 0.142117,
+     "psnr": 34.2,
+     "ssim": 0.98195,
+     "enc_cpu_fs": 0.0581
     },
     {
      "vmaf": 96,
-     "bpppf": 0.164247,
-     "psnr": 34.92,
+     "bpppf": 0.166216,
+     "psnr": 34.98,
      "ssim": 0.98525,
-     "enc_cpu_fs": 0.0635
+     "enc_cpu_fs": 0.0622
     }
    ],
    "VP9": [
     {
      "vmaf": 74,
-     "bpppf": 0.04117,
-     "psnr": 28.76,
-     "ssim": 0.92951,
-     "enc_cpu_fs": 0.1411
+     "bpppf": 0.041965,
+     "psnr": 28.83,
+     "ssim": 0.92911,
+     "enc_cpu_fs": 0.1206
     },
     {
      "vmaf": 76,
-     "bpppf": 0.04513,
-     "psnr": 29.09,
-     "ssim": 0.93485,
-     "enc_cpu_fs": 0.1434
+     "bpppf": 0.046127,
+     "psnr": 29.18,
+     "ssim": 0.93433,
+     "enc_cpu_fs": 0.1222
     },
     {
      "vmaf": 78,
-     "bpppf": 0.049945,
-     "psnr": 29.48,
-     "ssim": 0.93989,
-     "enc_cpu_fs": 0.1459
+     "bpppf": 0.050702,
+     "psnr": 29.53,
+     "ssim": 0.93955,
+     "enc_cpu_fs": 0.1239
     },
     {
      "vmaf": 80,
-     "bpppf": 0.055286,
-     "psnr": 29.86,
-     "ssim": 0.94488,
-     "enc_cpu_fs": 0.1479
+     "bpppf": 0.055993,
+     "psnr": 29.9,
+     "ssim": 0.94471,
+     "enc_cpu_fs": 0.1253
     },
     {
      "vmaf": 82,
-     "bpppf": 0.061298,
-     "psnr": 30.27,
-     "ssim": 0.94974,
-     "enc_cpu_fs": 0.1492
+     "bpppf": 0.062411,
+     "psnr": 30.31,
+     "ssim": 0.94972,
+     "enc_cpu_fs": 0.1266
     },
     {
      "vmaf": 84,
-     "bpppf": 0.068574,
-     "psnr": 30.71,
-     "ssim": 0.9546,
-     "enc_cpu_fs": 0.1511
+     "bpppf": 0.069973,
+     "psnr": 30.77,
+     "ssim": 0.95457,
+     "enc_cpu_fs": 0.128
     },
     {
      "vmaf": 86,
-     "bpppf": 0.077155,
-     "psnr": 31.18,
-     "ssim": 0.95921,
-     "enc_cpu_fs": 0.1529
+     "bpppf": 0.078793,
+     "psnr": 31.25,
+     "ssim": 0.95919,
+     "enc_cpu_fs": 0.1291
     },
     {
      "vmaf": 88,
-     "bpppf": 0.08717,
-     "psnr": 31.68,
-     "ssim": 0.9636,
-     "enc_cpu_fs": 0.1547
+     "bpppf": 0.088979,
+     "psnr": 31.76,
+     "ssim": 0.96369,
+     "enc_cpu_fs": 0.1302
     },
     {
      "vmaf": 90,
-     "bpppf": 0.09932,
-     "psnr": 32.25,
-     "ssim": 0.96783,
-     "enc_cpu_fs": 0.1563
+     "bpppf": 0.101579,
+     "psnr": 32.36,
+     "ssim": 0.96781,
+     "enc_cpu_fs": 0.132
     },
     {
      "vmaf": 92,
-     "bpppf": 0.11352,
-     "psnr": 32.86,
-     "ssim": 0.97197,
-     "enc_cpu_fs": 0.1578
-    },
-    {
-     "vmaf": 94,
-     "bpppf": 0.133192,
-     "psnr": 33.59,
-     "ssim": 0.97588,
-     "enc_cpu_fs": 0.1596
-    },
-    {
-     "vmaf": 96,
-     "bpppf": 0.158744,
-     "psnr": 34.41,
-     "ssim": 0.97988,
-     "enc_cpu_fs": 0.161
-    },
-    {
-     "vmaf": 98,
-     "bpppf": 0.195272,
-     "psnr": 35.47,
-     "ssim": 0.98401,
-     "enc_cpu_fs": 0.1606
+     "bpppf": 0.115964,
+     "psnr": 32.97,
+     "ssim": 0.97194,
+     "enc_cpu_fs": 0.1337
     }
    ],
    "AV1": [
     {
+     "vmaf": 74,
+     "bpppf": 0.026575,
+     "psnr": 28.57,
+     "ssim": 0.92793,
+     "enc_cpu_fs": 0.1513
+    },
+    {
+     "vmaf": 76,
+     "bpppf": 0.029228,
+     "psnr": 28.93,
+     "ssim": 0.93337,
+     "enc_cpu_fs": 0.1555
+    },
+    {
      "vmaf": 78,
-     "bpppf": 0.039102,
-     "psnr": 29.59,
-     "ssim": 0.94632,
-     "enc_cpu_fs": 0.1673
+     "bpppf": 0.032147,
+     "psnr": 29.28,
+     "ssim": 0.93882,
+     "enc_cpu_fs": 0.1599
     },
     {
      "vmaf": 80,
-     "bpppf": 0.043814,
-     "psnr": 30.02,
-     "ssim": 0.95126,
-     "enc_cpu_fs": 0.173
+     "bpppf": 0.035357,
+     "psnr": 29.63,
+     "ssim": 0.94426,
+     "enc_cpu_fs": 0.1643
     },
     {
      "vmaf": 82,
-     "bpppf": 0.049094,
-     "psnr": 30.45,
-     "ssim": 0.95619,
-     "enc_cpu_fs": 0.179
+     "bpppf": 0.039183,
+     "psnr": 30.03,
+     "ssim": 0.9494,
+     "enc_cpu_fs": 0.1692
     },
     {
      "vmaf": 84,
-     "bpppf": 0.055368,
-     "psnr": 30.92,
-     "ssim": 0.96097,
-     "enc_cpu_fs": 0.1853
+     "bpppf": 0.043697,
+     "psnr": 30.46,
+     "ssim": 0.95428,
+     "enc_cpu_fs": 0.1746
     },
     {
      "vmaf": 86,
-     "bpppf": 0.063006,
-     "psnr": 31.44,
-     "ssim": 0.9654,
-     "enc_cpu_fs": 0.191
+     "bpppf": 0.048731,
+     "psnr": 30.89,
+     "ssim": 0.95915,
+     "enc_cpu_fs": 0.1801
     },
     {
      "vmaf": 88,
-     "bpppf": 0.071877,
-     "psnr": 31.99,
-     "ssim": 0.9696,
-     "enc_cpu_fs": 0.1962
+     "bpppf": 0.054344,
+     "psnr": 31.32,
+     "ssim": 0.96403,
+     "enc_cpu_fs": 0.1858
     },
     {
      "vmaf": 90,
-     "bpppf": 0.083364,
-     "psnr": 32.62,
-     "ssim": 0.97357,
-     "enc_cpu_fs": 0.205
+     "bpppf": 0.063096,
+     "psnr": 31.99,
+     "ssim": 0.96832,
+     "enc_cpu_fs": 0.1929
     },
     {
      "vmaf": 92,
-     "bpppf": 0.097207,
-     "psnr": 33.3,
-     "ssim": 0.97739,
-     "enc_cpu_fs": 0.2146
+     "bpppf": 0.073434,
+     "psnr": 32.67,
+     "ssim": 0.97256,
+     "enc_cpu_fs": 0.2002
     },
     {
      "vmaf": 94,
-     "bpppf": 0.115138,
-     "psnr": 34.07,
-     "ssim": 0.98082,
-     "enc_cpu_fs": 0.2248
+     "bpppf": 0.085759,
+     "psnr": 33.36,
+     "ssim": 0.97677,
+     "enc_cpu_fs": 0.2083
+    }
+   ],
+   "SVTAV1": [
+    {
+     "vmaf": 80,
+     "bpppf": 0.033209,
+     "psnr": 29.55,
+     "ssim": 0.94939,
+     "enc_cpu_fs": 0.0662
+    },
+    {
+     "vmaf": 82,
+     "bpppf": 0.037284,
+     "psnr": 29.99,
+     "ssim": 0.95385,
+     "enc_cpu_fs": 0.067
+    },
+    {
+     "vmaf": 84,
+     "bpppf": 0.04186,
+     "psnr": 30.42,
+     "ssim": 0.9583,
+     "enc_cpu_fs": 0.0677
+    },
+    {
+     "vmaf": 86,
+     "bpppf": 0.047041,
+     "psnr": 30.86,
+     "ssim": 0.96274,
+     "enc_cpu_fs": 0.0684
+    },
+    {
+     "vmaf": 88,
+     "bpppf": 0.05378,
+     "psnr": 31.39,
+     "ssim": 0.96673,
+     "enc_cpu_fs": 0.0688
+    },
+    {
+     "vmaf": 90,
+     "bpppf": 0.061485,
+     "psnr": 31.92,
+     "ssim": 0.97073,
+     "enc_cpu_fs": 0.0692
+    },
+    {
+     "vmaf": 92,
+     "bpppf": 0.071068,
+     "psnr": 32.47,
+     "ssim": 0.97456,
+     "enc_cpu_fs": 0.0688
+    },
+    {
+     "vmaf": 94,
+     "bpppf": 0.084991,
+     "psnr": 33.21,
+     "ssim": 0.97821,
+     "enc_cpu_fs": 0.0678
+    },
+    {
+     "vmaf": 96,
+     "bpppf": 0.103064,
+     "psnr": 34.03,
+     "ssim": 0.98187,
+     "enc_cpu_fs": 0.0666
+    }
+   ],
+   "VVC": [
+    {
+     "vmaf": 82,
+     "bpppf": 0.032079,
+     "psnr": 30.18,
+     "ssim": 0.96018,
+     "enc_cpu_fs": 0.8566
+    },
+    {
+     "vmaf": 84,
+     "bpppf": 0.036529,
+     "psnr": 30.71,
+     "ssim": 0.96423,
+     "enc_cpu_fs": 0.9079
+    },
+    {
+     "vmaf": 86,
+     "bpppf": 0.041625,
+     "psnr": 31.25,
+     "ssim": 0.96825,
+     "enc_cpu_fs": 0.9625
+    },
+    {
+     "vmaf": 88,
+     "bpppf": 0.047431,
+     "psnr": 31.78,
+     "ssim": 0.97228,
+     "enc_cpu_fs": 1.0204
+    },
+    {
+     "vmaf": 90,
+     "bpppf": 0.054669,
+     "psnr": 32.36,
+     "ssim": 0.97612,
+     "enc_cpu_fs": 1.0858
+    },
+    {
+     "vmaf": 92,
+     "bpppf": 0.063593,
+     "psnr": 32.97,
+     "ssim": 0.97982,
+     "enc_cpu_fs": 1.1587
+    },
+    {
+     "vmaf": 94,
+     "bpppf": 0.077381,
+     "psnr": 33.85,
+     "ssim": 0.9831,
+     "enc_cpu_fs": 1.2715
+    },
+    {
+     "vmaf": 96,
+     "bpppf": 0.099116,
+     "psnr": 34.96,
+     "ssim": 0.98631,
+     "enc_cpu_fs": 1.4388
+    },
+    {
+     "vmaf": 98,
+     "bpppf": 0.126957,
+     "psnr": 36.07,
+     "ssim": 0.98951,
+     "enc_cpu_fs": 1.6281
     }
    ]
   }
@@ -1060,89 +1473,129 @@
   "1080p": {
    "H264": {
     "95": {
-     "bpppf": 0.097911,
+     "bpppf": 0.102125,
      "n": 2
     },
     "93": {
-     "bpppf": 0.086021,
+     "bpppf": 0.087061,
      "n": 2
     },
     "90": {
-     "bpppf": 0.073062,
+     "bpppf": 0.073854,
      "n": 2
     },
     "85": {
-     "bpppf": 0.057826,
+     "bpppf": 0.058742,
      "n": 2
     },
     "80": {
-     "bpppf": 0.047305,
+     "bpppf": 0.047417,
      "n": 2
     }
    },
    "HEVC": {
     "95": {
-     "bpppf": 0.090482,
+     "bpppf": 0.094408,
      "n": 2
     },
     "93": {
-     "bpppf": 0.078407,
+     "bpppf": 0.079845,
      "n": 2
     },
     "90": {
-     "bpppf": 0.064933,
+     "bpppf": 0.066191,
      "n": 2
     },
     "85": {
-     "bpppf": 0.04924,
+     "bpppf": 0.050493,
      "n": 2
     },
     "80": {
-     "bpppf": 0.038726,
+     "bpppf": 0.039513,
      "n": 2
     }
    },
    "VP9": {
-    "95": {
-     "bpppf": 0.087313,
-     "n": 2
-    },
     "93": {
-     "bpppf": 0.075241,
+     "bpppf": 0.076352,
      "n": 2
     },
     "90": {
-     "bpppf": 0.061107,
+     "bpppf": 0.062552,
      "n": 2
     },
     "85": {
-     "bpppf": 0.045886,
+     "bpppf": 0.046681,
      "n": 2
     },
     "80": {
-     "bpppf": 0.035702,
+     "bpppf": 0.036292,
      "n": 2
     }
    },
    "AV1": {
     "95": {
-     "bpppf": 0.075585,
+     "bpppf": 0.058833,
      "n": 2
     },
     "93": {
-     "bpppf": 0.065142,
+     "bpppf": 0.050392,
      "n": 2
     },
     "90": {
-     "bpppf": 0.052675,
+     "bpppf": 0.040813,
      "n": 2
     },
     "85": {
-     "bpppf": 0.038621,
+     "bpppf": 0.030908,
      "n": 2
     },
     "80": {
-     "bpppf": 0.029478,
+     "bpppf": 0.024052,
+     "n": 2
+    }
+   },
+   "SVTAV1": {
+    "95": {
+     "bpppf": 0.061595,
+     "n": 2
+    },
+    "93": {
+     "bpppf": 0.052902,
+     "n": 2
+    },
+    "90": {
+     "bpppf": 0.042555,
+     "n": 2
+    },
+    "85": {
+     "bpppf": 0.031737,
+     "n": 2
+    },
+    "80": {
+     "bpppf": 0.02427,
+     "n": 2
+    }
+   },
+   "VVC": {
+    "95": {
+     "bpppf": 0.0529,
+     "n": 2
+    },
+    "93": {
+     "bpppf": 0.043385,
+     "n": 2
+    },
+    "90": {
+     "bpppf": 0.035207,
+     "n": 2
+    },
+    "85": {
+     "bpppf": 0.025808,
+     "n": 2
+    },
+    "80": {
+     "bpppf": 0.019484,
      "n": 2
     }
    }
@@ -1150,89 +1603,125 @@
   "720p": {
    "H264": {
     "95": {
-     "bpppf": 0.123952,
+     "bpppf": 0.129209,
      "n": 2
     },
     "93": {
-     "bpppf": 0.107655,
+     "bpppf": 0.110289,
      "n": 2
     },
     "90": {
-     "bpppf": 0.089169,
+     "bpppf": 0.089637,
      "n": 2
     },
     "85": {
-     "bpppf": 0.068678,
+     "bpppf": 0.070048,
      "n": 2
     },
     "80": {
-     "bpppf": 0.055226,
+     "bpppf": 0.055488,
      "n": 2
     }
    },
    "HEVC": {
     "95": {
-     "bpppf": 0.124456,
+     "bpppf": 0.128766,
      "n": 2
     },
     "93": {
-     "bpppf": 0.107359,
+     "bpppf": 0.1097,
      "n": 2
     },
     "90": {
-     "bpppf": 0.087508,
+     "bpppf": 0.088114,
      "n": 2
     },
     "85": {
-     "bpppf": 0.065294,
+     "bpppf": 0.066941,
      "n": 2
     },
     "80": {
-     "bpppf": 0.051092,
+     "bpppf": 0.051587,
      "n": 2
     }
    },
    "VP9": {
-    "95": {
-     "bpppf": 0.120632,
-     "n": 2
-    },
-    "93": {
-     "bpppf": 0.102822,
-     "n": 2
-    },
     "90": {
-     "bpppf": 0.083999,
+     "bpppf": 0.085207,
      "n": 2
     },
     "85": {
-     "bpppf": 0.061741,
+     "bpppf": 0.062502,
      "n": 2
     },
     "80": {
-     "bpppf": 0.046845,
+     "bpppf": 0.047724,
      "n": 2
     }
    },
    "AV1": {
     "95": {
-     "bpppf": 0.104688,
+     "bpppf": 0.078592,
      "n": 2
     },
     "93": {
-     "bpppf": 0.08871,
+     "bpppf": 0.067304,
      "n": 2
     },
     "90": {
-     "bpppf": 0.071192,
+     "bpppf": 0.053932,
      "n": 2
     },
     "85": {
-     "bpppf": 0.050429,
+     "bpppf": 0.039987,
      "n": 2
     },
     "80": {
-     "bpppf": 0.03787,
+     "bpppf": 0.030555,
+     "n": 2
+    }
+   },
+   "SVTAV1": {
+    "95": {
+     "bpppf": 0.08573,
+     "n": 2
+    },
+    "93": {
+     "bpppf": 0.070416,
+     "n": 2
+    },
+    "90": {
+     "bpppf": 0.056246,
+     "n": 2
+    },
+    "85": {
+     "bpppf": 0.040773,
+     "n": 2
+    },
+    "80": {
+     "bpppf": 0.030471,
+     "n": 2
+    }
+   },
+   "VVC": {
+    "95": {
+     "bpppf": 0.073474,
+     "n": 2
+    },
+    "93": {
+     "bpppf": 0.059361,
+     "n": 2
+    },
+    "90": {
+     "bpppf": 0.047043,
+     "n": 2
+    },
+    "85": {
+     "bpppf": 0.033905,
+     "n": 2
+    },
+    "80": {
+     "bpppf": 0.024914,
      "n": 2
     }
    }
@@ -1240,89 +1729,121 @@
   "540p": {
    "H264": {
     "95": {
-     "bpppf": 0.149764,
+     "bpppf": 0.152933,
      "n": 2
     },
     "93": {
-     "bpppf": 0.126728,
+     "bpppf": 0.130239,
      "n": 2
     },
     "90": {
-     "bpppf": 0.103233,
+     "bpppf": 0.103959,
      "n": 2
     },
     "85": {
-     "bpppf": 0.077931,
+     "bpppf": 0.079339,
      "n": 2
     },
     "80": {
-     "bpppf": 0.061493,
+     "bpppf": 0.061848,
      "n": 2
     }
    },
    "HEVC": {
     "95": {
-     "bpppf": 0.150248,
+     "bpppf": 0.153695,
      "n": 2
     },
     "93": {
-     "bpppf": 0.127926,
+     "bpppf": 0.131411,
      "n": 2
     },
     "90": {
-     "bpppf": 0.104033,
+     "bpppf": 0.105224,
      "n": 2
     },
     "85": {
-     "bpppf": 0.077029,
+     "bpppf": 0.079064,
      "n": 2
     },
     "80": {
-     "bpppf": 0.059241,
+     "bpppf": 0.060522,
      "n": 2
     }
    },
    "VP9": {
-    "95": {
-     "bpppf": 0.144624,
-     "n": 2
-    },
-    "93": {
-     "bpppf": 0.122664,
-     "n": 2
-    },
     "90": {
-     "bpppf": 0.09932,
+     "bpppf": 0.101579,
      "n": 2
     },
     "85": {
-     "bpppf": 0.072613,
+     "bpppf": 0.074187,
      "n": 2
     },
     "80": {
-     "bpppf": 0.055286,
+     "bpppf": 0.055993,
      "n": 2
     }
    },
    "AV1": {
     "95": {
-     "bpppf": 0.125798,
+     "bpppf": 0.093869,
      "n": 2
     },
     "93": {
-     "bpppf": 0.105541,
+     "bpppf": 0.079223,
      "n": 2
     },
     "90": {
-     "bpppf": 0.083364,
+     "bpppf": 0.063096,
      "n": 2
     },
     "85": {
-     "bpppf": 0.059039,
+     "bpppf": 0.046145,
      "n": 2
     },
     "80": {
-     "bpppf": 0.043814,
+     "bpppf": 0.035357,
+     "n": 2
+    }
+   },
+   "SVTAV1": {
+    "95": {
+     "bpppf": 0.093161,
+     "n": 2
+    },
+    "93": {
+     "bpppf": 0.077536,
+     "n": 2
+    },
+    "90": {
+     "bpppf": 0.061485,
+     "n": 2
+    },
+    "85": {
+     "bpppf": 0.044354,
+     "n": 2
+    },
+    "80": {
+     "bpppf": 0.033209,
+     "n": 2
+    }
+   },
+   "VVC": {
+    "95": {
+     "bpppf": 0.087577,
+     "n": 2
+    },
+    "93": {
+     "bpppf": 0.070091,
+     "n": 2
+    },
+    "90": {
+     "bpppf": 0.054669,
+     "n": 2
+    },
+    "85": {
+     "bpppf": 0.038994,
      "n": 2
     }
    }
@@ -1333,96 +1854,120 @@
    "95": {
     "H264": 0.0,
     "HEVC": 7.6,
-    "VP9": 10.8,
-    "AV1": 22.8
+    "AV1": 42.4,
+    "SVTAV1": 39.7,
+    "VVC": 48.2
    },
    "93": {
     "H264": 0.0,
-    "HEVC": 8.9,
-    "VP9": 12.5,
-    "AV1": 24.3
+    "HEVC": 8.3,
+    "VP9": 12.3,
+    "AV1": 42.1,
+    "SVTAV1": 39.2,
+    "VVC": 50.2
    },
    "90": {
     "H264": 0.0,
-    "HEVC": 11.1,
-    "VP9": 16.4,
-    "AV1": 27.9
+    "HEVC": 10.4,
+    "VP9": 15.3,
+    "AV1": 44.7,
+    "SVTAV1": 42.4,
+    "VVC": 52.3
    },
    "85": {
     "H264": 0.0,
-    "HEVC": 14.8,
-    "VP9": 20.6,
-    "AV1": 33.2
+    "HEVC": 14.0,
+    "VP9": 20.5,
+    "AV1": 47.4,
+    "SVTAV1": 46.0,
+    "VVC": 56.1
    },
    "80": {
     "H264": 0.0,
-    "HEVC": 18.1,
-    "VP9": 24.5,
-    "AV1": 37.7
+    "HEVC": 16.7,
+    "VP9": 23.5,
+    "AV1": 49.3,
+    "SVTAV1": 48.8,
+    "VVC": 58.9
    }
   },
   "720p": {
    "95": {
     "H264": 0.0,
-    "HEVC": -0.4,
-    "VP9": 2.7,
-    "AV1": 15.5
+    "HEVC": 0.3,
+    "AV1": 39.2,
+    "SVTAV1": 33.7,
+    "VVC": 43.1
    },
    "93": {
     "H264": 0.0,
-    "HEVC": 0.3,
-    "VP9": 4.5,
-    "AV1": 17.6
+    "HEVC": 0.5,
+    "AV1": 39.0,
+    "SVTAV1": 36.2,
+    "VVC": 46.2
    },
    "90": {
     "H264": 0.0,
-    "HEVC": 1.9,
-    "VP9": 5.8,
-    "AV1": 20.2
+    "HEVC": 1.7,
+    "VP9": 4.9,
+    "AV1": 39.8,
+    "SVTAV1": 37.3,
+    "VVC": 47.5
    },
    "85": {
     "H264": 0.0,
-    "HEVC": 4.9,
-    "VP9": 10.1,
-    "AV1": 26.6
+    "HEVC": 4.4,
+    "VP9": 10.8,
+    "AV1": 42.9,
+    "SVTAV1": 41.8,
+    "VVC": 51.6
    },
    "80": {
     "H264": 0.0,
-    "HEVC": 7.5,
-    "VP9": 15.2,
-    "AV1": 31.4
+    "HEVC": 7.0,
+    "VP9": 14.0,
+    "AV1": 44.9,
+    "SVTAV1": 45.1,
+    "VVC": 55.1
    }
   },
   "540p": {
    "95": {
     "H264": 0.0,
-    "HEVC": -0.3,
-    "VP9": 3.4,
-    "AV1": 16.0
+    "HEVC": -0.5,
+    "AV1": 38.6,
+    "SVTAV1": 39.1,
+    "VVC": 42.7
    },
    "93": {
     "H264": 0.0,
     "HEVC": -0.9,
-    "VP9": 3.2,
-    "AV1": 16.7
+    "AV1": 39.2,
+    "SVTAV1": 40.5,
+    "VVC": 46.2
    },
    "90": {
     "H264": 0.0,
-    "HEVC": -0.8,
-    "VP9": 3.8,
-    "AV1": 19.2
+    "HEVC": -1.2,
+    "VP9": 2.3,
+    "AV1": 39.3,
+    "SVTAV1": 40.9,
+    "VVC": 47.4
    },
    "85": {
     "H264": 0.0,
-    "HEVC": 1.2,
-    "VP9": 6.8,
-    "AV1": 24.2
+    "HEVC": 0.3,
+    "VP9": 6.5,
+    "AV1": 41.8,
+    "SVTAV1": 44.1,
+    "VVC": 50.9
    },
    "80": {
     "H264": 0.0,
-    "HEVC": 3.7,
-    "VP9": 10.1,
-    "AV1": 28.7
+    "HEVC": 2.1,
+    "VP9": 9.5,
+    "AV1": 42.8,
+    "SVTAV1": 46.3
    }
   }
  },
@@ -1434,33 +1979,48 @@
    },
    "HEVC": {
     "blue_sky": 33,
-    "park_joy": 26
+    "park_joy": 25
    },
    "VP9": {
     "blue_sky": 49,
     "park_joy": 43
    },
    "AV1": {
-    "blue_sky": 52,
-    "park_joy": 41
+    "blue_sky": 55,
+    "park_joy": 40
+   },
+   "SVTAV1": {
+    "blue_sky": 55,
+    "park_joy": 44
+   },
+   "VVC": {
+    "blue_sky": 33,
+    "park_joy": 25
    }
   },
   "720p": {
    "H264": {
     "blue_sky": 31,
-    "park_joy": 24
+    "park_joy": 23
    },
    "HEVC": {
     "blue_sky": 32,
-    "park_joy": 25
+    "park_joy": 24
    },
    "VP9": {
-    "blue_sky": 49,
     "park_joy": 41
    },
    "AV1": {
-    "blue_sky": 52,
-    "park_joy": 39
+    "blue_sky": 54,
+    "park_joy": 38
+   },
+   "SVTAV1": {
+    "blue_sky": 55,
+    "park_joy": 42
+   },
+   "VVC": {
+    "blue_sky": 33,
+    "park_joy": 24
    }
   },
   "540p": {
@@ -1473,247 +2033,198 @@
     "park_joy": 24
    },
    "VP9": {
-    "blue_sky": 48,
     "park_joy": 41
    },
    "AV1": {
-    "blue_sky": 52,
+    "blue_sky": 54,
     "park_joy": 37
+   },
+   "SVTAV1": {
+    "blue_sky": 57,
+    "park_joy": 41
+   },
+   "VVC": {
+    "blue_sky": 34,
+    "park_joy": 24
    }
   }
  },
  "by_metric": {
   "1080p": {
    "vmaf": {
-    "95": {
-     "HEVC": 7.6,
-     "VP9": 10.8,
-     "AV1": 22.8
-    },
     "93": {
-     "HEVC": 8.9,
-     "VP9": 12.5,
-     "AV1": 24.3
+     "HEVC": 8.3,
+     "VP9": 12.3,
+     "AV1": 42.1,
+     "SVTAV1": 39.2,
+     "VVC": 50.2
     },
     "90": {
-     "HEVC": 11.1,
-     "VP9": 16.4,
-     "AV1": 27.9
+     "HEVC": 10.4,
+     "VP9": 15.3,
+     "AV1": 44.7,
+     "SVTAV1": 42.4,
+     "VVC": 52.3
     },
     "85": {
-     "HEVC": 14.8,
-     "VP9": 20.6,
-     "AV1": 33.2
+     "HEVC": 14.0,
+     "VP9": 20.5,
+     "AV1": 47.4,
+     "SVTAV1": 46.0,
+     "VVC": 56.1
     },
     "80": {
-     "HEVC": 18.1,
-     "VP9": 24.5,
-     "AV1": 37.7
+     "HEVC": 16.7,
+     "VP9": 23.5,
+     "AV1": 49.3,
+     "SVTAV1": 48.8,
+     "VVC": 58.9
     }
    },
    "psnr_y": {
-    "95": {
-     "HEVC": 21.8,
-     "VP9": 17.3,
-     "AV1": 35.3
-    },
     "93": {
-     "HEVC": 22.9,
-     "VP9": 19.2,
-     "AV1": 36.9
+     "HEVC": 22.0,
+     "VP9": 19.1,
+     "AV1": 43.6,
+     "SVTAV1": 40.8,
+     "VVC": 55.7
     },
     "90": {
-     "HEVC": 24.6,
-     "VP9": 21.8,
-     "AV1": 39.3
+     "HEVC": 23.8,
+     "VP9": 21.5,
+     "AV1": 45.5,
+     "SVTAV1": 44.1,
+     "VVC": 57.4
     },
     "85": {
-     "HEVC": 27.5,
-     "VP9": 26.2,
-     "AV1": 43.3
-    },
-    "80": {
-     "HEVC": 30.4,
-     "VP9": 30.0,
-     "AV1": 46.7
+     "HEVC": 26.2,
+     "VP9": 25.7,
+     "AV1": 48.8,
+     "SVTAV1": 48.0,
+     "VVC": 60.0
     }
    },
    "ssim": {
-    "95": {
-     "HEVC": 6.1,
-     "VP9": -18.8,
-     "AV1": 16.5
-    },
-    "93": {
-     "HEVC": 7.0,
-     "VP9": -15.8,
-     "AV1": 18.5
-    },
     "90": {
-     "HEVC": 9.9,
-     "VP9": -9.6,
-     "AV1": 23.1
+     "HEVC": 9.2,
+     "VP9": -8.8,
+     "AV1": 30.4,
+     "SVTAV1": 36.6,
+     "VVC": 59.1
     },
     "85": {
-     "HEVC": 14.5,
-     "VP9": -2.0,
-     "AV1": 28.9
-    },
-    "80": {
-     "HEVC": 18.4,
-     "VP9": 5.6,
-     "AV1": 33.8
+     "HEVC": 14.0,
+     "VP9": 0.0,
+     "AV1": 36.9,
+     "SVTAV1": 42.8,
+     "VVC": 63.2
     }
    }
   },
   "720p": {
    "vmaf": {
-    "95": {
-     "HEVC": -0.4,
-     "VP9": 2.7,
-     "AV1": 15.5
-    },
-    "93": {
-     "HEVC": 0.3,
-     "VP9": 4.5,
-     "AV1": 17.6
-    },
     "90": {
-     "HEVC": 1.9,
-     "VP9": 5.8,
-     "AV1": 20.2
+     "HEVC": 1.7,
+     "VP9": 4.9,
+     "AV1": 39.8,
+     "SVTAV1": 37.3,
+     "VVC": 47.5
     },
     "85": {
-     "HEVC": 4.9,
-     "VP9": 10.1,
-     "AV1": 26.6
+     "HEVC": 4.4,
+     "VP9": 10.8,
+     "AV1": 42.9,
+     "SVTAV1": 41.8,
+     "VVC": 51.6
     },
     "80": {
-     "HEVC": 7.5,
-     "VP9": 15.2,
-     "AV1": 31.4
+     "HEVC": 7.0,
+     "VP9": 14.0,
+     "AV1": 44.9,
+     "SVTAV1": 45.1,
+     "VVC": 55.1
     }
    },
    "psnr_y": {
-    "95": {
-     "HEVC": 13.1,
-     "VP9": 8.1,
-     "AV1": 28.2
-    },
     "93": {
-     "HEVC": 14.2,
-     "VP9": 9.7,
-     "AV1": 30.0
+     "HEVC": 13.8,
+     "VP9": 9.9,
+     "AV1": 37.7,
+     "SVTAV1": 33.1,
+     "VVC": 50.7
     },
     "90": {
-     "HEVC": 16.3,
-     "VP9": 12.3,
-     "AV1": 32.8
+     "HEVC": 15.6,
+     "VP9": 12.5,
+     "AV1": 39.9,
+     "SVTAV1": 37.6,
+     "VVC": 52.7
     },
     "85": {
-     "HEVC": 19.0,
-     "VP9": 17.2,
-     "AV1": 37.0
+     "HEVC": 17.6,
+     "VP9": 16.4,
+     "AV1": 42.8,
+     "SVTAV1": 41.6,
+     "VVC": 55.4
     }
    },
    "ssim": {
-    "95": {
-     "HEVC": -2.6,
-     "VP9": -30.1,
-     "AV1": 8.8
-    },
-    "93": {
-     "HEVC": -1.2,
-     "VP9": -26.7,
-     "AV1": 11.9
-    },
-    "90": {
-     "HEVC": 0.8,
-     "VP9": -22.2,
-     "AV1": 14.8
-    },
     "85": {
-     "HEVC": 4.0,
-     "VP9": -15.7,
-     "AV1": 20.8
-    },
-    "80": {
-     "HEVC": 7.9,
-     "VP9": -7.2,
-     "AV1": 25.8
+     "HEVC": 3.3,
+     "VP9": -12.8,
+     "AV1": 31.1,
+     "SVTAV1": 36.5,
+     "VVC": 56.2
     }
    }
   },
   "540p": {
    "vmaf": {
-    "95": {
-     "HEVC": -0.3,
-     "VP9": 3.4,
-     "AV1": 16.0
-    },
-    "93": {
-     "HEVC": -0.9,
-     "VP9": 3.2,
-     "AV1": 16.7
-    },
     "90": {
-     "HEVC": -0.8,
-     "VP9": 3.8,
-     "AV1": 19.2
+     "HEVC": -1.2,
+     "VP9": 2.3,
+     "AV1": 39.3,
+     "SVTAV1": 40.9,
+     "VVC": 47.4
     },
     "85": {
-     "HEVC": 1.2,
-     "VP9": 6.8,
-     "AV1": 24.2
-    },
-    "80": {
-     "HEVC": 3.7,
-     "VP9": 10.1,
-     "AV1": 28.7
+     "HEVC": 0.3,
+     "VP9": 6.5,
+     "AV1": 41.8,
+     "SVTAV1": 44.1,
+     "VVC": 50.9
     }
    },
    "psnr_y": {
-    "95": {
-     "HEVC": 10.9,
-     "VP9": 6.0,
-     "AV1": 26.3
-    },
     "93": {
-     "HEVC": 11.5,
-     "VP9": 7.6,
-     "AV1": 27.5
+     "HEVC": 11.3,
+     "VP9": 7.2,
+     "AV1": 36.7,
+     "SVTAV1": 35.5,
+     "VVC": 49.1
     },
     "90": {
-     "HEVC": 12.7,
-     "VP9": 9.3,
-     "AV1": 29.8
+     "HEVC": 12.2,
+     "VP9": 9.4,
+     "AV1": 38.4,
+     "SVTAV1": 38.5,
+     "VVC": 50.9
     },
     "85": {
-     "HEVC": 15.3,
-     "VP9": 13.8,
-     "AV1": 33.6
+     "HEVC": 14.3,
+     "VP9": 12.6,
+     "AV1": 40.6,
+     "SVTAV1": 42.0,
+     "VVC": 53.4
     }
    },
    "ssim": {
-    "93": {
-     "HEVC": -2.6,
-     "VP9": -28.2,
-     "AV1": 10.0
-    },
-    "90": {
-     "HEVC": -1.1,
-     "VP9": -22.5,
-     "AV1": 13.3
-    },
     "85": {
-     "HEVC": 1.5,
-     "VP9": -15.6,
-     "AV1": 18.4
-    },
-    "80": {
-     "HEVC": 4.8,
-     "VP9": -8.4,
-     "AV1": 22.7
+     "HEVC": 0.4,
+     "VP9": -13.8,
+     "AV1": 28.6,
+     "SVTAV1": 36.1,
+     "VVC": 52.6
     }
    }
   }
@@ -1721,179 +2232,240 @@
  "enc_cost": {
   "1080p": {
    "H264": {
-    "cpu_s_per_frame": 0.1115,
+    "cpu_s_per_frame": 0.1065,
     "rel": 1.0
    },
    "HEVC": {
-    "cpu_s_per_frame": 0.2152,
-    "rel": 1.93
+    "cpu_s_per_frame": 0.2062,
+    "rel": 1.94
    },
    "VP9": {
-    "cpu_s_per_frame": 0.432,
-    "rel": 3.87
+    "cpu_s_per_frame": 0.3683,
+    "rel": 3.46
    },
    "AV1": {
-    "cpu_s_per_frame": 0.7558,
-    "rel": 6.78
+    "cpu_s_per_frame": 0.6927,
+    "rel": 6.5
+   },
+   "SVTAV1": {
+    "cpu_s_per_frame": 0.1915,
+    "rel": 1.8
+   },
+   "VVC": {
+    "cpu_s_per_frame": 4.0103,
+    "rel": 37.66
    }
   },
   "720p": {
    "H264": {
-    "cpu_s_per_frame": 0.0503,
+    "cpu_s_per_frame": 0.0494,
     "rel": 1.0
    },
    "HEVC": {
-    "cpu_s_per_frame": 0.0988,
-    "rel": 1.96
-   },
-   "VP9": {
-    "cpu_s_per_frame": 0.2114,
-    "rel": 4.2
+    "cpu_s_per_frame": 0.0943,
+    "rel": 1.91
    },
    "AV1": {
-    "cpu_s_per_frame": 0.3597,
-    "rel": 7.15
+    "cpu_s_per_frame": 0.3198,
+    "rel": 6.47
+   },
+   "SVTAV1": {
+    "cpu_s_per_frame": 0.0906,
+    "rel": 1.83
+   },
+   "VVC": {
+    "cpu_s_per_frame": 1.9528,
+    "rel": 39.53
    }
   },
   "540p": {
    "H264": {
-    "cpu_s_per_frame": 0.031,
+    "cpu_s_per_frame": 0.0282,
     "rel": 1.0
    },
    "HEVC": {
-    "cpu_s_per_frame": 0.0564,
-    "rel": 1.82
-   },
-   "VP9": {
-    "cpu_s_per_frame": 0.1587,
-    "rel": 5.12
+    "cpu_s_per_frame": 0.0561,
+    "rel": 1.99
    },
    "AV1": {
-    "cpu_s_per_frame": 0.2196,
-    "rel": 7.08
+    "cpu_s_per_frame": 0.204,
+    "rel": 7.23
+   },
+   "SVTAV1": {
+    "cpu_s_per_frame": 0.0682,
+    "rel": 2.42
+   },
+   "VVC": {
+    "cpu_s_per_frame": 1.2132,
+    "rel": 43.02
    }
   }
  },
  "cost_by_target": {
   "1080p": {
    "H264": {
-    "95": 0.116,
-    "93": 0.1115,
-    "90": 0.1047,
-    "85": 0.0981,
-    "80": 0.0943
+    "95": 0.1123,
+    "93": 0.1065,
+    "90": 0.1016,
+    "85": 0.0958,
+    "80": 0.0908
    },
    "HEVC": {
-    "95": 0.2282,
-    "93": 0.2152,
-    "90": 0.2077,
-    "85": 0.1893,
-    "80": 0.1696
+    "95": 0.2185,
+    "93": 0.2062,
+    "90": 0.1935,
+    "85": 0.1767,
+    "80": 0.1646
    },
    "VP9": {
-    "95": 0.434,
-    "93": 0.432,
-    "90": 0.4187,
-    "85": 0.4179,
-    "80": 0.3983
+    "93": 0.3683,
+    "90": 0.357,
+    "85": 0.3465,
+    "80": 0.3377
    },
    "AV1": {
-    "95": 0.789,
-    "93": 0.7558,
-    "90": 0.6992,
-    "85": 0.6607,
-    "80": 0.6087
+    "95": 0.7205,
+    "93": 0.6927,
+    "90": 0.6591,
+    "85": 0.6213,
+    "80": 0.5857
+   },
+   "SVTAV1": {
+    "95": 0.186,
+    "93": 0.1915,
+    "90": 0.1992,
+    "85": 0.1986,
+    "80": 0.1954
+   },
+   "VVC": {
+    "95": 4.4242,
+    "93": 4.0103,
+    "90": 3.6917,
+    "85": 3.2036,
+    "80": 2.8061
    }
   },
   "720p": {
    "H264": {
-    "95": 0.0532,
-    "93": 0.0503,
-    "90": 0.0476,
-    "85": 0.0451,
-    "80": 0.0424
+    "95": 0.0519,
+    "93": 0.0494,
+    "90": 0.0465,
+    "85": 0.0436,
+    "80": 0.0411
    },
    "HEVC": {
-    "95": 0.1032,
-    "93": 0.0988,
-    "90": 0.093,
-    "85": 0.0821,
-    "80": 0.0784
+    "95": 0.1006,
+    "93": 0.0943,
+    "90": 0.0865,
+    "85": 0.079,
+    "80": 0.0723
    },
    "VP9": {
-    "95": 0.2137,
-    "93": 0.2114,
-    "90": 0.2083,
-    "85": 0.2034,
-    "80": 0.2005
+    "90": 0.1806,
+    "85": 0.173,
+    "80": 0.1685
    },
    "AV1": {
-    "95": 0.3744,
-    "93": 0.3597,
-    "90": 0.3379,
-    "85": 0.3101,
-    "80": 0.2901
+    "95": 0.3339,
+    "93": 0.3198,
+    "90": 0.3014,
+    "85": 0.2807,
+    "80": 0.2632
+   },
+   "SVTAV1": {
+    "95": 0.0866,
+    "93": 0.0906,
+    "90": 0.0955,
+    "85": 0.0969,
+    "80": 0.095
+   },
+   "VVC": {
+    "95": 2.182,
+    "93": 1.9528,
+    "90": 1.7509,
+    "85": 1.5137,
+    "80": 1.3148
    }
   },
   "540p": {
    "H264": {
-    "95": 0.0328,
-    "93": 0.031,
-    "90": 0.0282,
-    "85": 0.0256,
-    "80": 0.0241
+    "95": 0.0296,
+    "93": 0.0282,
+    "90": 0.0264,
+    "85": 0.0247,
+    "80": 0.0233
    },
    "HEVC": {
-    "95": 0.0608,
-    "93": 0.0564,
-    "90": 0.0516,
-    "85": 0.0458,
-    "80": 0.0428
+    "95": 0.0601,
+    "93": 0.0561,
+    "90": 0.0508,
+    "85": 0.0459,
+    "80": 0.042
    },
    "VP9": {
-    "95": 0.1604,
-    "93": 0.1587,
-    "90": 0.1563,
-    "85": 0.1521,
-    "80": 0.1479
+    "90": 0.132,
+    "85": 0.1286,
+    "80": 0.1253
    },
    "AV1": {
-    "95": 0.2307,
-    "93": 0.2196,
-    "90": 0.205,
-    "85": 0.1882,
-    "80": 0.173
+    "95": 0.2141,
+    "93": 0.204,
+    "90": 0.1929,
+    "85": 0.1773,
+    "80": 0.1643
+   },
+   "SVTAV1": {
+    "95": 0.0673,
+    "93": 0.0682,
+    "90": 0.0692,
+    "85": 0.068,
+    "80": 0.0662
+   },
+   "VVC": {
+    "95": 1.3526,
+    "93": 1.2132,
+    "90": 1.0858,
+    "85": 0.9348
    }
   }
  },
  "order": {
   "1080p": {
    "95": [
+    "VVC",
     "AV1",
-    "VP9",
+    "SVTAV1",
     "HEVC",
     "H264"
    ],
    "93": [
+    "VVC",
     "AV1",
+    "SVTAV1",
     "VP9",
     "HEVC",
     "H264"
    ],
    "90": [
+    "VVC",
     "AV1",
+    "SVTAV1",
     "VP9",
     "HEVC",
     "H264"
    ],
    "85": [
+    "VVC",
     "AV1",
+    "SVTAV1",
     "VP9",
     "HEVC",
     "H264"
    ],
    "80": [
+    "VVC",
     "AV1",
+    "SVTAV1",
     "VP9",
     "HEVC",
     "H264"
@@ -1901,30 +2473,38 @@
   },
   "720p": {
    "95": [
+    "VVC",
     "AV1",
-    "VP9",
-    "H264",
-    "HEVC"
+    "SVTAV1",
+    "HEVC",
+    "H264"
    ],
    "93": [
+    "VVC",
     "AV1",
-    "VP9",
+    "SVTAV1",
     "HEVC",
     "H264"
    ],
    "90": [
+    "VVC",
     "AV1",
+    "SVTAV1",
     "VP9",
     "HEVC",
     "H264"
    ],
    "85": [
+    "VVC",
     "AV1",
+    "SVTAV1",
     "VP9",
     "HEVC",
     "H264"
    ],
    "80": [
+    "VVC",
+    "SVTAV1",
     "AV1",
     "VP9",
     "HEVC",
@@ -1933,30 +2513,37 @@
   },
   "540p": {
    "95": [
+    "VVC",
+    "SVTAV1",
     "AV1",
-    "VP9",
     "H264",
     "HEVC"
    ],
    "93": [
+    "VVC",
+    "SVTAV1",
     "AV1",
-    "VP9",
     "H264",
     "HEVC"
    ],
    "90": [
+    "VVC",
+    "SVTAV1",
     "AV1",
     "VP9",
     "H264",
     "HEVC"
    ],
    "85": [
+    "VVC",
+    "SVTAV1",
     "AV1",
     "VP9",
     "HEVC",
     "H264"
    ],
    "80": [
+    "SVTAV1",
     "AV1",
     "VP9",
     "HEVC",
@@ -1967,128 +2554,303 @@
  "ranking_stable": false,
  "saving_spread": {
   "HEVC": {
-   "95": 8.0,
-   "93": 9.8,
-   "90": 11.9,
-   "85": 13.6,
-   "80": 14.4
+   "95": 8.1,
+   "93": 9.2,
+   "90": 11.6,
+   "85": 13.7,
+   "80": 14.6
   },
   "VP9": {
-   "95": 8.1,
-   "93": 9.3,
-   "90": 12.6,
-   "85": 13.8,
-   "80": 14.4
+   "90": 13.0,
+   "85": 14.0,
+   "80": 14.0
   },
   "AV1": {
-   "95": 7.3,
-   "93": 7.6,
-   "90": 8.7,
-   "85": 9.0,
-   "80": 9.0
+   "95": 3.8,
+   "93": 3.1,
+   "90": 5.4,
+   "85": 5.6,
+   "80": 6.5
+  },
+  "SVTAV1": {
+   "95": 6.0,
+   "93": 4.3,
+   "90": 5.1,
+   "85": 4.2,
+   "80": 3.7
+  },
+  "VVC": {
+   "95": 5.5,
+   "93": 4.0,
+   "90": 4.9,
+   "85": 5.2
   }
  },
  "hevc_vs_vp9": {
   "1080p": {
-   "95": 3.5,
-   "93": 4.0,
-   "90": 5.9,
-   "85": 6.8,
-   "80": 7.8
+   "93": 4.4,
+   "90": 5.5,
+   "85": 7.5,
+   "80": 8.2
   },
   "720p": {
-   "95": 3.1,
-   "93": 4.2,
-   "90": 4.0,
-   "85": 5.4,
-   "80": 8.3
+   "90": 3.3,
+   "85": 6.6,
+   "80": 7.5
   },
   "540p": {
-   "95": 3.7,
-   "93": 4.1,
-   "90": 4.5,
-   "85": 5.7,
-   "80": 6.7
+   "90": 3.5,
+   "85": 6.2,
+   "80": 7.5
+  }
+ },
+ "pairs": {
+  "SVTAV1_vs_AV1": {
+   "1080p": {
+    "95": -4.7,
+    "93": -5.0,
+    "90": -4.3,
+    "85": -2.7,
+    "80": -0.9
+   },
+   "720p": {
+    "95": -9.1,
+    "93": -4.6,
+    "90": -4.3,
+    "85": -2.0,
+    "80": 0.3
+   },
+   "540p": {
+    "95": 0.8,
+    "93": 2.1,
+    "90": 2.6,
+    "85": 3.9,
+    "80": 6.1
+   }
+  },
+  "VVC_vs_AV1": {
+   "1080p": {
+    "95": 10.1,
+    "93": 13.9,
+    "90": 13.7,
+    "85": 16.5,
+    "80": 19.0
+   },
+   "720p": {
+    "95": 6.5,
+    "93": 11.8,
+    "90": 12.8,
+    "85": 15.2,
+    "80": 18.5
+   },
+   "540p": {
+    "95": 6.7,
+    "93": 11.5,
+    "90": 13.4,
+    "85": 15.5
+   }
+  },
+  "VVC_vs_SVTAV1": {
+   "1080p": {
+    "95": 14.1,
+    "93": 18.0,
+    "90": 17.3,
+    "85": 18.7,
+    "80": 19.7
+   },
+   "720p": {
+    "95": 14.3,
+    "93": 15.7,
+    "90": 16.4,
+    "85": 16.8,
+    "80": 18.2
+   },
+   "540p": {
+    "95": 6.0,
+    "93": 9.6,
+    "90": 11.1,
+    "85": 12.1
+   }
+  },
+  "VVC_vs_HEVC": {
+   "1080p": {
+    "95": 44.0,
+    "93": 45.7,
+    "90": 46.8,
+    "85": 48.9,
+    "80": 50.7
+   },
+   "720p": {
+    "95": 42.9,
+    "93": 45.9,
+    "90": 46.6,
+    "85": 49.4,
+    "80": 51.7
+   },
+   "540p": {
+    "95": 43.0,
+    "93": 46.7,
+    "90": 48.0,
+    "85": 50.7
+   }
+  }
+ },
+ "av1_encoders": {
+  "1080p": {
+   "aom_cpu_s_per_frame": 0.6927,
+   "svt_cpu_s_per_frame": 0.1915,
+   "speedup": 3.6,
+   "bits": {
+    "95": -4.7,
+    "93": -5.0,
+    "90": -4.3,
+    "85": -2.7,
+    "80": -0.9
+   }
+  },
+  "720p": {
+   "aom_cpu_s_per_frame": 0.3198,
+   "svt_cpu_s_per_frame": 0.0906,
+   "speedup": 3.5,
+   "bits": {
+    "95": -9.1,
+    "93": -4.6,
+    "90": -4.3,
+    "85": -2.0,
+    "80": 0.3
+   }
+  },
+  "540p": {
+   "aom_cpu_s_per_frame": 0.204,
+   "svt_cpu_s_per_frame": 0.0682,
+   "speedup": 3.0,
+   "bits": {
+    "95": 0.8,
+    "93": 2.1,
+    "90": 2.6,
+    "85": 3.9,
+    "80": 6.1
+   }
   }
  },
  "collapse": {
   "H264": {
    "1080p": {
     "0.02": null,
-    "0.04": 75.19,
-    "0.08": 91.78,
+    "0.04": 74.82,
+    "0.08": 91.74,
     "0.16": null
    },
    "720p": {
     "0.02": null,
     "0.04": null,
-    "0.08": 88.01,
+    "0.08": 87.68,
     "0.16": null
    },
    "540p": {
     "0.02": null,
     "0.04": null,
-    "0.08": 85.49,
-    "0.16": 95.69
+    "0.08": 85.14,
+    "0.16": 95.53
    }
   },
   "HEVC": {
    "1080p": {
     "0.02": null,
-    "0.04": 80.69,
-    "0.08": 93.24,
+    "0.04": 80.26,
+    "0.08": 92.95,
     "0.16": null
    },
    "720p": {
     "0.02": null,
-    "0.04": 74.57,
-    "0.08": 88.53,
+    "0.04": 74.11,
+    "0.08": 88.23,
     "0.16": null
    },
    "540p": {
     "0.02": null,
     "0.04": null,
-    "0.08": 85.66,
-    "0.16": 95.68
+    "0.08": 85.19,
+    "0.16": 95.48
    }
   },
   "VP9": {
    "1080p": {
     "0.02": null,
-    "0.04": 82.32,
-    "0.08": 93.83,
+    "0.04": 81.95,
+    "0.08": null,
     "0.16": null
    },
    "720p": {
     "0.02": null,
-    "0.04": 76.55,
-    "0.08": 89.2,
-    "0.16": 97.86
+    "0.04": 76.22,
+    "0.08": 89.0,
+    "0.16": null
    },
    "540p": {
     "0.02": null,
     "0.04": null,
-    "0.08": 86.57,
-    "0.16": 96.07
+    "0.08": 86.24,
+    "0.16": null
    }
   },
   "AV1": {
    "1080p": {
-    "0.02": null,
-    "0.04": 85.55,
-    "0.08": 95.65,
+    "0.02": 76.15,
+    "0.04": 89.64,
+    "0.08": null,
     "0.16": null
    },
    "720p": {
     "0.02": null,
-    "0.04": 80.99,
-    "0.08": 91.58,
+    "0.04": 84.98,
+    "0.08": 95.11,
     "0.16": null
    },
    "540p": {
     "0.02": null,
-    "0.04": 78.38,
-    "0.08": 89.41,
+    "0.04": 82.36,
+    "0.08": 93.07,
+    "0.16": null
+   }
+  },
+  "SVTAV1": {
+   "1080p": {
+    "0.02": null,
+    "0.04": 89.01,
+    "0.08": 97.25,
+    "0.16": null
+   },
+   "720p": {
+    "0.02": null,
+    "0.04": 84.65,
+    "0.08": 94.3,
+    "0.16": null
+   },
+   "540p": {
+    "0.02": null,
+    "0.04": 83.19,
+    "0.08": 93.28,
+    "0.16": null
+   }
+  },
+  "VVC": {
+   "1080p": {
+    "0.02": 80.5,
+    "0.04": 91.83,
+    "0.08": null,
+    "0.16": null
+   },
+   "720p": {
+    "0.02": null,
+    "0.04": 87.61,
+    "0.08": 95.71,
+    "0.16": null
+   },
+   "540p": {
+    "0.02": null,
+    "0.04": 85.36,
+    "0.08": 94.24,
     "0.16": null
    }
   }
@@ -2109,28 +2871,44 @@
    99.0
   ],
   "1080p/HEVC/blue_sky": [
-   70.7,
-   98.4
+   70.5,
+   98.3
   ],
   "1080p/HEVC/park_joy": [
-   65.8,
-   98.7
+   65.6,
+   98.6
   ],
   "1080p/VP9/blue_sky": [
-   69.4,
-   99.4
+   69.7,
+   93.1
   ],
   "1080p/VP9/park_joy": [
-   72.0,
-   99.7
+   72.1,
+   97.6
   ],
   "1080p/AV1/blue_sky": [
-   76.0,
-   97.1
+   71.0,
+   99.0
   ],
   "1080p/AV1/park_joy": [
-   72.0,
-   98.9
+   68.3,
+   99.0
+  ],
+  "1080p/SVTAV1/blue_sky": [
+   75.4,
+   98.6
+  ],
+  "1080p/SVTAV1/park_joy": [
+   76.2,
+   99.5
+  ],
+  "1080p/VVC/blue_sky": [
+   78.5,
+   99.8
+  ],
+  "1080p/VVC/park_joy": [
+   67.6,
+   99.9
   ],
   "720p/H264/blue_sky": [
    67.4,
@@ -2142,27 +2920,43 @@
   ],
   "720p/HEVC/blue_sky": [
    68.2,
-   97.6
+   97.5
   ],
   "720p/HEVC/park_joy": [
-   64.2,
-   97.3
+   64.5,
+   97.4
   ],
   "720p/VP9/blue_sky": [
-   70.1,
-   99.0
+   69.5,
+   92.4
   ],
   "720p/VP9/park_joy": [
    69.3,
-   98.7
+   95.7
   ],
   "720p/AV1/blue_sky": [
-   76.8,
-   97.0
+   70.7,
+   98.5
   ],
   "720p/AV1/park_joy": [
-   71.5,
-   97.1
+   67.1,
+   97.2
+  ],
+  "720p/SVTAV1/blue_sky": [
+   76.4,
+   98.4
+  ],
+  "720p/SVTAV1/park_joy": [
+   75.8,
+   98.3
+  ],
+  "720p/VVC/blue_sky": [
+   79.7,
+   99.7
+  ],
+  "720p/VVC/park_joy": [
+   67.3,
+   99.4
   ],
   "540p/H264/blue_sky": [
    66.9,
@@ -2173,28 +2967,44 @@
    96.3
   ],
   "540p/HEVC/blue_sky": [
-   66.7,
-   97.2
+   66.9,
+   97.6
   ],
   "540p/HEVC/park_joy": [
-   64.2,
-   96.4
+   63.7,
+   96.2
   ],
   "540p/VP9/blue_sky": [
-   69.6,
-   98.8
+   69.4,
+   92.1
   ],
   "540p/VP9/park_joy": [
-   68.9,
-   98.2
+   68.8,
+   95.1
   ],
   "540p/AV1/blue_sky": [
-   76.9,
-   96.7
+   69.1,
+   97.8
   ],
   "540p/AV1/park_joy": [
-   71.9,
-   95.9
+   67.8,
+   96.0
+  ],
+  "540p/SVTAV1/blue_sky": [
+   78.5,
+   98.6
+  ],
+  "540p/SVTAV1/park_joy": [
+   76.6,
+   97.7
+  ],
+  "540p/VVC/blue_sky": [
+   80.8,
+   99.7
+  ],
+  "540p/VVC/park_joy": [
+   69.8,
+   98.9
   ]
  },
  "anchors": [
@@ -2231,9 +3041,33 @@
    "bpppf": 0.60282
   }
  ],
- "dropped_clips": [
-  "in_to_tree"
- ],
- "total_enc_cpu_s": 5208.7,
- "total_metric_cpu_s": 1947.6
+ "dropped_clips": [],
+ "binary_delta": {
+  "AV1": {
+   "n": 24,
+   "identical": 0,
+   "median_bpppf_ratio": 0.7522,
+   "median_abs_vmaf_delta": 1.527
+  },
+  "H264": {
+   "n": 24,
+   "identical": 3,
+   "median_bpppf_ratio": 1.0,
+   "median_abs_vmaf_delta": 0.0
+  },
+  "HEVC": {
+   "n": 24,
+   "identical": 0,
+   "median_bpppf_ratio": 1.0113,
+   "median_abs_vmaf_delta": 0.204
+  },
+  "VP9": {
+   "n": 24,
+   "identical": 0,
+   "median_bpppf_ratio": 1.0018,
+   "median_abs_vmaf_delta": 0.113
+  }
+ },
+ "total_enc_cpu_s": 12531.2,
+ "total_metric_cpu_s": 1077.6
 }

@@ -272,6 +272,34 @@ def main():
         interp_lin([(x["bpppf"], x["vmaf"]) for x in curves[res][c]], p))
         for p in probes} for res in RES} for c in CODECS}
 
+    # ---- what changed when the sweep moved to one binary --------------------
+    # The previous sweep ran on imageio-ffmpeg 7.0.2 and is kept beside this one.
+    # Every (clip, res, codec, CRF) that appears in both is a controlled pair: the
+    # same source, the same settings, a different encoder build. Reporting the
+    # ratio is the only honest way to say how much of a change is the binary.
+    prev = DATA / "rd_video_ffmpeg702.jsonl"
+    binary_delta = {}
+    if prev.exists():
+        old = {}
+        for line in prev.read_text().splitlines():
+            if line.strip():
+                o = json.loads(line)
+                old[(o["clip"], o["res"], o["codec"], o["crf"])] = o
+        shared = defaultdict(list)
+        for r in rows:
+            o = old.get((r["clip"], r["res"], r["codec"], r["crf"]))
+            if o:
+                shared[r["codec"]].append((o, r))
+        for c, ps in sorted(shared.items()):
+            ratios = sorted(n["bpppf"] / o["bpppf"] for o, n in ps)
+            dv = sorted(abs(n["vmaf"] - o["vmaf"]) for o, n in ps)
+            mid_i = len(ratios) // 2
+            binary_delta[c] = dict(
+                n=len(ps),
+                identical=sum(1 for o, n in ps if o["bpppf"] == n["bpppf"]),
+                median_bpppf_ratio=round(ratios[mid_i], 4),
+                median_abs_vmaf_delta=round(dv[mid_i], 3))
+
     # ---- per-resolution real-world bitrate anchors --------------------------
     anchors = [
         dict(label="1080p30 at 1 Mbit/s", bpppf=1e6 / (1920 * 1080 * 30)),
@@ -295,6 +323,7 @@ def main():
                hevc_vs_vp9=hevc_vp9, pairs=pairs, av1_encoders=av1_enc,
                collapse=collapse, collapse_probes=probes,
                span=span, anchors=anchors, dropped_clips=dropped,
+               binary_delta=binary_delta,
                total_enc_cpu_s=round(sum(r["enc_cpu_s"] for r in rows), 1),
                total_metric_cpu_s=round(sum(r["metric_cpu_s"] for r in rows), 1))
     (DATA / "analysis.json").write_text(json.dumps(out, indent=1))
@@ -322,6 +351,7 @@ def main():
         print(f"{k} (positive = first is smaller):", {r: v[r] for r in RES})
     print("AV1 encoders:", av1_enc)
     print("encode cost at VMAF", COST_TARGET, enc_cost)
+    print("same settings, old binary vs new:", binary_delta)
     print("\nVMAF span per res/codec/clip:")
     for k, v in span.items():
         print(f"  {k:28s} {v[0]:6.1f} .. {v[1]:6.1f}")
