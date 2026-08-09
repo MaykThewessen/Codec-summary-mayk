@@ -249,8 +249,11 @@ section { display: flex; flex-direction: column; gap: 20px; }
   color: var(--ink-3);
   border-top: 1px solid var(--rule);
   padding-top: 8px;
-  overflow-x: auto;
-  white-space: nowrap;
+  /* These calls are long enough to be cut mid-token by a nowrap cell, which
+     reads as a broken string rather than a scrollable one. Wrap instead. */
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  line-height: 1.5;
 }
 .chip {
   align-self: flex-start;
@@ -293,6 +296,9 @@ section { display: flex; flex-direction: column; gap: 20px; }
 .chart-sub { font-size: 0.85rem; color: var(--ink-3); }
 .chart-host { width: 100%; overflow-x: auto; }
 svg { display: block; max-width: 100%; }
+/* Shrinking a 940px chart into a 420px phone makes every label unreadable, so
+   the chart keeps its size and its own container scrolls instead. */
+.chart-host > svg { max-width: none; }
 .legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 0.83rem; color: var(--ink-2); }
 .legend-item { display: inline-flex; align-items: center; gap: 7px; }
 .legend-key { width: 14px; height: 3px; border-radius: 2px; flex: none; }
@@ -478,7 +484,7 @@ code { font-family: "GeistMono", monospace; font-size: 0.88em; }
             <span class="chip good">The columnar payoff</span>
             <div class="cell-name">Parquet, <span class="mono">columns=</span></div>
             <div class="cell-why">Same file, different call. Three of 41 columns off the wide power flow table came back <span data-fill="pq_cols_speedup"></span> faster than reading it whole. CSV cannot do this: <code>usecols</code> still parses every byte of every row and saved <span data-fill="csv_cols_saving"></span>.</div>
-            <div class="cell-set">pd.read_parquet(p, columns=drie)</div>
+            <div class="cell-set">pd.read_parquet(p, columns=cols)</div>
           </div>
 
           <div class="cell t2" style="grid-area: pqduck">
@@ -1373,7 +1379,8 @@ df = pd.read_excel("van_hen.xlsx", engine="calamine")   <span class="c" data-fil
       const lab = el("text", { x: M.l - 12, y: y + 16, "text-anchor": "end", fill: cvar("--ink-2"),
         "font-size": 12.5, "font-family": "InstrumentSans, sans-serif" }, svg);
       lab.textContent = r.label;
-      const val = el("text", { x: M.l + w + 10, y: y + 16, fill: ink, "font-size": 12,
+      const vx = Math.max(M.l + w, r.warm_s !== null ? X_(r.warm_s) : 0) + 12;
+      const val = el("text", { x: vx, y: y + 16, fill: ink, "font-size": 12,
         "font-family": "GeistMono, monospace" }, svg);
       val.textContent = r.seconds.toFixed(2) + " s · " + mb(r.size_bytes);
       const hit = el("rect", { x: M.l - 200, y: y - 6, width: W - M.l + 200, height: 34,
@@ -1386,7 +1393,12 @@ df = pd.read_excel("van_hen.xlsx", engine="calamine")   <span class="c" data-fil
     });
     const lgd = document.createElement("div");
     lgd.className = "legend";
-    lgd.innerHTML = `<span class="legend-item"><span class="legend-key" style="background:var(--ink);height:11px;width:3px"></span>warm read, for comparison</span>`;
+    lgd.innerHTML =
+      `<span class="legend-item"><span class="legend-key" style="background:var(--s1)"></span>CSV</span>` +
+      `<span class="legend-item"><span class="legend-key" style="background:var(--s2c)"></span>Feather</span>` +
+      `<span class="legend-item"><span class="legend-key" style="background:var(--s3)"></span>Parquet</span>` +
+      `<span class="legend-item"><span class="legend-key" style="background:var(--s4)"></span>DuckDB</span>` +
+      `<span class="legend-item"><span class="legend-key" style="background:var(--ink);height:11px;width:3px"></span>warm read, for comparison</span>`;
     host.parentNode.insertBefore(lgd, host);
     document.getElementById("cold-sub").textContent = COLD.method;
 

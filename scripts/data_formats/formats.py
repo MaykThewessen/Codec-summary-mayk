@@ -15,7 +15,6 @@ import duckdb
 import pandas as pd
 import pyarrow as pa
 import pyarrow.dataset as ds
-import pyarrow.feather as feather
 import pyarrow.parquet as pq
 
 # xlsx cannot hold more rows than this. It is a hard limit of the sheet format,
@@ -331,7 +330,3 @@ TS_COLS = {
     "weather": ["timestamp"],
     "assets": ["last_reading_at"],
 }
-
-
-def table_of(df: pd.DataFrame) -> pa.Table:
-    return pa.Table.from_pandas(df, preserve_index=False)

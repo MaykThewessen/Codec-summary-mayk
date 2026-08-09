@@ -248,10 +248,15 @@ def main() -> None:
             f"{mb(cf['size_bytes'])} has to come off the disk and nothing can hide that. "
             f"Parquet zstd goes from {secs(idx[(cold['corpus'], cold['scale'], 'parquet_zstd')]['read_s'])} "
             f"to {secs(cp2['seconds'])} for {mb(cp2['size_bytes'])}. The cold penalty is largest "
-            f"for {g(worst_pen).get('label', worst_pen)} at {xf(pen[worst_pen])}. The practical "
-            f"reading: the smaller compressed formats lose least when the cache is cold, so if "
-            f"your files live on a share rather than a local SSD, weight size higher than these "
-            f"warm numbers suggest. CSV stays slowest either way, because parsing dominates.")
+            f"for {g(worst_pen).get('label', worst_pen)} at {xf(pen[worst_pen])}, which is the "
+            f"point: the format that wins hardest on a warm cache is the one with most to lose "
+            f"when the cache is cold, because it is the largest. If your files live on a share "
+            f"rather than a local SSD, weight size higher than the warm numbers suggest. "
+            f"One inversion worth knowing: gzipped CSV was slower cold than plain CSV "
+            f"({secs(cidx['csv_gz']['seconds'])} against {secs(cc['seconds'])}) despite being "
+            f"{mb(cc['size_bytes'] - cidx['csv_gz']['size_bytes'])} smaller, because gunzip is "
+            f"serial and the parse dominates either way. Compression only buys cold read time "
+            f"when the decoder is fast enough to keep up, which is what zstd and lz4 are for.")
     else:
         P["cold_note"] = (
             "The page cache could not be dropped in this container, so no cold-read figure is "
@@ -282,17 +287,21 @@ def main() -> None:
 
     # ------------------------------------------------------------ claims ---
     js = g("json", "prices", "large")
+    jc = g("csv", "prices", "large")
+    jrat = js["read_s"] / jc["read_s"]
+    jread = ("about the same time as CSV" if 0.8 <= jrat <= 1.25
+             else f"{jrat:.1f} times the CSV read time")
     P["claim_base"] = (
         f"CSV as the base is right, and it is the right thing to hand to a person. The "
-        f"improvement is in the other direction. JSON was "
-        f"{js['size_bytes'] / g('csv', 'prices', 'large')['size_bytes']:.1f} times the size of "
-        f"the same data as CSV ({mb(js['size_bytes'])} against "
-        f"{mb(g('csv', 'prices', 'large')['size_bytes'])}) and "
-        f"{js['read_s'] / g('csv', 'prices', 'large')['read_s']:.1f} times the read time, and "
-        f"it cannot project columns at all. Excel is slower still and cannot hold the data: "
-        f"none of the four large tables fits in a worksheet. Both are worse than CSV for this "
-        f"workload, not better. The formats that improve on CSV are the ones further down the "
-        f"list: Feather and Parquet.")
+        f"improvement is in the other direction, not towards Excel or JSON. On the price "
+        f"series JSON was {js['size_bytes'] / jc['size_bytes']:.1f} times the size of the same "
+        f"data as CSV ({mb(js['size_bytes'])} against {mb(jc['size_bytes'])}), took "
+        f"{jread} to read, and cannot project columns at all: there is no way to ask a JSON "
+        f"array for two of its keys without walking the whole document. So it is strictly "
+        f"larger for no speed, and it loses the same dtypes CSV loses. Excel is worse again: "
+        f"it cannot hold the data at all, since none of the four large tables fits in a "
+        f"worksheet, and where it does fit it was the slowest thing measured. The formats "
+        f"that genuinely improve on CSV are the two further down the list, Feather and Parquet.")
     P["claim_feather"] = (
         f"Correct, and the mechanism is exactly the one implied. Uncompressed Arrow IPC is the "
         f"in-memory layout written straight to disk, so it wrote the {hero_cols} column power "
@@ -313,10 +322,13 @@ def main() -> None:
         f"{hero_cols} columns in {secs(pq['cols_s'])}, {xf(pq['read_s'] / pq['cols_s'])} faster "
         f"than the full read. The one sharpening: zstd rather than the snappy default. It was "
         f"{(1 - pq['size_bytes'] / g('parquet_snappy')['size_bytes']) * 100:.0f}% smaller than "
-        f"snappy here for a read time within "
-        f"{abs(pq['read_s'] / g('parquet_snappy')['read_s'] - 1) * 100:.0f}%, and gzip buys a "
-        f"little more size for a much slower write "
-        f"({secs(g('parquet_gzip')['write_s'])} against {secs(pq['write_s'])}).")
+        f"snappy on this table, and "
+        f"{abs(pq['read_s'] / g('parquet_snappy')['read_s'] - 1) * 100:.0f}% "
+        f"{'slower' if pq['read_s'] > g('parquet_snappy')['read_s'] else 'faster'} to read, "
+        f"which is inside the noise on a shared machine and well inside what the smaller file "
+        f"is worth. Do not go on to gzip: it buys only "
+        f"{(1 - g('parquet_gzip')['size_bytes'] / pq['size_bytes']) * 100:.0f}% more for a write "
+        f"that took {secs(g('parquet_gzip')['write_s'])} against {secs(pq['write_s'])}.")
     P["claim_duckdb"] = (
         f"DuckDB belongs on the list but not in the same column as the others: it is a query "
         f"engine that happens to have a storage format, not a file format that happens to be "
