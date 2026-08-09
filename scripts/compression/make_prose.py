@@ -139,7 +139,10 @@ P["note_compressed"] = (
     f"{best_comp['saved']:.1f}% of the bytes, and it cost "
     f"{spd(min(v['c_mb_s'] for v in cm.values()))} at the slow end to find out. Compressing "
     f"output that is already compressed is close to a pure waste of CPU, and gzip on a Parquet "
-    f"file is the most common form of it."
+    f"file is the most common form of it. Read this corpus's decompression numbers on the "
+    f"charts above with care: when a codec cannot compress a block it stores it raw, so "
+    f"decoding is close to a memcpy and every codec looks several times faster than it is on "
+    f"data it actually had to work on."
 )
 
 lg = A["by_corpus"]["logs"]

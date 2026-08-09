@@ -122,6 +122,11 @@ prose["t_mid"] = str(mid)
 # Tier 2 at the constrained end: whichever of HEVC and VP9 the data prefers.
 _low2 = "VP9" if (hv_mean[low] or 0) > 0 else "HEVC"
 prose["low_tier2_name"] = _low2
+prose["chip_low_tier2"] = (dict(cls="warn", text="Current hardware, licensed")
+                           if _low2 == "HEVC" else
+                           dict(cls="good", text="Every browser, royalty-free"))
+prose["low_tier2_cmd"] = ("x265 -preset medium -crf 28" if _low2 == "HEVC"
+                          else "libvpx-vp9 -b:v 0 -crf 40 -cpu-used 2")
 prose["low_tier2_why"] = (
     f"Where AV1 is not an option, this is the next best thing when bits are scarce: "
     f"{smaller(mean_sav(low, _low2))} than H.264 at VMAF {low}, against "
