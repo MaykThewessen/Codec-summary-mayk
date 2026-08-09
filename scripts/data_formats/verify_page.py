@@ -60,17 +60,24 @@ def main() -> int:
                   f"{len(errors)} console problems")
             for e in errors[:8]:
                 print("    ", e)
-            for n in metrics["wide"]:
-                print("     wide:", n)
+            if overflow:
+                # Tables inside .tbl-scroll are meant to be wider than the page,
+                # so this list is only meaningful when the document itself
+                # actually scrolls sideways.
+                for n in metrics["wide"]:
+                    print("     wide:", n)
             if overflow or errors:
                 bad += 1
-            full = SHOTS / f"{name}_full.png"
-            page.screenshot(path=str(full), full_page=True)
             total = metrics["bh"]
-            for i in range(0, (total // SLICE_H) + 1):
-                page.screenshot(path=str(SHOTS / f"{name}_{i:02d}.png"),
-                                clip={"x": 0, "y": i * SLICE_H, "width": w,
-                                      "height": min(SLICE_H, total - i * SLICE_H)})
+            i = 0
+            while i * SLICE_H < total:
+                h_slice = min(SLICE_H, total - i * SLICE_H)
+                if h_slice > 4:
+                    page.screenshot(path=str(SHOTS / f"{name}_{i:02d}.png"),
+                                    full_page=True,
+                                    clip={"x": 0, "y": i * SLICE_H, "width": w,
+                                          "height": h_slice})
+                i += 1
             ctx.close()
         browser.close()
     print(f"\nscreenshots in {SHOTS}")

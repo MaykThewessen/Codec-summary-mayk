@@ -2,27 +2,27 @@
  "props": [
   {
    "key": "dtype",
-   "label": "Column dtypes survive"
+   "label": "Dtypes"
   },
   {
    "key": "tz",
-   "label": "Timezone-aware timestamps stay aware"
+   "label": "Timezone"
   },
   {
    "key": "null",
-   "label": "Missing values stay missing, and stay typed"
+   "label": "Nulls"
   },
   {
    "key": "categorical",
-   "label": "Categoricals stay categorical"
+   "label": "Categoricals"
   },
   {
    "key": "index",
-   "label": "The index comes back as an index"
+   "label": "Index"
   },
   {
    "key": "order",
-   "label": "Column order is preserved"
+   "label": "Column order"
   }
  ],
  "source": {

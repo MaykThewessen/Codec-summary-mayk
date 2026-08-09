@@ -28,12 +28,12 @@ DATA = ROOT / "data" / "data_formats"
 N = 240
 
 PROPS = [
-    ("dtype", "Column dtypes survive"),
-    ("tz", "Timezone-aware timestamps stay aware"),
-    ("null", "Missing values stay missing, and stay typed"),
-    ("categorical", "Categoricals stay categorical"),
-    ("index", "The index comes back as an index"),
-    ("order", "Column order is preserved"),
+    ("dtype", "Dtypes"),
+    ("tz", "Timezone"),
+    ("null", "Nulls"),
+    ("categorical", "Categoricals"),
+    ("index", "Index"),
+    ("order", "Column order"),
 ]
 
 

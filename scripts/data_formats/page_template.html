@@ -1,3 +1,4 @@
+<meta charset="utf-8">
 <title>Data format trade-off map</title>
 
 <style>
@@ -451,7 +452,7 @@ code { font-family: "GeistMono", monospace; font-size: 0.88em; }
             <span class="chip serious">Deliverable, not storage</span>
             <div class="cell-name">Excel xlsx</div>
             <div class="cell-why">Correct only as the last step, generated from the real file. A sheet holds <strong>1.048.576</strong> rows, so <span data-fill="xlsx_fail_note"></span> Writing it was <span data-fill="xlsx_write_vs_parquet"></span> slower than Parquet at 100.000 rows, and it silently drops the timezone off every timestamp.</div>
-            <div class="cell-set">df.to_excel("levering.xlsx", engine="xlsxwriter")</div>
+            <div class="cell-set">df.to_excel(p, engine="xlsxwriter")</div>
           </div>
 
           <div class="cell t3" style="grid-area: csvi">
@@ -470,21 +471,21 @@ code { font-family: "GeistMono", monospace; font-size: 0.88em; }
             <span class="chip good">The default answer</span>
             <div class="cell-name">Parquet, zstd</div>
             <div class="cell-why">Project storage and archive. A Parquet variant was the smallest file on <span data-fill="pq_smallest_where"></span>, it reads back in <span data-fill="pq_read_vs_csv"></span> of the CSV time, and it is the widely-portable format that keeps dtypes, timezones and categories intact.</div>
-            <div class="cell-set">df.to_parquet(p, compression="zstd", index=False)</div>
+            <div class="cell-set">df.to_parquet(p, compression="zstd")</div>
           </div>
 
           <div class="cell t2" style="grid-area: pqc">
             <span class="chip good">The columnar payoff</span>
             <div class="cell-name">Parquet, <span class="mono">columns=</span></div>
             <div class="cell-why">Same file, different call. Three of 41 columns off the wide power flow table came back <span data-fill="pq_cols_speedup"></span> faster than reading it whole. CSV cannot do this: <code>usecols</code> still parses every byte of every row and saved <span data-fill="csv_cols_saving"></span>.</div>
-            <div class="cell-set">pd.read_parquet(p, columns=["snapshot", "p_mw_..."])</div>
+            <div class="cell-set">pd.read_parquet(p, columns=drie)</div>
           </div>
 
           <div class="cell t2" style="grid-area: pqduck">
             <span class="chip good">No import step</span>
             <div class="cell-name">Parquet, queried by DuckDB in place</div>
             <div class="cell-why">DuckDB is a query engine, not a rival file format. Point it at the Parquet you already have and it pushes the predicate into the row groups. On the wide table one month out of <span data-fill="pf_years"></span> years came back in <span data-fill="pqduck_filter_t"></span>.</div>
-            <div class="cell-set">duckdb.sql("SELECT * FROM 'runs.parquet' WHERE ...").df()</div>
+            <div class="cell-set">duckdb.sql("... FROM 'runs.parquet'").df()</div>
           </div>
 
           <div class="cell t1" style="grid-area: feath">
@@ -505,7 +506,7 @@ code { font-family: "GeistMono", monospace; font-size: 0.88em; }
             <span class="chip good">Ask, do not load</span>
             <div class="cell-name">DuckDB</div>
             <div class="cell-why">When the question is a query rather than a load: joins across tables, group-bys, or the same file interrogated twenty different ways in one session. It also indexes and updates in place, which no file format here does.</div>
-            <div class="cell-set">con = duckdb.connect("grid.duckdb"); con.sql(q).df()</div>
+            <div class="cell-set">duckdb.connect("grid.duckdb").sql(q).df()</div>
           </div>
 
         </div>
@@ -936,14 +937,17 @@ df = pd.read_excel("van_hen.xlsx", engine="calamine")   <span class="c" data-fil
     return { ticks: out, step };
   }
   function logTicks(lo, hi) {
+    // 1-2-5 per decade, falling back to a finer set when the range is narrow
+    // enough that 1-2-5 would leave two labels on the whole axis.
+    const mults = (Math.log10(hi / lo) < 1.6) ? [1, 1.5, 2, 3, 5, 7] : [1, 2, 5];
     const out = [];
     for (let e = Math.floor(Math.log10(lo)); e <= Math.ceil(Math.log10(hi)); e++) {
-      [1, 2, 5].forEach((m) => {
+      mults.forEach((m) => {
         const v = m * Math.pow(10, e);
         if (v >= lo * 0.999 && v <= hi * 1.001) out.push(v);
       });
     }
-    return out;
+    return out.sort((a, b) => a - b);
   }
 
   const NS = "http://www.w3.org/2000/svg";
@@ -1092,7 +1096,7 @@ df = pd.read_excel("van_hen.xlsx", engine="calamine")   <span class="c" data-fil
     const front = paretoOf(rows);
     const frontKeys = new Set(front.map((r) => r.fmt));
 
-    const W = 940, H = 470, M = { t: 18, r: 26, b: 52, l: 62 };
+    const W = 940, H = 470, M = { t: 18, r: 26, b: 52, l: 84 };
     const iw = W - M.l - M.r, ih = H - M.t - M.b;
     const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, width: W, height: H, role: "img",
       "aria-label": "File size against full read time for each format" }, host);
@@ -1146,7 +1150,7 @@ df = pd.read_excel("van_hen.xlsx", engine="calamine")   <span class="c" data-fil
       const col = cvar(FAM_SLOT[r.family]);
       el("circle", { cx: x, cy: y, r: frontKeys.has(r.fmt) ? 7 : 5, fill: col,
                      stroke: surf, "stroke-width": 2 }, svg);
-      if (frontKeys.has(r.fmt)) labels.push({ r, x, y });
+      if (frontKeys.has(r.fmt)) labels.push({ r, x, y, py: y, col });
       const hit = el("circle", { cx: x, cy: y, r: 16, fill: "transparent" }, svg);
       hit.style.cursor = "crosshair";
       hit.addEventListener("pointerenter", (e) => showTip(
@@ -1156,14 +1160,23 @@ df = pd.read_excel("van_hen.xlsx", engine="calamine")   <span class="c" data-fil
         (frontKeys.has(r.fmt) ? "<br><b>on the frontier</b>" : ""), e.clientX, e.clientY));
       hit.addEventListener("pointerleave", hideTip);
     });
-    // direct-label the frontier only, nudged apart vertically
+    // Direct-label the frontier only. Where two labels would collide they are
+    // pushed apart and connected back to their own point with a leader, rather
+    // than stacked where they no longer identify anything.
     labels.sort((a, b) => a.y - b.y);
     for (let i = 1; i < labels.length; i++) {
-      if (labels[i].y - labels[i - 1].y < 16) labels[i].y = labels[i - 1].y + 16;
+      if (labels[i].y - labels[i - 1].y < 20) labels[i].y = labels[i - 1].y + 20;
     }
+    const over = labels.length ? labels[labels.length - 1].y - (M.t + ih - 4) : 0;
+    if (over > 0) labels.forEach((l) => { l.y -= over; });
     labels.forEach((l) => {
-      const right = l.x < M.l + iw * 0.62;
-      const tx = el("text", { x: l.x + (right ? 13 : -13), y: l.y + 4,
+      const right = l.x < M.l + iw * 0.58;
+      const lx = l.x + (right ? 15 : -15);
+      if (Math.abs(l.y - l.py) > 6) {
+        el("path", { d: `M${l.x + (right ? 8 : -8)} ${l.py} L${lx - (right ? 3 : -3)} ${l.y}`,
+                     fill: "none", stroke: l.col, "stroke-width": 1, opacity: 0.55 }, svg);
+      }
+      const tx = el("text", { x: lx, y: l.y + 4,
         "text-anchor": right ? "start" : "end", fill: cvar("--ink"), "font-size": 12,
         "font-family": "InstrumentSans, sans-serif" }, svg);
       tx.textContent = l.r.label;
@@ -1212,10 +1225,7 @@ df = pd.read_excel("van_hen.xlsx", engine="calamine")   <span class="c" data-fil
         const a = get(c, "small", f), b = get(c, "large", f);
         if (!a || !a.ok || !a.read_s) return '<td class="num">n/a</td>';
         if (!b || !b.ok || !b.read_s) return `<td class="num">${secs(a.read_s)} → not possible</td>`;
-        const scale = (b.rows / a.rows);
-        const grew = (b.read_s / a.read_s) / scale;
-        return `<td class="num">${secs(a.read_s)} → ${secs(b.read_s)}` +
-          `<span style="color:var(--ink-3)"> (${grew < 1 ? "sub" : "super"}-linear)</span></td>`;
+        return `<td class="num">${secs(a.read_s)} → ${secs(b.read_s)}</td>`;
       }).join("");
       const label = (get(CORPORA[0], "small", f) || get(CORPORA[1], "small", f) || {}).label || f;
       html += `<tr><td class="name">${label}</td>${cells}</tr>`;

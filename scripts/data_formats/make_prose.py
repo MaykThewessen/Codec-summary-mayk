@@ -137,7 +137,12 @@ def main() -> None:
         f"{(1 - csv['cols_s'] / csv['read_s']) * 100:.0f}%, because usecols still has to parse "
         f"every byte of every row to find the commas. That gap, "
         f"{xf(csv['cols_s'] / pq['cols_s'])} between CSV and Parquet on the same question, is "
-        f"the single largest effect measured on this page.")
+        f"the single largest effect measured on this page. One honest qualification: usecols "
+        f"is not always worthless. On the string-heavy register table it saved "
+        f"{(1 - g('csv', 'assets', 'large')['cols_s'] / g('csv', 'assets', 'large')['read_s']) * 100:.0f}%, "
+        f"because the columns it skips are expensive to build in memory rather than expensive to "
+        f"scan. It was still {xf(g('csv', 'assets', 'large')['cols_s'] / g('parquet_zstd', 'assets', 'large')['cols_s'])} "
+        f"slower than Parquet answering the same question.")
 
     # ------------------------------------------------------------- pareto --
     front = analysis["pareto"][f"{HERO_CORPUS}|{HERO_SCALE}"]
@@ -167,14 +172,18 @@ def main() -> None:
     fres = {r["fmt"]: r for r in fidelity["results"] if r.get("ok")}
     clean = [r["label"] for r in fres.values() if r["n_lost"] == 0]
     worst = sorted(fres.values(), key=lambda r: -r["n_lost"])[:3]
+    tl = [r["n_lost"] for r in fres.values() if r["family"] == "text"]
+    span = (f"all four lost {tl[0]} of the six properties" if min(tl) == max(tl)
+            else f"the text formats lost between {min(tl)} and {max(tl)} of the six properties")
     P["fidelity_note"] = (
         f"{len(clean)} of {len(fres)} formats returned the frame unchanged: "
-        f"{', '.join(clean)}. The text formats lost between "
-        f"{min(r['n_lost'] for r in fres.values() if r['family'] == 'text')} and "
-        f"{max(r['n_lost'] for r in fres.values() if r['family'] == 'text')} of the six "
-        f"properties, and lost them silently: nothing raises, nothing warns, the frame simply "
-        f"comes back different. "
-        + " ".join(f"{r['label']} lost {r['n_lost']}." for r in worst))
+        f"{', '.join(clean)}. Of the four formats you would hand to a person, {span}, and lost "
+        f"them silently: nothing raises, nothing warns, the frame simply comes back different. "
+        f"The two DuckDB rows are a different case and a milder one: "
+        + ", ".join(f"{r['label']} lost {r['n_lost']}"
+                    for r in fres.values() if r["family"] == "duckdb")
+        + ", mostly because a SQL table has no pandas index and no category type, "
+          "so those two ideas have nowhere to live.")
 
     csvf = fres.get("csv", {}).get("props", {})
     P["tz_note"] = (
@@ -324,10 +333,10 @@ def main() -> None:
     P["claim_csv_fidelity"] = (
         f"This is the finding worth taking away. Round-tripped through CSV, the test frame lost "
         f"{csv_lost} of its 6 properties, silently: "
-        + "; ".join(f"{k} {v['v']}, {v['why']}"
-                    for k, v in fres.get("csv", {}).get("props", {}).items()
-                    if v["v"] != "good")
-        + ". For grid timeseries this is not a performance question, it is a correctness one. "
+        + " ".join(f"{k.capitalize()} ({v['v']}): {v['why'].rstrip('.')}."
+                   for k, v in fres.get("csv", {}).get("props", {}).items()
+                   if v["v"] != "good")
+        + " For grid timeseries this is not a performance question, it is a correctness one. "
           "A tz-aware UTC column that comes back naive compares false against every aware "
           "timestamp in your code without raising, and a nullable integer that comes back as "
           "float turns station 260 into 260.0 and a missing reading into NaN, which is now "
