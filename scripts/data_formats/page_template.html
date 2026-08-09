@@ -1,0 +1,1473 @@
+<title>Data format trade-off map</title>
+
+<style>
+@font-face { font-family: "Tektur"; src: url(data:font/ttf;base64,@@FONT_DISPLAY@@) format("truetype"); font-weight: 500; font-display: swap; }
+@font-face { font-family: "InstrumentSans"; src: url(data:font/ttf;base64,@@FONT_BODY@@) format("truetype"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "InstrumentSans"; src: url(data:font/ttf;base64,@@FONT_BODY_BOLD@@) format("truetype"); font-weight: 700; font-display: swap; }
+@font-face { font-family: "GeistMono"; src: url(data:font/ttf;base64,@@FONT_MONO@@) format("truetype"); font-weight: 400; font-display: swap; }
+
+:root {
+  color-scheme: light;
+  --page: #f4f4f1;
+  --surface: #fcfcfb;
+  --sunken: #efefeb;
+  --ink: #0b0b0b;
+  --ink-2: #52514e;
+  --ink-3: #898781;
+  --rule: #e1e0d9;
+  --axis: #c3c2b7;
+
+  --accent: #2a78d6;
+  --wash-1: rgba(42,120,214,0.05);
+  --wash-2: rgba(42,120,214,0.16);
+  --wash-3: rgba(42,120,214,0.32);
+  --edge-1: rgba(42,120,214,0.20);
+  --edge-2: rgba(42,120,214,0.34);
+  --edge-3: rgba(42,120,214,0.50);
+
+  --st-good: #0ca30c;
+  --st-warn: #fab219;
+  --st-serious: #ec835a;
+  --st-crit: #d03b3b;
+  --chip-good: rgba(12,163,12,0.12);
+  --chip-warn: rgba(190,130,0,0.14);
+  --chip-serious: rgba(236,131,90,0.16);
+
+  --s1: #2a78d6;
+  --s2c: #eb6834;
+  --s3: #1baf7a;
+  --s4: #eda100;
+  --s5: #e87ba4;
+
+  --shadow: 0 1px 2px rgba(11,11,11,0.05), 0 8px 24px -18px rgba(11,11,11,0.35);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) {
+    color-scheme: dark;
+    --page: #0d0d0d;
+    --surface: #1a1a19;
+    --sunken: #141413;
+    --ink: #ffffff;
+    --ink-2: #c3c2b7;
+    --ink-3: #898781;
+    --rule: #2c2c2a;
+    --axis: #383835;
+
+    --accent: #3987e5;
+    --wash-1: rgba(57,135,229,0.07);
+    --wash-2: rgba(57,135,229,0.20);
+    --wash-3: rgba(57,135,229,0.38);
+    --edge-1: rgba(57,135,229,0.26);
+    --edge-2: rgba(57,135,229,0.42);
+    --edge-3: rgba(57,135,229,0.58);
+
+    --chip-good: rgba(12,163,12,0.20);
+    --chip-warn: rgba(250,178,25,0.18);
+    --chip-serious: rgba(236,131,90,0.20);
+
+    --s1: #3987e5;
+    --s2c: #d95926;
+    --s3: #199e70;
+    --s4: #c98500;
+    --s5: #d55181;
+
+    --shadow: 0 1px 2px rgba(0,0,0,0.5), 0 8px 24px -18px rgba(0,0,0,0.9);
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page: #0d0d0d;
+  --surface: #1a1a19;
+  --sunken: #141413;
+  --ink: #ffffff;
+  --ink-2: #c3c2b7;
+  --ink-3: #898781;
+  --rule: #2c2c2a;
+  --axis: #383835;
+
+  --accent: #3987e5;
+  --wash-1: rgba(57,135,229,0.07);
+  --wash-2: rgba(57,135,229,0.20);
+  --wash-3: rgba(57,135,229,0.38);
+  --edge-1: rgba(57,135,229,0.26);
+  --edge-2: rgba(57,135,229,0.42);
+  --edge-3: rgba(57,135,229,0.58);
+
+  --chip-good: rgba(12,163,12,0.20);
+  --chip-warn: rgba(250,178,25,0.18);
+  --chip-serious: rgba(236,131,90,0.20);
+
+  --s1: #3987e5;
+  --s2c: #d95926;
+  --s3: #199e70;
+  --s4: #c98500;
+  --s5: #d55181;
+
+  --shadow: 0 1px 2px rgba(0,0,0,0.5), 0 8px 24px -18px rgba(0,0,0,0.9);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--ink);
+  font-family: "InstrumentSans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 16.5px;
+  line-height: 1.62;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 24px 96px;
+  display: flex;
+  flex-direction: column;
+  gap: 68px;
+}
+
+/* ---------- typography ---------- */
+h1, h2, h3 { font-family: "Tektur", system-ui, sans-serif; font-weight: 500; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(2.1rem, 5.2vw, 3.5rem); line-height: 1.02; letter-spacing: -0.022em; }
+h2 { font-size: clamp(1.35rem, 2.8vw, 1.85rem); line-height: 1.14; letter-spacing: -0.012em; }
+h3 { font-size: 1.05rem; line-height: 1.3; letter-spacing: 0.002em; }
+p { margin: 0; max-width: 68ch; }
+a { color: var(--accent); text-underline-offset: 2px; }
+strong { font-weight: 700; }
+
+.eyebrow {
+  font-family: "Tektur", system-ui, sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.mono { font-family: "GeistMono", ui-monospace, monospace; }
+.tnum { font-variant-numeric: tabular-nums; }
+
+/* ---------- page head ---------- */
+.head {
+  padding-top: 76px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 44px;
+}
+.lede { font-size: 1.16rem; color: var(--ink-2); max-width: 62ch; }
+.head-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 26px;
+  font-size: 0.8rem;
+  color: var(--ink-3);
+  font-family: "GeistMono", monospace;
+}
+
+/* ---------- section scaffold ---------- */
+section { display: flex; flex-direction: column; gap: 20px; }
+.sec-head { display: flex; flex-direction: column; gap: 9px; }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  box-shadow: var(--shadow);
+}
+.pad { padding: 24px; }
+
+/* ---------- the map ---------- */
+.map-frame {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: 34px 1fr;
+  grid-template-rows: 1fr 34px;
+  gap: 10px;
+}
+.y-axis, .x-axis {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--ink-3);
+  font-family: "Tektur", sans-serif;
+  font-size: 0.66rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+.y-axis { writing-mode: vertical-rl; transform: rotate(180deg); padding: 4px 0; }
+.x-axis { grid-column: 2; padding: 0 4px; }
+.axis-mid { color: var(--ink-3); opacity: 0.75; }
+
+.map {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: 1fr 1.02fr 1.02fr;
+  grid-template-areas:
+    "xlsx   csvi   void"
+    "pqw    pqc    pqduck"
+    "feath  fmmap  duck";
+  gap: 2px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.cell {
+  min-width: 0;
+  background: var(--surface);
+  padding: 17px 17px 16px;
+  min-height: 176px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  position: relative;
+  transition: background 140ms ease;
+}
+@media (prefers-reduced-motion: reduce) { .cell { transition: none; } }
+.cell.t1 { background-color: var(--surface); background-image: linear-gradient(var(--wash-1), var(--wash-1)); }
+.cell.t2 { background-image: linear-gradient(var(--wash-2), var(--wash-2)); background-color: var(--surface); }
+.cell.t3 { background-image: linear-gradient(var(--wash-3), var(--wash-3)); background-color: var(--surface); }
+.cell.void { background: var(--sunken); }
+
+.cell-name {
+  font-family: "Tektur", sans-serif;
+  font-size: 1.16rem;
+  letter-spacing: -0.008em;
+  line-height: 1.1;
+  color: var(--ink);
+}
+.cell.void .cell-name { color: var(--ink-3); font-size: 1rem; }
+.cell-why { font-size: 0.875rem; color: var(--ink-2); line-height: 1.45; }
+.cell-set {
+  margin-top: auto;
+  font-family: "GeistMono", monospace;
+  font-size: 0.735rem;
+  color: var(--ink-3);
+  border-top: 1px solid var(--rule);
+  padding-top: 8px;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+.chip {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: "GeistMono", monospace;
+  font-size: 0.665rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 2px 8px 2px 6px;
+  border-radius: 2px;
+  color: var(--ink-2);
+}
+.chip::before { content: ""; width: 6px; height: 6px; border-radius: 50%; flex: none; }
+.chip.good { background: var(--chip-good); }
+.chip.good::before { background: var(--st-good); }
+.chip.warn { background: var(--chip-warn); }
+.chip.warn::before { background: var(--st-warn); }
+.chip.serious { background: var(--chip-serious); }
+.chip.serious::before { background: var(--st-serious); }
+
+.map-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+  font-size: 0.8rem;
+  color: var(--ink-2);
+  align-items: center;
+}
+.tier-key { display: inline-flex; align-items: center; gap: 8px; }
+.tier-sw { width: 30px; height: 14px; border-radius: 2px; border: 1px solid var(--edge-1); }
+.tier-sw.k1 { background: var(--wash-1); }
+.tier-sw.k2 { background: var(--wash-2); border-color: var(--edge-2); }
+.tier-sw.k3 { background: var(--wash-3); border-color: var(--edge-3); }
+
+/* ---------- generic chart card ---------- */
+.chart-card { display: flex; flex-direction: column; gap: 14px; }
+.chart-title { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: baseline; justify-content: space-between; }
+.chart-sub { font-size: 0.85rem; color: var(--ink-3); }
+.chart-host { width: 100%; overflow-x: auto; }
+svg { display: block; max-width: 100%; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 0.83rem; color: var(--ink-2); }
+.legend-item { display: inline-flex; align-items: center; gap: 7px; }
+.legend-key { width: 14px; height: 3px; border-radius: 2px; flex: none; }
+.legend-dot { width: 11px; height: 11px; border-radius: 50%; flex: none; }
+.controls { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; }
+
+.seg {
+  display: inline-flex;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  overflow: hidden;
+  background: var(--surface);
+}
+.seg button {
+  font: inherit;
+  font-family: "GeistMono", monospace;
+  font-size: 0.78rem;
+  padding: 5px 13px;
+  background: transparent;
+  border: 0;
+  border-right: 1px solid var(--rule);
+  color: var(--ink-2);
+  cursor: pointer;
+}
+.seg button:last-child { border-right: 0; }
+.seg button[aria-pressed="true"] { background: var(--wash-2); color: var(--ink); }
+.seg button:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+
+.tip {
+  position: fixed;
+  pointer-events: none;
+  z-index: 30;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  box-shadow: var(--shadow);
+  padding: 9px 11px;
+  font-family: "GeistMono", monospace;
+  font-size: 0.75rem;
+  color: var(--ink);
+  opacity: 0;
+  transition: opacity 90ms ease;
+  max-width: 280px;
+}
+.tip[data-on="1"] { opacity: 1; }
+.tip b { font-weight: 400; color: var(--ink-3); }
+
+/* ---------- tables ---------- */
+details.tbl { border-top: 1px solid var(--rule); padding-top: 12px; }
+details.tbl > summary {
+  cursor: pointer;
+  font-family: "GeistMono", monospace;
+  font-size: 0.76rem;
+  color: var(--ink-3);
+  letter-spacing: 0.03em;
+}
+details.tbl > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.tbl-scroll { overflow-x: auto; margin-top: 12px; }
+table { border-collapse: collapse; width: 100%; font-size: 0.84rem; }
+th, td { text-align: left; padding: 7px 14px 7px 0; border-bottom: 1px solid var(--rule); white-space: nowrap; }
+th { font-family: "Tektur", sans-serif; font-weight: 500; font-size: 0.7rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-3); }
+td.num, th.num { text-align: right; font-family: "GeistMono", monospace; font-variant-numeric: tabular-nums; padding-right: 18px; }
+td.name { font-family: "GeistMono", monospace; }
+tbody tr:last-child td { border-bottom: 0; }
+.win { color: var(--ink); font-weight: 700; }
+td.wrap-cell { white-space: normal; min-width: 20ch; color: var(--ink-2); }
+
+/* ---------- fidelity matrix ---------- */
+.matrix td.mark { text-align: center; font-family: "GeistMono", monospace; font-size: 0.78rem; padding-right: 0; }
+.matrix th.mark { text-align: center; }
+.mk { display: inline-block; padding: 1px 7px; border-radius: 2px; }
+.mk.y { background: var(--chip-good); color: var(--ink); }
+.mk.p { background: var(--chip-warn); color: var(--ink); }
+.mk.n { background: var(--chip-serious); color: var(--ink); }
+.mk.na { background: var(--sunken); color: var(--ink-3); }
+
+/* ---------- prose blocks ---------- */
+.cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(268px, 1fr)); gap: 2px; background: var(--rule); border: 1px solid var(--rule); border-radius: 3px; overflow: hidden; }
+.cols.quad { grid-template-columns: repeat(auto-fit, minmax(390px, 1fr)); }
+.col { min-width: 0; background: var(--surface); padding: 20px; display: flex; flex-direction: column; gap: 8px; }
+.col h3 { color: var(--ink); }
+.col p { font-size: 0.9rem; color: var(--ink-2); }
+
+.claim { display: flex; flex-direction: column; gap: 7px; padding: 18px 0; border-bottom: 1px solid var(--rule); }
+.claim:last-child { border-bottom: 0; }
+.claim-q { font-size: 0.95rem; color: var(--ink); font-weight: 700; }
+.claim-v {
+  align-self: flex-start;
+  font-family: "GeistMono", monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 2px;
+}
+.claim-v.ok { background: var(--chip-good); color: var(--ink); }
+.claim-v.part { background: var(--chip-warn); color: var(--ink); }
+.claim-v.no { background: var(--chip-serious); color: var(--ink); }
+.claim p { font-size: 0.92rem; color: var(--ink-2); }
+
+pre {
+  margin: 0;
+  background: var(--sunken);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  padding: 14px 16px;
+  overflow-x: auto;
+  font-family: "GeistMono", monospace;
+  font-size: 0.795rem;
+  line-height: 1.72;
+  color: var(--ink);
+}
+pre .c { color: var(--ink-3); }
+code { font-family: "GeistMono", monospace; font-size: 0.88em; }
+
+.foot { border-top: 1px solid var(--rule); padding-top: 26px; font-size: 0.84rem; color: var(--ink-3); display: flex; flex-direction: column; gap: 12px; }
+.foot p { max-width: 78ch; }
+
+@media (max-width: 860px) {
+  .map { grid-template-columns: 1fr; grid-template-areas: "xlsx" "csvi" "void" "pqw" "pqc" "pqduck" "feath" "fmmap" "duck"; }
+  .map-frame { grid-template-columns: 1fr; grid-template-rows: auto; }
+  /* Stacked into one column the two axes no longer describe a position, and
+     every cell carries its own tier chip, so drop them rather than lie. */
+  .y-axis, .x-axis { display: none; }
+  .cell { min-height: 0; }
+}
+</style>
+
+<div class="wrap">
+
+  <header class="head">
+    <div class="eyebrow">Data formats / measured, not folklore</div>
+    <h1>Which format wins,<br>and exactly where</h1>
+    <p class="lede">Dutch grid work produces three kinds of file: price timeseries, power flow results, and weather. The format argument for all three collapses into two questions: how you will read the file back, and how long it has to survive and for whom. Position on those two axes decides the winner, and the losers are not where most people expect.</p>
+    <div class="head-meta">
+      <span><span data-fill="n_formats"></span> formats</span>
+      <span><span data-fill="n_corpora"></span> corpora at two scales</span>
+      <span><span data-fill="n_timings"></span> timed operations</span>
+      <span><span data-fill="n_rows_total"></span> rows written and re-read</span>
+    </div>
+  </header>
+
+  <!-- ================= THE MAP ================= -->
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">The map</div>
+      <h2>Nine squares, eight answers</h2>
+      <p>Left to right: how you touch the file. Read the whole thing once, come back repeatedly for a few columns, or run interactive filtered queries against it. Bottom to top: how long it has to live and who else must be able to open it, from a scratch file between two of your own processes to something you email to a colleague. Find your square, read the format.</p>
+    </div>
+
+    <div class="card pad chart-card">
+      <div class="map-frame">
+        <div class="y-axis" aria-hidden="true"><span>Scratch, minutes</span><span class="axis-mid">Lifetime and audience</span><span>Handed to a person</span></div>
+        <div class="map">
+
+          <div class="cell t3" style="grid-area: xlsx">
+            <span class="chip serious">Deliverable, not storage</span>
+            <div class="cell-name">Excel xlsx</div>
+            <div class="cell-why">Correct only as the last step, generated from the real file. A sheet holds <strong>1.048.576</strong> rows, so <span data-fill="xlsx_fail_note"></span> Writing it was <span data-fill="xlsx_write_vs_parquet"></span> slower than Parquet at 100.000 rows, and it silently drops the timezone off every timestamp.</div>
+            <div class="cell-set">df.to_excel("levering.xlsx", engine="xlsxwriter")</div>
+          </div>
+
+          <div class="cell t3" style="grid-area: csvi">
+            <span class="chip warn">Universal, and lossy</span>
+            <div class="cell-name">CSV, gzipped</div>
+            <div class="cell-why">The only thing every tool on earth reads. Gzip costs almost nothing on top and cuts it to <span data-fill="csvgz_vs_csv"></span> of the plain file. Send it, do not store it: it destroys dtypes, timezones and categories on the way out. Ship a README with the units.</div>
+            <div class="cell-set">df.to_csv("prijzen.csv.gz", index=False)</div>
+          </div>
+
+          <div class="cell void" style="grid-area: void">
+            <div class="cell-name">Nothing lives up here</div>
+            <div class="cell-why">An interactive query surface is not a thing you email. If a colleague needs to slice the data themselves, do not look for a file format that does both: send the Parquet and a three-line DuckDB snippet, or send them the answer they actually asked for as one small sheet.</div>
+          </div>
+
+          <div class="cell t2" style="grid-area: pqw">
+            <span class="chip good">The default answer</span>
+            <div class="cell-name">Parquet, zstd</div>
+            <div class="cell-why">Project storage and archive. A Parquet variant was the smallest file on <span data-fill="pq_smallest_where"></span>, it reads back in <span data-fill="pq_read_vs_csv"></span> of the CSV time, and it is the widely-portable format that keeps dtypes, timezones and categories intact.</div>
+            <div class="cell-set">df.to_parquet(p, compression="zstd", index=False)</div>
+          </div>
+
+          <div class="cell t2" style="grid-area: pqc">
+            <span class="chip good">The columnar payoff</span>
+            <div class="cell-name">Parquet, <span class="mono">columns=</span></div>
+            <div class="cell-why">Same file, different call. Three of 41 columns off the wide power flow table came back <span data-fill="pq_cols_speedup"></span> faster than reading it whole. CSV cannot do this: <code>usecols</code> still parses every byte of every row and saved <span data-fill="csv_cols_saving"></span>.</div>
+            <div class="cell-set">pd.read_parquet(p, columns=["snapshot", "p_mw_..."])</div>
+          </div>
+
+          <div class="cell t2" style="grid-area: pqduck">
+            <span class="chip good">No import step</span>
+            <div class="cell-name">Parquet, queried by DuckDB in place</div>
+            <div class="cell-why">DuckDB is a query engine, not a rival file format. Point it at the Parquet you already have and it pushes the predicate into the row groups. On the wide table one month out of <span data-fill="pf_years"></span> years came back in <span data-fill="pqduck_filter_t"></span>.</div>
+            <div class="cell-set">duckdb.sql("SELECT * FROM 'runs.parquet' WHERE ...").df()</div>
+          </div>
+
+          <div class="cell t1" style="grid-area: feath">
+            <span class="chip good">Fastest round trip</span>
+            <div class="cell-name">Feather, uncompressed</div>
+            <div class="cell-why">Arrow IPC: the in-memory layout written straight out, so writing and reading are close to a memcpy. <span data-fill="feather_write_note"></span> The file is large because nothing is compressed, which is the trade you are making on purpose.</div>
+            <div class="cell-set">df.to_feather(p, compression="uncompressed")</div>
+          </div>
+
+          <div class="cell t1" style="grid-area: fmmap">
+            <span class="chip good">Genuinely zero-copy</span>
+            <div class="cell-name">Feather, memory-mapped</div>
+            <div class="cell-why">This is the "RAM saved to disc" case, and it is literally true: mapping <span data-fill="mmap_file_mb"></span> of Arrow IPC took <span data-fill="mmap_open_t"></span> and grew the process by <span data-fill="mmap_open_rss"></span>. Conditions apply, see below.</div>
+            <div class="cell-set">ipc.open_file(pa.memory_map(p)).read_all()</div>
+          </div>
+
+          <div class="cell t1" style="grid-area: duck">
+            <span class="chip good">Ask, do not load</span>
+            <div class="cell-name">DuckDB</div>
+            <div class="cell-why">When the question is a query rather than a load: joins across tables, group-bys, or the same file interrogated twenty different ways in one session. It also indexes and updates in place, which no file format here does.</div>
+            <div class="cell-set">con = duckdb.connect("grid.duckdb"); con.sql(q).df()</div>
+          </div>
+
+        </div>
+        <div class="x-axis" aria-hidden="true"><span>Write once, read whole</span><span class="axis-mid">Access pattern</span><span>Interactive filtered queries</span></div>
+      </div>
+
+      <div class="map-legend">
+        <span class="tier-key"><span class="tier-sw k1"></span> Minutes, one machine, your own processes</span>
+        <span class="tier-key"><span class="tier-sw k2"></span> Months to years, your team and your tools</span>
+        <span class="tier-key"><span class="tier-sw k3"></span> Leaves the building: another person, another program</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= THREE ACCESS PATTERNS ================= -->
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">The headline</div>
+      <h2>Three of forty-one columns</h2>
+      <p>The x-axis of the map, measured. Each format gets three dots: the time to read the whole file into a dataframe, the time to read three columns out of it, and the time to answer one filtered query. A columnar format lets the second and third dots move left. A row format does not: the bytes have to be parsed in order whatever you asked for.</p>
+    </div>
+
+    <div class="card pad chart-card">
+      <div class="chart-title">
+        <h3>Time to answer, by access pattern</h3>
+        <div class="controls">
+          <div class="seg" id="access-corpus" role="group" aria-label="Corpus"></div>
+          <div class="seg" id="access-scale" role="group" aria-label="Scale"></div>
+        </div>
+      </div>
+      <div class="legend" id="access-legend"></div>
+      <div class="chart-host" id="access-chart"></div>
+      <p class="chart-sub" id="access-sub" style="max-width:82ch;"></p>
+      <p style="font-size:0.92rem; color:var(--ink-2);" data-fill="columnar_note"></p>
+      <details class="tbl">
+        <summary>Table view: seconds per access pattern, all formats</summary>
+        <div class="tbl-scroll" id="access-table"></div>
+      </details>
+    </div>
+  </section>
+
+  <!-- ================= SIZE VS SPEED ================= -->
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">Measured</div>
+      <h2>Size against read speed</h2>
+      <p>Both axes are log, both are smaller-is-better, so the bottom left corner is where you want to be. The marked frontier is the set of formats that nothing else beats on both at once. Everything above and right of it is dominated: there is another format that is both smaller and faster, and no reason to pick it.</p>
+    </div>
+
+    <div class="card pad chart-card">
+      <div class="chart-title">
+        <h3>File size against full read time</h3>
+        <div class="controls">
+          <div class="seg" id="pareto-corpus" role="group" aria-label="Corpus"></div>
+          <div class="seg" id="pareto-scale" role="group" aria-label="Scale"></div>
+        </div>
+      </div>
+      <div class="legend" id="pareto-legend"></div>
+      <div class="chart-host" id="pareto-chart"></div>
+      <p class="chart-sub" id="pareto-sub" style="max-width:82ch;"></p>
+      <p style="font-size:0.92rem; color:var(--ink-2);" data-fill="pareto_note"></p>
+      <details class="tbl">
+        <summary>Table view: size, write, read, projection and query, all formats</summary>
+        <div class="tbl-scroll" id="pareto-table"></div>
+      </details>
+    </div>
+
+    <div class="card pad chart-card">
+      <div class="chart-title">
+        <h3>Does the answer change with size?</h3>
+        <span class="chart-sub">Full read time at 100.000 rows against the same table at millions of rows.</span>
+      </div>
+      <div class="tbl-scroll" id="scale-table"></div>
+      <p style="font-size:0.92rem; color:var(--ink-2);" data-fill="scale_note"></p>
+    </div>
+  </section>
+
+  <!-- ================= FIDELITY ================= -->
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">The correctness table</div>
+      <h2>What comes back changed</h2>
+      <p>One small frame carrying everything a grid timeseries actually carries: a tz-aware UTC index, a market-local Europe/Amsterdam column that crosses the CEST transition, an ordered categorical of bidding zones, a nullable integer, a nullable boolean, a float32 that must stay 32-bit, and holes in four different dtypes. Written and read back by each format, then diffed. This is not a performance table. It is a correctness one.</p>
+    </div>
+    <div class="card pad chart-card">
+      <div class="tbl-scroll" id="fid-matrix"></div>
+      <div class="legend" style="margin-top:4px;">
+        <span class="legend-item"><span class="mk y">kept</span> returned unchanged</span>
+        <span class="legend-item"><span class="mk p">partial</span> survived in a weakened form</span>
+        <span class="legend-item"><span class="mk n">lost</span> gone, and silently</span>
+      </div>
+      <p style="font-size:0.92rem; color:var(--ink-2);" data-fill="fidelity_note"></p>
+      <details class="tbl">
+        <summary>Table view: exactly what each format did to the frame</summary>
+        <div class="tbl-scroll" id="fid-detail"></div>
+      </details>
+    </div>
+
+    <div class="cols">
+      <div class="col">
+        <h3>The timezone problem is the expensive one</h3>
+        <p data-fill="tz_note"></p>
+      </div>
+      <div class="col">
+        <h3>Nullable integers become floats</h3>
+        <p data-fill="null_note"></p>
+      </div>
+      <div class="col">
+        <h3>Categories become strings</h3>
+        <p data-fill="cat_note"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= MEMORY MAPPING ================= -->
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">The Feather question</div>
+      <h2>Is it really RAM saved to disc?</h2>
+      <p>Yes, with three conditions. An uncompressed Arrow IPC file has the same byte layout on disk that Arrow uses in memory, so the kernel can map it and nothing is decoded or copied. The conditions: the file must be uncompressed, you must stay in Arrow rather than converting to pandas, and a zero-copy numpy view only exists for a fixed-width column with no nulls in a single chunk. Break any of them and you are back to a normal read.</p>
+    </div>
+    <div class="card pad chart-card">
+      <div class="chart-title">
+        <h3>Resident memory the process actually gained</h3>
+        <span class="chart-sub" id="mmap-sub"></span>
+      </div>
+      <div class="chart-host" id="mmap-chart"></div>
+      <p style="font-size:0.92rem; color:var(--ink-2);" data-fill="mmap_note"></p>
+      <details class="tbl">
+        <summary>Table view: call, wall time and resident memory delta</summary>
+        <div class="tbl-scroll" id="mmap-table"></div>
+      </details>
+    </div>
+  </section>
+
+  <!-- ================= COLD CACHE ================= -->
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">The caveat that flips a ranking</div>
+      <h2>When the file is not already in memory</h2>
+      <p>Every other timing on this page is warm: the file was just written, so it is in the page cache and the measurement is decode cost, not disk cost. That is the right model for a workstation working through the same files all afternoon. It is the wrong model for a file coming off a network share or a cold machine, and there the file size stops being a storage question and becomes the read time.</p>
+    </div>
+    <div class="card pad chart-card">
+      <div class="chart-title">
+        <h3 id="cold-title">Cold read, page cache dropped before every read</h3>
+        <span class="chart-sub" id="cold-sub"></span>
+      </div>
+      <div class="chart-host" id="cold-chart"></div>
+      <p style="font-size:0.92rem; color:var(--ink-2);" data-fill="cold_note"></p>
+      <details class="tbl">
+        <summary>Table view: cold and warm read, and the ratio</summary>
+        <div class="tbl-scroll" id="cold-table"></div>
+      </details>
+    </div>
+  </section>
+
+  <!-- ================= FORMAT VS ENGINE ================= -->
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">A confusion worth clearing up</div>
+      <h2>Format and engine are separate choices</h2>
+      <p>"Polars is faster than pandas" and "Parquet is faster than CSV" are answers to different questions, and mixing them up produces most of the bad advice on this subject. The same two files at the large scale, read by all three engines into a dataframe.</p>
+    </div>
+    <div class="card pad chart-card">
+      <div class="tbl-scroll" id="engine-table"></div>
+      <p style="font-size:0.92rem; color:var(--ink-2);" data-fill="engine_note"></p>
+    </div>
+  </section>
+
+  <!-- ================= CLAIMS ================= -->
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">Corrections and confirmations</div>
+      <h2>The received model, checked against the measurements</h2>
+    </div>
+    <div class="card pad">
+      <div class="claim">
+        <span class="claim-v part">Half right</span>
+        <div class="claim-q">"The base format is CSV, maybe an improvement is Excel or JSON."</div>
+        <p data-fill="claim_base"></p>
+      </div>
+      <div class="claim">
+        <span class="claim-v ok">Holds up</span>
+        <div class="claim-q">"Feather is very fast to load, it is like the RAM saved to disc."</div>
+        <p data-fill="claim_feather"></p>
+      </div>
+      <div class="claim">
+        <span class="claim-v ok">Holds up</span>
+        <div class="claim-q">"Parquet is compressed, columnar, very fast, maybe one of the best."</div>
+        <p data-fill="claim_parquet"></p>
+      </div>
+      <div class="claim">
+        <span class="claim-v part">True, but it is not the same kind of thing</span>
+        <div class="claim-q">"And DuckDB."</div>
+        <p data-fill="claim_duckdb"></p>
+      </div>
+      <div class="claim">
+        <span class="claim-v no">Worth reconsidering</span>
+        <div class="claim-q">"CSV is fine for intermediate files, the data is all there."</div>
+        <p data-fill="claim_csv_fidelity"></p>
+      </div>
+      <div class="claim">
+        <span class="claim-v no">Worth reconsidering</span>
+        <div class="claim-q">"Excel is a reasonable place to keep a dataset."</div>
+        <p data-fill="claim_excel"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CHEAT SHEET ================= -->
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">Operational</div>
+      <h2>What to actually type</h2>
+      <p>Every path below keeps timestamps tz-aware in UTC, which is the one convention that prevents the largest class of silent bug in this work. Convert to Europe/Amsterdam at the display boundary and nowhere else.</p>
+    </div>
+    <div class="card pad" style="display:flex; flex-direction:column; gap:18px;">
+      <div>
+        <h3 style="margin-bottom:8px;">Project storage and archive: Parquet</h3>
+        <pre><span class="c"># write: zstd is the default worth having, index=False keeps the schema honest</span>
+df.to_parquet("data/prijzen.parquet", compression="zstd", index=False)
+
+<span class="c"># read the whole thing</span>
+df = pd.read_parquet("data/prijzen.parquet")
+
+<span class="c"># read three columns out of forty: this is the entire point</span>
+df = pd.read_parquet("data/runs.parquet",
+                     columns=["snapshot", "p_mw_MVL_KIJ_380", "loading_pct_MVL_KIJ_380"])
+
+<span class="c"># push the predicate down so unmatched row groups are never decompressed</span>
+import pyarrow.parquet as pq
+tbl = pq.read_table("data/prijzen.parquet",
+                    filters=[("zone", "==", "NL")])
+df = tbl.to_pandas()
+
+<span class="c"># partition when the filter column is always the same one</span>
+df.to_parquet("data/prijzen/", partition_cols=["zone"], compression="zstd")</pre>
+      </div>
+      <div>
+        <h3 style="margin-bottom:8px;">Scratch and interprocess: Feather / Arrow IPC</h3>
+        <pre><span class="c"># uncompressed on purpose: this is the file you want to memory-map</span>
+df.to_feather("run/state.arrow", compression="uncompressed")
+df = pd.read_feather("run/state.arrow")
+df = pd.read_feather("run/state.arrow", columns=["snapshot", "p_mw_MVL_KIJ_380"])
+
+<span class="c"># the zero-copy path: nothing is decoded, nothing is copied</span>
+import pyarrow as pa, pyarrow.ipc as ipc, pyarrow.compute as pc
+tbl = ipc.open_file(pa.memory_map("run/state.arrow")).read_all()
+mean_mw = pc.mean(tbl["p_mw_MVL_KIJ_380"]).as_py()
+
+<span class="c"># a numpy view over the file, no allocation. raises if it cannot be zero-copy.</span>
+arr = tbl["p_mw_MVL_KIJ_380"].combine_chunks().to_numpy(zero_copy_only=True)
+
+<span class="c"># tbl.to_pandas() copies the lot. only do it when you need pandas.</span></pre>
+      </div>
+      <div>
+        <h3 style="margin-bottom:8px;">Queries: DuckDB, over Parquet or over its own file</h3>
+        <pre><span class="c"># no import step. duckdb reads the parquet you already have.</span>
+import duckdb
+con = duckdb.connect()
+con.execute("SET TimeZone='UTC'")            <span class="c"># do this on every connect</span>
+df = con.sql("""
+    SELECT date_trunc('day', timestamp) AS dag,
+           zone,
+           avg(price_eur_mwh) AS gem_prijs
+    FROM 'data/prijzen.parquet'
+    WHERE zone = 'NL'
+      AND timestamp &gt;= TIMESTAMPTZ '2023-01-01 00:00:00+00'
+    GROUP BY 1, 2 ORDER BY 1
+""").df()
+
+<span class="c"># a persistent database when you want indexes, joins and updates</span>
+con = duckdb.connect("grid.duckdb")
+con.execute("SET TimeZone='UTC'")
+con.execute("CREATE TABLE prijzen AS SELECT * FROM 'data/prijzen.parquet'")
+con.execute("CREATE INDEX ix ON prijzen (zone, timestamp)")
+
+<span class="c"># store TIMESTAMPTZ, never TIMESTAMP, or the zone is gone on the way in</span>
+con.execute("ALTER TABLE prijzen ALTER timestamp TYPE TIMESTAMPTZ")</pre>
+      </div>
+      <div>
+        <h3 style="margin-bottom:8px;">Polars, same files</h3>
+        <pre>import polars as pl
+
+pl.read_parquet("data/prijzen.parquet")
+pl.read_parquet("data/runs.parquet", columns=["snapshot", "p_mw_MVL_KIJ_380"])
+pl.read_ipc("run/state.arrow", memory_map=True)          <span class="c"># the mmap path</span>
+
+<span class="c"># scan_* is lazy: projection and predicate are pushed into the file</span>
+(pl.scan_parquet("data/prijzen.parquet")
+   .filter(pl.col("zone") == "NL")
+   .group_by_dynamic("timestamp", every="1d")
+   .agg(pl.col("price_eur_mwh").mean())
+   .collect())</pre>
+      </div>
+      <div>
+        <h3 style="margin-bottom:8px;">Handing it to a person</h3>
+        <pre><span class="c"># gzipped CSV: universal, and small. write the units into the filename or a README.</span>
+df.to_csv("prijzen_eur_per_mwh_utc.csv.gz", index=False)
+
+<span class="c"># reading a CSV back: nothing is typed until you type it</span>
+df = pd.read_csv("prijzen.csv.gz", parse_dates=["timestamp"])
+df["timestamp"] = pd.to_datetime(df["timestamp"], utc=True)   <span class="c"># always</span>
+df["zone"] = df["zone"].astype("category")
+
+<span class="c"># Excel, generated last, from the real file, and only if it fits</span>
+assert len(df) &lt; 1_048_576, "will not fit in a worksheet"
+out = df.copy()
+out["timestamp"] = out["timestamp"].dt.tz_convert("Europe/Amsterdam").dt.tz_localize(None)
+out.to_excel("levering.xlsx", index=False, engine="xlsxwriter")
+
+<span class="c"># reading someone else's xlsx: calamine instead of openpyxl</span>
+df = pd.read_excel("van_hen.xlsx", engine="calamine")   <span class="c" data-fill="calamine_gain_comment"></span></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= METHOD ================= -->
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">Method</div>
+      <h2>How these numbers were produced, and where not to trust them</h2>
+    </div>
+    <div class="card pad" style="display:flex; flex-direction:column; gap:14px;">
+      <p style="font-size:0.92rem; color:var(--ink-2);" data-fill="method_corpus"></p>
+      <div class="tbl-scroll" id="corpus-table"></div>
+      <div class="cols quad" style="margin-top:4px;">
+        <div class="col">
+          <h3>The machine was busy</h3>
+          <p data-fill="method_noise"></p>
+        </div>
+        <div class="col">
+          <h3>Reads are warm</h3>
+          <p>Every timed read follows an untimed read of the same file, so the page cache is loaded and the number is decode cost rather than disk cost. The cold-cache section above is the correction. On a cold machine or a network share, file size and read time are much closer to the same measurement.</p>
+        </div>
+        <div class="col">
+          <h3>A read means a pandas DataFrame</h3>
+          <p>Every reader returns a pandas DataFrame, including the DuckDB ones, so the Arrow-to-pandas conversion is inside every timing. That is the honest cost of using the format from pandas, but it flatters nothing and it penalises DuckDB slightly, since a query you consume as Arrow or as a partial aggregate never pays it.</p>
+        </div>
+        <div class="col">
+          <h3>What is not measured</h3>
+          <p data-fill="method_gaps"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <p>Scripts and raw measurements live in the repository beside this page, so every figure can be regenerated or argued with. The corpora are generated, not fetched: they are shaped like Dutch grid data but they are not anyone's real data.</p>
+    <p class="mono" style="font-size:0.76rem;" data-fill="env_line"></p>
+  </footer>
+</div>
+
+<div class="tip" id="tip" role="status" aria-live="polite"></div>
+
+<script id="data" type="application/json">@@DATA@@</script>
+<script>
+(function () {
+  "use strict";
+  const D = JSON.parse(document.getElementById("data").textContent);
+  const RUNS = D.runs, FID = D.fidelity, MM = D.mmap, COLD = D.cold, ENG = D.engines;
+
+  /* ---------- house number formatting: dot thousands from 5 digits ---------- */
+  function fmtInt(v) {
+    v = Math.round(v);
+    return Math.abs(v) >= 10000 ? v.toLocaleString("nl-NL") : String(v);
+  }
+  function mb(bytes) {
+    if (bytes >= 1e9) return (bytes / 1e9).toFixed(2) + " GB";
+    if (bytes >= 1e6) return (bytes / 1e6).toFixed(1) + " MB";
+    return (bytes / 1e3).toFixed(0) + " kB";
+  }
+  function secs(s) {
+    if (s === null || s === undefined) return "n/a";
+    if (s < 0.001) return (s * 1e6).toFixed(0) + " µs";
+    if (s < 1) return (s * 1000).toFixed(s < 0.01 ? 1 : 0) + " ms";
+    return s.toFixed(s < 10 ? 2 : 1) + " s";
+  }
+  function xfast(v) { return v >= 100 ? fmtInt(v) + "x" : v.toFixed(v < 10 ? 1 : 0) + "x"; }
+
+  /* Four families, categorical slots 1-4 in the validated order. Identity is
+     also carried by the legend and by the format name on every row. */
+  const FAM = ["text", "arrow", "parquet", "duckdb"];
+  const FAM_LABEL = { text: "Row-oriented text", arrow: "Arrow IPC / Feather",
+                      parquet: "Parquet", duckdb: "DuckDB engine" };
+  const FAM_SLOT = { text: "--s1", arrow: "--s2c", parquet: "--s3", duckdb: "--s4" };
+  /* The three access patterns get slots 1-3 in order. */
+  const OPS = [
+    { key: "read_s", label: "Whole file", slot: "--s1" },
+    { key: "cols_s", label: "Three columns", slot: "--s2c" },
+    { key: "filter_s", label: "One filtered query", slot: "--s3" }
+  ];
+  const cvar = (n) => getComputedStyle(document.body).getPropertyValue(n).trim();
+
+  const CORPUS_LABEL = { prices: "Prices", powerflow: "Power flow",
+                         weather: "Weather", assets: "Register" };
+  const CORPORA = ["powerflow", "prices", "weather", "assets"];
+  const SCALES = ["small", "large"];
+  const FMT_ORDER = ["csv", "csv_gz", "json", "xlsx", "feather", "feather_lz4",
+                     "feather_zstd", "parquet_none", "parquet_snappy",
+                     "parquet_zstd", "parquet_gzip", "duckdb", "parquet_duckdb"];
+
+  const IDX = {};
+  RUNS.forEach((r) => { IDX[r.corpus + "|" + r.scale + "|" + r.fmt] = r; });
+  const get = (c, s, f) => IDX[c + "|" + s + "|" + f];
+  function rowsFor(c, s) {
+    return FMT_ORDER.map((f) => get(c, s, f)).filter((r) => r && r.ok);
+  }
+  function anyFor(c, s) {
+    return FMT_ORDER.map((f) => get(c, s, f)).filter(Boolean);
+  }
+  function meta(c, s) {
+    const any = anyFor(c, s)[0] || {};
+    const cm = D.corpora.find((x) => x.corpus === c && x.scale === s);
+    return { rows: any.rows || (cm ? cm.rows : 0), cols: any.cols || (cm ? cm.cols : 0),
+             pred: any.pred || "", subset: any.subset_cols || [],
+             mem: cm ? cm.mem_bytes : null };
+  }
+
+  function niceTicks(min, max, count) {
+    const raw = (max - min) / count;
+    const mag = Math.pow(10, Math.floor(Math.log10(raw)));
+    const step = [1, 2, 2.5, 5, 10].map((m) => m * mag).find((s) => s >= raw) || 10 * mag;
+    const out = [];
+    for (let v = Math.ceil(min / step) * step; v <= max + step * 1e-9; v += step) {
+      out.push(Math.abs(v) < step * 1e-9 ? 0 : v);
+    }
+    return { ticks: out, step };
+  }
+  function logTicks(lo, hi) {
+    const out = [];
+    for (let e = Math.floor(Math.log10(lo)); e <= Math.ceil(Math.log10(hi)); e++) {
+      [1, 2, 5].forEach((m) => {
+        const v = m * Math.pow(10, e);
+        if (v >= lo * 0.999 && v <= hi * 1.001) out.push(v);
+      });
+    }
+    return out;
+  }
+
+  const NS = "http://www.w3.org/2000/svg";
+  function el(tag, attrs, parent) {
+    const n = document.createElementNS(NS, tag);
+    for (const k in attrs) n.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(n);
+    return n;
+  }
+
+  /* ---------- tooltip ---------- */
+  const tip = document.getElementById("tip");
+  function showTip(html, x, y) {
+    tip.innerHTML = html;
+    tip.dataset.on = "1";
+    const r = tip.getBoundingClientRect();
+    let left = x + 14, top = y - r.height - 12;
+    if (left + r.width > window.innerWidth - 8) left = x - r.width - 14;
+    if (left < 8) left = 8;
+    if (top < 8) top = y + 18;
+    tip.style.left = left + "px";
+    tip.style.top = top + "px";
+  }
+  function hideTip() { tip.dataset.on = "0"; }
+
+  function segment(host, items, current, onPick) {
+    host.innerHTML = "";
+    items.forEach((it) => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.textContent = it.label;
+      b.setAttribute("aria-pressed", String(it.key === current()));
+      b.addEventListener("click", () => {
+        onPick(it.key);
+        [...host.children].forEach((c) => c.setAttribute("aria-pressed", String(c === b)));
+      });
+      host.appendChild(b);
+    });
+  }
+
+  /* ================= chart 1: three access patterns ================= */
+  let accC = "powerflow", accS = "large";
+  function renderAccess() {
+    const host = document.getElementById("access-chart");
+    host.innerHTML = "";
+    const rows = rowsFor(accC, accS).filter((r) => r.read_s);
+    const m = meta(accC, accS);
+    const vals = [];
+    rows.forEach((r) => OPS.forEach((o) => { if (r[o.key]) vals.push(r[o.key]); }));
+    const lo = Math.min(...vals) / 1.6, hi = Math.max(...vals) * 1.6;
+    rows.sort((a, b) => (a.cols_s || a.read_s) - (b.cols_s || b.read_s));
+
+    const W = 940, rowH = 38, M = { t: 12, r: 118, b: 42, l: 208 };
+    const H = M.t + rows.length * rowH + M.b;
+    const iw = W - M.l - M.r;
+    const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, width: W, height: H, role: "img",
+      "aria-label": "Read time by access pattern for each format" }, host);
+    const X_ = (v) => M.l + (Math.log(v) - Math.log(lo)) / (Math.log(hi) - Math.log(lo)) * iw;
+    const rule = cvar("--rule"), axis = cvar("--axis"), ink3 = cvar("--ink-3"),
+          ink2 = cvar("--ink-2"), surf = cvar("--surface");
+
+    logTicks(lo, hi).forEach((v) => {
+      el("line", { x1: X_(v), x2: X_(v), y1: M.t, y2: M.t + rows.length * rowH,
+                   stroke: rule, "stroke-width": 1 }, svg);
+      const t = el("text", { x: X_(v), y: H - 22, "text-anchor": "middle", fill: ink3,
+        "font-size": 11, "font-family": "GeistMono, monospace" }, svg);
+      t.textContent = secs(v);
+    });
+    el("line", { x1: M.l, x2: M.l + iw, y1: M.t + rows.length * rowH,
+                 y2: M.t + rows.length * rowH, stroke: axis, "stroke-width": 1 }, svg);
+    const ax = el("text", { x: M.l + iw / 2, y: H - 5, "text-anchor": "middle", fill: ink2,
+      "font-size": 11.5, "font-family": "Tektur, sans-serif", "letter-spacing": "0.09em" }, svg);
+    ax.textContent = "TIME TO ANSWER (LOG)";
+
+    rows.forEach((r, i) => {
+      const y = M.t + i * rowH + rowH / 2;
+      const pts = OPS.filter((o) => r[o.key]).map((o) => ({ o, x: X_(r[o.key]), v: r[o.key] }));
+      const xmin = Math.min(...pts.map((p) => p.x)), xmax = Math.max(...pts.map((p) => p.x));
+      el("line", { x1: xmin, x2: xmax, y1: y, y2: y, stroke: cvar("--axis"),
+                   "stroke-width": 2, "stroke-linecap": "round", opacity: 0.5 }, svg);
+      pts.forEach((p) => {
+        el("circle", { cx: p.x, cy: y, r: 5.5, fill: cvar(p.o.slot),
+                       stroke: surf, "stroke-width": 2 }, svg);
+      });
+      const lab = el("text", { x: M.l - 12, y: y + 4, "text-anchor": "end", fill: ink2,
+        "font-size": 12.5, "font-family": "InstrumentSans, sans-serif" }, svg);
+      lab.textContent = r.label;
+      const gain = r.cols_s ? r.read_s / r.cols_s : null;
+      const val = el("text", { x: M.l + iw + 12, y: y + 4, fill: gain && gain >= 2 ? cvar("--ink") : ink3,
+        "font-size": 12, "font-family": "GeistMono, monospace" }, svg);
+      val.textContent = gain ? xfast(gain) + " · 3 cols" : "no projection";
+      const hit = el("rect", { x: M.l - 200, y: y - rowH / 2, width: W - M.l + 200,
+                               height: rowH, fill: "transparent" }, svg);
+      hit.style.cursor = "crosshair";
+      hit.addEventListener("pointerenter", (e) => showTip(
+        `<b>${r.label}</b><br>` +
+        OPS.map((o) => `${o.label}: ${r[o.key] ? secs(r[o.key]) : "not possible"}`).join("<br>") +
+        `<br><b>file</b> ${mb(r.size_bytes)}` +
+        `<br><b>median of</b> ${r.read_n} reads`, e.clientX, e.clientY));
+      hit.addEventListener("pointerleave", hideTip);
+    });
+
+    const lg = document.getElementById("access-legend");
+    lg.innerHTML = OPS.map((o) =>
+      `<span class="legend-item"><span class="legend-dot" style="background:var(${o.slot})"></span>${o.label}</span>`
+    ).join("");
+    document.getElementById("access-sub").textContent =
+      `${CORPUS_LABEL[accC]}, ${fmtInt(m.rows)} rows by ${m.cols} columns. ` +
+      `Projection reads ${m.subset.length} of ${m.cols} columns. The query is: ${m.pred}. ` +
+      `Right-hand label is how much faster the projection was than the whole-file read.`;
+
+    let html = '<table><thead><tr><th>Format</th><th class="num">Size</th>' +
+      OPS.map((o) => `<th class="num">${o.label}</th>`).join("") +
+      '<th class="num">Projection gain</th></tr></thead><tbody>';
+    anyFor(accC, accS).forEach((r) => {
+      if (!r.ok) {
+        html += `<tr><td class="name">${r.label}</td><td class="num">n/a</td>` +
+          `<td class="wrap-cell" colspan="4">${r.reason}</td></tr>`;
+        return;
+      }
+      const best = Math.min(...rows.map((x) => x.cols_s || Infinity));
+      html += `<tr><td class="name">${r.label}</td><td class="num">${mb(r.size_bytes)}</td>` +
+        OPS.map((o) => `<td class="num${o.key === "cols_s" && r[o.key] === best ? " win" : ""}">` +
+          (r[o.key] ? secs(r[o.key]) : "n/a") + "</td>").join("") +
+        `<td class="num">${r.cols_s ? xfast(r.read_s / r.cols_s) : "n/a"}</td></tr>`;
+    });
+    document.getElementById("access-table").innerHTML = html + "</tbody></table>";
+  }
+
+  /* ================= chart 2: size against read time ================= */
+  let parC = "powerflow", parS = "large";
+  function paretoOf(rows) {
+    const sorted = rows.slice().sort((a, b) => a.size_bytes - b.size_bytes);
+    const front = [];
+    let best = Infinity;
+    sorted.forEach((r) => {
+      if (r.read_s < best) { front.push(r); best = r.read_s; }
+    });
+    return front;
+  }
+  function renderPareto() {
+    const host = document.getElementById("pareto-chart");
+    host.innerHTML = "";
+    const rows = rowsFor(parC, parS).filter((r) => r.read_s && r.size_bytes);
+    const m = meta(parC, parS);
+    const front = paretoOf(rows);
+    const frontKeys = new Set(front.map((r) => r.fmt));
+
+    const W = 940, H = 470, M = { t: 18, r: 26, b: 52, l: 62 };
+    const iw = W - M.l - M.r, ih = H - M.t - M.b;
+    const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, width: W, height: H, role: "img",
+      "aria-label": "File size against full read time for each format" }, host);
+    const xs = rows.map((r) => r.size_bytes), ys = rows.map((r) => r.read_s);
+    const x0 = Math.min(...xs) / 1.5, x1 = Math.max(...xs) * 1.5;
+    const y0 = Math.min(...ys) / 2, y1 = Math.max(...ys) * 2;
+    const X_ = (v) => M.l + (Math.log(v) - Math.log(x0)) / (Math.log(x1) - Math.log(x0)) * iw;
+    const Y_ = (v) => M.t + ih - (Math.log(v) - Math.log(y0)) / (Math.log(y1) - Math.log(y0)) * ih;
+    const rule = cvar("--rule"), axis = cvar("--axis"), ink3 = cvar("--ink-3"),
+          ink2 = cvar("--ink-2"), surf = cvar("--surface");
+
+    logTicks(y0, y1).forEach((v) => {
+      el("line", { x1: M.l, x2: M.l + iw, y1: Y_(v), y2: Y_(v), stroke: rule, "stroke-width": 1 }, svg);
+      const t = el("text", { x: M.l - 9, y: Y_(v) + 4, "text-anchor": "end", fill: ink3,
+        "font-size": 11, "font-family": "GeistMono, monospace" }, svg);
+      t.textContent = secs(v);
+    });
+    logTicks(x0, x1).forEach((v) => {
+      el("line", { x1: X_(v), x2: X_(v), y1: M.t, y2: M.t + ih, stroke: rule, "stroke-width": 1 }, svg);
+      const t = el("text", { x: X_(v), y: M.t + ih + 19, "text-anchor": "middle", fill: ink3,
+        "font-size": 11, "font-family": "GeistMono, monospace" }, svg);
+      t.textContent = mb(v);
+    });
+    el("line", { x1: M.l, x2: M.l + iw, y1: M.t + ih, y2: M.t + ih, stroke: axis, "stroke-width": 1 }, svg);
+    let t = el("text", { x: M.l + iw / 2, y: H - 8, "text-anchor": "middle", fill: ink2,
+      "font-size": 12, "font-family": "Tektur, sans-serif", "letter-spacing": "0.09em" }, svg);
+    t.textContent = "FILE SIZE (LOG)";
+    t = el("text", { x: -(M.t + ih / 2), y: 15, "text-anchor": "middle", fill: ink2,
+      "font-size": 12, "font-family": "Tektur, sans-serif", "letter-spacing": "0.09em",
+      transform: "rotate(-90)" }, svg);
+    t.textContent = "FULL READ TIME (LOG)";
+
+    // the frontier itself: a staircase through the non-dominated points
+    const fsorted = front.slice().sort((a, b) => a.size_bytes - b.size_bytes);
+    let d = "";
+    fsorted.forEach((r, i) => {
+      const x = X_(r.size_bytes), y = Y_(r.read_s);
+      d += i === 0 ? `M${x.toFixed(1)} ${Y_(y1 / 1.02).toFixed(1)} L${x.toFixed(1)} ${y.toFixed(1)}`
+                   : ` L${X_(fsorted[i - 1].size_bytes).toFixed(1)} ${y.toFixed(1)} L${x.toFixed(1)} ${y.toFixed(1)}`;
+    });
+    if (fsorted.length) {
+      const last = fsorted[fsorted.length - 1];
+      d += ` L${X_(x1 / 1.02).toFixed(1)} ${Y_(last.read_s).toFixed(1)}`;
+    }
+    el("path", { d, fill: "none", stroke: cvar("--accent"), "stroke-width": 1.5,
+                 opacity: 0.42 }, svg);
+
+    const labels = [];
+    rows.forEach((r) => {
+      const x = X_(r.size_bytes), y = Y_(r.read_s);
+      const col = cvar(FAM_SLOT[r.family]);
+      el("circle", { cx: x, cy: y, r: frontKeys.has(r.fmt) ? 7 : 5, fill: col,
+                     stroke: surf, "stroke-width": 2 }, svg);
+      if (frontKeys.has(r.fmt)) labels.push({ r, x, y });
+      const hit = el("circle", { cx: x, cy: y, r: 16, fill: "transparent" }, svg);
+      hit.style.cursor = "crosshair";
+      hit.addEventListener("pointerenter", (e) => showTip(
+        `<b>${r.label}</b><br>${mb(r.size_bytes)} on disk<br>read ${secs(r.read_s)} ` +
+        `<b>(median of ${r.read_n})</b>` +
+        (r.write_s ? `<br>write ${secs(r.write_s)}` : "") +
+        (frontKeys.has(r.fmt) ? "<br><b>on the frontier</b>" : ""), e.clientX, e.clientY));
+      hit.addEventListener("pointerleave", hideTip);
+    });
+    // direct-label the frontier only, nudged apart vertically
+    labels.sort((a, b) => a.y - b.y);
+    for (let i = 1; i < labels.length; i++) {
+      if (labels[i].y - labels[i - 1].y < 16) labels[i].y = labels[i - 1].y + 16;
+    }
+    labels.forEach((l) => {
+      const right = l.x < M.l + iw * 0.62;
+      const tx = el("text", { x: l.x + (right ? 13 : -13), y: l.y + 4,
+        "text-anchor": right ? "start" : "end", fill: cvar("--ink"), "font-size": 12,
+        "font-family": "InstrumentSans, sans-serif" }, svg);
+      tx.textContent = l.r.label;
+    });
+
+    document.getElementById("pareto-legend").innerHTML = FAM.map((f) =>
+      `<span class="legend-item"><span class="legend-dot" style="background:var(${FAM_SLOT[f]})"></span>${FAM_LABEL[f]}</span>`
+    ).join("") + `<span class="legend-item"><span class="legend-key" style="background:var(--accent);opacity:0.45"></span>Pareto frontier, labelled</span>`;
+    document.getElementById("pareto-sub").textContent =
+      `${CORPUS_LABEL[parC]}, ${fmtInt(m.rows)} rows by ${m.cols} columns` +
+      (m.mem ? `, ${mb(m.mem)} in memory as a pandas frame.` : ".") +
+      ` On the frontier: ${front.map((r) => r.label).join(", ")}.`;
+
+    let html = '<table><thead><tr><th>Format</th><th class="num">Size</th>' +
+      '<th class="num">vs in memory</th><th class="num">Write</th><th class="num">Read</th>' +
+      '<th class="num">3 columns</th><th class="num">Filtered query</th><th>Frontier</th></tr></thead><tbody>';
+    anyFor(parC, parS).forEach((r) => {
+      if (!r.ok) {
+        html += `<tr><td class="name">${r.label}</td><td class="wrap-cell" colspan="7">${r.reason}</td></tr>`;
+        return;
+      }
+      html += `<tr><td class="name">${r.label}</td>` +
+        `<td class="num">${mb(r.size_bytes)}</td>` +
+        `<td class="num">${m.mem ? (r.size_bytes / m.mem * 100).toFixed(0) + "%" : "n/a"}</td>` +
+        `<td class="num">${r.write_s === null ? "shared" : secs(r.write_s)}</td>` +
+        `<td class="num">${secs(r.read_s)}</td>` +
+        `<td class="num">${r.cols_s ? secs(r.cols_s) : "n/a"}</td>` +
+        `<td class="num">${secs(r.filter_s)}</td>` +
+        `<td>${frontKeys.has(r.fmt) ? '<span class="mk y">yes</span>' : '<span class="mk na">dominated</span>'}</td></tr>`;
+    });
+    document.getElementById("pareto-table").innerHTML = html + "</tbody></table>";
+  }
+
+  /* ================= scale table ================= */
+  function renderScale() {
+    let html = '<table><thead><tr><th>Format</th>' +
+      CORPORA.map((c) => `<th class="num">${CORPUS_LABEL[c]}</th>`).join("") +
+      '</tr></thead><tbody>';
+    html += '<tr><td class="name" style="color:var(--ink-3)">rows, small to large</td>' +
+      CORPORA.map((c) => {
+        const a = meta(c, "small"), b = meta(c, "large");
+        return `<td class="num" style="color:var(--ink-3)">${fmtInt(a.rows)} → ${fmtInt(b.rows)}</td>`;
+      }).join("") + "</tr>";
+    FMT_ORDER.forEach((f) => {
+      const cells = CORPORA.map((c) => {
+        const a = get(c, "small", f), b = get(c, "large", f);
+        if (!a || !a.ok || !a.read_s) return '<td class="num">n/a</td>';
+        if (!b || !b.ok || !b.read_s) return `<td class="num">${secs(a.read_s)} → not possible</td>`;
+        const scale = (b.rows / a.rows);
+        const grew = (b.read_s / a.read_s) / scale;
+        return `<td class="num">${secs(a.read_s)} → ${secs(b.read_s)}` +
+          `<span style="color:var(--ink-3)"> (${grew < 1 ? "sub" : "super"}-linear)</span></td>`;
+      }).join("");
+      const label = (get(CORPORA[0], "small", f) || get(CORPORA[1], "small", f) || {}).label || f;
+      html += `<tr><td class="name">${label}</td>${cells}</tr>`;
+    });
+    document.getElementById("scale-table").innerHTML = html + "</tbody></table>";
+  }
+
+  /* ================= fidelity matrix ================= */
+  function renderFidelity() {
+    const props = FID.props;
+    const MK = { good: "y", partial: "p", lost: "n" };
+    const TXT = { good: "kept", partial: "partial", lost: "lost" };
+    let html = '<table class="matrix"><thead><tr><th>Format</th>' +
+      props.map((p) => `<th class="mark">${p.label}</th>`).join("") +
+      '<th class="num">Lost</th></tr></thead><tbody>';
+    FMT_ORDER.forEach((f) => {
+      const r = FID.results.find((x) => x.fmt === f);
+      if (!r) return;
+      if (!r.ok) {
+        html += `<tr><td class="name">${r.label}</td><td class="wrap-cell" colspan="${props.length + 1}">${r.reason}</td></tr>`;
+        return;
+      }
+      html += `<tr><td class="name">${r.label}</td>` + props.map((p) => {
+        const v = r.props[p.key];
+        return `<td class="mark"><span class="mk ${MK[v.v]}">${TXT[v.v]}</span></td>`;
+      }).join("") + `<td class="num">${r.n_lost} of ${props.length}</td></tr>`;
+    });
+    document.getElementById("fid-matrix").innerHTML = html + "</tbody></table>";
+
+    let dh = '<table><thead><tr><th>Format</th><th>Property</th><th>What happened</th></tr></thead><tbody>';
+    FMT_ORDER.forEach((f) => {
+      const r = FID.results.find((x) => x.fmt === f);
+      if (!r || !r.ok) return;
+      props.forEach((p) => {
+        const v = r.props[p.key];
+        dh += `<tr><td class="name">${r.label}</td><td>${p.label}</td>` +
+          `<td class="wrap-cell"><span class="mk ${MK[v.v]}">${TXT[v.v]}</span> ${v.why}</td></tr>`;
+      });
+    });
+    document.getElementById("fid-detail").innerHTML = dh + "</tbody></table>";
+  }
+
+  /* ================= memory mapping ================= */
+  function renderMmap() {
+    const host = document.getElementById("mmap-chart");
+    host.innerHTML = "";
+    const rows = MM.cases.filter((c) => c.ok);
+    if (!rows.length) { host.innerHTML = '<p class="chart-sub">Not measured.</p>'; return; }
+    const W = 940, rowH = 44, M = { t: 8, r: 168, b: 32, l: 330 };
+    const H = M.t + rows.length * rowH + M.b;
+    const iw = W - M.l - M.r;
+    const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, width: W, height: H, role: "img",
+      "aria-label": "Resident memory gained by each read strategy" }, host);
+    const max = Math.max(...rows.map((r) => r.rss_delta)) * 1.04;
+    const X_ = (v) => M.l + Math.max(0, v) / max * iw;
+    const rule = cvar("--rule"), ink3 = cvar("--ink-3"), ink = cvar("--ink");
+    const nt = niceTicks(0, max, 4);
+    nt.ticks.forEach((v) => {
+      el("line", { x1: X_(v), x2: X_(v), y1: M.t, y2: M.t + rows.length * rowH,
+        stroke: v === 0 ? cvar("--axis") : rule, "stroke-width": 1 }, svg);
+      const t = el("text", { x: X_(v), y: H - 12, "text-anchor": "middle", fill: ink3,
+        "font-size": 11, "font-family": "GeistMono, monospace" }, svg);
+      t.textContent = mb(v);
+    });
+    rows.forEach((r, i) => {
+      const y = M.t + i * rowH + 11, bh = 22;
+      const w = Math.max(3, X_(r.rss_delta) - M.l);
+      el("path", { d: `M${M.l} ${y} H${M.l + w - 4} a4 4 0 0 1 4 4 v${bh - 8} a4 4 0 0 1 -4 4 H${M.l} Z`,
+        fill: cvar(r.fmt.startsWith("parquet") ? "--s3" : "--s2c") }, svg);
+      const lab = el("text", { x: M.l - 12, y: y + 16, "text-anchor": "end", fill: cvar("--ink-2"),
+        "font-size": 12.5, "font-family": "InstrumentSans, sans-serif" }, svg);
+      lab.textContent = r.label;
+      const val = el("text", { x: M.l + w + 10, y: y + 16, fill: ink, "font-size": 12,
+        "font-family": "GeistMono, monospace" }, svg);
+      val.textContent = mb(r.rss_delta) + " · " + secs(r.seconds);
+      const hit = el("rect", { x: M.l - 320, y: y - 8, width: W - M.l + 320, height: 38,
+        fill: "transparent" }, svg);
+      hit.style.cursor = "crosshair";
+      hit.addEventListener("pointerenter", (e) => showTip(
+        `<b>${r.label}</b><br>${r.call}<br>RSS +${mb(r.rss_delta)}<br>${secs(r.seconds)}<br>` +
+        `<b>file</b> ${mb(r.file_bytes)}`, e.clientX, e.clientY));
+      hit.addEventListener("pointerleave", hideTip);
+    });
+    const lgd = document.createElement("div");
+    lgd.className = "legend";
+    lgd.innerHTML =
+      `<span class="legend-item"><span class="legend-key" style="background:var(--s2c)"></span>Arrow IPC / Feather</span>` +
+      `<span class="legend-item"><span class="legend-key" style="background:var(--s3)"></span>Parquet</span>`;
+    host.parentNode.insertBefore(lgd, host);
+
+    let html = '<table><thead><tr><th>Strategy</th><th>Call</th><th class="num">Time</th>' +
+      '<th class="num">RSS gained</th><th class="num">File</th></tr></thead><tbody>';
+    MM.cases.forEach((r) => {
+      html += `<tr><td>${r.label}</td><td class="name">${r.call}</td>` +
+        (r.ok ? `<td class="num">${secs(r.seconds)}</td><td class="num">${mb(r.rss_delta)}</td>`
+              : `<td class="num" colspan="2">${r.reason}</td>`) +
+        `<td class="num">${r.file_bytes ? mb(r.file_bytes) : "n/a"}</td></tr>`;
+    });
+    document.getElementById("mmap-table").innerHTML = html + "</tbody></table>";
+  }
+
+  /* ================= cold cache ================= */
+  function renderCold() {
+    const host = document.getElementById("cold-chart");
+    host.innerHTML = "";
+    if (!COLD.available) {
+      document.getElementById("cold-sub").textContent = COLD.reason;
+      host.innerHTML = '<p class="chart-sub">Not measured in this environment.</p>';
+      return;
+    }
+    const rows = COLD.runs.map((r) => {
+      const warm = get(COLD.corpus, COLD.scale, r.fmt);
+      return Object.assign({}, r, { warm_s: warm ? warm.read_s : null,
+                                    label: warm ? warm.label : r.fmt });
+    }).sort((a, b) => a.seconds - b.seconds);
+    const W = 940, rowH = 40, M = { t: 8, r: 150, b: 32, l: 210 };
+    const H = M.t + rows.length * rowH + M.b;
+    const iw = W - M.l - M.r;
+    const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, width: W, height: H, role: "img",
+      "aria-label": "Cold read time per format" }, host);
+    const max = Math.max(...rows.map((r) => r.seconds)) * 1.04;
+    const X_ = (v) => M.l + Math.max(0, v) / max * iw;
+    const rule = cvar("--rule"), ink3 = cvar("--ink-3"), ink = cvar("--ink");
+    niceTicks(0, max, 5).ticks.forEach((v) => {
+      el("line", { x1: X_(v), x2: X_(v), y1: M.t, y2: M.t + rows.length * rowH,
+        stroke: v === 0 ? cvar("--axis") : rule, "stroke-width": 1 }, svg);
+      const t = el("text", { x: X_(v), y: H - 12, "text-anchor": "middle", fill: ink3,
+        "font-size": 11, "font-family": "GeistMono, monospace" }, svg);
+      t.textContent = v.toFixed(v < 1 ? 1 : 0) + " s";
+    });
+    rows.forEach((r, i) => {
+      const y = M.t + i * rowH + 9, bh = 22;
+      const w = Math.max(3, X_(r.seconds) - M.l);
+      const fam = r.fmt.startsWith("csv") ? "--s1" : r.fmt.startsWith("feather") ? "--s2c"
+        : r.fmt.startsWith("parquet") ? "--s3" : "--s4";
+      el("path", { d: `M${M.l} ${y} H${M.l + w - 4} a4 4 0 0 1 4 4 v${bh - 8} a4 4 0 0 1 -4 4 H${M.l} Z`,
+        fill: cvar(fam) }, svg);
+      if (r.warm_s !== null) {
+        el("line", { x1: X_(r.warm_s), x2: X_(r.warm_s), y1: y - 3, y2: y + bh + 3,
+          stroke: cvar("--ink"), "stroke-width": 2 }, svg);
+      }
+      const lab = el("text", { x: M.l - 12, y: y + 16, "text-anchor": "end", fill: cvar("--ink-2"),
+        "font-size": 12.5, "font-family": "InstrumentSans, sans-serif" }, svg);
+      lab.textContent = r.label;
+      const val = el("text", { x: M.l + w + 10, y: y + 16, fill: ink, "font-size": 12,
+        "font-family": "GeistMono, monospace" }, svg);
+      val.textContent = r.seconds.toFixed(2) + " s · " + mb(r.size_bytes);
+      const hit = el("rect", { x: M.l - 200, y: y - 6, width: W - M.l + 200, height: 34,
+        fill: "transparent" }, svg);
+      hit.style.cursor = "crosshair";
+      hit.addEventListener("pointerenter", (e) => showTip(
+        `<b>${r.label}</b><br>cold ${secs(r.seconds)}<br>warm ${secs(r.warm_s)}<br>` +
+        `${mb(r.size_bytes)} to move off disk`, e.clientX, e.clientY));
+      hit.addEventListener("pointerleave", hideTip);
+    });
+    const lgd = document.createElement("div");
+    lgd.className = "legend";
+    lgd.innerHTML = `<span class="legend-item"><span class="legend-key" style="background:var(--ink);height:11px;width:3px"></span>warm read, for comparison</span>`;
+    host.parentNode.insertBefore(lgd, host);
+    document.getElementById("cold-sub").textContent = COLD.method;
+
+    let html = '<table><thead><tr><th>Format</th><th class="num">Size</th><th class="num">Cold</th>' +
+      '<th class="num">Warm</th><th class="num">Cold penalty</th></tr></thead><tbody>';
+    rows.forEach((r) => {
+      html += `<tr><td class="name">${r.label}</td><td class="num">${mb(r.size_bytes)}</td>` +
+        `<td class="num">${secs(r.seconds)}</td><td class="num">${secs(r.warm_s)}</td>` +
+        `<td class="num">${r.warm_s ? xfast(r.seconds / r.warm_s) : "n/a"}</td></tr>`;
+    });
+    document.getElementById("cold-table").innerHTML = html + "</tbody></table>";
+  }
+
+  /* ================= engine table ================= */
+  function renderEngines() {
+    const engines = ["pandas", "polars", "duckdb"];
+    const keys = [];
+    ENG.filter((e) => e.scale === "large").forEach((e) => {
+      const k = e.corpus + "|" + e.scale + "|" + e.fmt;
+      if (!keys.includes(k)) keys.push(k);
+    });
+    let html = '<table><thead><tr><th>File</th><th class="num">Rows</th>' +
+      engines.map((e) => `<th class="num">${e}</th>`).join("") +
+      '<th class="num">Best engine gain</th></tr></thead><tbody>';
+    keys.forEach((k) => {
+      const [c, s, f] = k.split("|");
+      const m = meta(c, s);
+      const cells = engines.map((e) => {
+        const r = ENG.find((x) => x.corpus === c && x.scale === s && x.fmt === f && x.engine === e);
+        return r ? r.read_s : null;
+      });
+      const ok = cells.filter((v) => v !== null);
+      if (!ok.length) return;
+      const best = Math.min(...ok), worst = Math.max(...ok);
+      const fmtRow = get(c, s, f);
+      html += `<tr><td class="name">${CORPUS_LABEL[c]} ${s}, ${fmtRow ? fmtRow.label : f}</td>` +
+        `<td class="num">${fmtInt(m.rows)}</td>` +
+        cells.map((v) => `<td class="num${v === best ? " win" : ""}">${v === null ? "n/a" : secs(v)}</td>`).join("") +
+        `<td class="num">${xfast(worst / best)}</td></tr>`;
+    });
+    document.getElementById("engine-table").innerHTML = html + "</tbody></table>";
+  }
+
+  /* ================= corpus table ================= */
+  function renderCorpora() {
+    let html = '<table><thead><tr><th>Corpus</th><th class="num">Small</th><th class="num">Large</th>' +
+      '<th class="num">Columns</th><th>What it is</th></tr></thead><tbody>';
+    CORPORA.forEach((c) => {
+      const a = D.corpora.find((x) => x.corpus === c && x.scale === "small");
+      const b = D.corpora.find((x) => x.corpus === c && x.scale === "large");
+      if (!a || !b) return;
+      html += `<tr><td class="name">${CORPUS_LABEL[c]}</td>` +
+        `<td class="num">${fmtInt(a.rows)}</td><td class="num">${fmtInt(b.rows)}</td>` +
+        `<td class="num">${a.cols}</td><td class="wrap-cell">${a.blurb}</td></tr>`;
+    });
+    document.getElementById("corpus-table").innerHTML = html + "</tbody></table>";
+  }
+
+  /* ================= prose, filled from the same data ================= */
+  function fillProse() {
+    const V = Object.assign({}, D.prose || {});
+    document.querySelectorAll("[data-fill]").forEach((n) => {
+      const k = n.getAttribute("data-fill");
+      if (V[k] !== undefined) n.textContent = V[k];
+    });
+  }
+
+  segment(document.getElementById("access-corpus"),
+    CORPORA.map((c) => ({ key: c, label: CORPUS_LABEL[c] })), () => accC,
+    (k) => { accC = k; renderAccess(); });
+  segment(document.getElementById("access-scale"),
+    SCALES.map((s) => ({ key: s, label: s })), () => accS,
+    (k) => { accS = k; renderAccess(); });
+  segment(document.getElementById("pareto-corpus"),
+    CORPORA.map((c) => ({ key: c, label: CORPUS_LABEL[c] })), () => parC,
+    (k) => { parC = k; renderPareto(); });
+  segment(document.getElementById("pareto-scale"),
+    SCALES.map((s) => ({ key: s, label: s })), () => parS,
+    (k) => { parS = k; renderPareto(); });
+
+  renderAccess();
+  renderPareto();
+  renderScale();
+  renderFidelity();
+  renderMmap();
+  renderCold();
+  renderEngines();
+  renderCorpora();
+  fillProse();
+
+  let raf;
+  window.addEventListener("resize", () => {
+    cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(() => { renderAccess(); renderPareto(); });
+  });
+})();
+</script>

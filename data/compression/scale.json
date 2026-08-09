@@ -1,0 +1,82 @@
+{
+ "bytes": 50331648,
+ "rows": [
+  {
+   "id": "gzip-6",
+   "codec": "gzip",
+   "level": 6,
+   "in_bytes": 50331648,
+   "out_bytes": 18633885,
+   "ratio": 2.7011,
+   "c_mb_s": 31.78,
+   "d_mb_s": 251.4,
+   "window_bytes": 32768
+  },
+  {
+   "id": "bzip2-9",
+   "codec": "bzip2",
+   "level": 9,
+   "in_bytes": 50331648,
+   "out_bytes": 15995694,
+   "ratio": 3.1466,
+   "c_mb_s": 11.92,
+   "d_mb_s": 22.35,
+   "window_bytes": 900000
+  },
+  {
+   "id": "brotli-11",
+   "codec": "brotli",
+   "level": 11,
+   "in_bytes": 50331648,
+   "out_bytes": 15823028,
+   "ratio": 3.1809,
+   "c_mb_s": 0.43,
+   "d_mb_s": 195.42,
+   "window_bytes": 16777200
+  },
+  {
+   "id": "zstd-19",
+   "codec": "zstd",
+   "level": 19,
+   "in_bytes": 50331648,
+   "out_bytes": 16163835,
+   "ratio": 3.1138,
+   "c_mb_s": 1.53,
+   "d_mb_s": 779.83,
+   "window_bytes": 8388608
+  },
+  {
+   "id": "zstd-22",
+   "codec": "zstd",
+   "level": 22,
+   "in_bytes": 50331648,
+   "out_bytes": 16155536,
+   "ratio": 3.1154,
+   "c_mb_s": 1.3,
+   "d_mb_s": 603.21,
+   "window_bytes": 50331648
+  },
+  {
+   "id": "xz-6",
+   "codec": "xz",
+   "level": 6,
+   "in_bytes": 50331648,
+   "out_bytes": 15980076,
+   "ratio": 3.1497,
+   "c_mb_s": 1.54,
+   "d_mb_s": 83.27,
+   "window_bytes": 8388608
+  },
+  {
+   "id": "xz-9",
+   "codec": "xz",
+   "level": 9,
+   "in_bytes": 50331648,
+   "out_bytes": 15977012,
+   "ratio": 3.1503,
+   "c_mb_s": 1.47,
+   "d_mb_s": 75.89,
+   "window_bytes": 67108864
+  }
+ ]
+}

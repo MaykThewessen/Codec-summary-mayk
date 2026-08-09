@@ -1,0 +1,29 @@
+[
+ {
+  "name": "park_joy",
+  "source": "park_joy_1080p50.y4m",
+  "character": "High motion",
+  "note": "Hand-held pan across a park, water spray and foliage. The hardest kind of content to code: motion in every direction and no flat area to hide in.",
+  "frames": 150,
+  "fps": 50.0,
+  "seconds": 3.0
+ },
+ {
+  "name": "in_to_tree",
+  "source": "in_to_tree_1080p50.y4m",
+  "character": "Fine detail, slow",
+  "note": "A slow push toward a tree line. Almost no global motion, but dense high-frequency leaf detail everywhere.",
+  "frames": 150,
+  "fps": 50.0,
+  "seconds": 3.0
+ },
+ {
+  "name": "blue_sky",
+  "source": "blue_sky_1080p25.y4m",
+  "character": "Flat gradient",
+  "note": "A rotating shot of bare branches against an open sky. Large smooth gradients next to hard thin edges: the classic banding trap.",
+  "frames": 75,
+  "fps": 25.0,
+  "seconds": 3.0
+ }
+]
