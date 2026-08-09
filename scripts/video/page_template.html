@@ -239,7 +239,6 @@ section { display: flex; flex-direction: column; gap: 20px; }
 .cell.t3 { background-image: linear-gradient(var(--wash-3), var(--wash-3)); background-color: var(--surface); }
 .cell.t4 { background-image: linear-gradient(var(--wash-4), var(--wash-4)); background-color: var(--surface); }
 .cell.void { background: var(--sunken); }
-.cell.cited { min-height: 0; }
 
 .cell-name {
   font-family: "Tektur", sans-serif;
@@ -312,6 +311,14 @@ svg { display: block; max-width: 100%; }
 .legend-item { display: inline-flex; align-items: center; gap: 7px; }
 .legend-key { width: 14px; height: 3px; border-radius: 2px; flex: none; }
 .legend-key.tall { height: 11px; border-radius: 2px; }
+/* The two AV1 encoders share one hue because they are one format. The dashed
+   key repeats the dashed line in the chart, and both carry a direct label. */
+.legend-key.dashed {
+  height: 0;
+  border-top: 3px dashed currentColor;
+  border-radius: 0;
+  background: none !important;
+}
 
 .seg {
   display: inline-flex;
@@ -406,15 +413,16 @@ td.wrap-cell { white-space: normal; min-width: 190px; }
 .claim-v.no { background: var(--chip-serious); color: var(--ink); }
 .claim p { font-size: 0.92rem; color: var(--ink-2); }
 
-.cited-note {
-  border: 1px dashed var(--edge-3);
+.callout {
+  border: 1px solid var(--edge-2);
+  border-left: 3px solid var(--edge-4);
   border-radius: 3px;
   padding: 14px 16px;
   background: var(--wash-1);
   font-size: 0.88rem;
   color: var(--ink-2);
 }
-.cited-note strong { color: var(--ink); }
+.callout strong { color: var(--ink); }
 
 pre {
   margin: 0;
@@ -452,12 +460,13 @@ code { font-family: "GeistMono", monospace; font-size: 0.88em; }
   <header class="head">
     <div class="eyebrow">Video codecs / measured, not folklore</div>
     <h1>The winner is the same<br>everywhere. The margin<br>is not.</h1>
-    <p class="lede">Normalise the bitrate to <em>bits per pixel per frame</em> and the question becomes answerable. AV1 came first at 540p, 720p and 1080p, at every quality target measured. What moves is how much it wins by: the lead grows with resolution, and grows again as bits get scarce. That is exactly the corner 4K streaming sits in.</p>
+    <p class="lede" data-fill="lede">Normalise the bitrate to <em>bits per pixel per frame</em> and the question becomes answerable.</p>
     <div class="head-meta">
-      <span>4 codecs measured, 1 cited</span>
+      <span>6 encoders, 5 formats, all measured</span>
       <span><span data-fill="nclips"></span> pristine clips, 3 resolutions</span>
       <span><span data-fill="nencodes"></span> encodes scored with VMAF</span>
       <span data-fill="enc_hours"></span>
+      <span>one ffmpeg build for every row</span>
     </div>
   </header>
 
@@ -474,25 +483,25 @@ code { font-family: "GeistMono", monospace; font-size: 0.88em; }
         <div class="y-axis" aria-hidden="true"><span>Decodes anywhere</span><span class="axis-mid">Decoder reach</span><span>Not yet</span></div>
         <div class="map">
 
-          <div class="cell t4 cited" style="grid-area: vvc">
-            <span class="chip crit">Cited, not measured</span>
+          <div class="cell t4" style="grid-area: vvc">
+            <span class="chip crit" data-fill="chip_vvc">Measured, undeployable</span>
             <div class="cell-name">VVC / H.266</div>
-            <div class="cell-why">No VVC encoder exists in this environment, so there is no measured point for it anywhere on this map. Published BD-rate work puts it roughly <span data-fill="vvc_vs_hevc"></span> under HEVC and therefore ahead of everything below. It is not on the map as a recommendation because almost nothing decodes it, and the reason is the same one that held HEVC back: patent licensing, not compute.</div>
-            <div class="cell-set">Nguyen &amp; Marpe 2021 &middot; Bross et al. 2021 &middot; see the VVC section below</div>
+            <div class="cell-why" data-fill="vvc_map_why"></div>
+            <div class="cell-set" data-fill="vvc_map_cmd">libvvenc -preset medium -qp 27</div>
           </div>
 
           <div class="cell t3" style="grid-area: av1lo">
             <span class="chip serious">Modern hardware</span>
             <div class="cell-name">AV1</div>
-            <div class="cell-why">Below about 0.035 bits per pixel per frame: 1080p30 under 2 Mbit/s, or 4K60 under 17 Mbit/s. AV1's lead is largest here, <span data-fill="av1_low"></span> under H.264 at VMAF <span data-fill="t_low"></span> on this corpus. This is where 4K streaming actually lives, so "what wins at 4K" and "what wins when bits are scarce" are the same question.</div>
+            <div class="cell-why" data-fill="av1_low_why"></div>
             <div class="cell-set">1080p30 &lt;2 Mbit/s &middot; 4K60 &lt;17 Mbit/s</div>
           </div>
 
           <div class="cell t3" style="grid-area: av1mid">
             <span class="chip serious">Modern hardware</span>
             <div class="cell-name">AV1</div>
-            <div class="cell-why">Still first at ordinary streaming density, by <span data-fill="av1_mid"></span> against H.264. Royalty-free, in every current browser, and decoded in silicon on 2023-and-later phones and most smart TVs. The cost is on the encode side, not the decode side.</div>
-            <div class="cell-set">1080p30 2-7 Mbit/s &middot; 4K60 17-55 Mbit/s</div>
+            <div class="cell-why" data-fill="av1_mid_why"></div>
+            <div class="cell-set">1080p30 2-7 Mbit/s &middot; 4K60 17-55 Mbit/s &middot; libsvtav1 -preset 6</div>
           </div>
 
           <div class="cell void" style="grid-area: conv">
@@ -550,7 +559,7 @@ code { font-family: "GeistMono", monospace; font-size: 0.88em; }
         <span class="tier-key"><span class="tier-sw k1"></span> Tier 1: decodes on anything, any decade</span>
         <span class="tier-key"><span class="tier-sw k2"></span> Tier 2: every browser, hardware on most devices</span>
         <span class="tier-key"><span class="tier-sw k3"></span> Tier 3: needs 2023-era silicon to decode cheaply</span>
-        <span class="tier-key"><span class="tier-sw k4"></span> Tier 4: not deployed, and not measured here</span>
+        <span class="tier-key"><span class="tier-sw k4"></span> Tier 4: measured here, but almost nothing can decode it</span>
       </div>
       <p class="chart-sub" style="max-width:78ch;">Savings quoted in the cells are the mean over 540p, 720p and 1080p; the per-resolution figures are in the savings chart and the spread is wide. Column boundaries: 0.035 and 0.11 bits per pixel per frame. In 1080p30 terms that is 2.2 and 6.8 Mbit/s; in 4K60 terms 17 and 55 Mbit/s. The same stream can sit in different columns at different resolutions, which is the whole point of the axis.</p>
     </div>
@@ -578,7 +587,7 @@ code { font-family: "GeistMono", monospace; font-size: 0.88em; }
     <div class="sec-head">
       <div class="eyebrow">Measured</div>
       <h2>Rate against quality, one resolution at a time</h2>
-      <p>CRF numbers are not comparable across encoders: x264 CRF 23 and libaom CRF 23 are unrelated settings. Every encode below was scored with VMAF, so codecs are compared at matched perceptual quality instead. Up and to the left is better. Switch the resolution: the order of the four lines barely moves, but the gaps between them do.</p>
+      <p>CRF numbers are not comparable across encoders: x264 CRF 23 and libaom CRF 23 are unrelated settings. Every encode below was scored with VMAF, so codecs are compared at matched perceptual quality instead. Up and to the left is better. Switch the resolution: the order of the six lines barely moves, but the gaps between them do. The two AV1 lines share a colour because they are the same format and the same decoder, separated only by which encoder produced the file: solid is libaom, dashed is SVT-AV1.</p>
     </div>
 
     <div class="card pad chart-card">
@@ -615,7 +624,7 @@ code { font-family: "GeistMono", monospace; font-size: 0.88em; }
     <div class="sec-head">
       <div class="eyebrow">The hypothesis, tested</div>
       <h2>Saving against H.264 at matched VMAF</h2>
-      <p>Three bars per codec, one per resolution. If the best codec really changed with resolution, the groups would reorder. They do not: AV1 is first at all three. What changes is the length of the bars, and it changes a lot. That is the answer to the hypothesis, and it is not the answer the hypothesis expected.</p>
+      <p data-fill="savings_lede">Three bars per encoder, one per resolution. If the best codec really changed with resolution, the groups would reorder. What changes instead is the length of the bars, and it changes a lot. That is the answer to the hypothesis, and it is not the answer the hypothesis expected.</p>
     </div>
 
     <div class="card pad chart-card">
@@ -643,7 +652,7 @@ code { font-family: "GeistMono", monospace; font-size: 0.88em; }
     <div class="card pad chart-card">
       <div class="chart-title">
         <h3>Encoder CPU seconds per 1080p frame at matched quality</h3>
-        <span class="chart-sub">One thread per encode. Real pipelines parallelise, which changes the wall clock but not the bill.</span>
+        <span class="chart-sub">One thread per encode. Real pipelines parallelise, which changes the wall clock but not the bill. The two AV1 rows are the same format and the same decoder, so they share a colour.</span>
       </div>
       <div class="chart-host" id="cost-chart"></div>
       <p style="font-size:0.92rem; color:var(--ink-2);" data-fill="cost_note"></p>
@@ -655,7 +664,7 @@ code { font-family: "GeistMono", monospace; font-size: 0.88em; }
     <div class="cols">
       <div class="col">
         <h3>libaom is not AV1's speed</h3>
-        <p>libaom is the reference encoder, and it is slow on purpose. SVT-AV1, which is what production pipelines actually run, is roughly an order of magnitude faster at a similar quality and is not available in this environment. Read the AV1 bar as an upper bound on cost, not as a fact about the format.</p>
+        <p data-fill="av1_encoders_note"></p>
       </div>
       <div class="col">
         <h3>Decode is the other half, and it is cheap</h3>
@@ -745,12 +754,12 @@ code { font-family: "GeistMono", monospace; font-size: 0.88em; }
   <!-- ================= VVC ================= -->
   <section>
     <div class="sec-head">
-      <div class="eyebrow">Cited, not measured</div>
-      <h2>VVC / H.266, and why it is not on the curves</h2>
+      <div class="eyebrow">Measured, and still not shippable</div>
+      <h2>VVC / H.266, the one that wins and cannot be used</h2>
     </div>
     <div class="card pad" style="display:flex; flex-direction:column; gap:16px;">
-      <div class="cited-note">
-        <strong>Nothing in this section was measured.</strong> No VVC encoder is available in this environment, so there is no VVC point on any chart and no VVC number derived from these clips. Everything below is quoted from published work, with the source named. Treat the figures as a different kind of evidence from the rest of the page.
+      <div class="callout">
+        <strong>This section used to be citation only. It is now measured.</strong> libvvenc is on every chart on this page, swept on the same clips, the same ladder method and the same binary as the other five encoders. One caveat is specific to it: libvvenc accepts only 10-bit input, so VVC alone codes 10-bit internally and is decoded back to 8-bit for scoring. That is worth a few percent to VVC and it is forced by the encoder, not chosen here.
       </div>
       <div class="cols quad">
         <div class="col">
@@ -758,19 +767,20 @@ code { font-family: "GeistMono", monospace; font-size: 0.88em; }
           <p>VVC is Versatile Video Coding, standardised as ITU-T H.266 in July 2020 by the same joint group that produced H.264 and HEVC. The name is the answer to the "VVC1" question: there is no VVC1 and no VVC2, just VVC, also called H.266.</p>
         </div>
         <div class="col">
-          <h3>How much better, per the literature</h3>
-          <p>Nguyen and Marpe (APSIPA Transactions, 2021) measured average bitrate savings of 36 to 37% for the VVC reference encoder against the HEVC reference encoder under JVET common test conditions, and 10 to 15% for AV1 against the same baseline. Subjective testing in the standard's own overview paper reports up to 50% against HEVC. Bitmovin's independent run landed near 45%.</p>
+          <h3>How much better, measured here</h3>
+          <p data-fill="vvc_efficiency"></p>
         </div>
         <div class="col">
-          <h3>Why nobody ships it</h3>
-          <p>Not compute. VVC decode is heavier than HEVC but well within a modern SoC, and software decoders exist. The blocker is licensing: VVC arrived with a patent pool structure that looks like HEVC's, the one that kept HEVC out of Chrome and Firefox for a decade. Browsers have not shipped VVC and have given no indication they intend to.</p>
+          <h3>What it costs, and what the literature says</h3>
+          <p data-fill="vvc_cost"></p>
+          <p style="margin-top:10px;" data-fill="vvc_vs_lit"></p>
         </div>
         <div class="col">
-          <h3>What to do about it</h3>
-          <p>Nothing, for web delivery. If you are in broadcast, DVB and ATSC 3.0 profiles exist and the calculation is different. For everyone else the practical successor to HEVC is AV1, and the successor to AV1 will be AV2, for the same royalty-free reason.</p>
+          <h3>Why nobody ships it, and what to do</h3>
+          <p>Not compute on the decode side: VVC decode is heavier than HEVC but well within a modern SoC, and software decoders exist. The blocker is licensing. VVC arrived with a patent pool structure that looks like HEVC's, the one that kept HEVC out of Chrome and Firefox for a decade, and browsers have given no indication they intend to ship it. So: nothing, for web delivery. In broadcast, DVB and ATSC 3.0 profiles exist and the calculation is different. For everyone else the practical successor to HEVC is AV1, and the successor to AV1 will be AV2, for the same royalty-free reason.</p>
         </div>
       </div>
-      <p style="font-size:0.86rem; color:var(--ink-3); max-width:78ch;">Sources: T. Nguyen and D. Marpe, "Compression efficiency analysis of AV1, VVC, and HEVC for random access applications", APSIPA Transactions on Signal and Information Processing, vol. 10, 2021. B. Bross et al., "Overview of the Versatile Video Coding (VVC) Standard and its Applications", IEEE TCSVT, 2021. Bitmovin, "State of Compression: Testing H.266/VVC vs H.265/HEVC". Pool structure per Access Advance's VVC Advance programme.</p>
+      <p style="font-size:0.86rem; color:var(--ink-3); max-width:78ch;">Published comparison referenced above: T. Nguyen and D. Marpe, "Compression efficiency analysis of AV1, VVC, and HEVC for random access applications", APSIPA Transactions on Signal and Information Processing, vol. 10, 2021. Subjective testing in B. Bross et al., "Overview of the Versatile Video Coding (VVC) Standard and its Applications", IEEE TCSVT, 2021, reports up to 50% against HEVC. Pool structure per Access Advance's VVC Advance programme. Those are the only figures on this page that were not measured here, and they are here to be compared against, not relied on.</p>
     </div>
   </section>
 
@@ -797,9 +807,9 @@ code { font-family: "GeistMono", monospace; font-size: 0.88em; }
         <p data-fill="claim_av1"></p>
       </div>
       <div class="claim">
-        <span class="claim-v part">True, and it is the name that trips people up</span>
+        <span class="claim-v" data-fill="v_vvc_class">True, and now measured here</span>
         <div class="claim-q">"VVC1 is a very advanced video codec."</div>
-        <p>It is Versatile Video Coding, H.266, and there is no "1" in it. Technically the claim holds: the published figures put it well ahead of everything measured here. Practically it is unusable on the open web, and this page could not measure it at all. The advanced part is real; the availability is not. See the section above.</p>
+        <p data-fill="claim_vvc"></p>
       </div>
       <div class="claim">
         <span class="claim-v no">It never shipped</span>
@@ -897,17 +907,23 @@ code { font-family: "GeistMono", monospace; font-size: 0.88em; }
     <div class="card pad" style="display:flex; flex-direction:column; gap:18px;">
       <div>
         <h3 style="margin-bottom:8px;">A delivery ladder that covers everyone</h3>
-        <pre><span class="c"># top rung: smallest file, royalty-free, needs a modern decoder</span>
-ffmpeg -i in.mov -c:v libaom-av1 -b:v 0 -crf <span data-fill="crf_av1"></span> -cpu-used 6 -g 48 out_av1.mp4
-<span class="c"># production runs SVT-AV1 instead: roughly 10x faster for a similar result.</span>
-<span class="c"># its -crf scale is not libaom's, so re-measure rather than copying this number.</span>
+        <pre><span class="c"># top rung: smallest file, royalty-free, needs a modern decoder.</span>
+<span class="c"># SVT-AV1 is the one to run. measured here at <span data-fill="av1_encoders_pair"></span>x less CPU than libaom</span>
+<span class="c"># for the same VMAF, same bitstream, same decoders.</span>
+ffmpeg -i in.mov -c:v libsvtav1 -preset 6 -crf <span data-fill="crf_svtav1"></span> -g 48 out_av1.mp4
+<span class="c"># libaom, the reference encoder. its -crf scale is not SVT's: do not copy the number across.</span>
+ffmpeg -i in.mov -c:v libaom-av1 -b:v 0 -crf <span data-fill="crf_av1"></span> -cpu-used 6 -g 48 out_aom.mp4
 
 <span class="c"># middle rung: every browser, hardware on most devices, no licence</span>
 ffmpeg -i in.mov -c:v libvpx-vp9 -b:v 0 -crf <span data-fill="crf_vp9"></span> -cpu-used 2 -row-mt 1 out_vp9.webm
 
 <span class="c"># bottom rung: it plays on everything ever made</span>
 ffmpeg -i in.mov -c:v libx264 -preset medium -crf <span data-fill="crf_h264"></span> \
-       -profile:v high -movflags +faststart out_h264.mp4</pre>
+       -profile:v high -movflags +faststart out_h264.mp4
+
+<span class="c"># not a rung: VVC won every efficiency comparison on this page and nothing plays it.</span>
+<span class="c"># here for completeness, and because it is what was measured.</span>
+ffmpeg -i in.mov -c:v libvvenc -preset medium -qp <span data-fill="crf_vvc"></span> -period 2 out_vvc.266</pre>
       </div>
       <div>
         <h3 style="margin-bottom:8px;">Measuring it yourself, which is the only way to be sure</h3>
@@ -937,6 +953,7 @@ ffmpeg -i in.mp4 -c copy -f dash -seg_duration 4 out.mpd <span class="c"># fragm
     <div class="card pad" style="display:flex; flex-direction:column; gap:14px;">
       <p style="font-size:0.92rem; color:var(--ink-2);" data-fill="method_corpus"></p>
       <p style="font-size:0.92rem; color:var(--ink-2);" data-fill="method_metric"></p>
+      <div class="callout" data-fill="method_binary"></div>
       <div id="metric-block">
         <h3 style="margin-bottom:6px;">The same comparison, judged by three metrics</h3>
         <p class="chart-sub" style="margin-bottom:4px;">Saving against H.264 at 1080p at the VMAF <span id="metric-target"></span> operating point, scored three ways. If VMAF were flattering one codec, this is where it would show. Every target is in the raw data.</p>
@@ -958,7 +975,7 @@ ffmpeg -i in.mp4 -c copy -f dash -seg_duration 4 out.mpd <span class="c"># fragm
         </div>
         <div class="col">
           <h3>What could not be measured at all</h3>
-          <p>No VVC/H.266 encoder, so every VVC figure on this page is cited. No SVT-AV1 or rav1e, so AV1 is represented by the slow reference encoder. No 4K source, because the derf collection tops out at 1080p and upscaling would have invented detail that was never there: the 4K conclusions come from the normalised axis, not from 4K encodes. No hardware encoders, so nothing here says anything about NVENC or QSV quality.</p>
+          <p>No hardware encoders: NVENC, QuickSync and AMF are a different quality-per-bit story at a different price, and nothing here says anything about them. No 4K source, because the derf collection tops out at 1080p and upscaling would have invented detail that was never there: the 4K conclusions come from the normalised axis, not from 4K encodes. No rav1e, and only one preset per encoder. Audio is a separate page, and this ffmpeg build ships without libfdk-aac, so fdk-aac-class comparisons are missing there rather than here.</p>
         </div>
       </div>
     </div>
@@ -979,11 +996,18 @@ ffmpeg -i in.mp4 -c copy -f dash -seg_duration 4 out.mpd <span class="c"># fragm
   const D = JSON.parse(document.getElementById("data").textContent);
   const A = D.analysis, CLIPS = D.clips, PROSE = D.prose || {};
 
-  const CODECS = ["H264", "HEVC", "VP9", "AV1"];
-  const LABEL = { H264: "H.264", HEVC: "HEVC", VP9: "VP9", AV1: "AV1", VVC: "VVC" };
-  /* Categorical slots 1-5 in the validated order. Identity is also carried by
-     the legend and by a direct label at each line end, never by hue alone. */
-  const SLOT = { H264: "--s1", HEVC: "--s2c", VP9: "--s3", AV1: "--s4", VVC: "--s5" };
+  const CODECS = ["H264", "HEVC", "VP9", "AV1", "SVTAV1", "VVC"];
+  const LABEL = { H264: "H.264", HEVC: "HEVC", VP9: "VP9",
+                  AV1: "AV1 (libaom)", SVTAV1: "AV1 (SVT)", VVC: "VVC / H.266" };
+  const SHORT = { H264: "H.264", HEVC: "HEVC", VP9: "VP9",
+                  AV1: "AV1 libaom", SVTAV1: "AV1 SVT", VVC: "VVC" };
+  /* Categorical slots 1-5 in the validated order, used in order and never
+     cycled. Six series, five slots: the two AV1 encoders are the same format
+     and share slot 4, separated by stroke style and by a direct label rather
+     than by an invented sixth hue. Identity is never carried by hue alone. */
+  const SLOT = { H264: "--s1", HEVC: "--s2c", VP9: "--s3", AV1: "--s4",
+                 SVTAV1: "--s4", VVC: "--s5" };
+  const DASH = { SVTAV1: "8 5" };
   const RES = A.resolutions;
   /* Resolution is an ordered tier, so it is one hue at increasing depth rather
      than a second categorical run. */
@@ -1118,20 +1142,30 @@ ffmpeg -i in.mp4 -c copy -f dash -seg_duration 4 out.mpd <span class="c"># fragm
 
     series.forEach((s) => {
       const d = s.pts.map((p, i) => (i ? "L" : "M") + X_(p.x).toFixed(1) + " " + Y_(p.y).toFixed(1)).join(" ");
-      el("path", { d, fill: "none", stroke: s.colour, opacity: s.opacity, "stroke-width": 2,
-                   "stroke-linejoin": "round", "stroke-linecap": "round" }, svg);
+      const line = { d, fill: "none", stroke: s.colour, opacity: s.opacity, "stroke-width": 2,
+                     "stroke-linejoin": "round", "stroke-linecap": "round" };
+      if (s.dash) line["stroke-dasharray"] = s.dash;
+      el("path", line, svg);
       const e = endBy[s.key];
       const lx = M.l + iw + 20;
       el("path", { d: `M${e.x + 6} ${e.y} L${lx - 6} ${e.ly}`, fill: "none", stroke: s.colour,
                    "stroke-width": 1, opacity: (s.opacity || 1) * 0.55 }, svg);
-      el("circle", { cx: e.x, cy: e.y, r: 4.5, fill: s.colour, opacity: s.opacity,
-                     stroke: cvar("--surface"), "stroke-width": 2 }, svg);
+      el("circle", s.dash
+        ? { cx: e.x, cy: e.y, r: 5, fill: cvar("--surface"), opacity: s.opacity,
+            stroke: s.colour, "stroke-width": 2.4 }
+        : { cx: e.x, cy: e.y, r: 4.5, fill: s.colour, opacity: s.opacity,
+            stroke: cvar("--surface"), "stroke-width": 2 }, svg);
       const lab = el("text", { x: lx, y: e.ly + 4, fill: ink2, "font-size": 12.5,
                                "font-family": "InstrumentSans, sans-serif" }, svg);
       lab.textContent = s.label;
       s.pts.forEach((p) => {
-        el("circle", { cx: X_(p.x), cy: Y_(p.y), r: 4, fill: s.colour, opacity: s.opacity,
-                       stroke: cvar("--surface"), "stroke-width": 2 }, svg);
+        // Hollow markers for the dashed series, so the two AV1 encoders stay
+        // apart in a greyscale print as well as in colour.
+        el("circle", s.dash
+          ? { cx: X_(p.x), cy: Y_(p.y), r: 4.5, fill: cvar("--surface"), opacity: s.opacity,
+              stroke: s.colour, "stroke-width": 2.4 }
+          : { cx: X_(p.x), cy: Y_(p.y), r: 4, fill: s.colour, opacity: s.opacity,
+              stroke: cvar("--surface"), "stroke-width": 2 }, svg);
         const h = el("circle", { cx: X_(p.x), cy: Y_(p.y), r: 13, fill: "transparent" }, svg);
         h.style.cursor = "crosshair";
         h.addEventListener("pointerenter", (ev) => showTip(
@@ -1148,7 +1182,9 @@ ffmpeg -i in.mp4 -c copy -f dash -seg_duration 4 out.mpd <span class="c"># fragm
       series.forEach((s) => {
         const n = document.createElement("span");
         n.className = "legend-item";
-        n.innerHTML = `<span class="legend-key" style="background:${s.colour};opacity:${s.opacity || 1}"></span>${s.label}`;
+        n.innerHTML = s.dash
+          ? `<span class="legend-key dashed" style="color:${s.colour};opacity:${s.opacity || 1}"></span>${s.label}`
+          : `<span class="legend-key" style="background:${s.colour};opacity:${s.opacity || 1}"></span>${s.label}`;
         lg.appendChild(n);
       });
     }
@@ -1158,12 +1194,12 @@ ffmpeg -i in.mp4 -c copy -f dash -seg_duration 4 out.mpd <span class="c"># fragm
   let rdRes = "1080p";
   function renderRD() {
     const series = CODECS.map((c) => ({
-      key: c, label: LABEL[c], colour: cvar(SLOT[c]), opacity: 1,
+      key: c, label: LABEL[c], colour: cvar(SLOT[c]), opacity: 1, dash: DASH[c],
       pts: A.curves[rdRes][c].map((p) => ({ x: p.bpppf, y: p.vmaf }))
                              .sort((a, b) => a.x - b.x)
     }));
     renderCurves("rd-chart", "rd-legend", series,
-                 "VMAF against bits per pixel per frame for four codecs at " + rdRes);
+                 "VMAF against bits per pixel per frame for six encoders at " + rdRes);
 
     let html = '<table><thead><tr><th>Codec</th>' +
       A.targets.map((t) => `<th class="num">VMAF ${t}</th>`).join("") + "</tr></thead><tbody>";
@@ -1186,7 +1222,7 @@ ffmpeg -i in.mp4 -c copy -f dash -seg_duration 4 out.mpd <span class="c"># fragm
   function renderShift() {
     const col = cvar(SLOT[shiftCodec]);
     const series = RES.map((r) => ({
-      key: r, label: r, colour: col, opacity: RES_DEPTH[r],
+      key: r, label: r, colour: col, opacity: RES_DEPTH[r], dash: DASH[shiftCodec],
       pts: A.curves[r][shiftCodec].map((p) => ({ x: p.bpppf, y: p.vmaf }))
                                   .sort((a, b) => a.x - b.x)
     }));
@@ -1217,7 +1253,7 @@ ffmpeg -i in.mp4 -c copy -f dash -seg_duration 4 out.mpd <span class="c"># fragm
     const host = document.getElementById("sav-chart");
     host.innerHTML = "";
     const codecs = CODECS.filter((c) => c !== "H264");
-    const groupH = 112, barH = 22, W = 940, M = { t: 10, r: 76, b: 34, l: 132 };
+    const groupH = 112, barH = 22, W = 940, M = { t: 10, r: 76, b: 34, l: 156 };
     const H = M.t + codecs.length * groupH + M.b;
     const iw = W - M.l - M.r;
     const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, width: W, height: H, role: "img",
@@ -1245,9 +1281,9 @@ ffmpeg -i in.mp4 -c copy -f dash -seg_duration 4 out.mpd <span class="c"># fragm
       // codec name in its own left gutter, resolution labels beside the bars,
       // so the two label runs cannot collide
       const nm = el("text", { x: 0, y: gy + groupH / 2, fill: ink,
-                              "font-size": 15, "font-family": "InstrumentSans, sans-serif",
+                              "font-size": 14, "font-family": "InstrumentSans, sans-serif",
                               "font-weight": 700 }, svg);
-      nm.textContent = LABEL[c];
+      nm.textContent = SHORT[c];
       RES.forEach((r, ri) => {
         const s = A.savings[r][savTarget];
         const y = gy + 8 + ri * (barH + 8);
@@ -1312,7 +1348,7 @@ ffmpeg -i in.mp4 -c copy -f dash -seg_duration 4 out.mpd <span class="c"># fragm
                                       rel: (A.enc_cost["1080p"][c] || {}).rel }))
                        .filter((r) => r.v !== undefined)
                        .sort((a, b) => a.v - b.v);
-    const W = 940, rowH = 50, M = { t: 8, r: 186, b: 32, l: 96 };
+    const W = 940, rowH = 50, M = { t: 8, r: 200, b: 32, l: 124 };
     const H = M.t + rows.length * rowH + M.b;
     const iw = W - M.l - M.r;
     const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, width: W, height: H, role: "img",
@@ -1337,8 +1373,8 @@ ffmpeg -i in.mp4 -c copy -f dash -seg_duration 4 out.mpd <span class="c"># fragm
         fill: cvar(SLOT[r.c])
       }, svg);
       const lab = el("text", { x: M.l - 12, y: y + 16, "text-anchor": "end", fill: cvar("--ink-2"),
-                               "font-size": 13.5, "font-family": "InstrumentSans, sans-serif" }, svg);
-      lab.textContent = LABEL[r.c];
+                               "font-size": 13, "font-family": "InstrumentSans, sans-serif" }, svg);
+      lab.textContent = SHORT[r.c];
       const val = el("text", { x: M.l + w + 10, y: y + 16, fill: ink, "font-size": 12.5,
                                "font-family": "GeistMono, monospace" }, svg);
       val.textContent = r.v.toFixed(2) + "s  \u00b7  " + r.rel.toFixed(1) + "x H.264";
@@ -1431,7 +1467,7 @@ ffmpeg -i in.mp4 -c copy -f dash -seg_duration 4 out.mpd <span class="c"># fragm
   }
 
   seg("res-seg", RES.map((r) => ({ label: r, value: r })), rdRes, (v) => { rdRes = v; renderRD(); });
-  seg("codec-seg", CODECS.map((c) => ({ label: LABEL[c], value: c })), shiftCodec,
+  seg("codec-seg", CODECS.map((c) => ({ label: SHORT[c], value: c })), shiftCodec,
       (v) => { shiftCodec = v; renderShift(); });
   // only offer targets some codec actually reached
   const avail = A.targets.filter((t) => RES.some((r) => A.savings[r][t]))

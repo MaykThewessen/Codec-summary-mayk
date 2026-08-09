@@ -9,6 +9,11 @@ us test whether the codec ranking really moves with resolution.
 
 As on the images page, codecs are compared at matched perceptual quality
 (VMAF), never at matched CRF: CRF numbers are not comparable across encoders.
+
+Six encoders, five formats: AV1 is present twice, as libaom and as SVT-AV1,
+because they are the same bitstream format with very different cost. Every row
+read here came from one ffmpeg build (/opt/ffmpeg-gpl/ffmpeg); nothing from the
+earlier imageio-ffmpeg 7.0.2 sweep is mixed in.
 """
 
 import json
@@ -19,7 +24,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 DATA = ROOT / "data" / "video"
 
-CODECS = ["H264", "HEVC", "VP9", "AV1"]
+CODECS = ["H264", "HEVC", "VP9", "AV1", "SVTAV1", "VVC"]
+# Pairs worth a direct head-to-head rather than a difference of two savings.
+# Positive means the first named is the smaller file at the same VMAF.
+PAIRS = [("SVTAV1", "AV1"), ("VVC", "AV1"), ("VVC", "SVTAV1"), ("VVC", "HEVC")]
 RES = ["1080p", "720p", "540p"]
 TARGETS = [95, 93, 90, 85, 80]
 COST_TARGET = 93  # encode cost is quoted at a realistic VOD operating point
@@ -230,6 +238,33 @@ def main():
                                     / matched[res]["HEVC"][t]["bpppf"]), 1)
         hevc_vp9[res] = d  # positive: VP9 smaller than HEVC
 
+    # ---- direct head-to-heads that the page quotes -------------------------
+    # Subtracting two savings-against-H.264 gives percentage points, not a
+    # percentage. These are the real ratios.
+    pairs = {}
+    for a, b in PAIRS:
+        d = {}
+        for res in RES:
+            dd = {}
+            for t in TARGETS:
+                if t in matched[res][a] and t in matched[res][b]:
+                    dd[t] = round(100 * (1 - matched[res][a][t]["bpppf"]
+                                         / matched[res][b][t]["bpppf"]), 1)
+            d[res] = dd
+        pairs[f"{a}_vs_{b}"] = d
+
+    # ---- the two AV1 encoders side by side ---------------------------------
+    # Same format, same decoder, different cost. This is the comparison that
+    # decides whether AV1's encode price is a real objection or a libaom one.
+    av1_enc = {}
+    for res in RES:
+        ca, cs = cost[res]["AV1"].get(COST_TARGET), cost[res]["SVTAV1"].get(COST_TARGET)
+        av1_enc[res] = dict(
+            aom_cpu_s_per_frame=round(ca, 4) if ca else None,
+            svt_cpu_s_per_frame=round(cs, 4) if cs else None,
+            speedup=round(ca / cs, 1) if ca and cs else None,
+            bits=pairs["SVTAV1_vs_AV1"][res])
+
     # ---- do the three resolutions collapse onto one curve? -----------------
     # VMAF at a fixed bpppf, per resolution, per codec.
     probes = [0.02, 0.04, 0.08, 0.16]
@@ -257,7 +292,8 @@ def main():
                by_metric=by_metric,
                enc_cost=enc_cost, cost_by_target=cost, order=order,
                ranking_stable=stable, saving_spread=spread,
-               hevc_vs_vp9=hevc_vp9, collapse=collapse, collapse_probes=probes,
+               hevc_vs_vp9=hevc_vp9, pairs=pairs, av1_encoders=av1_enc,
+               collapse=collapse, collapse_probes=probes,
                span=span, anchors=anchors, dropped_clips=dropped,
                total_enc_cpu_s=round(sum(r["enc_cpu_s"] for r in rows), 1),
                total_metric_cpu_s=round(sum(r["metric_cpu_s"] for r in rows), 1))
@@ -282,6 +318,9 @@ def main():
     print("order at each target, 1080p:", {t: order["1080p"][t] for t in TARGETS})
     print("saving spread across resolutions (pp):", spread)
     print("VP9 minus HEVC saving (positive = VP9 smaller):", hevc_vp9)
+    for k, v in pairs.items():
+        print(f"{k} (positive = first is smaller):", {r: v[r] for r in RES})
+    print("AV1 encoders:", av1_enc)
     print("encode cost at VMAF", COST_TARGET, enc_cost)
     print("\nVMAF span per res/codec/clip:")
     for k, v in span.items():
