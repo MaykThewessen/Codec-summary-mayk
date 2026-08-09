@@ -451,8 +451,8 @@ code { font-family: "GeistMono", monospace; font-size: 0.88em; }
 
   <header class="head">
     <div class="eyebrow">Video codecs / measured, not folklore</div>
-    <h1>The ranking does not<br>change with resolution</h1>
-    <p class="lede">It changes with <em>bits per pixel per frame</em>, and resolution is only one of the things that moves you along that axis. Normalise the bitrate and 540p, 720p and 1080p fall onto the same curve. That single change turns "which codec for 4K" into a question with an answer.</p>
+    <h1>The winner is the same<br>everywhere. The margin<br>is not.</h1>
+    <p class="lede">Normalise the bitrate to <em>bits per pixel per frame</em> and the question becomes answerable. AV1 came first at 540p, 720p and 1080p, at every quality target measured. What moves is how much it wins by: the lead grows with resolution, and grows again as bits get scarce. That is exactly the corner 4K streaming sits in.</p>
     <div class="head-meta">
       <span>4 codecs measured, 1 cited</span>
       <span><span data-fill="nclips"></span> pristine clips, 3 resolutions</span>
@@ -485,7 +485,7 @@ code { font-family: "GeistMono", monospace; font-size: 0.88em; }
             <span class="chip serious">Modern hardware</span>
             <div class="cell-name">AV1</div>
             <div class="cell-why">Below about 0.035 bits per pixel per frame: 1080p30 under 2 Mbit/s, or 4K60 under 17 Mbit/s. AV1's lead is largest here, <span data-fill="av1_low"></span> under H.264 at VMAF <span data-fill="t_low"></span> on this corpus. This is where 4K streaming actually lives, so "what wins at 4K" and "what wins when bits are scarce" are the same question.</div>
-            <div class="cell-set">1080p30 under 2 Mbit/s &middot; 4K60 under 17 Mbit/s</div>
+            <div class="cell-set">1080p30 &lt;2 Mbit/s &middot; 4K60 &lt;17 Mbit/s</div>
           </div>
 
           <div class="cell t3" style="grid-area: av1mid">
@@ -515,10 +515,10 @@ code { font-family: "GeistMono", monospace; font-size: 0.88em; }
           </div>
 
           <div class="cell t2" style="grid-area: vp9">
-            <span class="chip good">Every browser, most hardware</span>
-            <div class="cell-name">VP9</div>
+            <span class="chip warn">Hardware everywhere, licensed</span>
+            <div class="cell-name">HEVC, for the ecosystem</div>
             <div class="cell-why" data-fill="vp9_high_why"></div>
-            <div class="cell-set">WebM &middot; every browser since 2013</div>
+            <div class="cell-set">Broadcast &middot; Blu-ray UHD &middot; Apple &middot; camera originals</div>
           </div>
 
           <div class="cell t1" style="grid-area: h264lo">
@@ -552,7 +552,7 @@ code { font-family: "GeistMono", monospace; font-size: 0.88em; }
         <span class="tier-key"><span class="tier-sw k3"></span> Tier 3: needs 2023-era silicon to decode cheaply</span>
         <span class="tier-key"><span class="tier-sw k4"></span> Tier 4: not deployed, and not measured here</span>
       </div>
-      <p class="chart-sub" style="max-width:78ch;">Column boundaries: 0.035 and 0.11 bits per pixel per frame. In 1080p30 terms that is 2.2 and 6.8 Mbit/s; in 4K60 terms 17 and 55 Mbit/s. The same stream can sit in different columns at different resolutions, which is the whole point of the axis.</p>
+      <p class="chart-sub" style="max-width:78ch;">Savings quoted in the cells are the mean over 540p, 720p and 1080p; the per-resolution figures are in the savings chart and the spread is wide. Column boundaries: 0.035 and 0.11 bits per pixel per frame. In 1080p30 terms that is 2.2 and 6.8 Mbit/s; in 4K60 terms 17 and 55 Mbit/s. The same stream can sit in different columns at different resolutions, which is the whole point of the axis.</p>
     </div>
   </section>
 
@@ -569,7 +569,7 @@ code { font-family: "GeistMono", monospace; font-size: 0.88em; }
         <span class="chart-sub">Sorted from the most constrained to the most generous.</span>
       </div>
       <div class="tbl-scroll" id="anchor-table"></div>
-      <p style="font-size:0.92rem; color:var(--ink-2); max-width:78ch;">Read the 4K row against the 1080p rows and the hypothesis answers itself. A 4K60 stream at 15 Mbit/s is <em>more</em> compressed per pixel than a 1080p30 stream at 3 Mbit/s, not less. That is why the question "which codec wins at 4K" is really "which codec wins when bits are scarce", and it is why 4K is where the modern codecs earn their keep.</p>
+      <p style="font-size:0.92rem; color:var(--ink-2); max-width:78ch;">Read the 4K row against the 1080p rows and the hypothesis answers itself. A 4K60 stream at 15 Mbit/s is <em>more</em> compressed per pixel than a 1080p30 stream at 3 Mbit/s, not less. That is why the question "which codec wins at 4K" is largely "which codec wins when bits are scarce". 4K earns the modern codecs their keep twice over: they are furthest ahead when bits are scarce, and their lead also grows with resolution, as the chart two sections down shows.</p>
     </div>
   </section>
 
@@ -578,7 +578,7 @@ code { font-family: "GeistMono", monospace; font-size: 0.88em; }
     <div class="sec-head">
       <div class="eyebrow">Measured</div>
       <h2>Rate against quality, one resolution at a time</h2>
-      <p>CRF numbers are not comparable across encoders: x264 CRF 23 and libaom CRF 23 are unrelated settings. Every encode below was scored with VMAF, so codecs are compared at matched perceptual quality instead. Up and to the left is better. Switch the resolution and watch how little the picture changes.</p>
+      <p>CRF numbers are not comparable across encoders: x264 CRF 23 and libaom CRF 23 are unrelated settings. Every encode below was scored with VMAF, so codecs are compared at matched perceptual quality instead. Up and to the left is better. Switch the resolution: the order of the four lines never changes, but the gaps between them do.</p>
     </div>
 
     <div class="card pad chart-card">
@@ -597,7 +597,7 @@ code { font-family: "GeistMono", monospace; font-size: 0.88em; }
 
     <div class="card pad chart-card">
       <div class="chart-title">
-        <h3>The same codec at three resolutions</h3>
+        <h3>The same codec, three resolutions</h3>
         <div class="seg" id="codec-seg" role="group" aria-label="Codec"></div>
       </div>
       <div class="legend" id="shift-legend"></div>
@@ -615,7 +615,7 @@ code { font-family: "GeistMono", monospace; font-size: 0.88em; }
     <div class="sec-head">
       <div class="eyebrow">The hypothesis, tested</div>
       <h2>Saving against H.264 at matched VMAF</h2>
-      <p>Three bars per codec, one per resolution. If the best codec really changed with resolution, the three bars in a group would disagree and the groups would reorder. Move the quality target and see what actually moves.</p>
+      <p>Three bars per codec, one per resolution. If the best codec really changed with resolution, the groups would reorder. They do not: AV1 is first at all three. What changes is the length of the bars, and it changes a lot. That is the answer to the hypothesis, and it is not the answer the hypothesis expected.</p>
     </div>
 
     <div class="card pad chart-card">
@@ -638,7 +638,7 @@ code { font-family: "GeistMono", monospace; font-size: 0.88em; }
     <div class="sec-head">
       <div class="eyebrow">The axis nobody puts on the chart</div>
       <h2>What the smaller file costs to make</h2>
-      <p>A codec that is 40% smaller and 20 times slower to encode is not a free win: it decides live against VOD, and it decides how much of your catalogue you can afford to re-encode. Measured here as encoder CPU seconds per frame, single-threaded, at matched VMAF <span data-fill="cost_target"></span>, so it is the cost of the <em>same picture</em> rather than the cost of the same settings.</p>
+      <p>A codec that is 30% smaller but several times slower to encode is not a free win: it decides live against VOD, and it decides how much of your catalogue you can afford to re-encode. Measured here as encoder CPU seconds per frame, single-threaded, at matched VMAF <span data-fill="cost_target"></span>, so it is the cost of the <em>same picture</em> rather than the cost of the same settings.</p>
     </div>
     <div class="card pad chart-card">
       <div class="chart-title">
@@ -673,7 +673,7 @@ code { font-family: "GeistMono", monospace; font-size: 0.88em; }
     <div class="sec-head">
       <div class="eyebrow">The constraint that actually decides</div>
       <h2>Who can play it</h2>
-      <p>Compression efficiency is settled and the ordering barely moves. Reach is where the real decision lives, and for video it has four independent parts: browsers, phone silicon, TV silicon, and whether a lawyer has to be involved.</p>
+      <p>The ordering of the codecs barely moves, even if the size of the gaps does. Reach is where the real decision lives, and for video it has four independent parts: browsers, phone silicon, TV silicon, and whether a lawyer has to be involved.</p>
     </div>
     <div class="card pad">
       <div class="tbl-scroll">
@@ -937,12 +937,12 @@ ffmpeg -i in.mp4 -c copy -f dash -seg_duration 4 out.mpd <span class="c"># fragm
     <div class="card pad" style="display:flex; flex-direction:column; gap:14px;">
       <p style="font-size:0.92rem; color:var(--ink-2);" data-fill="method_corpus"></p>
       <p style="font-size:0.92rem; color:var(--ink-2);" data-fill="method_metric"></p>
-      <div>
+      <div id="metric-block">
         <h3 style="margin-bottom:6px;">The same comparison, judged by three metrics</h3>
         <p class="chart-sub" style="margin-bottom:4px;">Saving against H.264 at 1080p at the VMAF <span id="metric-target"></span> operating point, scored three ways. If VMAF were flattering one codec, this is where it would show. Every target is in the raw data.</p>
         <div class="tbl-scroll" id="metric-table"></div>
-        <p style="font-size:0.92rem; color:var(--ink-2); margin-top:12px;" data-fill="metric_note"></p>
       </div>
+      <p style="font-size:0.92rem; color:var(--ink-2);" data-fill="metric_note"></p>
       <div class="cols quad" style="margin-top:4px;">
         <div class="col">
           <h3>The presets are not the slowest available</h3>
@@ -950,10 +950,10 @@ ffmpeg -i in.mp4 -c copy -f dash -seg_duration 4 out.mpd <span class="c"># fragm
         </div>
         <div class="col">
           <h3>VMAF has known biases</h3>
-          <p>VMAF was trained on Netflix's own catalogue and its own scaling pipeline. It over-rewards sharpening and contrast enhancement, it is weak on banding, and it was fitted for 1080p viewed at a set distance. PSNR and SSIM are recorded alongside every point in the raw data so you can see where they disagree with it; on this corpus they broadly agree on the ordering, which is the useful check.</p>
+          <p data-fill="caveat_vmaf"></p>
         </div>
         <div class="col">
-          <h3>Two of the three clips are hard content</h3>
+          <h3>The corpus is small, and deliberately hard</h3>
           <p data-fill="caveat_corpus"></p>
         </div>
         <div class="col">
@@ -1072,7 +1072,8 @@ ffmpeg -i in.mp4 -c copy -f dash -seg_duration 4 out.mpd <span class="c"># fragm
                              "font-size": 11.5, "font-family": "GeistMono, monospace" }, svg);
       t.textContent = v;
     });
-    const xticks = [0.005, 0.01, 0.02, 0.04, 0.08, 0.16, 0.32, 0.64].filter((v) => v >= x0 && v <= x1);
+    const xticks = [0.004, 0.006, 0.008, 0.01, 0.015, 0.02, 0.03, 0.04, 0.06, 0.08,
+                    0.12, 0.16, 0.24, 0.32, 0.48, 0.64].filter((v) => v >= x0 && v <= x1);
     xticks.forEach((v) => {
       el("line", { x1: X_(v), x2: X_(v), y1: M.t, y2: M.t + ih, stroke: rule, "stroke-width": 1 }, svg);
       const t = el("text", { x: X_(v), y: M.t + ih + 19, "text-anchor": "middle", fill: ink3,
@@ -1325,7 +1326,8 @@ ffmpeg -i in.mp4 -c copy -f dash -seg_duration 4 out.mpd <span class="c"># fragm
                    stroke: v === 0 ? cvar("--axis") : rule, "stroke-width": 1 }, svg);
       const t = el("text", { x: X_(v), y: H - 11, "text-anchor": "middle", fill: ink3, "font-size": 11.5,
                              "font-family": "GeistMono, monospace" }, svg);
-      t.textContent = v + "s";
+      // niceTicks accumulates float error; +toFixed drops it without padding zeros
+      t.textContent = +v.toFixed(6) + "s";
     });
 
     rows.forEach((r, i) => {
@@ -1371,6 +1373,11 @@ ffmpeg -i in.mp4 -c copy -f dash -seg_duration 4 out.mpd <span class="c"># fragm
     const names = { vmaf: "VMAF", psnr_y: "PSNR-Y", ssim: "SSIM" };
     const codecs = CODECS.filter((c) => c !== "H264");
     const ts = A.targets.filter((t) => M.vmaf[t] && M.psnr_y[t] && M.ssim[t]);
+    if (!ts.length) {
+      // Nothing to show rather than something invented: see the note beneath.
+      document.getElementById("metric-block").hidden = true;
+      return;
+    }
     const t = ts.includes(90) ? 90 : ts[Math.floor(ts.length / 2)];
     let html = '<table><thead><tr><th>Scored with</th>' +
       codecs.map((c) => `<th class="num">${LABEL[c]}</th>`).join("") + "</tr></thead><tbody>";

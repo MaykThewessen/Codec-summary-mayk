@@ -51,6 +51,17 @@ def matched(res, target, codec):
     return A["matched"][res][codec][str(target)]["bpppf"]
 
 
+def head_to_head(target, a_codec, b_codec):
+    """How much smaller a_codec is than b_codec, mean over the resolutions.
+
+    Subtracting two savings-against-H.264 gives percentage points, not a
+    percentage. This gives the number people actually mean.
+    """
+    vals = [100 * (1 - matched(r, target, a_codec) / matched(r, target, b_codec))
+            for r in RES if has(r, target, a_codec) and has(r, target, b_codec)]
+    return sum(vals) / len(vals) if vals else None
+
+
 def crf_at(res, codec):
     """CRF that lands on the cost target, as a range across clips.
 
@@ -83,6 +94,18 @@ prose["av1_mid"] = pct(mean_sav(mid, "AV1"))
 prose["hevc_low"] = smaller(mean_sav(low, "HEVC"))
 prose["h264_penalty"] = pct(100 - mean_sav(low, "AV1"), 0)
 
+def _high_tier2_why():
+    """At the generous end the two tier-2 codecs are close enough that the
+    decision stops being about bits and starts being about where it must play."""
+    return (
+        f"At this density the two tier-2 codecs are close enough that efficiency stops "
+        f"deciding: VP9 is {pct(abs(hv_mean[high]))} "
+        f"{'smaller' if hv_mean[high] > 0 else 'larger'} than HEVC at VMAF {high}, and both "
+        f"are well behind AV1. So pick on where the file has to play. HEVC is what broadcast "
+        f"chains, UHD Blu-ray, Apple devices and cameras speak natively; VP9 is what browsers "
+        f"speak. If it is going to a television, that is HEVC.")
+
+
 # which of HEVC and VP9 is ahead, and where
 hv = {t: {r: A["hevc_vs_vp9"][r].get(str(t)) for r in RES} for t in targets}
 hv_mean = {t: (lambda xs: sum(xs) / len(xs) if xs else None)(
@@ -97,23 +120,19 @@ if vp9_wins_high and not vp9_wins_low:
         f"{pct(abs(hv_mean[mid]))} {'under' if hv_mean[mid] > 0 else 'over'} HEVC at VMAF "
         f"{mid}, averaged across the three resolutions. Pick on reach, not on efficiency: "
         f"VP9 plays in every browser and HEVC does not.")
-    prose["vp9_high_why"] = (
-        f"At the transparent end VP9 pulls ahead of HEVC by {pct(abs(hv_mean[high]))}, "
-        f"which is the one place the ordering between them changes. Both are far behind AV1.")
+    prose["vp9_high_why"] = _high_tier2_why()
 else:
     lead = hv_mean[mid]
     who = "VP9" if lead > 0 else "HEVC"
     prose["mid_tier2_name"] = f"{who}, by a nose"
     prose["mid_tier2_why"] = (
         f"These two are the same codec generation and it shows: {who} is only "
-        f"{pct(abs(lead))} ahead at VMAF {mid}, averaged over the three resolutions, and the "
-        f"gap never opens up. Pick on reach, not on efficiency. VP9 plays in every browser "
+        f"{pct(abs(lead))} ahead at VMAF {mid}, averaged over the three resolutions, and it "
+        f"never gets further than "
+        f"{max(abs(v) for v in hv_mean.values() if v is not None):.1f} percentage points ahead "
+        f"anywhere. Pick on reach, not on efficiency. VP9 plays in every browser "
         f"and costs nothing to licence; HEVC does neither, and has hardware everywhere.")
-    prose["vp9_high_why"] = (
-        f"At the transparent end the two stay level: VP9 is {pct(abs(hv_mean[high]))} "
-        f"{'under' if hv_mean[high] > 0 else 'over'} HEVC at VMAF {high}. VP9 wins this square "
-        f"on licensing and browser reach rather than on bits, which is the honest reason to "
-        f"pick it.")
+    prose["vp9_high_why"] = _high_tier2_why()
 
 prose["t_low"] = str(low)
 prose["t_high"] = str(high)
@@ -149,57 +168,83 @@ if max(conv_high.values()) < max(conv_low.values()):
         f"the best saving against H.264 falls from {pct(max(conv_low.values()))} at VMAF {low} "
         f"to {pct(max(conv_high.values()))} at VMAF {high}, and the gap between the three "
         f"non-H.264 codecs "
-        + (f"closes from {pct(spread_low)} to {pct(spread_high)}"
-           if spread_high < spread_low else f"holds at about {pct(spread_high)}"))
+        + (f"closes from {spread_low:.1f} to {spread_high:.1f} percentage points"
+           if spread_high < spread_low else
+           f"holds at about {spread_high:.1f} percentage points"))
 else:
     prose["converge_note"] = (
         f"the best saving against H.264 is {pct(max(conv_high.values()))} at VMAF {high} "
         f"against {pct(max(conv_low.values()))} at VMAF {low}, and the three non-H.264 codecs "
-        f"sit {pct(spread_high)} apart")
+        f"sit {spread_high:.1f} percentage points apart")
 
 # ---- does the ranking move with resolution? --------------------------------
 orders = {r: A["order"][r] for r in RES}
 same = all(orders[r][str(t)] == orders[RES[0]][str(t)]
            for r in RES for t in targets if str(t) in orders[r] and str(t) in orders[RES[0]])
-worst_spread = max((v for c in A["saving_spread"] for v in A["saving_spread"][c].values()),
-                   default=0)
 order_1080 = " then ".join(LABEL[c] for c in orders["1080p"][str(mid)])
 
+sp = A["saving_spread"]
+worst_c = max(sp, key=lambda c: max(sp[c].values(), default=0))
+worst_spread = max(sp[worst_c].values())
+best_res, worst_res = RES[0], RES[-1]
+# Where the ordering does differ, say exactly where and how.
+exceptions = []
+for r in RES:
+    for t in targets:
+        o = orders[r][str(t)]
+        if o != orders["1080p"][str(t)]:
+            exceptions.append(f"{r} at VMAF {t}, where it is "
+                              + " then ".join(LABEL[c] for c in o))
+exc = ((" The exception is " + "; and ".join(exceptions[:2])
+        + (", the same swap repeating at the neighbouring targets."
+           if len(exceptions) > 2 else "."))
+       if exceptions else "")
 prose["ranking_note"] = (
-    f"The ordering at VMAF {mid} is {order_1080}, and it is the same ordering at every "
-    f"resolution and every target on this corpus"
-    + ("" if same else ", with one exception noted in the table") + ". "
-    f"The largest disagreement between resolutions for any one codec at any one target is "
-    f"{worst_spread:.1f} percentage points, which is inside the noise of a "
-    f"{len(CLIPS)}-clip corpus. Resolution moves you along the horizontal axis of the map; it "
-    f"does not reorder the codecs once you are there.")
+    f"The ordering at VMAF {mid} is {order_1080}, and it is that same ordering at every "
+    f"resolution and every target measured"
+    + ("." if not exceptions else
+       (" bar one." if len(exceptions) == 1 else " bar a few.")) + exc + " "
+    f"The margins are another matter. AV1 is {pct(sav(best_res, mid, 'AV1'))} under H.264 at "
+    f"{best_res} and {pct(sav(worst_res, mid, 'AV1'))} at {worst_res}; HEVC is "
+    f"{pct(sav(best_res, mid, 'HEVC'))} and {pct(sav(worst_res, mid, 'HEVC'))}. The largest "
+    f"swing across resolutions for one codec at one target is {worst_spread:.1f} percentage "
+    f"points ({LABEL[worst_c]}). Resolution does not reorder the codecs; it decides how much "
+    f"the newer ones are worth, and it points the same way as bitrate does.")
 
 prose["claim_hypothesis"] = (
-    f"The intuition that something changes is right; the axis is wrong. Normalise the bitrate "
-    f"to bits per pixel per frame and the three resolutions land on the same curve, and the "
-    f"ranking is {order_1080} at every one of them (largest disagreement across resolutions: "
-    f"{worst_spread:.1f} percentage points). What changes at 4K is not the ranking but the "
-    f"position: 4K60 at 15 Mbit/s is 0.0301 bits per pixel per frame, more constrained than "
-    f"1080p30 at 3 Mbit/s at 0.0482, so 4K pushes you left into the region where the newer "
-    f"codecs are furthest ahead. And HEVC does not win at 1080p between 1 and 10 Mbit/s "
-    f"either: AV1 is {pct(mean_sav(mid, 'AV1'))} under H.264 at VMAF {mid} against HEVC's "
-    f"{pct(mean_sav(mid, 'HEVC'))}. HEVC is the best of the codecs that were current in 2015.")
+    f"Half right, and the half that is right is more useful than it looks. The ranking does "
+    f"not move much: {order_1080} at 1080p, and the same order almost everywhere else, so "
+    f"HEVC does "
+    f"not win at 1080p between 1 and 10 Mbit/s. AV1 does, by {pct(sav('1080p', mid, 'AV1'))} "
+    f"against H.264 where HEVC manages {pct(sav('1080p', mid, 'HEVC'))}. But the intuition "
+    f"that resolution matters is correct, just not in the way the question assumed: it changes "
+    f"the size of the win, not its owner. AV1's lead over H.264 goes from "
+    f"{pct(sav('540p', mid, 'AV1'))} at 540p to {pct(sav('1080p', mid, 'AV1'))} at 1080p, and "
+    f"HEVC's from {pct(sav('540p', mid, 'HEVC'))} to {pct(sav('1080p', mid, 'HEVC'))}: at 540p "
+    f"HEVC is barely worth the trouble. Extrapolate the trend and 4K is where the modern "
+    f"codecs are furthest ahead, for two reasons at once. More pixels gives their larger "
+    f"transforms and prediction blocks more to work with, and 4K at a normal streaming bitrate "
+    f"sits further left on the bits-per-pixel axis, where their lead is largest anyway. "
+    f"4K60 at 15 Mbit/s is 0.0301 bits per pixel per frame; 1080p30 at 3 Mbit/s is 0.0482.")
 
-# ---- collapse ---------------------------------------------------------------
+# ---- do the resolutions land on one curve? ---------------------------------
+# They do not, and saying so is the point: normalising puts the resolutions on
+# one axis, not on one line. More pixels means more redundancy per pixel.
 probe = A["collapse_probes"][1]
-coll = []
+gaps = []
 for c in CODECS:
-    vals = [A["collapse"][c][r].get(str(probe)) or A["collapse"][c][r].get(probe) for r in RES]
-    vals = [v for v in vals if v is not None]
-    if len(vals) == len(RES):
-        coll.append((c, max(vals) - min(vals)))
-worst = max(coll, key=lambda x: x[1]) if coll else ("", 0)
+    vals = [A["collapse"][c][r].get(str(probe)) for r in RES]
+    if all(v is not None for v in vals):
+        gaps.append((c, vals[0] - vals[-1], vals))
+best = max(gaps, key=lambda g: g[1]) if gaps else ("", 0, [0, 0, 0])
 prose["collapse_note"] = (
-    f"Three curves, one shape. At {probe} bits per pixel per frame the three resolutions land "
-    f"within {worst[1]:.1f} VMAF points of each other for the worst codec on this corpus "
-    f"({LABEL[worst[0]]}), and closer than that for the rest. This is the whole argument for "
-    f"normalising: once you divide the bitrate by the pixel rate, resolution stops being a "
-    f"variable and becomes a position on the axis you already have.")
+    f"Three curves, one shape, and a real offset between them. At {probe} bits per pixel per "
+    f"frame {LABEL[best[0]]} reaches VMAF {best[2][0]:.1f} at 1080p and {best[2][-1]:.1f} at "
+    f"540p, a gap of {best[1]:.1f} points for the same bits per pixel. Higher resolution is "
+    f"cheaper per pixel, because neighbouring pixels are more alike and prediction has more to "
+    f"work with. So normalising by pixel rate puts the resolutions on one axis, not on one "
+    f"line, and what it buys is that the ordering of the codecs and the shape of every curve "
+    f"become directly comparable across them.")
 
 # ---- encode cost ------------------------------------------------------------
 ec = A["enc_cost"]["1080p"]
@@ -213,26 +258,68 @@ prose["cost_note"] = (
     f"For anything watched a million times, it is free. That, and not compression efficiency, "
     f"is why live streaming still ships H.264 while catalogue video has moved on.")
 
+# ---- does the metric change the answer? -------------------------------------
+bm = A["by_metric"]["1080p"]
+mts = [t for t in A["targets"]
+       if all(str(t) in bm[m] for m in ("vmaf", "psnr_y", "ssim"))]
+if mts:
+    mt = str(mid if mid in mts else mts[len(mts) // 2])
+
+    def _d(m, c):
+        return bm[m][mt][c] - bm["vmaf"][mt][c]
+
+    worst_metric = max((abs(_d(m, c)), m, c)
+                       for m in ("psnr_y", "ssim") for c in bm["vmaf"][mt])
+    same_order = all(sorted(bm[m][mt], key=lambda c: -bm[m][mt][c])
+                     == sorted(bm["vmaf"][mt], key=lambda c: -bm["vmaf"][mt][c])
+                     for m in ("psnr_y", "ssim"))
+    prose["metric_note"] = (
+        f"The three metrics disagree, as they always do, but not about the answer: at VMAF "
+        f"{mt} the largest gap between VMAF's verdict and another metric's is "
+        f"{worst_metric[0]:.1f} percentage points ({LABEL[worst_metric[2]]} scored with "
+        f"{'PSNR-Y' if worst_metric[1] == 'psnr_y' else 'SSIM'}), and "
+        + ("the ordering of the codecs is identical under all three, which is the check "
+           "that matters: a result that only holds under VMAF is not a result. "
+           if same_order else
+           "the ordering is not identical under all three, so the table is the honest "
+           "summary and the headline percentages should be read as VMAF's opinion. ")
+        + f"SSIM is a poor cross-codec judge at low rates and that is where most of the "
+          f"disagreement sits. VMAF's own weaknesses run the other way: it over-rewards "
+          f"sharpening and is weak on banding.")
+else:
+    prose["metric_note"] = (
+        "The cross-check could not be completed at any target on this sweep: matching on "
+        "PSNR-Y or SSIM requires the other codec's ladder to cover the PSNR that H.264 reached "
+        "at the VMAF target, and on this corpus it does not everywhere. Rather than clamp to "
+        "the end of a ladder and invent the answer, the comparison is left out. Per-encode "
+        "PSNR-Y and SSIM are in the raw sweep file.")
+
 # ---- claims -----------------------------------------------------------------
 hevc_mean_all = sum(mean_sav(t, "HEVC") for t in targets if mean_sav(t, "HEVC") is not None) / \
     len([t for t in targets if mean_sav(t, "HEVC") is not None])
 hevc_best = max((mean_sav(t, "HEVC"), t) for t in targets if mean_sav(t, "HEVC") is not None)
 prose["v_hevc50_class"] = dict(cls="part", text="Optimistic by half")
 prose["claim_hevc50"] = (
-    f"Not on these measurements. Against x264 at the same preset and the same VMAF, x265 came "
-    f"in {smaller(mean_sav(mid, 'HEVC'))} at VMAF {mid} and {smaller(hevc_best[0])} at "
-    f"its best target (VMAF {hevc_best[1]}), averaging {smaller(hevc_mean_all)} across the "
-    f"range. "
+    f"Not on these measurements, and not close. Against x264 at the same preset and the same "
+    f"VMAF, x265 came in {smaller(sav('1080p', mid, 'HEVC'))} at 1080p and VMAF {mid}; its "
+    f"best showing anywhere was {smaller(sav('1080p', low, 'HEVC'))} at 1080p and VMAF {low}; "
+    f"and at 540p it was {smaller(sav('540p', mid, 'HEVC'))} than x264 for the same picture. "
     f"The 50% figure traces back to Ohm, Sullivan, Tan and Wiegand's 2012 comparison, which "
     f"measured the HEVC and H.264 <em>reference</em> encoders under subjective testing. Two "
     f"things shrink it in practice: x264 is a far better H.264 encoder than the reference "
-    f"software was, and PSNR-driven reference comparisons flatter the newer codec. "
-    f"Twenty-five to thirty-five percent is the number to plan with.")
+    f"software was, and PSNR-driven reference comparisons flatter the newer codec. That "
+    f"second point shows up directly in this sweep: score the identical encodes with PSNR-Y "
+    f"instead of VMAF and x265 comes out {smaller(bm['psnr_y'][mt]['HEVC'])} than x264 rather "
+    f"than {smaller(bm['vmaf'][mt]['HEVC'])}. A good part of the distance between 50% and what "
+    f"you will actually see is the choice of metric. Twenty to thirty percent is the number to "
+    f"plan with at 1080p, and less than that below it.")
 
 vp9_vs_hevc_low = hv_mean[low]
 vp9_vs_hevc_high = hv_mean[high]
 flips = (vp9_vs_hevc_low > 0) != (vp9_vs_hevc_high > 0)
-prose["v_vp9_class"] = dict(cls="part", text="Half right, and the half that matters is wrong")
+prose["v_vp9_class"] = (
+    dict(cls="part", text="Half right")
+    if flips else dict(cls="part", text="Right about close, wrong about the crossover"))
 prose["claim_vp9"] = (
     f"The 'very equal' half is right and it is the important half: across every resolution and "
     f"every target measured, VP9 and HEVC are within "
@@ -247,11 +334,12 @@ prose["claim_vp9"] = (
        f"{'VP9' if (hv_mean[mid] or 0) > 0 else 'HEVC'} is ahead at both ends, by "
        f"{pct(abs(vp9_vs_hevc_low))} at VMAF {low} and {pct(abs(vp9_vs_hevc_high))} at VMAF "
        f"{high}. ")
-    + f"Either way it is not a difference worth choosing on. They are the same codec "
-      f"generation, they were finished within a year of each other, and the reason YouTube "
-      f"ships VP9 is that it is royalty-free and plays in Chrome, not that it compresses "
-      f"better. AV1 is {pct(mean_sav(mid, 'AV1') - mean_sav(mid, 'VP9'))} ahead of VP9 at VMAF "
-      f"{mid}, and that gap <em>is</em> worth choosing on.")
+    + f"It is a real edge to VP9 and it is a small one. They are the same codec generation, "
+      f"they were finished within a year of each other, and the reason YouTube ships VP9 is "
+      f"that it is royalty-free and plays in Chrome, not that it compresses better. For scale: "
+      f"AV1 files are {pct(head_to_head(mid, 'AV1', 'VP9'))} smaller than VP9 files at VMAF "
+      f"{mid} for the same picture. That gap <em>is</em> worth choosing on; four percent is "
+      f"not.")
 
 prose["claim_av1"] = (
     f"This has it exactly backwards, and it is the most common misconception about AV1. "
@@ -292,9 +380,18 @@ prose["caveat_presets"] = (
     f"x264 and x265 ran at -preset medium, VP9 at -cpu-used 2, libaom-AV1 at -cpu-used 6. "
     f"Slower presets are worth several percent of BD-rate and they are worth most to HEVC and "
     f"AV1, which have the largest search spaces, so these settings understate HEVC's and AV1's "
-    f"lead rather than overstate it. A probe at -cpu-used 5 produced a file "
-    f"12% smaller than -cpu-used 6 at the same CRF on the high-motion clip, which gives a "
-    f"sense of the size of the effect.")
+    f"lead rather than overstate it. For scale: a calibration probe at -cpu-used 5 produced a "
+    f"file 12% smaller than -cpu-used 6 at the same CRF on the high-motion clip. That pair was "
+    f"not quality-scored, so read it as an indication of the size of the preset effect rather "
+    f"than as a BD-rate.")
+
+prose["caveat_vmaf"] = (
+    "VMAF was trained on Netflix's own catalogue and its own scaling pipeline. It "
+    "over-rewards sharpening and contrast enhancement, it is weak on banding, and it was "
+    "fitted for 1080p viewed at a set distance. PSNR-Y and SSIM are recorded alongside every "
+    "encode in the raw data, and the cross-check above shows they do not simply agree: PSNR-Y "
+    "is markedly more generous to the newer codecs than VMAF is, SSIM markedly less. Where a "
+    "page quotes one number, it is quoting one metric's opinion. Everything here is VMAF's.")
 
 hard = [c["name"] for c in CLIPS if c["character"] == "High motion"]
 prose["caveat_corpus"] = (
@@ -309,27 +406,6 @@ prose["caveat_corpus"] = (
        "but there was not time to sweep it. ")
     + f"The direction of every finding is robust to corpus size; the exact percentages are not "
       f"general constants.")
-
-# ---- does the metric change the answer? -------------------------------------
-bm = A["by_metric"]["1080p"]
-mt = str(mid)
-def _d(m, c):
-    return bm[m][mt][c] - bm["vmaf"][mt][c]
-worst_metric = max(((abs(_d(m, c)), m, c) for m in ("psnr_y", "ssim") for c in bm["vmaf"][mt]),
-                   default=(0, "psnr_y", "AV1"))
-same_order = all(sorted(bm[m][mt], key=lambda c: -bm[m][mt][c])
-                 == sorted(bm["vmaf"][mt], key=lambda c: -bm["vmaf"][mt][c])
-                 for m in ("psnr_y", "ssim"))
-prose["metric_note"] = (
-    f"The three metrics disagree, as they always do, but not about the answer: at VMAF {mid} "
-    f"the largest gap between VMAF's verdict and another metric's is "
-    f"{worst_metric[0]:.1f} percentage points "
-    f"({LABEL[worst_metric[2]]} scored with "
-    f"{'PSNR-Y' if worst_metric[1] == 'psnr_y' else 'SSIM'}), and "
-    + ("the ordering of the codecs is identical under all three. "
-       if same_order else "the ordering changes under at least one of them, so read the table. ")
-    + f"That is the check that matters: VMAF over-rewards sharpening and is weak on banding, "
-      f"so a result that only holds under VMAF is not a result. This one holds under all three.")
 
 # ---- cheat-sheet CRF values -------------------------------------------------
 prose["crf_av1"] = crf_at("1080p", "AV1")

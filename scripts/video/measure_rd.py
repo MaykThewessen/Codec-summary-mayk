@@ -36,9 +36,6 @@ FFMPEG = imageio_ffmpeg.get_ffmpeg_exe()
 
 RES = [("1080p", 1920, 1080), ("720p", 1280, 720), ("540p", 960, 540)]
 
-# Ladders calibrated on a probe pass so every codec spans roughly VMAF 70 to 97
-# on the hardest clip. A ladder that stops short would decide the comparison at
-# that end rather than measure it.
 # Ladders are per clip, not global. A probe pass showed the two clips sit about
 # eight x264 CRF steps apart in difficulty: at CRF 34 the high-motion clip
 # scores VMAF 60 and the flat-gradient clip 88. One shared ladder would have
@@ -51,7 +48,7 @@ LADDER = {
     "park_joy": {
         "H264": [21, 23, 25, 27, 29, 31, 33],
         "HEVC": [22, 24, 26, 28, 30, 32, 34],
-        "VP9": [39, 42, 45, 47, 49, 52, 55],
+        "VP9": [39, 42, 45, 47, 49, 52, 55, 35],
         "AV1": [34, 38, 42, 45, 48, 52, 56],
     },
     "in_to_tree": {
@@ -63,14 +60,17 @@ LADDER = {
     "blue_sky": {
         "H264": [28, 30, 32, 34, 36, 38, 40],
         "HEVC": [29, 31, 33, 35, 37, 39, 41],
-        "VP9": [49, 52, 55, 57, 59, 61, 63],
+        "VP9": [49, 52, 55, 57, 59, 61, 63, 45, 41],
         "AV1": [46, 50, 53, 56, 58, 61, 63],
     },
 }
 CODEC_ORDER = ["H264", "HEVC", "VP9", "AV1"]
 # Emit a coarse pass that already spans the whole range, then refine. An
 # interrupted sweep then leaves a usable ladder rather than a ragged one.
-STAGES = [[0, 2, 4, 6], [1, 3, 5]]
+# The trailing entries are the extension pass: the first sweep showed VP9's
+# ladder topping out at VMAF 93 on the flat-gradient clip, which would have made
+# the VMAF 95 comparison a statement about the sweep rather than about VP9.
+STAGES = [[0, 2, 4, 6], [1, 3, 5], [7, 8]]
 CLIP_WAVES = [["park_joy", "blue_sky"], ["in_to_tree"]]
 
 
@@ -168,7 +168,7 @@ def main(workers=4):
                     for i in idxs:
                         for name in names:
                             c = byname.get(name)
-                            if c is None:
+                            if c is None or i >= len(LADDER[name][codec]):
                                 continue
                             crf = LADDER[name][codec][i]
                             if (name, res, codec, crf) in done:
