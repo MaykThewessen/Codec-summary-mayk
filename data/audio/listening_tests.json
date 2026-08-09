@@ -1,0 +1,391 @@
+{
+ "tests": [
+  {
+   "id": "ha2005_128",
+   "title": "Multiformat, 128 kbps",
+   "organiser": "Sebastian Mares, HydrogenAudio",
+   "year": 2006,
+   "when": "Dec 2005 to Jan 2006",
+   "samples": 18,
+   "listeners": null,
+   "results": null,
+   "target": "128 kbps",
+   "url": "https://listening-tests.hydrogenaudio.org/sebastian/mf-128-1/results.htm",
+   "verdict": "Five way tie. Nothing separated the contenders at 128 kbps.",
+   "group": "format",
+   "entries": [
+    {
+     "label": "Vorbis aoTuV 4.51b",
+     "family": "vorbis",
+     "mean": 4.79
+    },
+    {
+     "label": "AAC, iTunes 6.0.1.3",
+     "family": "aac",
+     "mean": 4.74
+    },
+    {
+     "label": "WMA Pro 9.1",
+     "family": "wma",
+     "mean": 4.7
+    },
+    {
+     "label": "AAC, Nero 3.1.0.2",
+     "family": "aac",
+     "mean": 4.68,
+     "note": "excluded from the statistics after an encoder problem"
+    },
+    {
+     "label": "MP3, LAME 3.97b2",
+     "family": "mp3",
+     "mean": 4.6
+    },
+    {
+     "label": "Shine 0.1.4, low anchor",
+     "family": "anchor",
+     "mean": 2.35
+    }
+   ]
+  },
+  {
+   "id": "ha2007_64",
+   "title": "Multiformat, 64 kbps",
+   "organiser": "Sebastian Mares, HydrogenAudio",
+   "year": 2007,
+   "when": "Jul 2007",
+   "samples": 18,
+   "listeners": null,
+   "results": null,
+   "target": "64 kbps",
+   "url": "https://listening-tests.hydrogenaudio.org/sebastian/mf-64-1/results.htm",
+   "verdict": "HE-AAC ahead of WMA Pro, which was tied with Vorbis. All far below plain AAC-LC given 96 kbps.",
+   "group": "format",
+   "entries": [
+    {
+     "label": "AAC-LC 96 kbps, high anchor",
+     "family": "anchor",
+     "mean": 4.59
+    },
+    {
+     "label": "HE-AAC, Nero (Jul 2007)",
+     "family": "he-aac",
+     "mean": 3.74
+    },
+    {
+     "label": "WMA Pro 10",
+     "family": "wma",
+     "mean": 3.52
+    },
+    {
+     "label": "Vorbis aoTuV 5b",
+     "family": "vorbis",
+     "mean": 3.32
+    },
+    {
+     "label": "AAC-LC 48 kbps, low anchor",
+     "family": "anchor",
+     "mean": 1.55
+    }
+   ]
+  },
+  {
+   "id": "ha2011_64",
+   "title": "Multiformat, 64 kbps",
+   "organiser": "IgorC, HydrogenAudio",
+   "year": 2011,
+   "when": "Mar to Apr 2011",
+   "samples": 30,
+   "listeners": null,
+   "results": 531,
+   "target": "64 kbps",
+   "url": "https://listening-tests.hydrogenaudio.org/igorc/results.html",
+   "verdict": "Opus beat both HE-AAC encoders and Vorbis, every comparison at p<0.001 except Nero HE-AAC against Vorbis.",
+   "group": "format",
+   "entries": [
+    {
+     "label": "Opus (CELT 0.11.2)",
+     "family": "opus",
+     "mean": 3.999,
+     "ci": 0.062
+    },
+    {
+     "label": "HE-AAC, Apple QuickTime 7.6.9",
+     "family": "he-aac",
+     "mean": 3.817,
+     "ci": 0.062
+    },
+    {
+     "label": "HE-AAC, Nero 1.5.4",
+     "family": "he-aac",
+     "mean": 3.547,
+     "ci": 0.062
+    },
+    {
+     "label": "Vorbis aoTuV 6.02b",
+     "family": "vorbis",
+     "mean": 3.513,
+     "ci": 0.062
+    },
+    {
+     "label": "AAC-LC 48 kbps, low anchor",
+     "family": "anchor",
+     "mean": 1.656,
+     "ci": 0.062
+    }
+   ]
+  },
+  {
+   "id": "k2014_96",
+   "title": "Multiformat, 96 kbps (MP3 given 128)",
+   "organiser": "Kamedo2, public test",
+   "year": 2014,
+   "when": "Jul 2014",
+   "samples": 40,
+   "listeners": 38,
+   "results": 339,
+   "target": "96 kbps, MP3 at LAME -V5",
+   "url": "https://listening-test.coresv.net/results.htm",
+   "verdict": "Opus clear first, Apple AAC second, Vorbis and MP3 tied third even though the MP3 spent 29% more bitrate.",
+   "group": "format",
+   "entries": [
+    {
+     "label": "Opus 1.1, --bitrate 96",
+     "family": "opus",
+     "mean": 4.65,
+     "ci": 0.073,
+     "kbps": 107
+    },
+    {
+     "label": "AAC, qaac 2.41 --cvbr 96",
+     "family": "aac",
+     "mean": 4.4,
+     "ci": 0.092,
+     "kbps": 104
+    },
+    {
+     "label": "Vorbis aoTuV b6.03 -q2.2",
+     "family": "vorbis",
+     "mean": 4.24,
+     "ci": 0.102,
+     "kbps": 106
+    },
+    {
+     "label": "MP3, LAME 3.99.5 -V5",
+     "family": "mp3",
+     "mean": 4.24,
+     "ci": 0.088,
+     "kbps": 136
+    },
+    {
+     "label": "FAAC 96 kbps, anchor",
+     "family": "anchor",
+     "mean": 2.65,
+     "kbps": 98
+    },
+    {
+     "label": "FAAC -q30, low anchor",
+     "family": "anchor",
+     "mean": 1.19,
+     "kbps": 52
+    }
+   ]
+  },
+  {
+   "id": "ha2008_mp3",
+   "title": "MP3 encoders, 128 kbps",
+   "organiser": "Sebastian Mares, HydrogenAudio",
+   "year": 2008,
+   "when": "Oct 2008",
+   "samples": 14,
+   "listeners": null,
+   "results": null,
+   "target": "128 kbps, MP3 only",
+   "url": "https://listening-tests.hydrogenaudio.org/sebastian/mp3-128-1/results.htm",
+   "verdict": "Every modern encoder statistically tied. The 1994 encoder, at the same bitrate and in the same format, scored 1.56.",
+   "group": "encoder",
+   "entries": [
+    {
+     "label": "Helix",
+     "family": "mp3",
+     "mean": 4.59
+    },
+    {
+     "label": "LAME 3.98.2",
+     "family": "mp3",
+     "mean": 4.51
+    },
+    {
+     "label": "Fraunhofer",
+     "family": "mp3",
+     "mean": 4.44
+    },
+    {
+     "label": "LAME 3.97",
+     "family": "mp3",
+     "mean": 4.28
+    },
+    {
+     "label": "iTunes",
+     "family": "mp3",
+     "mean": 4.26
+    },
+    {
+     "label": "l3enc (1994), low anchor",
+     "family": "anchor",
+     "mean": 1.56
+    }
+   ]
+  },
+  {
+   "id": "ha2011_aac96",
+   "title": "AAC encoders, 96 kbps",
+   "organiser": "IgorC, HydrogenAudio",
+   "year": 2011,
+   "when": "Jul 2011",
+   "samples": 20,
+   "listeners": null,
+   "results": 280,
+   "target": "96 kbps, AAC only",
+   "url": "https://listening-tests.hydrogenaudio.org/igorc/aac-96-a/results.html",
+   "verdict": "Same format, same bitrate, 0.69 of a grade between the best and the worst encoder.",
+   "group": "encoder",
+   "entries": [
+    {
+     "label": "Apple QuickTime CVBR",
+     "family": "aac",
+     "mean": 4.391,
+     "ci": 0.071
+    },
+    {
+     "label": "Apple QuickTime TVBR",
+     "family": "aac",
+     "mean": 4.342,
+     "ci": 0.071
+    },
+    {
+     "label": "Fraunhofer",
+     "family": "aac",
+     "mean": 4.253,
+     "ci": 0.071
+    },
+    {
+     "label": "Coding Technologies",
+     "family": "aac",
+     "mean": 4.039,
+     "ci": 0.071
+    },
+    {
+     "label": "Nero",
+     "family": "aac",
+     "mean": 3.698,
+     "ci": 0.071
+    },
+    {
+     "label": "low anchor",
+     "family": "anchor",
+     "mean": 1.545,
+     "ci": 0.071
+    }
+   ]
+  }
+ ],
+ "voice_2014": {
+  "n_tracks": 5,
+  "means": {
+   "Opus": 4.798,
+   "AAC": 4.572,
+   "Vorbis": 4.006,
+   "MP3": 4.342
+  },
+  "per_track": {
+   "4-Sound-English-male": {
+    "Opus": 4.97,
+    "AAC": 4.82,
+    "Vorbis": 3.77,
+    "MP3": 4.47
+   },
+   "12-German-male-speech": {
+    "Opus": 4.82,
+    "AAC": 4.8,
+    "Vorbis": 3.59,
+    "MP3": 4.09
+   },
+   "15-Good-evening": {
+    "Opus": 4.31,
+    "AAC": 4.51,
+    "Vorbis": 4.24,
+    "MP3": 4.19
+   },
+   "24-Greensleeves-Korean-male-speech": {
+    "Opus": 5.0,
+    "AAC": 4.32,
+    "Vorbis": 4.23,
+    "MP3": 4.4
+   },
+   "25-This-is-the-end": {
+    "Opus": 4.89,
+    "AAC": 4.41,
+    "Vorbis": 4.2,
+    "MP3": 4.56
+   }
+  },
+  "source": "k2014_96"
+ },
+ "sources": [
+  {
+   "key": "ha2005_128",
+   "cite": "Public multiformat listening test at 128 kbps, Sebastian Mares, HydrogenAudio, December 2005 to January 2006, 18 samples",
+   "url": "https://listening-tests.hydrogenaudio.org/sebastian/mf-128-1/results.htm"
+  },
+  {
+   "key": "ha2007_64",
+   "cite": "Public multiformat listening test at 64 kbps, Sebastian Mares, HydrogenAudio, July 2007, 18 samples",
+   "url": "https://listening-tests.hydrogenaudio.org/sebastian/mf-64-1/results.htm"
+  },
+  {
+   "key": "ha2011_64",
+   "cite": "Public multiformat listening test at 64 kbps, IgorC, HydrogenAudio, March to April 2011, 30 samples, 531 results",
+   "url": "https://listening-tests.hydrogenaudio.org/igorc/results.html"
+  },
+  {
+   "key": "k2014_96",
+   "cite": "Public multiformat listening test, Kamedo2, July 2014, 40 tracks, 38 listeners, 339 valid results",
+   "url": "https://listening-test.coresv.net/results.htm"
+  },
+  {
+   "key": "ha2008_mp3",
+   "cite": "Public MP3 listening test at 128 kbps, Sebastian Mares, HydrogenAudio, October 2008, 14 samples",
+   "url": "https://listening-tests.hydrogenaudio.org/sebastian/mp3-128-1/results.htm"
+  },
+  {
+   "key": "ha2011_aac96",
+   "cite": "Public AAC listening test at 96 kbps, IgorC, HydrogenAudio, July 2011, 20 samples, 280 results",
+   "url": "https://listening-tests.hydrogenaudio.org/igorc/aac-96-a/results.html"
+  },
+  {
+   "key": "rfc6716",
+   "cite": "RFC 6716, Definition of the Opus Audio Codec, IETF, September 2012: the SILK, hybrid and CELT modes and their bitrate ranges",
+   "url": "https://datatracker.ietf.org/doc/html/rfc6716"
+  },
+  {
+   "key": "opus_comparison",
+   "cite": "Opus codec comparison page, listing the HydrogenAudio, Google and Nokia tests",
+   "url": "https://opus-codec.org/comparison/"
+  },
+  {
+   "key": "ha_lame",
+   "cite": "HydrogenAudio Knowledgebase, LAME recommended encoder settings",
+   "url": "https://wiki.hydrogenaudio.org/index.php?title=LAME"
+  },
+  {
+   "key": "spotify",
+   "cite": "Spotify support, Audio quality: web player AAC 128 and 256 kbit/s, app tiers to 320 kbit/s, Premium lossless FLAC",
+   "url": "https://support.spotify.com/us/article/audio-quality/"
+  },
+  {
+   "key": "dabplus",
+   "cite": "ETSI TS 102 563, DAB+ audio coding: HE-AAC v2 profile level 2",
+   "url": "https://www.etsi.org/deliver/etsi_ts/102500_102599/102563/02.01.01_60/ts_102563v020101p.pdf"
+  }
+ ]
+}
