@@ -23,16 +23,22 @@ FACES = {
 }
 
 
-def main(template, out):
+def main(template, out, data_file=None):
     html = Path(template).read_text()
     for token, fname in FACES.items():
         b64 = base64.b64encode((FONTS / fname).read_bytes()).decode()
         html = html.replace(f"@@{token}@@", b64)
-    data = dict(
-        photo=json.loads((DATA / "analysis.json").read_text()),
-        synthetic=json.loads((DATA / "rd_synthetic.json").read_text()),
-        extra=json.loads((DATA / "extra.json").read_text()),
-    )
+    if data_file:
+        # Any domain page: one pre-assembled JSON payload.
+        data = json.loads(Path(data_file).read_text())
+    else:
+        # The images page predates the shared pipeline and assembles its three
+        # measurement files here.
+        data = dict(
+            photo=json.loads((DATA / "analysis.json").read_text()),
+            synthetic=json.loads((DATA / "rd_synthetic.json").read_text()),
+            extra=json.loads((DATA / "extra.json").read_text()),
+        )
     html = html.replace("@@DATA@@", json.dumps(data, separators=(",", ":")))
     Path(out).write_text(html)
     print(f"wrote {out}  ({len(html)/1024:.0f} KB)")
@@ -40,4 +46,4 @@ def main(template, out):
 
 if __name__ == "__main__":
     import sys
-    main(sys.argv[1], sys.argv[2])
+    main(*sys.argv[1:4])
