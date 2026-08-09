@@ -10,7 +10,9 @@ Three clips with deliberately different character:
   blue_sky    large flat gradient sky plus hard thin branches, banding bait
 
 720p and 540p are derived by downscaling here (never upscaling), which is
-exactly what an encoding ladder does in production.
+exactly what an encoding ladder does in production. The downscale runs on the
+same ffmpeg binary as the sweep (/opt/ffmpeg-gpl/ffmpeg), so no step of the
+pipeline comes from a different build.
 """
 
 import json
@@ -19,11 +21,9 @@ import sys
 import urllib.request
 from pathlib import Path
 
-import imageio_ffmpeg
-
 ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / "testdata" / "video"
-FFMPEG = imageio_ffmpeg.get_ffmpeg_exe()
+FFMPEG = "/opt/ffmpeg-gpl/ffmpeg"
 BASE = "https://media.xiph.org/video/derf/y4m/"
 
 CLIPS = [
