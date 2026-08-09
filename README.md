@@ -1,65 +1,93 @@
 # Codec-summary-mayk
 
-Evaluating the best codec / compression / algorithm / file type for each use case, including a dashboard visualization of the trade-offs and the optimum choice for each user region.
+Evaluating the best codec / compression / algorithm / file type for each use case, with a dashboard per domain showing the trade-offs and the optimum choice for each region.
 
-Images are done. Audio, video, archives, datasets and columnar storage are still to come.
+Five maps, all measured in this repository rather than quoted from vendors. Start at **[docs/index.html](docs/index.html)**.
 
-## Images
-
-**[docs/image_codec_tradeoff_map.html](docs/image_codec_tradeoff_map.html)** is a self-contained page: a decision map with seven labelled regions, plus the measured rate-distortion data behind it. Open the file directly, no build or server needed.
-
-The two axes that decide everything:
-
-- **How much continuous tone the image carries**, from flat UI graphics through ordinary photography to 10-bit HDR.
-- **How far you are willing to walk away from universal decoding** in exchange for smaller files.
-
-### What the measurements say
-
-Every number on the page was produced by the scripts in `scripts/`, not quoted from elsewhere. 14 pristine Kodak reference photographs across a quality ladder in five codecs, plus one rendered 1440x900 application screenshot. Quality scored with SSIMULACRA2, so codecs are compared at matched perceptual quality rather than at matched slider numbers, which are meaningless across encoders.
-
-| Finding | Detail |
+| Map | The short answer |
 |---|---|
-| AVIF and JPEG XL swap places at SSIMULACRA2 87 | Below that AVIF is the smaller file (31.5% under JPEG at delivery quality, 38.1% at thumbnail quality). Above it JPEG XL is (30.7% at visually lossless, where AVIF is down to 17.5%). |
-| WebP is a modest win on photographs | Only 14.6% under baseline libjpeg-turbo at delivery quality, and a modern JPEG encoder claws most of that back. |
-| WebP lossless is the screenshot answer | 67.7% under optimised PNG on the test UI, pixel-identical. It also beats JXL lossless (87% larger) and every lossy option at the same size. |
-| No lossy codec handles text well | AVIF stalls at SSIMULACRA2 84 on the screenshot even at q100; WebP stalls at 82. Lossy WebP q80 was larger than lossless WebP and scored 77. |
-| Lossy PNG is real but no longer optimal | Palette quantisation took the screenshot from 85.602 to 33.336 bytes at a score of 93. WebP lossless got to 27.646 bytes with nothing lost. |
-| The JPEG quality knee is q75 to q85 | One SSIMULACRA2 point costs 0.057 bpp at q75, 0.114 at q85 and 0.611 by q98. |
-| On photographs the lossless order flips | JPEG XL lossless is 37.0% under PNG, WebP lossless 29.5%. Flat graphics and photographs want different lossless coders. |
+| **[Images](docs/image_codec_tradeoff_map.html)** | AVIF below visually lossless, JPEG XL above it. On flat graphics everything inverts and WebP lossless wins outright. |
+| **[Video](docs/video_codec_tradeoff_map.html)** | AV1 leads at every resolution and every quality target. The ranking never moves; the margin does, and it grows with resolution. |
+| **[Audio](docs/audio_codec_tradeoff_map.html)** | Opus first in every listening test since 2011. Above roughly 128 kbps the format stops mattering. |
+| **[Data formats](docs/data_format_tradeoff_map.html)** | Parquet to store, Feather for scratch, DuckDB when the question is a query. The real case against CSV is correctness, not speed. |
+| **[Compression](docs/compression_tradeoff_map.html)** | zstd owns most of the plane. brotli takes web assets, lz4 takes the hot loop, xz survives only where its dictionary is exercised. |
 
-The JPEG figures come from stock libjpeg-turbo, so they are the pessimistic case: mozjpeg and jpegli both do considerably better while still emitting a plain JPEG.
+Every page is a single self-contained file: fonts and data inlined, nothing fetched at runtime, light and dark themes, every chart with a table-view twin.
+
+## Method
+
+The maps agree with each other because they share a discipline. Each of these rules changed a headline number at least once.
+
+1. **Compare at matched quality, not matched settings.** JPEG q80 and AVIF q80 are unrelated numbers, and so are HEVC CRF 23 and AV1 CRF 23. Every codec is swept on its own ladder, scored with a perceptual metric (SSIMULACRA2 for images, VMAF for video), then interpolated to a fixed quality target before anything is compared.
+2. **Never let the sweep decide the answer.** If one codec's ladder stops earlier than another's, the comparison at that end measures your sweep rather than the codec. Extending the AVIF ladder moved the images crossover from 83 to 87. xz -6 and -9 emit byte-identical output until the corpus grows past their dictionary. Video CRF ladders are per clip, because two clips eight CRF steps apart would otherwise have made the result an artefact.
+3. **Generate every sentence containing a number.** Numeric prose is derived from the measurement files at build time, so re-running a sweep cannot leave the text asserting something the charts no longer show.
+4. **Say what could not be measured.** VVC, RAR, HE-AAC and AVIF lossless have no usable encoder in this environment. They appear as explicitly tagged cited-or-absent entries, never as a plausible-looking number.
+
+## Selected findings
+
+**Images** (924 encodes, 14 Kodak reference photographs plus a rendered UI, SSIMULACRA2)
+
+- AVIF and JPEG XL swap places at SSIMULACRA2 87: below it AVIF is smaller, above it JPEG XL is.
+- WebP lossless is 67.7% under optimised PNG on a screenshot, pixel-identical, and beats every lossy option at the same size.
+- The efficient JPEG quality band is q75 to q85. A quality point costs 0.057 bpp at q75 and 0.611 bpp by q98.
+
+**Video** (177 encodes, H.264 / HEVC / VP9 / AV1 at 540p, 720p, 1080p, VMAF)
+
+- Against x264 at 1080p: AV1 22.8 to 37.7%, VP9 10.8 to 24.5%, HEVC 7.6 to 18.1%.
+- "HEVC is 50% better" does not survive a perceptual metric. Scoring the identical encodes with PSNR-Y gives 30.4% where VMAF gives 18.1%, which locates most of the missing distance in the metric.
+- Normalising to bits per pixel per frame puts resolutions on one axis but not one curve: more pixels means more redundancy per pixel, so 4K benefits twice.
+
+**Audio** (34 cited listening-test results, 408 encodes measured here)
+
+- Opus leads every multiformat test since 2011 by margins clearing the confidence intervals.
+- Measured bandwidth ranks Vorbis above AAC at 64 kbps; listeners ranked it below, twice. Keeping more treble badly loses to keeping less treble cleanly.
+- Perceptual quality is never measured here, only cited. This environment has no listening panel and no validated perceptual metric.
+
+**Data formats** (electricity price, power flow, weather and register corpora at two scales)
+
+- Reading 3 of 41 columns from a 1.200.000 row table: Feather 23 ms, Parquet zstd 63 ms, CSV 5.78 s.
+- Round-tripping dtypes, timezones, categoricals and nullable integers: Parquet and Feather lose 0 of 6 properties, CSV / gzipped CSV / JSON / xlsx each lose 5 of 6.
+- Memory-mapping 393.7 MB of Arrow IPC took 2.0 ms and grew the process by 3.7 MB. Compressing the file removes the property entirely.
+
+**Compression** (23 settings, 6 corpora, 414 timed round trips)
+
+- zstd holds 5 of 7 frontier points on source code; gzip, xz and bzip2 hold none.
+- zstd decompression is flat within 18% across levels 1 to 22 while compression speed falls 189x.
+- `--long=27` took zstd -3 from 4.7x to 37.0x and made it 3x faster.
 
 ## Reproducing
 
-Needs Python 3.11+ and a working network for the test corpus.
+Python 3.11+ and network access for the corpora. Full sweeps take several hours; raw results are committed under `data/`, so any page rebuilds without re-running them.
 
 ```bash
-pip install pillow pillow-heif pillow-avif-plugin pillow-jxl-plugin ssimulacra2
+pip install pillow pillow-heif pillow-avif-plugin pillow-jxl-plugin ssimulacra2 \
+            imageio-ffmpeg pyarrow duckdb polars pandas \
+            zstandard brotli lz4 py7zr xlsxwriter openpyxl python-calamine
 
-python3 scripts/fetch_testdata.py                            # Kodak reference photos
-python3 scripts/measure_photo_rd.py testdata/photos/*.png    # main quality ladder
-python3 scripts/measure_photo_tail.py testdata/photos/*.png  # extends the high-quality end
-python3 scripts/measure_synthetic.py                         # renders and measures the UI screenshot
-python3 scripts/measure_extra.py                             # lossless, palette, and the tails
-python3 scripts/analyse.py                                   # matched-quality interpolation
-python3 scripts/make_prose.py                                # derives every sentence containing a number
-python3 scripts/build_page.py scripts/page_template.html docs/image_codec_tradeoff_map.html
+# rebuild any page from committed data
+python3 scripts/build_page.py scripts/<domain>/page_template.html \
+        docs/<domain>_map.html data/<domain>/page_data.json
 ```
 
-The full sweep takes roughly 45 minutes. Raw results are committed under `data/` so the page can be rebuilt without re-running any of it.
+Each domain's measurement scripts live in `scripts/<domain>/` and run in the order `make_corpora` or `fetch_*`, then `measure_*`, then `analyse`, then `make_prose`, then `build_page`. The images page predates the shared pipeline and assembles its data inside `build_page.py`.
 
 ### Layout
 
 | Path | Contents |
 |---|---|
-| `docs/` | The built page. Self-contained: fonts and data are inlined, nothing is fetched at runtime. |
-| `scripts/` | Measurement, analysis and build. `page_template.html` is the page source before font and data injection. |
-| `data/` | Raw sweep results and the derived analysis, as JSON. |
-| `assets/fonts/` | Tektur, Instrument Sans and Geist Mono, all SIL Open Font License (texts included). |
-| `testdata/` | Reference photographs, fetched rather than committed. |
+| `docs/` | Built pages, self-contained. `index.html` is the hub. |
+| `scripts/<domain>/` | Measurement, analysis, prose generation, and the page template. |
+| `data/<domain>/` | Raw sweep output and derived analysis, as JSON. |
+| `assets/fonts/` | Tektur, Instrument Sans, Geist Mono. SIL Open Font License, texts included. |
+| `testdata/` | Corpora, fetched or generated by scripts. Gitignored. |
 
-### Caveats
+`CONTRIBUTING.md` documents the method rules, the validated colour palette, the mark specs and the verification steps for adding a sixth domain.
 
-- Reference photographs are 768x512. Modern camera output is 20 to 50 times larger, and the newer codecs generally do relatively better at higher resolution, so their lead is if anything understated here.
-- The flat-graphics conclusions rest on a single rendered UI. The effect sizes are large enough that the direction is safe; the exact percentages are not general constants.
-- AVIF lossless is absent. The Python binding used here cannot produce bit-exact AVIF, since its lossless flag still round-trips through a lossy colour conversion.
+## Caveats
+
+Stated on each page, repeated here because they bound what the numbers mean.
+
+- **Encoders are not always the best available.** Image JPEG figures use stock libjpeg-turbo, not mozjpeg or jpegli. Audio AAC uses ffmpeg's native encoder, not Apple's or fdk. Video AV1 uses libaom, not SVT-AV1. In every case this understates the format and the direction is stated on the page.
+- **Corpora are small.** Reference photographs are 768x512; video clips are 3 seconds at up to 1080p, with no 4K source available and no upscaling done.
+- **Timings are noisy.** The data-format and compression benchmarks ran on a shared container under load from sibling jobs. Both report medians with repeat counts, and both tell readers what size of difference to treat as noise.
+- **Some formats have no encoder here at all.** VVC/H.266, RAR, HE-AAC, xHE-AAC and bit-exact AVIF lossless are cited or absent, never estimated.
