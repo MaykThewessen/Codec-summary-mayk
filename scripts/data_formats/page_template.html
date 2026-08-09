@@ -1273,6 +1273,9 @@ df = pd.read_excel("van_hen.xlsx", engine="calamine")   <span class="c" data-fil
     const host = document.getElementById("mmap-chart");
     host.innerHTML = "";
     const rows = MM.cases.filter((c) => c.ok);
+    document.getElementById("mmap-sub").textContent =
+      "Power flow, large. Each case runs in a fresh process; the bar is the resident set the " +
+      "process grew by, the number beside it is that and the wall time.";
     if (!rows.length) { host.innerHTML = '<p class="chart-sub">Not measured.</p>'; return; }
     const W = 940, rowH = 44, M = { t: 8, r: 168, b: 32, l: 330 };
     const H = M.t + rows.length * rowH + M.b;

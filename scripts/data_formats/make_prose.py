@@ -192,7 +192,7 @@ def main() -> None:
         "localize the result. Miss that and pandas 3 gives you a naive column that silently "
         "compares false against every aware timestamp in your code. "
         + (csvf.get("tz", {}).get("why", "")
-           and f"Measured here: {csvf['tz']['why']}. ")
+           and f"Measured here: {csvf['tz']['why'].rstrip('.')}. ")
         + "Excel is worse: xlsxwriter refuses a tz-aware datetime outright, so the zone has to "
         "be stripped before writing and there is nothing in the file that records which zone it "
         "was. Parquet, Feather and DuckDB all store the zone with the value.")
@@ -201,7 +201,7 @@ def main() -> None:
         "no way to know you wanted an integer, and NaN forces the column to float. Station "
         "numbers and unit ids become 260.0. "
         + (csvf.get("null", {}).get("why", "")
-           and f"Measured: {csvf['null']['why']}. ")
+           and f"Measured: {csvf['null']['why'].rstrip('.')}. ")
         + "The nullable boolean has the same problem, becoming object or float depending on the "
         "reader. Parquet and Feather carry a validity bitmap next to the values, so the "
         "distinction between zero and missing is part of the file.")
