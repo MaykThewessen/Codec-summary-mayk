@@ -128,7 +128,7 @@ prose["av1_mid_why"] = (
     f"{_av1_pair(mid)}. Royalty-free, in every current browser, and decoded in silicon on "
     f"2023-and-later phones and most smart TVs. The cost is on the encode side, and which "
     f"encoder you pick moves it by "
-    f"{A['av1_encoders']['1080p']['speedup']:.0f} times.")
+    f"{A['av1_encoders']['1080p']['speedup']:.1f} times.")
 
 def _high_tier2_why():
     """At the generous end the two tier-2 codecs are close enough that the
@@ -326,7 +326,7 @@ prose["cost_note"] = (
     f"for anything watched once the encode can easily cost more than the bandwidth it saves, "
     f"and for anything watched a million times it is free. And the choice of encoder inside one "
     f"format moves the bill as much as the choice of format does: the two AV1 rows here are the "
-    f"same bitstream, {ae['speedup']:.0f} times apart in CPU. That, and not compression "
+    f"same bitstream, {ae['speedup']:.1f} times apart in CPU. That, and not compression "
     f"efficiency, is why live streaming still ships H.264 while catalogue video has moved on.")
 
 # ---- does the metric change the answer? -------------------------------------
@@ -441,15 +441,21 @@ prose["av1_encoders_note"] = (
     f"libaom is the reference encoder and it is slow on purpose. SVT-AV1 is what production "
     f"pipelines actually run, and this sweep now has both. At matched VMAF "
     f"{A['cost_target']} and 1080p, libaom cost {ae['aom_cpu_s_per_frame']:.2f} CPU seconds per "
-    f"frame and SVT-AV1 {ae['svt_cpu_s_per_frame']:.2f}, a factor of {ae['speedup']:.0f}. At "
+    f"frame and SVT-AV1 {ae['svt_cpu_s_per_frame']:.2f}, a factor of {ae['speedup']:.1f}. At "
     f"VMAF {mid} SVT-AV1's files came out {smaller(_ae_mean)} than libaom's, averaged over the "
     f"three resolutions"
     + (", so the speed is free. " if _ae_mean >= 0 else
-       f", so the speed costs a few percent of efficiency and no more. " if _ae_mean > -5 else
-       f", so the speed is not free. ")
+       ", so the speed costs a few percent of efficiency and no more. " if _ae_mean > -5 else
+       ", so the speed is not free. ")
+    + f"The mean hides a split worth knowing: SVT-AV1 is "
+      f"{smaller(_ae_bits['1080p'])} than libaom at 1080p and {smaller(_ae_bits['540p'])} at "
+      f"540p, and the gap against it is widest at the high-quality end "
+      f"({smaller(A['av1_encoders']['1080p']['bits'][str(high)])} at 1080p and VMAF {high}). "
     + ("Either way the page's old caveat holds and it was a large one: the libaom bar is the "
-       "price of the reference encoder, not the price of the format. Production runs SVT."))
-prose["av1_encoders_pair"] = f"{ae['speedup']:.0f}"
+       "price of the reference encoder, not the price of the format. Production runs SVT, and "
+       f"on this corpus that trades {abs(_ae_mean):.1f}% of bitrate on average for "
+       f"{ae['speedup']:.1f} times the CPU back."))
+prose["av1_encoders_pair"] = f"{ae['speedup']:.1f}"
 
 # ---- VVC, now measured ------------------------------------------------------
 # Every sentence here comes from the sweep. The only cited figure left on the

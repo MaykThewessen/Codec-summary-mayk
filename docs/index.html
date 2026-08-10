@@ -121,7 +121,7 @@ code { font-family: "GeistMono", monospace; font-size: 0.87em; }
     <p class="lede">Every codec argument is the same argument: how much of the original are you willing to throw away, and how many decoders do you need to survive. Each map below places the real formats on those two axes and names the winner for every square. The numbers come from sweeps run in this repository, not from vendor claims.</p>
     <div class="head-meta">
       <span>5 maps</span>
-      <span>2000+ encodes and timed round trips</span>
+      <span>2100+ encodes and timed round trips</span>
       <span>every page self-contained</span>
     </div>
   </header>
@@ -152,14 +152,14 @@ code { font-family: "GeistMono", monospace; font-size: 0.87em; }
             <div class="card-title"><a href="https://claude.ai/code/artifact/8ccdf69f-f87f-4c32-ad05-0da4116afdf6">Video</a></div>
             <span class="chip m">Measured</span>
           </div>
-          <p class="card-answer"><b>AV1 leads at every resolution and every quality target</b>, and the ranking never changes. What changes is the margin, which grows with resolution. The axis that decides is bits per pixel per frame, not resolution, which is why 4K benefits twice.</p>
-          <p class="gap">Not measured: VVC/H.266 (no encoder exists here) and SVT-AV1, so AV1's encode cost is an upper bound.</p>
+          <p class="card-answer"><b>VVC leads everywhere, AV1 is closer behind it than the literature suggests</b>, and HEVC is level with x264 at 540p. The axis that decides is bits per pixel per frame, not resolution, which is why 4K benefits twice.</p>
+          <p class="gap">Not measured: hardware encoders, any 4K source, and more than one preset per encoder.</p>
         </div>
         <div class="facts">
-          <div class="fact"><span>AV1 vs H.264 at 1080p</span><span>22.8 to 37.7%</span></div>
-          <div class="fact"><span>HEVC vs H.264, best case</span><span>18.1%</span></div>
-          <div class="fact"><span>Same encodes, scored by PSNR</span><span>30.4%</span></div>
-          <div class="fact"><span>AV1 encode cost</span><span>6.8x H.264</span></div>
+          <div class="fact"><span>VVC vs H.264 at 1080p</span><span>47.5 to 59.0%</span></div>
+          <div class="fact"><span>AV1 vs H.264 at 1080p</span><span>41.4 to 50.2%</span></div>
+          <div class="fact"><span>HEVC vs H.264, best case</span><span>16.9%</span></div>
+          <div class="fact"><span>SVT-AV1 encode cost</span><span>1.8x H.264</span></div>
         </div>
       </article>
 
@@ -228,7 +228,7 @@ code { font-family: "GeistMono", monospace; font-size: 0.87em; }
       </div>
       <div class="rule-item">
         <h3>Never let the sweep decide the answer</h3>
-        <p>If one codec's ladder stops earlier than another's, the comparison at that end measures your sweep, not the codec. Extending the AVIF ladder moved the images crossover from 83 to 87; xz -6 and -9 turned out to emit byte-identical output until the corpus grew past their dictionary; and the video ladders had to be set per clip, because two clips eight CRF steps apart would otherwise have made the result an artefact.</p>
+        <p>If one codec's ladder stops earlier than another's, the comparison at that end measures your sweep, not the codec. Extending the AVIF ladder moved the images crossover from 83 to 87; xz -6 and -9 turned out to emit byte-identical output until the corpus grew past their dictionary; the video ladders had to be set per clip, because two clips eight CRF steps apart would otherwise have made the result an artefact; and VVC needed an extension pass because it bottomed out above the lowest quality target.</p>
       </div>
       <div class="rule-item">
         <h3>Generate every sentence containing a number</h3>

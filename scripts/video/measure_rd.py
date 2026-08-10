@@ -69,7 +69,11 @@ LADDER = {
         "VP9": [49, 52, 55, 57, 59, 61, 63, 45, 41],
         "AV1": [46, 50, 53, 56, 58, 61, 63],
         "SVTAV1": [46, 50, 54, 57, 59, 61, 63, 62],
-        "VVC": [27, 30, 33, 35, 37, 39, 41],
+        # The trailing 43 is an extension pass: the first sweep left VVC's
+        # flat-gradient ladder bottoming out at VMAF 80.8 at 540p, which would
+        # have made the VMAF 80 comparison a statement about the ladder rather
+        # than about VVC.
+        "VVC": [27, 30, 33, 35, 37, 39, 41, 43],
     },
 }
 CODEC_ORDER = ["H264", "HEVC", "VP9", "AV1", "SVTAV1", "VVC"]

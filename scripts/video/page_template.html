@@ -668,11 +668,11 @@ code { font-family: "GeistMono", monospace; font-size: 0.88em; }
       </div>
       <div class="col">
         <h3>Decode is the other half, and it is cheap</h3>
-        <p>Decode cost per frame is a small fraction of encode cost for every codec here, and on any device with a hardware decoder it is essentially free. That asymmetry is the single most misunderstood thing about AV1.</p>
+        <p>Decode cost per frame is a small fraction of encode cost for every codec here, and on any device with a hardware decoder it is essentially free. That asymmetry is the single most misunderstood thing about AV1: the expensive half is the one a viewer never runs. It is also why the VVC bar on this chart says nothing about whether a phone could play the file. It could. It is not allowed to, for reasons that have nothing to do with silicon.</p>
       </div>
       <div class="col">
         <h3>Presets move this a lot</h3>
-        <p>Everything here uses one preset per codec. Slower presets buy several percent of BD-rate for a multiple of the time; faster ones give it back. The choice is a business decision about how many times a file will be watched.</p>
+        <p>Everything here uses one preset per codec. Slower presets buy several percent of BD-rate for a multiple of the time; faster ones give it back. The choice is a business decision about how many times a file will be watched. The ranges are wide: libvvenc has five presets and SVT-AV1 has fourteen, and moving along either one changes the bar far more than switching format does. Read every bar as one point on a curve, not as a property of the codec.</p>
       </div>
     </div>
   </section>
@@ -771,14 +771,17 @@ code { font-family: "GeistMono", monospace; font-size: 0.88em; }
           <p data-fill="vvc_efficiency"></p>
         </div>
         <div class="col">
-          <h3>What it costs, and what the literature says</h3>
+          <h3>What it costs</h3>
           <p data-fill="vvc_cost"></p>
-          <p style="margin-top:10px;" data-fill="vvc_vs_lit"></p>
         </div>
         <div class="col">
           <h3>Why nobody ships it, and what to do</h3>
           <p>Not compute on the decode side: VVC decode is heavier than HEVC but well within a modern SoC, and software decoders exist. The blocker is licensing. VVC arrived with a patent pool structure that looks like HEVC's, the one that kept HEVC out of Chrome and Firefox for a decade, and browsers have given no indication they intend to ship it. So: nothing, for web delivery. In broadcast, DVB and ATSC 3.0 profiles exist and the calculation is different. For everyone else the practical successor to HEVC is AV1, and the successor to AV1 will be AV2, for the same royalty-free reason.</p>
         </div>
+      </div>
+      <div>
+        <h3 style="margin-bottom:6px;">Measured here against the published figures</h3>
+        <p style="font-size:0.92rem; color:var(--ink-2); max-width:88ch;" data-fill="vvc_vs_lit"></p>
       </div>
       <p style="font-size:0.86rem; color:var(--ink-3); max-width:78ch;">Published comparison referenced above: T. Nguyen and D. Marpe, "Compression efficiency analysis of AV1, VVC, and HEVC for random access applications", APSIPA Transactions on Signal and Information Processing, vol. 10, 2021. Subjective testing in B. Bross et al., "Overview of the Versatile Video Coding (VVC) Standard and its Applications", IEEE TCSVT, 2021, reports up to 50% against HEVC. Pool structure per Access Advance's VVC Advance programme. Those are the only figures on this page that were not measured here, and they are here to be compared against, not relied on.</p>
     </div>
