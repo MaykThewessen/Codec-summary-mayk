@@ -1,0 +1,70 @@
+{
+ "files": 389,
+ "bytes": 8405404,
+ "tar_bytes": 9113600,
+ "rows": [
+  {
+   "name": "zip (deflate 6)",
+   "note": "per-file, no cross-file matching",
+   "bytes": 2156934,
+   "solid": false,
+   "ratio": 3.8969,
+   "seconds": 0.215,
+   "c_mb_s": 39.1
+  },
+  {
+   "name": "zip (bzip2 9)",
+   "note": "per-file, no cross-file matching",
+   "bytes": 1944649,
+   "solid": false,
+   "ratio": 4.3223,
+   "seconds": 0.654,
+   "c_mb_s": 12.8
+  },
+  {
+   "name": "tar.gz (gzip 6)",
+   "note": "solid stream, deflate 32 kB window",
+   "bytes": 1916428,
+   "solid": true,
+   "ratio": 4.386,
+   "seconds": 0.23,
+   "c_mb_s": 36.6
+  },
+  {
+   "name": "tar.bz2 (bzip2 9)",
+   "note": "solid stream, 900 kB blocks",
+   "bytes": 1471091,
+   "solid": true,
+   "ratio": 5.7137,
+   "seconds": 0.563,
+   "c_mb_s": 14.9
+  },
+  {
+   "name": "tar.zst (zstd 19)",
+   "note": "solid stream, 8 MB window",
+   "bytes": 1374181,
+   "solid": true,
+   "ratio": 6.1167,
+   "seconds": 3.863,
+   "c_mb_s": 2.2
+  },
+  {
+   "name": "tar.xz (xz 9)",
+   "note": "solid stream, 64 MB dictionary",
+   "bytes": 1350952,
+   "solid": true,
+   "ratio": 6.2218,
+   "seconds": 4.617,
+   "c_mb_s": 1.8
+  },
+  {
+   "name": "7z (LZMA2)",
+   "note": "solid by default, same coder as xz",
+   "bytes": 1338813,
+   "solid": true,
+   "ratio": 6.2783,
+   "seconds": 4.272,
+   "c_mb_s": 2.0
+  }
+ ]
+}

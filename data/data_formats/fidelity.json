@@ -1,0 +1,491 @@
+{
+ "props": [
+  {
+   "key": "dtype",
+   "label": "Dtypes"
+  },
+  {
+   "key": "tz",
+   "label": "Timezone"
+  },
+  {
+   "key": "null",
+   "label": "Nulls"
+  },
+  {
+   "key": "categorical",
+   "label": "Categoricals"
+  },
+  {
+   "key": "index",
+   "label": "Index"
+  },
+  {
+   "key": "order",
+   "label": "Column order"
+  }
+ ],
+ "source": {
+  "dtypes": {
+   "local_ts": "datetime64[us, Europe/Amsterdam]",
+   "zone": "category",
+   "price_eur_mwh": "float64",
+   "load_mw_f32": "float32",
+   "unit_id": "Int32",
+   "curtailed": "boolean",
+   "note": "string"
+  },
+  "order": [
+   "local_ts",
+   "zone",
+   "price_eur_mwh",
+   "load_mw_f32",
+   "unit_id",
+   "curtailed",
+   "note"
+  ],
+  "index_name": "utc_ts",
+  "index_dtype": "datetime64[us, UTC]",
+  "nulls": {
+   "local_ts": 0,
+   "zone": 0,
+   "price_eur_mwh": 4,
+   "load_mw_f32": 0,
+   "unit_id": 4,
+   "curtailed": 4,
+   "note": 4
+  }
+ },
+ "rows": 240,
+ "results": [
+  {
+   "fmt": "csv",
+   "label": "CSV",
+   "family": "text",
+   "props": {
+    "index": {
+     "v": "partial",
+     "why": "came back as an ordinary column: you have to know to set it again, and to re-localize it first"
+    },
+    "order": {
+     "v": "good",
+     "why": "unchanged"
+    },
+    "dtype": {
+     "v": "lost",
+     "why": "6 of 7 changed (local_ts: datetime64[us, Europe/Amsterdam] to str, zone: category to str, load_mw_f32: float32 to float64)"
+    },
+    "tz": {
+     "v": "partial",
+     "why": "the instant survives but the zone does not: local_ts datetime64[us, Europe/Amsterdam] to str. The Europe/Amsterdam column crosses the CEST transition, so its offsets are mixed, and pandas will not parse a mixed-offset column back into one datetime column at all: it stays a string unless you handle it yourself."
+    },
+    "null": {
+     "v": "partial",
+     "why": "gaps kept, but the nullable integer became float64 and the nullable bool object"
+    },
+    "categorical": {
+     "v": "lost",
+     "why": "returned as str: the dictionary and the ordering are gone"
+    }
+   },
+   "n_lost": 5,
+   "ok": true
+  },
+  {
+   "fmt": "csv_gz",
+   "label": "CSV .gz",
+   "family": "text",
+   "props": {
+    "index": {
+     "v": "partial",
+     "why": "came back as an ordinary column: you have to know to set it again, and to re-localize it first"
+    },
+    "order": {
+     "v": "good",
+     "why": "unchanged"
+    },
+    "dtype": {
+     "v": "lost",
+     "why": "6 of 7 changed (local_ts: datetime64[us, Europe/Amsterdam] to str, zone: category to str, load_mw_f32: float32 to float64)"
+    },
+    "tz": {
+     "v": "partial",
+     "why": "the instant survives but the zone does not: local_ts datetime64[us, Europe/Amsterdam] to str. The Europe/Amsterdam column crosses the CEST transition, so its offsets are mixed, and pandas will not parse a mixed-offset column back into one datetime column at all: it stays a string unless you handle it yourself."
+    },
+    "null": {
+     "v": "partial",
+     "why": "gaps kept, but the nullable integer became float64 and the nullable bool object"
+    },
+    "categorical": {
+     "v": "lost",
+     "why": "returned as str: the dictionary and the ordering are gone"
+    }
+   },
+   "n_lost": 5,
+   "ok": true
+  },
+  {
+   "fmt": "json",
+   "label": "JSON",
+   "family": "text",
+   "props": {
+    "index": {
+     "v": "lost",
+     "why": "records orient has no place to put an index, so it is reset to a column before writing"
+    },
+    "order": {
+     "v": "good",
+     "why": "unchanged"
+    },
+    "dtype": {
+     "v": "lost",
+     "why": "6 of 7 changed (local_ts: datetime64[us, Europe/Amsterdam] to datetime64[us, UTC], zone: category to str, load_mw_f32: float32 to float64)"
+    },
+    "tz": {
+     "v": "partial",
+     "why": "the instant survives but the zone does not: local_ts datetime64[us, Europe/Amsterdam] to datetime64[us, UTC]. The zone name is nowhere in the file, so UTC is the best a reader can do."
+    },
+    "null": {
+     "v": "partial",
+     "why": "gaps kept, but the nullable integer became float64 and the nullable bool float64"
+    },
+    "categorical": {
+     "v": "lost",
+     "why": "returned as str: the dictionary and the ordering are gone"
+    }
+   },
+   "n_lost": 5,
+   "ok": true
+  },
+  {
+   "fmt": "xlsx",
+   "label": "Excel xlsx",
+   "family": "text",
+   "props": {
+    "index": {
+     "v": "lost",
+     "why": "the writer refuses a non-default index (ValueError), so it has to be reset to a column before writing"
+    },
+    "order": {
+     "v": "good",
+     "why": "unchanged"
+    },
+    "dtype": {
+     "v": "lost",
+     "why": "6 of 7 changed (local_ts: datetime64[us, Europe/Amsterdam] to datetime64[us], zone: category to str, load_mw_f32: float32 to float64)"
+    },
+    "tz": {
+     "v": "lost",
+     "why": "aware timestamps came back as datetime64[us]: nothing in the file records which zone it was"
+    },
+    "null": {
+     "v": "partial",
+     "why": "gaps kept, but the nullable integer became float64 and the nullable bool float64"
+    },
+    "categorical": {
+     "v": "lost",
+     "why": "returned as str: the dictionary and the ordering are gone"
+    }
+   },
+   "n_lost": 5,
+   "ok": true
+  },
+  {
+   "fmt": "feather",
+   "label": "Feather (uncompressed)",
+   "family": "arrow",
+   "props": {
+    "index": {
+     "v": "good",
+     "why": "restored with its name and its dtype"
+    },
+    "order": {
+     "v": "good",
+     "why": "unchanged"
+    },
+    "dtype": {
+     "v": "good",
+     "why": "every column returned its own dtype"
+    },
+    "tz": {
+     "v": "good",
+     "why": "every zone came back exactly as written"
+    },
+    "null": {
+     "v": "good",
+     "why": "count and dtype both preserved"
+    },
+    "categorical": {
+     "v": "good",
+     "why": "dictionary and ordering both kept"
+    }
+   },
+   "n_lost": 0,
+   "ok": true
+  },
+  {
+   "fmt": "feather_lz4",
+   "label": "Feather lz4",
+   "family": "arrow",
+   "props": {
+    "index": {
+     "v": "good",
+     "why": "restored with its name and its dtype"
+    },
+    "order": {
+     "v": "good",
+     "why": "unchanged"
+    },
+    "dtype": {
+     "v": "good",
+     "why": "every column returned its own dtype"
+    },
+    "tz": {
+     "v": "good",
+     "why": "every zone came back exactly as written"
+    },
+    "null": {
+     "v": "good",
+     "why": "count and dtype both preserved"
+    },
+    "categorical": {
+     "v": "good",
+     "why": "dictionary and ordering both kept"
+    }
+   },
+   "n_lost": 0,
+   "ok": true
+  },
+  {
+   "fmt": "feather_zstd",
+   "label": "Feather zstd",
+   "family": "arrow",
+   "props": {
+    "index": {
+     "v": "good",
+     "why": "restored with its name and its dtype"
+    },
+    "order": {
+     "v": "good",
+     "why": "unchanged"
+    },
+    "dtype": {
+     "v": "good",
+     "why": "every column returned its own dtype"
+    },
+    "tz": {
+     "v": "good",
+     "why": "every zone came back exactly as written"
+    },
+    "null": {
+     "v": "good",
+     "why": "count and dtype both preserved"
+    },
+    "categorical": {
+     "v": "good",
+     "why": "dictionary and ordering both kept"
+    }
+   },
+   "n_lost": 0,
+   "ok": true
+  },
+  {
+   "fmt": "parquet_none",
+   "label": "Parquet (uncompressed)",
+   "family": "parquet",
+   "props": {
+    "index": {
+     "v": "good",
+     "why": "restored with its name and its dtype"
+    },
+    "order": {
+     "v": "good",
+     "why": "unchanged"
+    },
+    "dtype": {
+     "v": "good",
+     "why": "every column returned its own dtype"
+    },
+    "tz": {
+     "v": "good",
+     "why": "every zone came back exactly as written"
+    },
+    "null": {
+     "v": "good",
+     "why": "count and dtype both preserved"
+    },
+    "categorical": {
+     "v": "good",
+     "why": "dictionary and ordering both kept"
+    }
+   },
+   "n_lost": 0,
+   "ok": true
+  },
+  {
+   "fmt": "parquet_snappy",
+   "label": "Parquet snappy",
+   "family": "parquet",
+   "props": {
+    "index": {
+     "v": "good",
+     "why": "restored with its name and its dtype"
+    },
+    "order": {
+     "v": "good",
+     "why": "unchanged"
+    },
+    "dtype": {
+     "v": "good",
+     "why": "every column returned its own dtype"
+    },
+    "tz": {
+     "v": "good",
+     "why": "every zone came back exactly as written"
+    },
+    "null": {
+     "v": "good",
+     "why": "count and dtype both preserved"
+    },
+    "categorical": {
+     "v": "good",
+     "why": "dictionary and ordering both kept"
+    }
+   },
+   "n_lost": 0,
+   "ok": true
+  },
+  {
+   "fmt": "parquet_zstd",
+   "label": "Parquet zstd",
+   "family": "parquet",
+   "props": {
+    "index": {
+     "v": "good",
+     "why": "restored with its name and its dtype"
+    },
+    "order": {
+     "v": "good",
+     "why": "unchanged"
+    },
+    "dtype": {
+     "v": "good",
+     "why": "every column returned its own dtype"
+    },
+    "tz": {
+     "v": "good",
+     "why": "every zone came back exactly as written"
+    },
+    "null": {
+     "v": "good",
+     "why": "count and dtype both preserved"
+    },
+    "categorical": {
+     "v": "good",
+     "why": "dictionary and ordering both kept"
+    }
+   },
+   "n_lost": 0,
+   "ok": true
+  },
+  {
+   "fmt": "parquet_gzip",
+   "label": "Parquet gzip",
+   "family": "parquet",
+   "props": {
+    "index": {
+     "v": "good",
+     "why": "restored with its name and its dtype"
+    },
+    "order": {
+     "v": "good",
+     "why": "unchanged"
+    },
+    "dtype": {
+     "v": "good",
+     "why": "every column returned its own dtype"
+    },
+    "tz": {
+     "v": "good",
+     "why": "every zone came back exactly as written"
+    },
+    "null": {
+     "v": "good",
+     "why": "count and dtype both preserved"
+    },
+    "categorical": {
+     "v": "good",
+     "why": "dictionary and ordering both kept"
+    }
+   },
+   "n_lost": 0,
+   "ok": true
+  },
+  {
+   "fmt": "duckdb",
+   "label": "DuckDB table",
+   "family": "duckdb",
+   "props": {
+    "index": {
+     "v": "lost",
+     "why": "a table has no index in the pandas sense: registering the frame drops it, so it is reset to a column first"
+    },
+    "order": {
+     "v": "good",
+     "why": "unchanged"
+    },
+    "dtype": {
+     "v": "partial",
+     "why": "2 of 7 changed (local_ts: datetime64[us, Europe/Amsterdam] to datetime64[us, UTC], note: string to str)"
+    },
+    "tz": {
+     "v": "partial",
+     "why": "the instant survives but the zone does not: local_ts datetime64[us, Europe/Amsterdam] to datetime64[us, UTC]. The zone name is nowhere in the file, so UTC is the best a reader can do."
+    },
+    "null": {
+     "v": "good",
+     "why": "count and dtype both preserved"
+    },
+    "categorical": {
+     "v": "good",
+     "why": "dictionary and ordering both kept"
+    }
+   },
+   "n_lost": 3,
+   "ok": true
+  },
+  {
+   "fmt": "parquet_duckdb",
+   "label": "Parquet read by DuckDB",
+   "family": "duckdb",
+   "props": {
+    "index": {
+     "v": "partial",
+     "why": "came back as an ordinary column: you have to know to set it again, and to re-localize it first"
+    },
+    "order": {
+     "v": "good",
+     "why": "unchanged"
+    },
+    "dtype": {
+     "v": "lost",
+     "why": "3 of 7 changed (local_ts: datetime64[us, Europe/Amsterdam] to datetime64[us, UTC], zone: category to str, note: string to str)"
+    },
+    "tz": {
+     "v": "partial",
+     "why": "the instant survives but the zone does not: local_ts datetime64[us, Europe/Amsterdam] to datetime64[us, UTC]. The zone name is nowhere in the file, so UTC is the best a reader can do."
+    },
+    "null": {
+     "v": "good",
+     "why": "count and dtype both preserved"
+    },
+    "categorical": {
+     "v": "lost",
+     "why": "returned as str: the dictionary and the ordering are gone"
+    }
+   },
+   "n_lost": 4,
+   "ok": true
+  }
+ ]
+}

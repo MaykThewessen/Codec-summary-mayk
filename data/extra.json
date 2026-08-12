@@ -1,0 +1,243 @@
+{
+ "photo_lossless": [
+  {
+   "image": "kodim01",
+   "pixels": 393216,
+   "PNG": 15.83795166015625,
+   "WEBP": 10.1605224609375,
+   "JXL": 9.252054850260416
+  },
+  {
+   "image": "kodim02",
+   "pixels": 393216,
+   "PNG": 12.554667154947916,
+   "WEBP": 9.166707356770834,
+   "JXL": 8.241536458333334
+  },
+  {
+   "image": "kodim03",
+   "pixels": 393216,
+   "PNG": 10.988444010416666,
+   "WEBP": 7.799763997395833,
+   "JXL": 6.675516764322917
+  },
+  {
+   "image": "kodim04",
+   "pixels": 393216,
+   "PNG": 12.958821614583334,
+   "WEBP": 9.2579345703125,
+   "JXL": 8.421305338541666
+  },
+  {
+   "image": "kodim05",
+   "pixels": 393216,
+   "PNG": 16.4117431640625,
+   "WEBP": 11.319010416666666,
+   "JXL": 9.868550618489584
+  },
+  {
+   "image": "kodim07",
+   "pixels": 393216,
+   "PNG": 11.50238037109375,
+   "WEBP": 8.436767578125,
+   "JXL": 7.265218098958333
+  },
+  {
+   "image": "kodim08",
+   "pixels": 393216,
+   "PNG": 16.003641764322918,
+   "WEBP": 11.123087565104166,
+   "JXL": 10.206034342447916
+  },
+  {
+   "image": "kodim13",
+   "pixels": 393216,
+   "PNG": 18.09564208984375,
+   "WEBP": 12.162923177083334,
+   "JXL": 11.167521158854166
+  },
+  {
+   "image": "kodim14",
+   "pixels": 393216,
+   "PNG": 15.025614420572916,
+   "WEBP": 10.425008138020834,
+   "JXL": 9.283935546875
+  },
+  {
+   "image": "kodim19",
+   "pixels": 393216,
+   "PNG": 13.641438802083334,
+   "WEBP": 9.8013916015625,
+   "JXL": 8.908223470052084
+  },
+  {
+   "image": "kodim20",
+   "pixels": 393216,
+   "PNG": 10.271809895833334,
+   "WEBP": 7.307902018229167,
+   "JXL": 6.615458170572917
+  },
+  {
+   "image": "kodim21",
+   "pixels": 393216,
+   "PNG": 13.8223876953125,
+   "WEBP": 9.929646809895834,
+   "JXL": 8.86572265625
+  },
+  {
+   "image": "kodim23",
+   "pixels": 393216,
+   "PNG": 11.329915364583334,
+   "WEBP": 8.5877685546875,
+   "JXL": 7.573506673177083
+  },
+  {
+   "image": "kodim24",
+   "pixels": 393216,
+   "PNG": 14.339558919270834,
+   "WEBP": 9.962076822916666,
+   "JXL": 8.863057454427084
+  }
+ ],
+ "synthetic_tail": [
+  {
+   "codec": "WEBP",
+   "quality": 92,
+   "bytes": 69624,
+   "bpp": 0.42977777777777776,
+   "ssimulacra2": 81.256
+  },
+  {
+   "codec": "WEBP",
+   "quality": 95,
+   "bytes": 81706,
+   "bpp": 0.504358024691358,
+   "ssimulacra2": 81.645
+  },
+  {
+   "codec": "WEBP",
+   "quality": 98,
+   "bytes": 87614,
+   "bpp": 0.5408271604938272,
+   "ssimulacra2": 82.295
+  },
+  {
+   "codec": "WEBP",
+   "quality": 100,
+   "bytes": 91922,
+   "bpp": 0.5674197530864198,
+   "ssimulacra2": 82.39
+  },
+  {
+   "codec": "AVIF",
+   "quality": 85,
+   "bytes": 27670,
+   "bpp": 0.17080246913580246,
+   "ssimulacra2": 82.945
+  },
+  {
+   "codec": "AVIF",
+   "quality": 90,
+   "bytes": 31181,
+   "bpp": 0.19247530864197532,
+   "ssimulacra2": 83.554
+  },
+  {
+   "codec": "AVIF",
+   "quality": 95,
+   "bytes": 36472,
+   "bpp": 0.2251358024691358,
+   "ssimulacra2": 83.909
+  },
+  {
+   "codec": "AVIF",
+   "quality": 100,
+   "bytes": 62774,
+   "bpp": 0.38749382716049385,
+   "ssimulacra2": 84.289
+  },
+  {
+   "codec": "JXL",
+   "quality": 96,
+   "bytes": 95296,
+   "bpp": 0.5882469135802469,
+   "ssimulacra2": 94.779
+  },
+  {
+   "codec": "JXL",
+   "quality": 98,
+   "bytes": 112365,
+   "bpp": 0.6936111111111111,
+   "ssimulacra2": 96.451
+  },
+  {
+   "codec": "JXL",
+   "quality": 99,
+   "bytes": 126751,
+   "bpp": 0.7824135802469135,
+   "ssimulacra2": 97.022
+  },
+  {
+   "codec": "JPEG",
+   "quality": 96,
+   "bytes": 213047,
+   "bpp": 1.315104938271605,
+   "ssimulacra2": 92.511
+  },
+  {
+   "codec": "JPEG",
+   "quality": 98,
+   "bytes": 254330,
+   "bpp": 1.5699382716049384,
+   "ssimulacra2": 94.422
+  },
+  {
+   "codec": "JPEG",
+   "quality": 100,
+   "bytes": 332374,
+   "bpp": 2.051691358024691,
+   "ssimulacra2": 95.775
+  }
+ ],
+ "synthetic_palette": [
+  {
+   "colors": 256,
+   "bytes": 33336,
+   "bpp": 0.20577777777777778,
+   "ssimulacra2": 92.789
+  },
+  {
+   "colors": 128,
+   "bytes": 30925,
+   "bpp": 0.19089506172839507,
+   "ssimulacra2": 91.676
+  },
+  {
+   "colors": 64,
+   "bytes": 28555,
+   "bpp": 0.17626543209876544,
+   "ssimulacra2": 83.71
+  },
+  {
+   "colors": 32,
+   "bytes": 25696,
+   "bpp": 0.15861728395061728,
+   "ssimulacra2": 71.227
+  }
+ ],
+ "synthetic_pixels": 1296000,
+ "prose": {
+  "knee_note": "One SSIMULACRA2 point costs 0.057 bits per pixel around q75. By q85 the same point costs 0.114, twice as much, and between q97 and q98 it costs 0.611, some 11 times the price. The left panel is what turns steep; the right panel barely moves. The shaded band is where the trade is still worth making.",
+  "claim_knee": "Confirmed, and the cost curve is steeper than most people assume. A SSIMULACRA2 point costs 0.057 bpp at q75, 0.114 bpp at q85 and 0.611 bpp by q98: the price roughly doubles over the first ten quality steps and then runs away entirely. Below q70 the image degrades quickly in the other direction (score 71 and dropping fast beneath it). The efficient delivery band is q75 to q85, and the 60 to 80 rule of thumb sits just inside it, which is presumably why it has survived so long.",
+  "claim_webp": "Correct, and the measurements are blunt about why. On photographs WebP saved only 14.6% against baseline JPEG at delivery quality, and a modern JPEG encoder claws most of that back, so for photos it is close to a wash. On the test screenshot WebP came in 67.7% under optimised PNG. The correction is which mode to use: the lossless one. Lossy WebP at q80 produced a larger file than lossless WebP on the same screenshot (50.426 against 27.646 bytes) while scoring 77 instead of a perfect 100, and even at q100 it stalls around 82 because it cannot reproduce a glyph edge.",
+  "claim_png": "Real, and it works. Palette quantisation to 256 colours took the test screenshot from 85.602 to 33.336 bytes at a score of 93, still a valid PNG that opens everywhere, still with alpha. It is the right tool whenever the file has to keep the .png extension. It is no longer the best answer available, though, because WebP lossless landed at 27.646 bytes with every pixel intact.",
+  "crossover_note": "The two frontier codecs are not competing for the same job. AVIF is 31.5% under JPEG at delivery quality and 38.1% under it at thumbnail quality: the harder you squeeze, the more it wins. JPEG XL runs the other way, 24.6% at delivery quality but only 3.9% at thumbnail quality, and it is the one that stays efficient at the visually-lossless end where AVIF's advantage has evaporated. On this corpus they change places at about SSIMULACRA2 87. Below that line AVIF is the smaller file; above it JPEG XL is. That single fact settles most of the AVIF-versus-JXL argument: it depends entirely on which end of the quality range you work at.",
+  "lossless_note": "On photographs the ordering flips back. Against optimised PNG, JPEG XL lossless was 37.0% smaller and WebP lossless 29.5% smaller, averaged over the 14 reference images. Flat graphics and photographs want different lossless coders, which is why a single 'best lossless format' answer never holds.",
+  "screenshot_note": "The sharpest way to put it: at 27.670 bytes, AVIF q85 costs about the same as WebP lossless at 27.646 bytes, and scores 83 where WebP scores a perfect 100. Pushed all the way to q100 AVIF still only reaches 84 on this image. For text and hairlines, lossy coding has nothing to offer at the price.",
+  "method_corpus": "14 pristine reference photographs from the Kodak set, each encoded across a quality ladder in five codecs, plus one rendered 1440 by 900 application screenshot pushed through lossless, lossy and palette paths. Encoders: libjpeg-turbo, libwebp, libaom for AVIF, libx265 for HEIF, and libjxl."
+ },
+ "knee_q": [
+  75,
+  85
+ ]
+}

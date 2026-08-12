@@ -1,0 +1,8318 @@
+[
+ {
+  "image": "kodim01",
+  "codec": "JPEG",
+  "quality": 30,
+  "bytes": 42584,
+  "pixels": 393216,
+  "bpp": 0.8663736979166666,
+  "ssimulacra2": 46.689
+ },
+ {
+  "image": "kodim01",
+  "codec": "JPEG",
+  "quality": 40,
+  "bytes": 51232,
+  "pixels": 393216,
+  "bpp": 1.0423177083333333,
+  "ssimulacra2": 55.973
+ },
+ {
+  "image": "kodim01",
+  "codec": "JPEG",
+  "quality": 50,
+  "bytes": 59205,
+  "pixels": 393216,
+  "bpp": 1.20452880859375,
+  "ssimulacra2": 61.434
+ },
+ {
+  "image": "kodim01",
+  "codec": "JPEG",
+  "quality": 60,
+  "bytes": 67893,
+  "pixels": 393216,
+  "bpp": 1.38128662109375,
+  "ssimulacra2": 65.751
+ },
+ {
+  "image": "kodim01",
+  "codec": "JPEG",
+  "quality": 65,
+  "bytes": 73621,
+  "pixels": 393216,
+  "bpp": 1.4978230794270833,
+  "ssimulacra2": 68.515
+ },
+ {
+  "image": "kodim01",
+  "codec": "JPEG",
+  "quality": 70,
+  "bytes": 80733,
+  "pixels": 393216,
+  "bpp": 1.64251708984375,
+  "ssimulacra2": 70.455
+ },
+ {
+  "image": "kodim01",
+  "codec": "JPEG",
+  "quality": 75,
+  "bytes": 88651,
+  "pixels": 393216,
+  "bpp": 1.8036092122395833,
+  "ssimulacra2": 73.63
+ },
+ {
+  "image": "kodim01",
+  "codec": "JPEG",
+  "quality": 80,
+  "bytes": 100595,
+  "pixels": 393216,
+  "bpp": 2.0466105143229165,
+  "ssimulacra2": 77.027
+ },
+ {
+  "image": "kodim01",
+  "codec": "JPEG",
+  "quality": 85,
+  "bytes": 117406,
+  "pixels": 393216,
+  "bpp": 2.3886311848958335,
+  "ssimulacra2": 80.469
+ },
+ {
+  "image": "kodim01",
+  "codec": "JPEG",
+  "quality": 90,
+  "bytes": 144020,
+  "pixels": 393216,
+  "bpp": 2.9300944010416665,
+  "ssimulacra2": 84.599
+ },
+ {
+  "image": "kodim01",
+  "codec": "JPEG",
+  "quality": 95,
+  "bytes": 195818,
+  "pixels": 393216,
+  "bpp": 3.9839274088541665,
+  "ssimulacra2": 89.402
+ },
+ {
+  "image": "kodim01",
+  "codec": "WEBP",
+  "quality": 30,
+  "bytes": 37078,
+  "pixels": 393216,
+  "bpp": 0.7543538411458334,
+  "ssimulacra2": 48.426
+ },
+ {
+  "image": "kodim01",
+  "codec": "WEBP",
+  "quality": 40,
+  "bytes": 44858,
+  "pixels": 393216,
+  "bpp": 0.9126383463541666,
+  "ssimulacra2": 56.214
+ },
+ {
+  "image": "kodim01",
+  "codec": "WEBP",
+  "quality": 50,
+  "bytes": 52712,
+  "pixels": 393216,
+  "bpp": 1.0724283854166667,
+  "ssimulacra2": 61.491
+ },
+ {
+  "image": "kodim01",
+  "codec": "WEBP",
+  "quality": 60,
+  "bytes": 59680,
+  "pixels": 393216,
+  "bpp": 1.2141927083333333,
+  "ssimulacra2": 66.05
+ },
+ {
+  "image": "kodim01",
+  "codec": "WEBP",
+  "quality": 65,
+  "bytes": 64254,
+  "pixels": 393216,
+  "bpp": 1.3072509765625,
+  "ssimulacra2": 68.435
+ },
+ {
+  "image": "kodim01",
+  "codec": "WEBP",
+  "quality": 70,
+  "bytes": 68162,
+  "pixels": 393216,
+  "bpp": 1.3867594401041667,
+  "ssimulacra2": 70.145
+ },
+ {
+  "image": "kodim01",
+  "codec": "WEBP",
+  "quality": 75,
+  "bytes": 73178,
+  "pixels": 393216,
+  "bpp": 1.4888102213541667,
+  "ssimulacra2": 72.122
+ },
+ {
+  "image": "kodim01",
+  "codec": "WEBP",
+  "quality": 80,
+  "bytes": 88766,
+  "pixels": 393216,
+  "bpp": 1.8059488932291667,
+  "ssimulacra2": 77.413
+ },
+ {
+  "image": "kodim01",
+  "codec": "WEBP",
+  "quality": 85,
+  "bytes": 108968,
+  "pixels": 393216,
+  "bpp": 2.2169596354166665,
+  "ssimulacra2": 82.099
+ },
+ {
+  "image": "kodim01",
+  "codec": "WEBP",
+  "quality": 90,
+  "bytes": 134942,
+  "pixels": 393216,
+  "bpp": 2.7454020182291665,
+  "ssimulacra2": 86.051
+ },
+ {
+  "image": "kodim01",
+  "codec": "WEBP",
+  "quality": 95,
+  "bytes": 181222,
+  "pixels": 393216,
+  "bpp": 3.6869710286458335,
+  "ssimulacra2": 89.733
+ },
+ {
+  "image": "kodim01",
+  "codec": "AVIF",
+  "quality": 25,
+  "bytes": 12293,
+  "pixels": 393216,
+  "bpp": 0.2501017252604167,
+  "ssimulacra2": 11.448
+ },
+ {
+  "image": "kodim01",
+  "codec": "AVIF",
+  "quality": 30,
+  "bytes": 16132,
+  "pixels": 393216,
+  "bpp": 0.3282063802083333,
+  "ssimulacra2": 23.412
+ },
+ {
+  "image": "kodim01",
+  "codec": "AVIF",
+  "quality": 35,
+  "bytes": 20569,
+  "pixels": 393216,
+  "bpp": 0.4184773763020833,
+  "ssimulacra2": 33.358
+ },
+ {
+  "image": "kodim01",
+  "codec": "AVIF",
+  "quality": 40,
+  "bytes": 25503,
+  "pixels": 393216,
+  "bpp": 0.51885986328125,
+  "ssimulacra2": 42.384
+ },
+ {
+  "image": "kodim01",
+  "codec": "AVIF",
+  "quality": 45,
+  "bytes": 33234,
+  "pixels": 393216,
+  "bpp": 0.6761474609375,
+  "ssimulacra2": 52.117
+ },
+ {
+  "image": "kodim01",
+  "codec": "AVIF",
+  "quality": 50,
+  "bytes": 40878,
+  "pixels": 393216,
+  "bpp": 0.8316650390625,
+  "ssimulacra2": 58.995
+ },
+ {
+  "image": "kodim01",
+  "codec": "AVIF",
+  "quality": 55,
+  "bytes": 49204,
+  "pixels": 393216,
+  "bpp": 1.0010579427083333,
+  "ssimulacra2": 65.263
+ },
+ {
+  "image": "kodim01",
+  "codec": "AVIF",
+  "quality": 60,
+  "bytes": 61591,
+  "pixels": 393216,
+  "bpp": 1.2530721028645833,
+  "ssimulacra2": 71.146
+ },
+ {
+  "image": "kodim01",
+  "codec": "AVIF",
+  "quality": 65,
+  "bytes": 71048,
+  "pixels": 393216,
+  "bpp": 1.4454752604166667,
+  "ssimulacra2": 75.114
+ },
+ {
+  "image": "kodim01",
+  "codec": "AVIF",
+  "quality": 70,
+  "bytes": 87639,
+  "pixels": 393216,
+  "bpp": 1.78302001953125,
+  "ssimulacra2": 79.78
+ },
+ {
+  "image": "kodim01",
+  "codec": "AVIF",
+  "quality": 80,
+  "bytes": 113770,
+  "pixels": 393216,
+  "bpp": 2.3146565755208335,
+  "ssimulacra2": 84.91
+ },
+ {
+  "image": "kodim01",
+  "codec": "HEIF",
+  "quality": 25,
+  "bytes": 20732,
+  "pixels": 393216,
+  "bpp": 0.4217936197916667,
+  "ssimulacra2": 27.125
+ },
+ {
+  "image": "kodim01",
+  "codec": "HEIF",
+  "quality": 30,
+  "bytes": 28434,
+  "pixels": 393216,
+  "bpp": 0.5784912109375,
+  "ssimulacra2": 39.168
+ },
+ {
+  "image": "kodim01",
+  "codec": "HEIF",
+  "quality": 35,
+  "bytes": 42669,
+  "pixels": 393216,
+  "bpp": 0.86810302734375,
+  "ssimulacra2": 53.877
+ },
+ {
+  "image": "kodim01",
+  "codec": "HEIF",
+  "quality": 40,
+  "bytes": 54659,
+  "pixels": 393216,
+  "bpp": 1.1120402018229167,
+  "ssimulacra2": 61.44
+ },
+ {
+  "image": "kodim01",
+  "codec": "HEIF",
+  "quality": 45,
+  "bytes": 74633,
+  "pixels": 393216,
+  "bpp": 1.5184122721354167,
+  "ssimulacra2": 70.673
+ },
+ {
+  "image": "kodim01",
+  "codec": "HEIF",
+  "quality": 50,
+  "bytes": 89655,
+  "pixels": 393216,
+  "bpp": 1.82403564453125,
+  "ssimulacra2": 76.212
+ },
+ {
+  "image": "kodim01",
+  "codec": "HEIF",
+  "quality": 55,
+  "bytes": 112960,
+  "pixels": 393216,
+  "bpp": 2.2981770833333335,
+  "ssimulacra2": 82.328
+ },
+ {
+  "image": "kodim01",
+  "codec": "HEIF",
+  "quality": 60,
+  "bytes": 129751,
+  "pixels": 393216,
+  "bpp": 2.6397908528645835,
+  "ssimulacra2": 85.049
+ },
+ {
+  "image": "kodim01",
+  "codec": "HEIF",
+  "quality": 65,
+  "bytes": 157124,
+  "pixels": 393216,
+  "bpp": 3.1966959635416665,
+  "ssimulacra2": 88.385
+ },
+ {
+  "image": "kodim01",
+  "codec": "HEIF",
+  "quality": 70,
+  "bytes": 176822,
+  "pixels": 393216,
+  "bpp": 3.5974527994791665,
+  "ssimulacra2": 90.099
+ },
+ {
+  "image": "kodim01",
+  "codec": "HEIF",
+  "quality": 80,
+  "bytes": 233213,
+  "pixels": 393216,
+  "bpp": 4.744730631510417,
+  "ssimulacra2": 92.622
+ },
+ {
+  "image": "kodim01",
+  "codec": "JXL",
+  "quality": 55,
+  "bytes": 39164,
+  "pixels": 393216,
+  "bpp": 0.7967936197916666,
+  "ssimulacra2": 52.714
+ },
+ {
+  "image": "kodim01",
+  "codec": "JXL",
+  "quality": 60,
+  "bytes": 43666,
+  "pixels": 393216,
+  "bpp": 0.8883870442708334,
+  "ssimulacra2": 57.593
+ },
+ {
+  "image": "kodim01",
+  "codec": "JXL",
+  "quality": 65,
+  "bytes": 49761,
+  "pixels": 393216,
+  "bpp": 1.01239013671875,
+  "ssimulacra2": 61.608
+ },
+ {
+  "image": "kodim01",
+  "codec": "JXL",
+  "quality": 70,
+  "bytes": 57396,
+  "pixels": 393216,
+  "bpp": 1.167724609375,
+  "ssimulacra2": 66.101
+ },
+ {
+  "image": "kodim01",
+  "codec": "JXL",
+  "quality": 75,
+  "bytes": 67534,
+  "pixels": 393216,
+  "bpp": 1.3739827473958333,
+  "ssimulacra2": 70.649
+ },
+ {
+  "image": "kodim01",
+  "codec": "JXL",
+  "quality": 80,
+  "bytes": 80661,
+  "pixels": 393216,
+  "bpp": 1.64105224609375,
+  "ssimulacra2": 75.538
+ },
+ {
+  "image": "kodim01",
+  "codec": "JXL",
+  "quality": 85,
+  "bytes": 98770,
+  "pixels": 393216,
+  "bpp": 2.0094807942708335,
+  "ssimulacra2": 80.859
+ },
+ {
+  "image": "kodim01",
+  "codec": "JXL",
+  "quality": 88,
+  "bytes": 113911,
+  "pixels": 393216,
+  "bpp": 2.3175252278645835,
+  "ssimulacra2": 83.886
+ },
+ {
+  "image": "kodim01",
+  "codec": "JXL",
+  "quality": 90,
+  "bytes": 126552,
+  "pixels": 393216,
+  "bpp": 2.57470703125,
+  "ssimulacra2": 85.883
+ },
+ {
+  "image": "kodim01",
+  "codec": "JXL",
+  "quality": 93,
+  "bytes": 152446,
+  "pixels": 393216,
+  "bpp": 3.1015218098958335,
+  "ssimulacra2": 89.097
+ },
+ {
+  "image": "kodim01",
+  "codec": "JXL",
+  "quality": 96,
+  "bytes": 190885,
+  "pixels": 393216,
+  "bpp": 3.8835652669270835,
+  "ssimulacra2": 92.067
+ },
+ {
+  "image": "kodim02",
+  "codec": "JPEG",
+  "quality": 30,
+  "bytes": 21093,
+  "pixels": 393216,
+  "bpp": 0.42913818359375,
+  "ssimulacra2": 31.794
+ },
+ {
+  "image": "kodim02",
+  "codec": "JPEG",
+  "quality": 40,
+  "bytes": 26198,
+  "pixels": 393216,
+  "bpp": 0.5329996744791666,
+  "ssimulacra2": 44.448
+ },
+ {
+  "image": "kodim02",
+  "codec": "JPEG",
+  "quality": 50,
+  "bytes": 31709,
+  "pixels": 393216,
+  "bpp": 0.6451212565104166,
+  "ssimulacra2": 52.04
+ },
+ {
+  "image": "kodim02",
+  "codec": "JPEG",
+  "quality": 60,
+  "bytes": 37802,
+  "pixels": 393216,
+  "bpp": 0.7690836588541666,
+  "ssimulacra2": 58.269
+ },
+ {
+  "image": "kodim02",
+  "codec": "JPEG",
+  "quality": 65,
+  "bytes": 41743,
+  "pixels": 393216,
+  "bpp": 0.8492635091145834,
+  "ssimulacra2": 62.073
+ },
+ {
+  "image": "kodim02",
+  "codec": "JPEG",
+  "quality": 70,
+  "bytes": 46792,
+  "pixels": 393216,
+  "bpp": 0.9519856770833334,
+  "ssimulacra2": 65.366
+ },
+ {
+  "image": "kodim02",
+  "codec": "JPEG",
+  "quality": 75,
+  "bytes": 52402,
+  "pixels": 393216,
+  "bpp": 1.0661214192708333,
+  "ssimulacra2": 68.661
+ },
+ {
+  "image": "kodim02",
+  "codec": "JPEG",
+  "quality": 80,
+  "bytes": 61519,
+  "pixels": 393216,
+  "bpp": 1.2516072591145833,
+  "ssimulacra2": 72.378
+ },
+ {
+  "image": "kodim02",
+  "codec": "JPEG",
+  "quality": 85,
+  "bytes": 73964,
+  "pixels": 393216,
+  "bpp": 1.5048014322916667,
+  "ssimulacra2": 76.279
+ },
+ {
+  "image": "kodim02",
+  "codec": "JPEG",
+  "quality": 90,
+  "bytes": 95183,
+  "pixels": 393216,
+  "bpp": 1.9365030924479167,
+  "ssimulacra2": 81.173
+ },
+ {
+  "image": "kodim02",
+  "codec": "JPEG",
+  "quality": 95,
+  "bytes": 140082,
+  "pixels": 393216,
+  "bpp": 2.8499755859375,
+  "ssimulacra2": 86.331
+ },
+ {
+  "image": "kodim02",
+  "codec": "WEBP",
+  "quality": 30,
+  "bytes": 13328,
+  "pixels": 393216,
+  "bpp": 0.2711588541666667,
+  "ssimulacra2": 28.759
+ },
+ {
+  "image": "kodim02",
+  "codec": "WEBP",
+  "quality": 40,
+  "bytes": 16722,
+  "pixels": 393216,
+  "bpp": 0.3402099609375,
+  "ssimulacra2": 35.957
+ },
+ {
+  "image": "kodim02",
+  "codec": "WEBP",
+  "quality": 50,
+  "bytes": 20310,
+  "pixels": 393216,
+  "bpp": 0.4132080078125,
+  "ssimulacra2": 42.257
+ },
+ {
+  "image": "kodim02",
+  "codec": "WEBP",
+  "quality": 60,
+  "bytes": 24334,
+  "pixels": 393216,
+  "bpp": 0.4950764973958333,
+  "ssimulacra2": 49.587
+ },
+ {
+  "image": "kodim02",
+  "codec": "WEBP",
+  "quality": 65,
+  "bytes": 26310,
+  "pixels": 393216,
+  "bpp": 0.5352783203125,
+  "ssimulacra2": 52.062
+ },
+ {
+  "image": "kodim02",
+  "codec": "WEBP",
+  "quality": 70,
+  "bytes": 28508,
+  "pixels": 393216,
+  "bpp": 0.5799967447916666,
+  "ssimulacra2": 55.903
+ },
+ {
+  "image": "kodim02",
+  "codec": "WEBP",
+  "quality": 75,
+  "bytes": 31312,
+  "pixels": 393216,
+  "bpp": 0.6370442708333334,
+  "ssimulacra2": 57.725
+ },
+ {
+  "image": "kodim02",
+  "codec": "WEBP",
+  "quality": 80,
+  "bytes": 40524,
+  "pixels": 393216,
+  "bpp": 0.824462890625,
+  "ssimulacra2": 65.969
+ },
+ {
+  "image": "kodim02",
+  "codec": "WEBP",
+  "quality": 85,
+  "bytes": 53762,
+  "pixels": 393216,
+  "bpp": 1.0937906901041667,
+  "ssimulacra2": 72.555
+ },
+ {
+  "image": "kodim02",
+  "codec": "WEBP",
+  "quality": 90,
+  "bytes": 78316,
+  "pixels": 393216,
+  "bpp": 1.5933430989583333,
+  "ssimulacra2": 80.166
+ },
+ {
+  "image": "kodim02",
+  "codec": "WEBP",
+  "quality": 95,
+  "bytes": 123164,
+  "pixels": 393216,
+  "bpp": 2.5057779947916665,
+  "ssimulacra2": 86.534
+ },
+ {
+  "image": "kodim02",
+  "codec": "AVIF",
+  "quality": 25,
+  "bytes": 5770,
+  "pixels": 393216,
+  "bpp": 0.11739095052083333,
+  "ssimulacra2": 14.411
+ },
+ {
+  "image": "kodim02",
+  "codec": "AVIF",
+  "quality": 30,
+  "bytes": 8078,
+  "pixels": 393216,
+  "bpp": 0.16434733072916666,
+  "ssimulacra2": 24.859
+ },
+ {
+  "image": "kodim02",
+  "codec": "AVIF",
+  "quality": 35,
+  "bytes": 10731,
+  "pixels": 393216,
+  "bpp": 0.21832275390625,
+  "ssimulacra2": 34.377
+ },
+ {
+  "image": "kodim02",
+  "codec": "AVIF",
+  "quality": 40,
+  "bytes": 14239,
+  "pixels": 393216,
+  "bpp": 0.2896931966145833,
+  "ssimulacra2": 43.415
+ },
+ {
+  "image": "kodim02",
+  "codec": "AVIF",
+  "quality": 45,
+  "bytes": 19822,
+  "pixels": 393216,
+  "bpp": 0.4032796223958333,
+  "ssimulacra2": 53.105
+ },
+ {
+  "image": "kodim02",
+  "codec": "AVIF",
+  "quality": 50,
+  "bytes": 25683,
+  "pixels": 393216,
+  "bpp": 0.52252197265625,
+  "ssimulacra2": 59.678
+ },
+ {
+  "image": "kodim02",
+  "codec": "AVIF",
+  "quality": 55,
+  "bytes": 32023,
+  "pixels": 393216,
+  "bpp": 0.6515096028645834,
+  "ssimulacra2": 65.01
+ },
+ {
+  "image": "kodim02",
+  "codec": "AVIF",
+  "quality": 60,
+  "bytes": 39743,
+  "pixels": 393216,
+  "bpp": 0.8085734049479166,
+  "ssimulacra2": 69.957
+ },
+ {
+  "image": "kodim02",
+  "codec": "AVIF",
+  "quality": 65,
+  "bytes": 44884,
+  "pixels": 393216,
+  "bpp": 0.9131673177083334,
+  "ssimulacra2": 72.808
+ },
+ {
+  "image": "kodim02",
+  "codec": "AVIF",
+  "quality": 70,
+  "bytes": 55761,
+  "pixels": 393216,
+  "bpp": 1.13446044921875,
+  "ssimulacra2": 76.852
+ },
+ {
+  "image": "kodim02",
+  "codec": "AVIF",
+  "quality": 80,
+  "bytes": 78738,
+  "pixels": 393216,
+  "bpp": 1.6019287109375,
+  "ssimulacra2": 83.185
+ },
+ {
+  "image": "kodim02",
+  "codec": "HEIF",
+  "quality": 25,
+  "bytes": 8241,
+  "pixels": 393216,
+  "bpp": 0.16766357421875,
+  "ssimulacra2": 20.407
+ },
+ {
+  "image": "kodim02",
+  "codec": "HEIF",
+  "quality": 30,
+  "bytes": 11934,
+  "pixels": 393216,
+  "bpp": 0.2427978515625,
+  "ssimulacra2": 32.533
+ },
+ {
+  "image": "kodim02",
+  "codec": "HEIF",
+  "quality": 35,
+  "bytes": 20439,
+  "pixels": 393216,
+  "bpp": 0.41583251953125,
+  "ssimulacra2": 48.997
+ },
+ {
+  "image": "kodim02",
+  "codec": "HEIF",
+  "quality": 40,
+  "bytes": 28092,
+  "pixels": 393216,
+  "bpp": 0.571533203125,
+  "ssimulacra2": 58.022
+ },
+ {
+  "image": "kodim02",
+  "codec": "HEIF",
+  "quality": 45,
+  "bytes": 43310,
+  "pixels": 393216,
+  "bpp": 0.8811442057291666,
+  "ssimulacra2": 69.346
+ },
+ {
+  "image": "kodim02",
+  "codec": "HEIF",
+  "quality": 50,
+  "bytes": 56160,
+  "pixels": 393216,
+  "bpp": 1.142578125,
+  "ssimulacra2": 74.976
+ },
+ {
+  "image": "kodim02",
+  "codec": "HEIF",
+  "quality": 55,
+  "bytes": 79891,
+  "pixels": 393216,
+  "bpp": 1.6253865559895833,
+  "ssimulacra2": 81.248
+ },
+ {
+  "image": "kodim02",
+  "codec": "HEIF",
+  "quality": 60,
+  "bytes": 98506,
+  "pixels": 393216,
+  "bpp": 2.0041097005208335,
+  "ssimulacra2": 84.405
+ },
+ {
+  "image": "kodim02",
+  "codec": "HEIF",
+  "quality": 65,
+  "bytes": 130009,
+  "pixels": 393216,
+  "bpp": 2.6450398763020835,
+  "ssimulacra2": 87.536
+ },
+ {
+  "image": "kodim02",
+  "codec": "HEIF",
+  "quality": 70,
+  "bytes": 153164,
+  "pixels": 393216,
+  "bpp": 3.1161295572916665,
+  "ssimulacra2": 89.042
+ },
+ {
+  "image": "kodim02",
+  "codec": "HEIF",
+  "quality": 80,
+  "bytes": 219738,
+  "pixels": 393216,
+  "bpp": 4.4705810546875,
+  "ssimulacra2": 90.96
+ },
+ {
+  "image": "kodim02",
+  "codec": "JXL",
+  "quality": 55,
+  "bytes": 23482,
+  "pixels": 393216,
+  "bpp": 0.4777425130208333,
+  "ssimulacra2": 53.699
+ },
+ {
+  "image": "kodim02",
+  "codec": "JXL",
+  "quality": 60,
+  "bytes": 26086,
+  "pixels": 393216,
+  "bpp": 0.5307210286458334,
+  "ssimulacra2": 58.272
+ },
+ {
+  "image": "kodim02",
+  "codec": "JXL",
+  "quality": 65,
+  "bytes": 29582,
+  "pixels": 393216,
+  "bpp": 0.6018473307291666,
+  "ssimulacra2": 62.53
+ },
+ {
+  "image": "kodim02",
+  "codec": "JXL",
+  "quality": 70,
+  "bytes": 34499,
+  "pixels": 393216,
+  "bpp": 0.7018839518229166,
+  "ssimulacra2": 67.388
+ },
+ {
+  "image": "kodim02",
+  "codec": "JXL",
+  "quality": 75,
+  "bytes": 41018,
+  "pixels": 393216,
+  "bpp": 0.8345133463541666,
+  "ssimulacra2": 71.525
+ },
+ {
+  "image": "kodim02",
+  "codec": "JXL",
+  "quality": 80,
+  "bytes": 50965,
+  "pixels": 393216,
+  "bpp": 1.0368855794270833,
+  "ssimulacra2": 75.98
+ },
+ {
+  "image": "kodim02",
+  "codec": "JXL",
+  "quality": 85,
+  "bytes": 65222,
+  "pixels": 393216,
+  "bpp": 1.3269449869791667,
+  "ssimulacra2": 81.157
+ },
+ {
+  "image": "kodim02",
+  "codec": "JXL",
+  "quality": 88,
+  "bytes": 78564,
+  "pixels": 393216,
+  "bpp": 1.598388671875,
+  "ssimulacra2": 84.187
+ },
+ {
+  "image": "kodim02",
+  "codec": "JXL",
+  "quality": 90,
+  "bytes": 90287,
+  "pixels": 393216,
+  "bpp": 1.8368937174479167,
+  "ssimulacra2": 86.261
+ },
+ {
+  "image": "kodim02",
+  "codec": "JXL",
+  "quality": 93,
+  "bytes": 115517,
+  "pixels": 393216,
+  "bpp": 2.3501993815104165,
+  "ssimulacra2": 89.389
+ },
+ {
+  "image": "kodim02",
+  "codec": "JXL",
+  "quality": 96,
+  "bytes": 157304,
+  "pixels": 393216,
+  "bpp": 3.2003580729166665,
+  "ssimulacra2": 92.618
+ },
+ {
+  "image": "kodim03",
+  "codec": "JPEG",
+  "quality": 30,
+  "bytes": 20151,
+  "pixels": 393216,
+  "bpp": 0.40997314453125,
+  "ssimulacra2": 43.766
+ },
+ {
+  "image": "kodim03",
+  "codec": "JPEG",
+  "quality": 40,
+  "bytes": 24508,
+  "pixels": 393216,
+  "bpp": 0.4986165364583333,
+  "ssimulacra2": 53.711
+ },
+ {
+  "image": "kodim03",
+  "codec": "JPEG",
+  "quality": 50,
+  "bytes": 28704,
+  "pixels": 393216,
+  "bpp": 0.583984375,
+  "ssimulacra2": 60.787
+ },
+ {
+  "image": "kodim03",
+  "codec": "JPEG",
+  "quality": 60,
+  "bytes": 33184,
+  "pixels": 393216,
+  "bpp": 0.6751302083333334,
+  "ssimulacra2": 65.493
+ },
+ {
+  "image": "kodim03",
+  "codec": "JPEG",
+  "quality": 65,
+  "bytes": 36347,
+  "pixels": 393216,
+  "bpp": 0.7394816080729166,
+  "ssimulacra2": 68.334
+ },
+ {
+  "image": "kodim03",
+  "codec": "JPEG",
+  "quality": 70,
+  "bytes": 40204,
+  "pixels": 393216,
+  "bpp": 0.8179524739583334,
+  "ssimulacra2": 71.169
+ },
+ {
+  "image": "kodim03",
+  "codec": "JPEG",
+  "quality": 75,
+  "bytes": 44409,
+  "pixels": 393216,
+  "bpp": 0.90350341796875,
+  "ssimulacra2": 73.863
+ },
+ {
+  "image": "kodim03",
+  "codec": "JPEG",
+  "quality": 80,
+  "bytes": 50979,
+  "pixels": 393216,
+  "bpp": 1.03717041015625,
+  "ssimulacra2": 77.763
+ },
+ {
+  "image": "kodim03",
+  "codec": "JPEG",
+  "quality": 85,
+  "bytes": 60313,
+  "pixels": 393216,
+  "bpp": 1.2270711263020833,
+  "ssimulacra2": 80.706
+ },
+ {
+  "image": "kodim03",
+  "codec": "JPEG",
+  "quality": 90,
+  "bytes": 76639,
+  "pixels": 393216,
+  "bpp": 1.5592244466145833,
+  "ssimulacra2": 84.779
+ },
+ {
+  "image": "kodim03",
+  "codec": "JPEG",
+  "quality": 95,
+  "bytes": 111362,
+  "pixels": 393216,
+  "bpp": 2.2656656901041665,
+  "ssimulacra2": 88.589
+ },
+ {
+  "image": "kodim03",
+  "codec": "WEBP",
+  "quality": 30,
+  "bytes": 11280,
+  "pixels": 393216,
+  "bpp": 0.2294921875,
+  "ssimulacra2": 41.499
+ },
+ {
+  "image": "kodim03",
+  "codec": "WEBP",
+  "quality": 40,
+  "bytes": 13866,
+  "pixels": 393216,
+  "bpp": 0.2821044921875,
+  "ssimulacra2": 48.592
+ },
+ {
+  "image": "kodim03",
+  "codec": "WEBP",
+  "quality": 50,
+  "bytes": 16646,
+  "pixels": 393216,
+  "bpp": 0.3386637369791667,
+  "ssimulacra2": 54.939
+ },
+ {
+  "image": "kodim03",
+  "codec": "WEBP",
+  "quality": 60,
+  "bytes": 19238,
+  "pixels": 393216,
+  "bpp": 0.3913981119791667,
+  "ssimulacra2": 58.643
+ },
+ {
+  "image": "kodim03",
+  "codec": "WEBP",
+  "quality": 65,
+  "bytes": 20610,
+  "pixels": 393216,
+  "bpp": 0.4193115234375,
+  "ssimulacra2": 60.605
+ },
+ {
+  "image": "kodim03",
+  "codec": "WEBP",
+  "quality": 70,
+  "bytes": 22368,
+  "pixels": 393216,
+  "bpp": 0.455078125,
+  "ssimulacra2": 62.566
+ },
+ {
+  "image": "kodim03",
+  "codec": "WEBP",
+  "quality": 75,
+  "bytes": 23870,
+  "pixels": 393216,
+  "bpp": 0.4856363932291667,
+  "ssimulacra2": 65.759
+ },
+ {
+  "image": "kodim03",
+  "codec": "WEBP",
+  "quality": 80,
+  "bytes": 29894,
+  "pixels": 393216,
+  "bpp": 0.6081949869791666,
+  "ssimulacra2": 71.569
+ },
+ {
+  "image": "kodim03",
+  "codec": "WEBP",
+  "quality": 85,
+  "bytes": 39090,
+  "pixels": 393216,
+  "bpp": 0.7952880859375,
+  "ssimulacra2": 77.131
+ },
+ {
+  "image": "kodim03",
+  "codec": "WEBP",
+  "quality": 90,
+  "bytes": 52332,
+  "pixels": 393216,
+  "bpp": 1.064697265625,
+  "ssimulacra2": 81.582
+ },
+ {
+  "image": "kodim03",
+  "codec": "WEBP",
+  "quality": 95,
+  "bytes": 81352,
+  "pixels": 393216,
+  "bpp": 1.6551106770833333,
+  "ssimulacra2": 86.248
+ },
+ {
+  "image": "kodim03",
+  "codec": "AVIF",
+  "quality": 25,
+  "bytes": 5944,
+  "pixels": 393216,
+  "bpp": 0.12093098958333333,
+  "ssimulacra2": 30.806
+ },
+ {
+  "image": "kodim03",
+  "codec": "AVIF",
+  "quality": 30,
+  "bytes": 7607,
+  "pixels": 393216,
+  "bpp": 0.15476481119791666,
+  "ssimulacra2": 39.319
+ },
+ {
+  "image": "kodim03",
+  "codec": "AVIF",
+  "quality": 35,
+  "bytes": 9459,
+  "pixels": 393216,
+  "bpp": 0.19244384765625,
+  "ssimulacra2": 47.258
+ },
+ {
+  "image": "kodim03",
+  "codec": "AVIF",
+  "quality": 40,
+  "bytes": 11661,
+  "pixels": 393216,
+  "bpp": 0.23724365234375,
+  "ssimulacra2": 54.667
+ },
+ {
+  "image": "kodim03",
+  "codec": "AVIF",
+  "quality": 45,
+  "bytes": 15203,
+  "pixels": 393216,
+  "bpp": 0.3093058268229167,
+  "ssimulacra2": 62.577
+ },
+ {
+  "image": "kodim03",
+  "codec": "AVIF",
+  "quality": 50,
+  "bytes": 18434,
+  "pixels": 393216,
+  "bpp": 0.3750406901041667,
+  "ssimulacra2": 68.161
+ },
+ {
+  "image": "kodim03",
+  "codec": "AVIF",
+  "quality": 55,
+  "bytes": 21797,
+  "pixels": 393216,
+  "bpp": 0.4434611002604167,
+  "ssimulacra2": 71.587
+ },
+ {
+  "image": "kodim03",
+  "codec": "AVIF",
+  "quality": 60,
+  "bytes": 26319,
+  "pixels": 393216,
+  "bpp": 0.53546142578125,
+  "ssimulacra2": 75.794
+ },
+ {
+  "image": "kodim03",
+  "codec": "AVIF",
+  "quality": 65,
+  "bytes": 29347,
+  "pixels": 393216,
+  "bpp": 0.5970662434895834,
+  "ssimulacra2": 77.921
+ },
+ {
+  "image": "kodim03",
+  "codec": "AVIF",
+  "quality": 70,
+  "bytes": 35438,
+  "pixels": 393216,
+  "bpp": 0.7209879557291666,
+  "ssimulacra2": 80.891
+ },
+ {
+  "image": "kodim03",
+  "codec": "AVIF",
+  "quality": 80,
+  "bytes": 48600,
+  "pixels": 393216,
+  "bpp": 0.98876953125,
+  "ssimulacra2": 84.663
+ },
+ {
+  "image": "kodim03",
+  "codec": "HEIF",
+  "quality": 25,
+  "bytes": 7808,
+  "pixels": 393216,
+  "bpp": 0.15885416666666666,
+  "ssimulacra2": 39.224
+ },
+ {
+  "image": "kodim03",
+  "codec": "HEIF",
+  "quality": 30,
+  "bytes": 10343,
+  "pixels": 393216,
+  "bpp": 0.21042887369791666,
+  "ssimulacra2": 48.592
+ },
+ {
+  "image": "kodim03",
+  "codec": "HEIF",
+  "quality": 35,
+  "bytes": 15266,
+  "pixels": 393216,
+  "bpp": 0.3105875651041667,
+  "ssimulacra2": 61.46
+ },
+ {
+  "image": "kodim03",
+  "codec": "HEIF",
+  "quality": 40,
+  "bytes": 19485,
+  "pixels": 393216,
+  "bpp": 0.39642333984375,
+  "ssimulacra2": 67.609
+ },
+ {
+  "image": "kodim03",
+  "codec": "HEIF",
+  "quality": 45,
+  "bytes": 27420,
+  "pixels": 393216,
+  "bpp": 0.557861328125,
+  "ssimulacra2": 75.627
+ },
+ {
+  "image": "kodim03",
+  "codec": "HEIF",
+  "quality": 50,
+  "bytes": 33929,
+  "pixels": 393216,
+  "bpp": 0.6902872721354166,
+  "ssimulacra2": 79.878
+ },
+ {
+  "image": "kodim03",
+  "codec": "HEIF",
+  "quality": 55,
+  "bytes": 46583,
+  "pixels": 393216,
+  "bpp": 0.9477335611979166,
+  "ssimulacra2": 84.163
+ },
+ {
+  "image": "kodim03",
+  "codec": "HEIF",
+  "quality": 60,
+  "bytes": 59561,
+  "pixels": 393216,
+  "bpp": 1.2117716471354167,
+  "ssimulacra2": 86.276
+ },
+ {
+  "image": "kodim03",
+  "codec": "HEIF",
+  "quality": 65,
+  "bytes": 86711,
+  "pixels": 393216,
+  "bpp": 1.7641398111979167,
+  "ssimulacra2": 88.505
+ },
+ {
+  "image": "kodim03",
+  "codec": "HEIF",
+  "quality": 70,
+  "bytes": 108825,
+  "pixels": 393216,
+  "bpp": 2.21405029296875,
+  "ssimulacra2": 89.624
+ },
+ {
+  "image": "kodim03",
+  "codec": "HEIF",
+  "quality": 80,
+  "bytes": 172528,
+  "pixels": 393216,
+  "bpp": 3.5100911458333335,
+  "ssimulacra2": 91.204
+ },
+ {
+  "image": "kodim03",
+  "codec": "JXL",
+  "quality": 55,
+  "bytes": 20565,
+  "pixels": 393216,
+  "bpp": 0.41839599609375,
+  "ssimulacra2": 60.746
+ },
+ {
+  "image": "kodim03",
+  "codec": "JXL",
+  "quality": 60,
+  "bytes": 22516,
+  "pixels": 393216,
+  "bpp": 0.4580891927083333,
+  "ssimulacra2": 63.492
+ },
+ {
+  "image": "kodim03",
+  "codec": "JXL",
+  "quality": 65,
+  "bytes": 24786,
+  "pixels": 393216,
+  "bpp": 0.5042724609375,
+  "ssimulacra2": 67.028
+ },
+ {
+  "image": "kodim03",
+  "codec": "JXL",
+  "quality": 70,
+  "bytes": 28398,
+  "pixels": 393216,
+  "bpp": 0.5777587890625,
+  "ssimulacra2": 70.681
+ },
+ {
+  "image": "kodim03",
+  "codec": "JXL",
+  "quality": 75,
+  "bytes": 32613,
+  "pixels": 393216,
+  "bpp": 0.66351318359375,
+  "ssimulacra2": 75.087
+ },
+ {
+  "image": "kodim03",
+  "codec": "JXL",
+  "quality": 80,
+  "bytes": 38912,
+  "pixels": 393216,
+  "bpp": 0.7916666666666666,
+  "ssimulacra2": 78.911
+ },
+ {
+  "image": "kodim03",
+  "codec": "JXL",
+  "quality": 85,
+  "bytes": 47757,
+  "pixels": 393216,
+  "bpp": 0.97161865234375,
+  "ssimulacra2": 83.112
+ },
+ {
+  "image": "kodim03",
+  "codec": "JXL",
+  "quality": 88,
+  "bytes": 55566,
+  "pixels": 393216,
+  "bpp": 1.1304931640625,
+  "ssimulacra2": 85.754
+ },
+ {
+  "image": "kodim03",
+  "codec": "JXL",
+  "quality": 90,
+  "bytes": 62146,
+  "pixels": 393216,
+  "bpp": 1.2643636067708333,
+  "ssimulacra2": 87.402
+ },
+ {
+  "image": "kodim03",
+  "codec": "JXL",
+  "quality": 93,
+  "bytes": 78564,
+  "pixels": 393216,
+  "bpp": 1.598388671875,
+  "ssimulacra2": 89.984
+ },
+ {
+  "image": "kodim03",
+  "codec": "JXL",
+  "quality": 96,
+  "bytes": 114501,
+  "pixels": 393216,
+  "bpp": 2.32952880859375,
+  "ssimulacra2": 92.565
+ },
+ {
+  "image": "kodim04",
+  "codec": "JPEG",
+  "quality": 30,
+  "bytes": 24564,
+  "pixels": 393216,
+  "bpp": 0.499755859375,
+  "ssimulacra2": 40.605
+ },
+ {
+  "image": "kodim04",
+  "codec": "JPEG",
+  "quality": 40,
+  "bytes": 30125,
+  "pixels": 393216,
+  "bpp": 0.6128946940104166,
+  "ssimulacra2": 51.105
+ },
+ {
+  "image": "kodim04",
+  "codec": "JPEG",
+  "quality": 50,
+  "bytes": 35326,
+  "pixels": 393216,
+  "bpp": 0.7187093098958334,
+  "ssimulacra2": 58.012
+ },
+ {
+  "image": "kodim04",
+  "codec": "JPEG",
+  "quality": 60,
+  "bytes": 41135,
+  "pixels": 393216,
+  "bpp": 0.8368937174479166,
+  "ssimulacra2": 62.961
+ },
+ {
+  "image": "kodim04",
+  "codec": "JPEG",
+  "quality": 65,
+  "bytes": 45077,
+  "pixels": 393216,
+  "bpp": 0.9170939127604166,
+  "ssimulacra2": 65.645
+ },
+ {
+  "image": "kodim04",
+  "codec": "JPEG",
+  "quality": 70,
+  "bytes": 49800,
+  "pixels": 393216,
+  "bpp": 1.01318359375,
+  "ssimulacra2": 68.392
+ },
+ {
+  "image": "kodim04",
+  "codec": "JPEG",
+  "quality": 75,
+  "bytes": 55355,
+  "pixels": 393216,
+  "bpp": 1.1262003580729167,
+  "ssimulacra2": 70.825
+ },
+ {
+  "image": "kodim04",
+  "codec": "JPEG",
+  "quality": 80,
+  "bytes": 63963,
+  "pixels": 393216,
+  "bpp": 1.30133056640625,
+  "ssimulacra2": 75.148
+ },
+ {
+  "image": "kodim04",
+  "codec": "JPEG",
+  "quality": 85,
+  "bytes": 76014,
+  "pixels": 393216,
+  "bpp": 1.5465087890625,
+  "ssimulacra2": 78.387
+ },
+ {
+  "image": "kodim04",
+  "codec": "JPEG",
+  "quality": 90,
+  "bytes": 96625,
+  "pixels": 393216,
+  "bpp": 1.9658406575520833,
+  "ssimulacra2": 82.28
+ },
+ {
+  "image": "kodim04",
+  "codec": "JPEG",
+  "quality": 95,
+  "bytes": 139946,
+  "pixels": 393216,
+  "bpp": 2.8472086588541665,
+  "ssimulacra2": 87.477
+ },
+ {
+  "image": "kodim04",
+  "codec": "WEBP",
+  "quality": 30,
+  "bytes": 15880,
+  "pixels": 393216,
+  "bpp": 0.3230794270833333,
+  "ssimulacra2": 33.06
+ },
+ {
+  "image": "kodim04",
+  "codec": "WEBP",
+  "quality": 40,
+  "bytes": 19546,
+  "pixels": 393216,
+  "bpp": 0.3976643880208333,
+  "ssimulacra2": 41.705
+ },
+ {
+  "image": "kodim04",
+  "codec": "WEBP",
+  "quality": 50,
+  "bytes": 23314,
+  "pixels": 393216,
+  "bpp": 0.4743245442708333,
+  "ssimulacra2": 48.158
+ },
+ {
+  "image": "kodim04",
+  "codec": "WEBP",
+  "quality": 60,
+  "bytes": 27334,
+  "pixels": 393216,
+  "bpp": 0.5561116536458334,
+  "ssimulacra2": 54.205
+ },
+ {
+  "image": "kodim04",
+  "codec": "WEBP",
+  "quality": 65,
+  "bytes": 29558,
+  "pixels": 393216,
+  "bpp": 0.6013590494791666,
+  "ssimulacra2": 56.131
+ },
+ {
+  "image": "kodim04",
+  "codec": "WEBP",
+  "quality": 70,
+  "bytes": 31800,
+  "pixels": 393216,
+  "bpp": 0.64697265625,
+  "ssimulacra2": 59.013
+ },
+ {
+  "image": "kodim04",
+  "codec": "WEBP",
+  "quality": 75,
+  "bytes": 34628,
+  "pixels": 393216,
+  "bpp": 0.7045084635416666,
+  "ssimulacra2": 61.492
+ },
+ {
+  "image": "kodim04",
+  "codec": "WEBP",
+  "quality": 80,
+  "bytes": 43872,
+  "pixels": 393216,
+  "bpp": 0.892578125,
+  "ssimulacra2": 67.371
+ },
+ {
+  "image": "kodim04",
+  "codec": "WEBP",
+  "quality": 85,
+  "bytes": 57928,
+  "pixels": 393216,
+  "bpp": 1.1785481770833333,
+  "ssimulacra2": 75.993
+ },
+ {
+  "image": "kodim04",
+  "codec": "WEBP",
+  "quality": 90,
+  "bytes": 81308,
+  "pixels": 393216,
+  "bpp": 1.6542154947916667,
+  "ssimulacra2": 82.949
+ },
+ {
+  "image": "kodim04",
+  "codec": "WEBP",
+  "quality": 95,
+  "bytes": 124706,
+  "pixels": 393216,
+  "bpp": 2.5371500651041665,
+  "ssimulacra2": 87.748
+ },
+ {
+  "image": "kodim04",
+  "codec": "AVIF",
+  "quality": 25,
+  "bytes": 6675,
+  "pixels": 393216,
+  "bpp": 0.13580322265625,
+  "ssimulacra2": 14.88
+ },
+ {
+  "image": "kodim04",
+  "codec": "AVIF",
+  "quality": 30,
+  "bytes": 8813,
+  "pixels": 393216,
+  "bpp": 0.17930094401041666,
+  "ssimulacra2": 27.237
+ },
+ {
+  "image": "kodim04",
+  "codec": "AVIF",
+  "quality": 35,
+  "bytes": 11241,
+  "pixels": 393216,
+  "bpp": 0.22869873046875,
+  "ssimulacra2": 36.484
+ },
+ {
+  "image": "kodim04",
+  "codec": "AVIF",
+  "quality": 40,
+  "bytes": 14637,
+  "pixels": 393216,
+  "bpp": 0.29779052734375,
+  "ssimulacra2": 46.059
+ },
+ {
+  "image": "kodim04",
+  "codec": "AVIF",
+  "quality": 45,
+  "bytes": 19736,
+  "pixels": 393216,
+  "bpp": 0.4015299479166667,
+  "ssimulacra2": 55.852
+ },
+ {
+  "image": "kodim04",
+  "codec": "AVIF",
+  "quality": 50,
+  "bytes": 24728,
+  "pixels": 393216,
+  "bpp": 0.5030924479166666,
+  "ssimulacra2": 62.515
+ },
+ {
+  "image": "kodim04",
+  "codec": "AVIF",
+  "quality": 55,
+  "bytes": 30286,
+  "pixels": 393216,
+  "bpp": 0.6161702473958334,
+  "ssimulacra2": 67.629
+ },
+ {
+  "image": "kodim04",
+  "codec": "AVIF",
+  "quality": 60,
+  "bytes": 37580,
+  "pixels": 393216,
+  "bpp": 0.7645670572916666,
+  "ssimulacra2": 72.576
+ },
+ {
+  "image": "kodim04",
+  "codec": "AVIF",
+  "quality": 65,
+  "bytes": 42412,
+  "pixels": 393216,
+  "bpp": 0.8628743489583334,
+  "ssimulacra2": 75.034
+ },
+ {
+  "image": "kodim04",
+  "codec": "AVIF",
+  "quality": 70,
+  "bytes": 53138,
+  "pixels": 393216,
+  "bpp": 1.0810953776041667,
+  "ssimulacra2": 78.858
+ },
+ {
+  "image": "kodim04",
+  "codec": "AVIF",
+  "quality": 80,
+  "bytes": 75052,
+  "pixels": 393216,
+  "bpp": 1.5269368489583333,
+  "ssimulacra2": 84.141
+ },
+ {
+  "image": "kodim04",
+  "codec": "HEIF",
+  "quality": 25,
+  "bytes": 9212,
+  "pixels": 393216,
+  "bpp": 0.18741861979166666,
+  "ssimulacra2": 26.112
+ },
+ {
+  "image": "kodim04",
+  "codec": "HEIF",
+  "quality": 30,
+  "bytes": 12771,
+  "pixels": 393216,
+  "bpp": 0.25982666015625,
+  "ssimulacra2": 37.105
+ },
+ {
+  "image": "kodim04",
+  "codec": "HEIF",
+  "quality": 35,
+  "bytes": 20414,
+  "pixels": 393216,
+  "bpp": 0.4153238932291667,
+  "ssimulacra2": 52.971
+ },
+ {
+  "image": "kodim04",
+  "codec": "HEIF",
+  "quality": 40,
+  "bytes": 27331,
+  "pixels": 393216,
+  "bpp": 0.5560506184895834,
+  "ssimulacra2": 61.413
+ },
+ {
+  "image": "kodim04",
+  "codec": "HEIF",
+  "quality": 45,
+  "bytes": 40933,
+  "pixels": 393216,
+  "bpp": 0.8327840169270834,
+  "ssimulacra2": 71.64
+ },
+ {
+  "image": "kodim04",
+  "codec": "HEIF",
+  "quality": 50,
+  "bytes": 52784,
+  "pixels": 393216,
+  "bpp": 1.0738932291666667,
+  "ssimulacra2": 76.748
+ },
+ {
+  "image": "kodim04",
+  "codec": "HEIF",
+  "quality": 55,
+  "bytes": 74503,
+  "pixels": 393216,
+  "bpp": 1.5157674153645833,
+  "ssimulacra2": 82.559
+ },
+ {
+  "image": "kodim04",
+  "codec": "HEIF",
+  "quality": 60,
+  "bytes": 91316,
+  "pixels": 393216,
+  "bpp": 1.8578287760416667,
+  "ssimulacra2": 85.48
+ },
+ {
+  "image": "kodim04",
+  "codec": "HEIF",
+  "quality": 65,
+  "bytes": 120205,
+  "pixels": 393216,
+  "bpp": 2.4455769856770835,
+  "ssimulacra2": 88.46
+ },
+ {
+  "image": "kodim04",
+  "codec": "HEIF",
+  "quality": 70,
+  "bytes": 141793,
+  "pixels": 393216,
+  "bpp": 2.8847859700520835,
+  "ssimulacra2": 89.945
+ },
+ {
+  "image": "kodim04",
+  "codec": "HEIF",
+  "quality": 80,
+  "bytes": 204625,
+  "pixels": 393216,
+  "bpp": 4.163106282552083,
+  "ssimulacra2": 91.917
+ },
+ {
+  "image": "kodim04",
+  "codec": "JXL",
+  "quality": 55,
+  "bytes": 23422,
+  "pixels": 393216,
+  "bpp": 0.4765218098958333,
+  "ssimulacra2": 56.83
+ },
+ {
+  "image": "kodim04",
+  "codec": "JXL",
+  "quality": 60,
+  "bytes": 25933,
+  "pixels": 393216,
+  "bpp": 0.5276082356770834,
+  "ssimulacra2": 60.539
+ },
+ {
+  "image": "kodim04",
+  "codec": "JXL",
+  "quality": 65,
+  "bytes": 28967,
+  "pixels": 393216,
+  "bpp": 0.5893351236979166,
+  "ssimulacra2": 64.139
+ },
+ {
+  "image": "kodim04",
+  "codec": "JXL",
+  "quality": 70,
+  "bytes": 33720,
+  "pixels": 393216,
+  "bpp": 0.68603515625,
+  "ssimulacra2": 68.064
+ },
+ {
+  "image": "kodim04",
+  "codec": "JXL",
+  "quality": 75,
+  "bytes": 39240,
+  "pixels": 393216,
+  "bpp": 0.79833984375,
+  "ssimulacra2": 71.984
+ },
+ {
+  "image": "kodim04",
+  "codec": "JXL",
+  "quality": 80,
+  "bytes": 48731,
+  "pixels": 393216,
+  "bpp": 0.9914347330729166,
+  "ssimulacra2": 76.61
+ },
+ {
+  "image": "kodim04",
+  "codec": "JXL",
+  "quality": 85,
+  "bytes": 62451,
+  "pixels": 393216,
+  "bpp": 1.27056884765625,
+  "ssimulacra2": 81.261
+ },
+ {
+  "image": "kodim04",
+  "codec": "JXL",
+  "quality": 88,
+  "bytes": 74765,
+  "pixels": 393216,
+  "bpp": 1.5210978190104167,
+  "ssimulacra2": 84.282
+ },
+ {
+  "image": "kodim04",
+  "codec": "JXL",
+  "quality": 90,
+  "bytes": 85676,
+  "pixels": 393216,
+  "bpp": 1.7430826822916667,
+  "ssimulacra2": 86.314
+ },
+ {
+  "image": "kodim04",
+  "codec": "JXL",
+  "quality": 93,
+  "bytes": 109018,
+  "pixels": 393216,
+  "bpp": 2.2179768880208335,
+  "ssimulacra2": 89.434
+ },
+ {
+  "image": "kodim04",
+  "codec": "JXL",
+  "quality": 96,
+  "bytes": 150357,
+  "pixels": 393216,
+  "bpp": 3.05902099609375,
+  "ssimulacra2": 92.534
+ },
+ {
+  "image": "kodim05",
+  "codec": "JPEG",
+  "quality": 30,
+  "bytes": 48976,
+  "pixels": 393216,
+  "bpp": 0.9964192708333334,
+  "ssimulacra2": 50.762
+ },
+ {
+  "image": "kodim05",
+  "codec": "JPEG",
+  "quality": 40,
+  "bytes": 58319,
+  "pixels": 393216,
+  "bpp": 1.1865030924479167,
+  "ssimulacra2": 59.089
+ },
+ {
+  "image": "kodim05",
+  "codec": "JPEG",
+  "quality": 50,
+  "bytes": 66872,
+  "pixels": 393216,
+  "bpp": 1.3605143229166667,
+  "ssimulacra2": 63.646
+ },
+ {
+  "image": "kodim05",
+  "codec": "JPEG",
+  "quality": 60,
+  "bytes": 75818,
+  "pixels": 393216,
+  "bpp": 1.5425211588541667,
+  "ssimulacra2": 67.62
+ },
+ {
+  "image": "kodim05",
+  "codec": "JPEG",
+  "quality": 65,
+  "bytes": 81666,
+  "pixels": 393216,
+  "bpp": 1.6614990234375,
+  "ssimulacra2": 70.379
+ },
+ {
+  "image": "kodim05",
+  "codec": "JPEG",
+  "quality": 70,
+  "bytes": 88723,
+  "pixels": 393216,
+  "bpp": 1.8050740559895833,
+  "ssimulacra2": 72.732
+ },
+ {
+  "image": "kodim05",
+  "codec": "JPEG",
+  "quality": 75,
+  "bytes": 96713,
+  "pixels": 393216,
+  "bpp": 1.9676310221354167,
+  "ssimulacra2": 75.074
+ },
+ {
+  "image": "kodim05",
+  "codec": "JPEG",
+  "quality": 80,
+  "bytes": 108866,
+  "pixels": 393216,
+  "bpp": 2.2148844401041665,
+  "ssimulacra2": 78.084
+ },
+ {
+  "image": "kodim05",
+  "codec": "JPEG",
+  "quality": 85,
+  "bytes": 125070,
+  "pixels": 393216,
+  "bpp": 2.5445556640625,
+  "ssimulacra2": 81.104
+ },
+ {
+  "image": "kodim05",
+  "codec": "JPEG",
+  "quality": 90,
+  "bytes": 151446,
+  "pixels": 393216,
+  "bpp": 3.0811767578125,
+  "ssimulacra2": 84.753
+ },
+ {
+  "image": "kodim05",
+  "codec": "JPEG",
+  "quality": 95,
+  "bytes": 202151,
+  "pixels": 393216,
+  "bpp": 4.112772623697917,
+  "ssimulacra2": 89.039
+ },
+ {
+  "image": "kodim05",
+  "codec": "WEBP",
+  "quality": 30,
+  "bytes": 41916,
+  "pixels": 393216,
+  "bpp": 0.852783203125,
+  "ssimulacra2": 51.474
+ },
+ {
+  "image": "kodim05",
+  "codec": "WEBP",
+  "quality": 40,
+  "bytes": 49420,
+  "pixels": 393216,
+  "bpp": 1.0054524739583333,
+  "ssimulacra2": 57.989
+ },
+ {
+  "image": "kodim05",
+  "codec": "WEBP",
+  "quality": 50,
+  "bytes": 56940,
+  "pixels": 393216,
+  "bpp": 1.158447265625,
+  "ssimulacra2": 64.225
+ },
+ {
+  "image": "kodim05",
+  "codec": "WEBP",
+  "quality": 60,
+  "bytes": 63674,
+  "pixels": 393216,
+  "bpp": 1.2954508463541667,
+  "ssimulacra2": 67.839
+ },
+ {
+  "image": "kodim05",
+  "codec": "WEBP",
+  "quality": 65,
+  "bytes": 68154,
+  "pixels": 393216,
+  "bpp": 1.3865966796875,
+  "ssimulacra2": 70.051
+ },
+ {
+  "image": "kodim05",
+  "codec": "WEBP",
+  "quality": 70,
+  "bytes": 71764,
+  "pixels": 393216,
+  "bpp": 1.4600423177083333,
+  "ssimulacra2": 71.484
+ },
+ {
+  "image": "kodim05",
+  "codec": "WEBP",
+  "quality": 75,
+  "bytes": 76634,
+  "pixels": 393216,
+  "bpp": 1.5591227213541667,
+  "ssimulacra2": 73.615
+ },
+ {
+  "image": "kodim05",
+  "codec": "WEBP",
+  "quality": 80,
+  "bytes": 91540,
+  "pixels": 393216,
+  "bpp": 1.8623860677083333,
+  "ssimulacra2": 78.022
+ },
+ {
+  "image": "kodim05",
+  "codec": "WEBP",
+  "quality": 85,
+  "bytes": 109584,
+  "pixels": 393216,
+  "bpp": 2.2294921875,
+  "ssimulacra2": 81.443
+ },
+ {
+  "image": "kodim05",
+  "codec": "WEBP",
+  "quality": 90,
+  "bytes": 138504,
+  "pixels": 393216,
+  "bpp": 2.81787109375,
+  "ssimulacra2": 85.726
+ },
+ {
+  "image": "kodim05",
+  "codec": "WEBP",
+  "quality": 95,
+  "bytes": 182686,
+  "pixels": 393216,
+  "bpp": 3.7167561848958335,
+  "ssimulacra2": 89.423
+ },
+ {
+  "image": "kodim05",
+  "codec": "AVIF",
+  "quality": 25,
+  "bytes": 16849,
+  "pixels": 393216,
+  "bpp": 0.3427937825520833,
+  "ssimulacra2": 20.696
+ },
+ {
+  "image": "kodim05",
+  "codec": "AVIF",
+  "quality": 30,
+  "bytes": 21005,
+  "pixels": 393216,
+  "bpp": 0.4273478190104167,
+  "ssimulacra2": 32.313
+ },
+ {
+  "image": "kodim05",
+  "codec": "AVIF",
+  "quality": 35,
+  "bytes": 25304,
+  "pixels": 393216,
+  "bpp": 0.5148111979166666,
+  "ssimulacra2": 40.836
+ },
+ {
+  "image": "kodim05",
+  "codec": "AVIF",
+  "quality": 40,
+  "bytes": 30123,
+  "pixels": 393216,
+  "bpp": 0.61285400390625,
+  "ssimulacra2": 48.867
+ },
+ {
+  "image": "kodim05",
+  "codec": "AVIF",
+  "quality": 45,
+  "bytes": 37309,
+  "pixels": 393216,
+  "bpp": 0.7590535481770834,
+  "ssimulacra2": 57.587
+ },
+ {
+  "image": "kodim05",
+  "codec": "AVIF",
+  "quality": 50,
+  "bytes": 44221,
+  "pixels": 393216,
+  "bpp": 0.8996785481770834,
+  "ssimulacra2": 63.391
+ },
+ {
+  "image": "kodim05",
+  "codec": "AVIF",
+  "quality": 55,
+  "bytes": 52255,
+  "pixels": 393216,
+  "bpp": 1.0631306966145833,
+  "ssimulacra2": 68.593
+ },
+ {
+  "image": "kodim05",
+  "codec": "AVIF",
+  "quality": 60,
+  "bytes": 63329,
+  "pixels": 393216,
+  "bpp": 1.2884318033854167,
+  "ssimulacra2": 73.92
+ },
+ {
+  "image": "kodim05",
+  "codec": "AVIF",
+  "quality": 65,
+  "bytes": 71774,
+  "pixels": 393216,
+  "bpp": 1.4602457682291667,
+  "ssimulacra2": 77.363
+ },
+ {
+  "image": "kodim05",
+  "codec": "AVIF",
+  "quality": 70,
+  "bytes": 86302,
+  "pixels": 393216,
+  "bpp": 1.7558186848958333,
+  "ssimulacra2": 80.802
+ },
+ {
+  "image": "kodim05",
+  "codec": "AVIF",
+  "quality": 80,
+  "bytes": 111417,
+  "pixels": 393216,
+  "bpp": 2.26678466796875,
+  "ssimulacra2": 85.152
+ },
+ {
+  "image": "kodim05",
+  "codec": "HEIF",
+  "quality": 25,
+  "bytes": 22132,
+  "pixels": 393216,
+  "bpp": 0.4502766927083333,
+  "ssimulacra2": 30.79
+ },
+ {
+  "image": "kodim05",
+  "codec": "HEIF",
+  "quality": 30,
+  "bytes": 28572,
+  "pixels": 393216,
+  "bpp": 0.581298828125,
+  "ssimulacra2": 42.569
+ },
+ {
+  "image": "kodim05",
+  "codec": "HEIF",
+  "quality": 35,
+  "bytes": 40193,
+  "pixels": 393216,
+  "bpp": 0.8177286783854166,
+  "ssimulacra2": 55.788
+ },
+ {
+  "image": "kodim05",
+  "codec": "HEIF",
+  "quality": 40,
+  "bytes": 50153,
+  "pixels": 393216,
+  "bpp": 1.0203653971354167,
+  "ssimulacra2": 63.682
+ },
+ {
+  "image": "kodim05",
+  "codec": "HEIF",
+  "quality": 45,
+  "bytes": 66559,
+  "pixels": 393216,
+  "bpp": 1.3541463216145833,
+  "ssimulacra2": 71.724
+ },
+ {
+  "image": "kodim05",
+  "codec": "HEIF",
+  "quality": 50,
+  "bytes": 79827,
+  "pixels": 393216,
+  "bpp": 1.62408447265625,
+  "ssimulacra2": 76.692
+ },
+ {
+  "image": "kodim05",
+  "codec": "HEIF",
+  "quality": 55,
+  "bytes": 101917,
+  "pixels": 393216,
+  "bpp": 2.0735066731770835,
+  "ssimulacra2": 82.094
+ },
+ {
+  "image": "kodim05",
+  "codec": "HEIF",
+  "quality": 60,
+  "bytes": 118129,
+  "pixels": 393216,
+  "bpp": 2.4033406575520835,
+  "ssimulacra2": 84.745
+ },
+ {
+  "image": "kodim05",
+  "codec": "HEIF",
+  "quality": 65,
+  "bytes": 146358,
+  "pixels": 393216,
+  "bpp": 2.9776611328125,
+  "ssimulacra2": 87.799
+ },
+ {
+  "image": "kodim05",
+  "codec": "HEIF",
+  "quality": 70,
+  "bytes": 166838,
+  "pixels": 393216,
+  "bpp": 3.3943277994791665,
+  "ssimulacra2": 89.19
+ },
+ {
+  "image": "kodim05",
+  "codec": "HEIF",
+  "quality": 80,
+  "bytes": 227106,
+  "pixels": 393216,
+  "bpp": 4.6204833984375,
+  "ssimulacra2": 91.251
+ },
+ {
+  "image": "kodim05",
+  "codec": "JXL",
+  "quality": 55,
+  "bytes": 48099,
+  "pixels": 393216,
+  "bpp": 0.97857666015625,
+  "ssimulacra2": 58.268
+ },
+ {
+  "image": "kodim05",
+  "codec": "JXL",
+  "quality": 60,
+  "bytes": 53523,
+  "pixels": 393216,
+  "bpp": 1.08892822265625,
+  "ssimulacra2": 62.094
+ },
+ {
+  "image": "kodim05",
+  "codec": "JXL",
+  "quality": 65,
+  "bytes": 59133,
+  "pixels": 393216,
+  "bpp": 1.20306396484375,
+  "ssimulacra2": 65.867
+ },
+ {
+  "image": "kodim05",
+  "codec": "JXL",
+  "quality": 70,
+  "bytes": 66619,
+  "pixels": 393216,
+  "bpp": 1.3553670247395833,
+  "ssimulacra2": 69.832
+ },
+ {
+  "image": "kodim05",
+  "codec": "JXL",
+  "quality": 75,
+  "bytes": 75531,
+  "pixels": 393216,
+  "bpp": 1.53668212890625,
+  "ssimulacra2": 73.64
+ },
+ {
+  "image": "kodim05",
+  "codec": "JXL",
+  "quality": 80,
+  "bytes": 87808,
+  "pixels": 393216,
+  "bpp": 1.7864583333333333,
+  "ssimulacra2": 77.387
+ },
+ {
+  "image": "kodim05",
+  "codec": "JXL",
+  "quality": 85,
+  "bytes": 105242,
+  "pixels": 393216,
+  "bpp": 2.1411539713541665,
+  "ssimulacra2": 81.672
+ },
+ {
+  "image": "kodim05",
+  "codec": "JXL",
+  "quality": 88,
+  "bytes": 119958,
+  "pixels": 393216,
+  "bpp": 2.4405517578125,
+  "ssimulacra2": 84.24
+ },
+ {
+  "image": "kodim05",
+  "codec": "JXL",
+  "quality": 90,
+  "bytes": 132757,
+  "pixels": 393216,
+  "bpp": 2.7009480794270835,
+  "ssimulacra2": 86.037
+ },
+ {
+  "image": "kodim05",
+  "codec": "JXL",
+  "quality": 93,
+  "bytes": 159413,
+  "pixels": 393216,
+  "bpp": 3.2432657877604165,
+  "ssimulacra2": 88.828
+ },
+ {
+  "image": "kodim05",
+  "codec": "JXL",
+  "quality": 96,
+  "bytes": 204121,
+  "pixels": 393216,
+  "bpp": 4.152852376302083,
+  "ssimulacra2": 91.86
+ },
+ {
+  "image": "kodim07",
+  "codec": "JPEG",
+  "quality": 30,
+  "bytes": 26651,
+  "pixels": 393216,
+  "bpp": 0.5422159830729166,
+  "ssimulacra2": 51.978
+ },
+ {
+  "image": "kodim07",
+  "codec": "JPEG",
+  "quality": 40,
+  "bytes": 31567,
+  "pixels": 393216,
+  "bpp": 0.6422322591145834,
+  "ssimulacra2": 60.089
+ },
+ {
+  "image": "kodim07",
+  "codec": "JPEG",
+  "quality": 50,
+  "bytes": 36251,
+  "pixels": 393216,
+  "bpp": 0.7375284830729166,
+  "ssimulacra2": 65.858
+ },
+ {
+  "image": "kodim07",
+  "codec": "JPEG",
+  "quality": 60,
+  "bytes": 41140,
+  "pixels": 393216,
+  "bpp": 0.8369954427083334,
+  "ssimulacra2": 69.126
+ },
+ {
+  "image": "kodim07",
+  "codec": "JPEG",
+  "quality": 65,
+  "bytes": 44467,
+  "pixels": 393216,
+  "bpp": 0.9046834309895834,
+  "ssimulacra2": 72.142
+ },
+ {
+  "image": "kodim07",
+  "codec": "JPEG",
+  "quality": 70,
+  "bytes": 48564,
+  "pixels": 393216,
+  "bpp": 0.988037109375,
+  "ssimulacra2": 74.322
+ },
+ {
+  "image": "kodim07",
+  "codec": "JPEG",
+  "quality": 75,
+  "bytes": 53151,
+  "pixels": 393216,
+  "bpp": 1.08135986328125,
+  "ssimulacra2": 76.438
+ },
+ {
+  "image": "kodim07",
+  "codec": "JPEG",
+  "quality": 80,
+  "bytes": 60355,
+  "pixels": 393216,
+  "bpp": 1.2279256184895833,
+  "ssimulacra2": 79.144
+ },
+ {
+  "image": "kodim07",
+  "codec": "JPEG",
+  "quality": 85,
+  "bytes": 70281,
+  "pixels": 393216,
+  "bpp": 1.42987060546875,
+  "ssimulacra2": 82.126
+ },
+ {
+  "image": "kodim07",
+  "codec": "JPEG",
+  "quality": 90,
+  "bytes": 87255,
+  "pixels": 393216,
+  "bpp": 1.77520751953125,
+  "ssimulacra2": 85.287
+ },
+ {
+  "image": "kodim07",
+  "codec": "JPEG",
+  "quality": 95,
+  "bytes": 123751,
+  "pixels": 393216,
+  "bpp": 2.5177205403645835,
+  "ssimulacra2": 89.019
+ },
+ {
+  "image": "kodim07",
+  "codec": "WEBP",
+  "quality": 30,
+  "bytes": 17152,
+  "pixels": 393216,
+  "bpp": 0.3489583333333333,
+  "ssimulacra2": 51.74
+ },
+ {
+  "image": "kodim07",
+  "codec": "WEBP",
+  "quality": 40,
+  "bytes": 20036,
+  "pixels": 393216,
+  "bpp": 0.4076334635416667,
+  "ssimulacra2": 58.232
+ },
+ {
+  "image": "kodim07",
+  "codec": "WEBP",
+  "quality": 50,
+  "bytes": 22968,
+  "pixels": 393216,
+  "bpp": 0.46728515625,
+  "ssimulacra2": 62.991
+ },
+ {
+  "image": "kodim07",
+  "codec": "WEBP",
+  "quality": 60,
+  "bytes": 25752,
+  "pixels": 393216,
+  "bpp": 0.52392578125,
+  "ssimulacra2": 66.649
+ },
+ {
+  "image": "kodim07",
+  "codec": "WEBP",
+  "quality": 65,
+  "bytes": 27450,
+  "pixels": 393216,
+  "bpp": 0.5584716796875,
+  "ssimulacra2": 67.871
+ },
+ {
+  "image": "kodim07",
+  "codec": "WEBP",
+  "quality": 70,
+  "bytes": 29000,
+  "pixels": 393216,
+  "bpp": 0.5900065104166666,
+  "ssimulacra2": 70.025
+ },
+ {
+  "image": "kodim07",
+  "codec": "WEBP",
+  "quality": 75,
+  "bytes": 31170,
+  "pixels": 393216,
+  "bpp": 0.6341552734375,
+  "ssimulacra2": 71.761
+ },
+ {
+  "image": "kodim07",
+  "codec": "WEBP",
+  "quality": 80,
+  "bytes": 37284,
+  "pixels": 393216,
+  "bpp": 0.758544921875,
+  "ssimulacra2": 76.41
+ },
+ {
+  "image": "kodim07",
+  "codec": "WEBP",
+  "quality": 85,
+  "bytes": 45948,
+  "pixels": 393216,
+  "bpp": 0.934814453125,
+  "ssimulacra2": 79.93
+ },
+ {
+  "image": "kodim07",
+  "codec": "WEBP",
+  "quality": 90,
+  "bytes": 61108,
+  "pixels": 393216,
+  "bpp": 1.2432454427083333,
+  "ssimulacra2": 84.248
+ },
+ {
+  "image": "kodim07",
+  "codec": "WEBP",
+  "quality": 95,
+  "bytes": 93652,
+  "pixels": 393216,
+  "bpp": 1.9053548177083333,
+  "ssimulacra2": 87.978
+ },
+ {
+  "image": "kodim07",
+  "codec": "AVIF",
+  "quality": 25,
+  "bytes": 8243,
+  "pixels": 393216,
+  "bpp": 0.16770426432291666,
+  "ssimulacra2": 33.848
+ },
+ {
+  "image": "kodim07",
+  "codec": "AVIF",
+  "quality": 30,
+  "bytes": 10072,
+  "pixels": 393216,
+  "bpp": 0.20491536458333334,
+  "ssimulacra2": 42.946
+ },
+ {
+  "image": "kodim07",
+  "codec": "AVIF",
+  "quality": 35,
+  "bytes": 12044,
+  "pixels": 393216,
+  "bpp": 0.24503580729166666,
+  "ssimulacra2": 50.193
+ },
+ {
+  "image": "kodim07",
+  "codec": "AVIF",
+  "quality": 40,
+  "bytes": 14351,
+  "pixels": 393216,
+  "bpp": 0.2919718424479167,
+  "ssimulacra2": 57.622
+ },
+ {
+  "image": "kodim07",
+  "codec": "AVIF",
+  "quality": 45,
+  "bytes": 17543,
+  "pixels": 393216,
+  "bpp": 0.3569132486979167,
+  "ssimulacra2": 64.345
+ },
+ {
+  "image": "kodim07",
+  "codec": "AVIF",
+  "quality": 50,
+  "bytes": 20826,
+  "pixels": 393216,
+  "bpp": 0.4237060546875,
+  "ssimulacra2": 69.117
+ },
+ {
+  "image": "kodim07",
+  "codec": "AVIF",
+  "quality": 55,
+  "bytes": 24335,
+  "pixels": 393216,
+  "bpp": 0.4950968424479167,
+  "ssimulacra2": 72.889
+ },
+ {
+  "image": "kodim07",
+  "codec": "AVIF",
+  "quality": 60,
+  "bytes": 29256,
+  "pixels": 393216,
+  "bpp": 0.59521484375,
+  "ssimulacra2": 77.136
+ },
+ {
+  "image": "kodim07",
+  "codec": "AVIF",
+  "quality": 65,
+  "bytes": 33060,
+  "pixels": 393216,
+  "bpp": 0.672607421875,
+  "ssimulacra2": 79.33
+ },
+ {
+  "image": "kodim07",
+  "codec": "AVIF",
+  "quality": 70,
+  "bytes": 39612,
+  "pixels": 393216,
+  "bpp": 0.805908203125,
+  "ssimulacra2": 82.185
+ },
+ {
+  "image": "kodim07",
+  "codec": "AVIF",
+  "quality": 80,
+  "bytes": 53223,
+  "pixels": 393216,
+  "bpp": 1.08282470703125,
+  "ssimulacra2": 85.555
+ },
+ {
+  "image": "kodim07",
+  "codec": "HEIF",
+  "quality": 25,
+  "bytes": 10543,
+  "pixels": 393216,
+  "bpp": 0.21449788411458334,
+  "ssimulacra2": 43.705
+ },
+ {
+  "image": "kodim07",
+  "codec": "HEIF",
+  "quality": 30,
+  "bytes": 12915,
+  "pixels": 393216,
+  "bpp": 0.26275634765625,
+  "ssimulacra2": 50.837
+ },
+ {
+  "image": "kodim07",
+  "codec": "HEIF",
+  "quality": 35,
+  "bytes": 17839,
+  "pixels": 393216,
+  "bpp": 0.3629353841145833,
+  "ssimulacra2": 62.253
+ },
+ {
+  "image": "kodim07",
+  "codec": "HEIF",
+  "quality": 40,
+  "bytes": 22020,
+  "pixels": 393216,
+  "bpp": 0.447998046875,
+  "ssimulacra2": 68.513
+ },
+ {
+  "image": "kodim07",
+  "codec": "HEIF",
+  "quality": 45,
+  "bytes": 29671,
+  "pixels": 393216,
+  "bpp": 0.6036580403645834,
+  "ssimulacra2": 75.173
+ },
+ {
+  "image": "kodim07",
+  "codec": "HEIF",
+  "quality": 50,
+  "bytes": 35961,
+  "pixels": 393216,
+  "bpp": 0.73162841796875,
+  "ssimulacra2": 79.217
+ },
+ {
+  "image": "kodim07",
+  "codec": "HEIF",
+  "quality": 55,
+  "bytes": 48788,
+  "pixels": 393216,
+  "bpp": 0.9925944010416666,
+  "ssimulacra2": 83.707
+ },
+ {
+  "image": "kodim07",
+  "codec": "HEIF",
+  "quality": 60,
+  "bytes": 60740,
+  "pixels": 393216,
+  "bpp": 1.2357584635416667,
+  "ssimulacra2": 86.115
+ },
+ {
+  "image": "kodim07",
+  "codec": "HEIF",
+  "quality": 65,
+  "bytes": 85186,
+  "pixels": 393216,
+  "bpp": 1.7331136067708333,
+  "ssimulacra2": 88.563
+ },
+ {
+  "image": "kodim07",
+  "codec": "HEIF",
+  "quality": 70,
+  "bytes": 105663,
+  "pixels": 393216,
+  "bpp": 2.14971923828125,
+  "ssimulacra2": 89.936
+ },
+ {
+  "image": "kodim07",
+  "codec": "HEIF",
+  "quality": 80,
+  "bytes": 166958,
+  "pixels": 393216,
+  "bpp": 3.3967692057291665,
+  "ssimulacra2": 92.054
+ },
+ {
+  "image": "kodim07",
+  "codec": "JXL",
+  "quality": 55,
+  "bytes": 26857,
+  "pixels": 393216,
+  "bpp": 0.5464070638020834,
+  "ssimulacra2": 68.042
+ },
+ {
+  "image": "kodim07",
+  "codec": "JXL",
+  "quality": 60,
+  "bytes": 29343,
+  "pixels": 393216,
+  "bpp": 0.59698486328125,
+  "ssimulacra2": 70.67
+ },
+ {
+  "image": "kodim07",
+  "codec": "JXL",
+  "quality": 65,
+  "bytes": 32222,
+  "pixels": 393216,
+  "bpp": 0.6555582682291666,
+  "ssimulacra2": 73.042
+ },
+ {
+  "image": "kodim07",
+  "codec": "JXL",
+  "quality": 70,
+  "bytes": 36152,
+  "pixels": 393216,
+  "bpp": 0.7355143229166666,
+  "ssimulacra2": 75.836
+ },
+ {
+  "image": "kodim07",
+  "codec": "JXL",
+  "quality": 75,
+  "bytes": 40834,
+  "pixels": 393216,
+  "bpp": 0.8307698567708334,
+  "ssimulacra2": 78.562
+ },
+ {
+  "image": "kodim07",
+  "codec": "JXL",
+  "quality": 80,
+  "bytes": 47422,
+  "pixels": 393216,
+  "bpp": 0.9648030598958334,
+  "ssimulacra2": 81.721
+ },
+ {
+  "image": "kodim07",
+  "codec": "JXL",
+  "quality": 85,
+  "bytes": 56325,
+  "pixels": 393216,
+  "bpp": 1.14593505859375,
+  "ssimulacra2": 84.827
+ },
+ {
+  "image": "kodim07",
+  "codec": "JXL",
+  "quality": 88,
+  "bytes": 64713,
+  "pixels": 393216,
+  "bpp": 1.31658935546875,
+  "ssimulacra2": 87.057
+ },
+ {
+  "image": "kodim07",
+  "codec": "JXL",
+  "quality": 90,
+  "bytes": 72244,
+  "pixels": 393216,
+  "bpp": 1.4698079427083333,
+  "ssimulacra2": 88.12
+ },
+ {
+  "image": "kodim07",
+  "codec": "JXL",
+  "quality": 93,
+  "bytes": 90041,
+  "pixels": 393216,
+  "bpp": 1.8318888346354167,
+  "ssimulacra2": 90.255
+ },
+ {
+  "image": "kodim07",
+  "codec": "JXL",
+  "quality": 96,
+  "bytes": 128619,
+  "pixels": 393216,
+  "bpp": 2.61676025390625,
+  "ssimulacra2": 92.613
+ },
+ {
+  "image": "kodim08",
+  "codec": "JPEG",
+  "quality": 30,
+  "bytes": 49126,
+  "pixels": 393216,
+  "bpp": 0.9994710286458334,
+  "ssimulacra2": 50.369
+ },
+ {
+  "image": "kodim08",
+  "codec": "JPEG",
+  "quality": 40,
+  "bytes": 58183,
+  "pixels": 393216,
+  "bpp": 1.1837361653645833,
+  "ssimulacra2": 58.892
+ },
+ {
+  "image": "kodim08",
+  "codec": "JPEG",
+  "quality": 50,
+  "bytes": 66623,
+  "pixels": 393216,
+  "bpp": 1.3554484049479167,
+  "ssimulacra2": 63.712
+ },
+ {
+  "image": "kodim08",
+  "codec": "JPEG",
+  "quality": 60,
+  "bytes": 75739,
+  "pixels": 393216,
+  "bpp": 1.5409138997395833,
+  "ssimulacra2": 67.857
+ },
+ {
+  "image": "kodim08",
+  "codec": "JPEG",
+  "quality": 65,
+  "bytes": 81621,
+  "pixels": 393216,
+  "bpp": 1.66058349609375,
+  "ssimulacra2": 69.921
+ },
+ {
+  "image": "kodim08",
+  "codec": "JPEG",
+  "quality": 70,
+  "bytes": 88966,
+  "pixels": 393216,
+  "bpp": 1.8100179036458333,
+  "ssimulacra2": 72.401
+ },
+ {
+  "image": "kodim08",
+  "codec": "JPEG",
+  "quality": 75,
+  "bytes": 97275,
+  "pixels": 393216,
+  "bpp": 1.97906494140625,
+  "ssimulacra2": 74.701
+ },
+ {
+  "image": "kodim08",
+  "codec": "JPEG",
+  "quality": 80,
+  "bytes": 109546,
+  "pixels": 393216,
+  "bpp": 2.2287190755208335,
+  "ssimulacra2": 77.631
+ },
+ {
+  "image": "kodim08",
+  "codec": "JPEG",
+  "quality": 85,
+  "bytes": 126422,
+  "pixels": 393216,
+  "bpp": 2.5720621744791665,
+  "ssimulacra2": 80.733
+ },
+ {
+  "image": "kodim08",
+  "codec": "JPEG",
+  "quality": 90,
+  "bytes": 153347,
+  "pixels": 393216,
+  "bpp": 3.1198527018229165,
+  "ssimulacra2": 84.418
+ },
+ {
+  "image": "kodim08",
+  "codec": "JPEG",
+  "quality": 95,
+  "bytes": 207424,
+  "pixels": 393216,
+  "bpp": 4.220052083333333,
+  "ssimulacra2": 89.126
+ },
+ {
+  "image": "kodim08",
+  "codec": "WEBP",
+  "quality": 30,
+  "bytes": 45036,
+  "pixels": 393216,
+  "bpp": 0.916259765625,
+  "ssimulacra2": 54.453
+ },
+ {
+  "image": "kodim08",
+  "codec": "WEBP",
+  "quality": 40,
+  "bytes": 52700,
+  "pixels": 393216,
+  "bpp": 1.0721842447916667,
+  "ssimulacra2": 60.553
+ },
+ {
+  "image": "kodim08",
+  "codec": "WEBP",
+  "quality": 50,
+  "bytes": 60364,
+  "pixels": 393216,
+  "bpp": 1.2281087239583333,
+  "ssimulacra2": 65.181
+ },
+ {
+  "image": "kodim08",
+  "codec": "WEBP",
+  "quality": 60,
+  "bytes": 67506,
+  "pixels": 393216,
+  "bpp": 1.3734130859375,
+  "ssimulacra2": 68.872
+ },
+ {
+  "image": "kodim08",
+  "codec": "WEBP",
+  "quality": 65,
+  "bytes": 71018,
+  "pixels": 393216,
+  "bpp": 1.4448649088541667,
+  "ssimulacra2": 70.08
+ },
+ {
+  "image": "kodim08",
+  "codec": "WEBP",
+  "quality": 70,
+  "bytes": 75730,
+  "pixels": 393216,
+  "bpp": 1.5407307942708333,
+  "ssimulacra2": 72.615
+ },
+ {
+  "image": "kodim08",
+  "codec": "WEBP",
+  "quality": 75,
+  "bytes": 80030,
+  "pixels": 393216,
+  "bpp": 1.6282145182291667,
+  "ssimulacra2": 74.077
+ },
+ {
+  "image": "kodim08",
+  "codec": "WEBP",
+  "quality": 80,
+  "bytes": 94634,
+  "pixels": 393216,
+  "bpp": 1.9253336588541667,
+  "ssimulacra2": 77.678
+ },
+ {
+  "image": "kodim08",
+  "codec": "WEBP",
+  "quality": 85,
+  "bytes": 117456,
+  "pixels": 393216,
+  "bpp": 2.3896484375,
+  "ssimulacra2": 82.218
+ },
+ {
+  "image": "kodim08",
+  "codec": "WEBP",
+  "quality": 90,
+  "bytes": 146266,
+  "pixels": 393216,
+  "bpp": 2.9757893880208335,
+  "ssimulacra2": 86.07
+ },
+ {
+  "image": "kodim08",
+  "codec": "WEBP",
+  "quality": 95,
+  "bytes": 199592,
+  "pixels": 393216,
+  "bpp": 4.060709635416667,
+  "ssimulacra2": 90.053
+ },
+ {
+  "image": "kodim08",
+  "codec": "AVIF",
+  "quality": 25,
+  "bytes": 15444,
+  "pixels": 393216,
+  "bpp": 0.314208984375,
+  "ssimulacra2": 23.966
+ },
+ {
+  "image": "kodim08",
+  "codec": "AVIF",
+  "quality": 30,
+  "bytes": 19194,
+  "pixels": 393216,
+  "bpp": 0.3905029296875,
+  "ssimulacra2": 34.381
+ },
+ {
+  "image": "kodim08",
+  "codec": "AVIF",
+  "quality": 35,
+  "bytes": 23277,
+  "pixels": 393216,
+  "bpp": 0.47357177734375,
+  "ssimulacra2": 42.741
+ },
+ {
+  "image": "kodim08",
+  "codec": "AVIF",
+  "quality": 40,
+  "bytes": 27887,
+  "pixels": 393216,
+  "bpp": 0.5673624674479166,
+  "ssimulacra2": 50.184
+ },
+ {
+  "image": "kodim08",
+  "codec": "AVIF",
+  "quality": 45,
+  "bytes": 34957,
+  "pixels": 393216,
+  "bpp": 0.7112019856770834,
+  "ssimulacra2": 57.709
+ },
+ {
+  "image": "kodim08",
+  "codec": "AVIF",
+  "quality": 50,
+  "bytes": 42214,
+  "pixels": 393216,
+  "bpp": 0.8588460286458334,
+  "ssimulacra2": 63.678
+ },
+ {
+  "image": "kodim08",
+  "codec": "AVIF",
+  "quality": 55,
+  "bytes": 49785,
+  "pixels": 393216,
+  "bpp": 1.01287841796875,
+  "ssimulacra2": 67.9
+ },
+ {
+  "image": "kodim08",
+  "codec": "AVIF",
+  "quality": 60,
+  "bytes": 61195,
+  "pixels": 393216,
+  "bpp": 1.2450154622395833,
+  "ssimulacra2": 73.115
+ },
+ {
+  "image": "kodim08",
+  "codec": "AVIF",
+  "quality": 65,
+  "bytes": 69562,
+  "pixels": 393216,
+  "bpp": 1.4152425130208333,
+  "ssimulacra2": 76.128
+ },
+ {
+  "image": "kodim08",
+  "codec": "AVIF",
+  "quality": 70,
+  "bytes": 85450,
+  "pixels": 393216,
+  "bpp": 1.7384847005208333,
+  "ssimulacra2": 79.862
+ },
+ {
+  "image": "kodim08",
+  "codec": "AVIF",
+  "quality": 80,
+  "bytes": 111900,
+  "pixels": 393216,
+  "bpp": 2.276611328125,
+  "ssimulacra2": 84.658
+ },
+ {
+  "image": "kodim08",
+  "codec": "HEIF",
+  "quality": 25,
+  "bytes": 21222,
+  "pixels": 393216,
+  "bpp": 0.4317626953125,
+  "ssimulacra2": 32.824
+ },
+ {
+  "image": "kodim08",
+  "codec": "HEIF",
+  "quality": 30,
+  "bytes": 27152,
+  "pixels": 393216,
+  "bpp": 0.5524088541666666,
+  "ssimulacra2": 42.092
+ },
+ {
+  "image": "kodim08",
+  "codec": "HEIF",
+  "quality": 35,
+  "bytes": 38669,
+  "pixels": 393216,
+  "bpp": 0.7867228190104166,
+  "ssimulacra2": 54.985
+ },
+ {
+  "image": "kodim08",
+  "codec": "HEIF",
+  "quality": 40,
+  "bytes": 48270,
+  "pixels": 393216,
+  "bpp": 0.9820556640625,
+  "ssimulacra2": 62.428
+ },
+ {
+  "image": "kodim08",
+  "codec": "HEIF",
+  "quality": 45,
+  "bytes": 65976,
+  "pixels": 393216,
+  "bpp": 1.34228515625,
+  "ssimulacra2": 71.016
+ },
+ {
+  "image": "kodim08",
+  "codec": "HEIF",
+  "quality": 50,
+  "bytes": 79627,
+  "pixels": 393216,
+  "bpp": 1.6200154622395833,
+  "ssimulacra2": 75.471
+ },
+ {
+  "image": "kodim08",
+  "codec": "HEIF",
+  "quality": 55,
+  "bytes": 103469,
+  "pixels": 393216,
+  "bpp": 2.1050821940104165,
+  "ssimulacra2": 81.406
+ },
+ {
+  "image": "kodim08",
+  "codec": "HEIF",
+  "quality": 60,
+  "bytes": 121571,
+  "pixels": 393216,
+  "bpp": 2.4733683268229165,
+  "ssimulacra2": 84.428
+ },
+ {
+  "image": "kodim08",
+  "codec": "HEIF",
+  "quality": 65,
+  "bytes": 152180,
+  "pixels": 393216,
+  "bpp": 3.0961100260416665,
+  "ssimulacra2": 87.959
+ },
+ {
+  "image": "kodim08",
+  "codec": "HEIF",
+  "quality": 70,
+  "bytes": 173943,
+  "pixels": 393216,
+  "bpp": 3.53887939453125,
+  "ssimulacra2": 89.872
+ },
+ {
+  "image": "kodim08",
+  "codec": "HEIF",
+  "quality": 80,
+  "bytes": 233071,
+  "pixels": 393216,
+  "bpp": 4.741841634114583,
+  "ssimulacra2": 92.779
+ },
+ {
+  "image": "kodim08",
+  "codec": "JXL",
+  "quality": 55,
+  "bytes": 46301,
+  "pixels": 393216,
+  "bpp": 0.9419962565104166,
+  "ssimulacra2": 59.428
+ },
+ {
+  "image": "kodim08",
+  "codec": "JXL",
+  "quality": 60,
+  "bytes": 51087,
+  "pixels": 393216,
+  "bpp": 1.03936767578125,
+  "ssimulacra2": 62.535
+ },
+ {
+  "image": "kodim08",
+  "codec": "JXL",
+  "quality": 65,
+  "bytes": 56352,
+  "pixels": 393216,
+  "bpp": 1.146484375,
+  "ssimulacra2": 65.669
+ },
+ {
+  "image": "kodim08",
+  "codec": "JXL",
+  "quality": 70,
+  "bytes": 63899,
+  "pixels": 393216,
+  "bpp": 1.3000284830729167,
+  "ssimulacra2": 69.094
+ },
+ {
+  "image": "kodim08",
+  "codec": "JXL",
+  "quality": 75,
+  "bytes": 72830,
+  "pixels": 393216,
+  "bpp": 1.4817301432291667,
+  "ssimulacra2": 72.383
+ },
+ {
+  "image": "kodim08",
+  "codec": "JXL",
+  "quality": 80,
+  "bytes": 85359,
+  "pixels": 393216,
+  "bpp": 1.73663330078125,
+  "ssimulacra2": 76.393
+ },
+ {
+  "image": "kodim08",
+  "codec": "JXL",
+  "quality": 85,
+  "bytes": 103847,
+  "pixels": 393216,
+  "bpp": 2.1127726236979165,
+  "ssimulacra2": 80.712
+ },
+ {
+  "image": "kodim08",
+  "codec": "JXL",
+  "quality": 88,
+  "bytes": 120165,
+  "pixels": 393216,
+  "bpp": 2.44476318359375,
+  "ssimulacra2": 83.602
+ },
+ {
+  "image": "kodim08",
+  "codec": "JXL",
+  "quality": 90,
+  "bytes": 133999,
+  "pixels": 393216,
+  "bpp": 2.7262166341145835,
+  "ssimulacra2": 85.361
+ },
+ {
+  "image": "kodim08",
+  "codec": "JXL",
+  "quality": 93,
+  "bytes": 163018,
+  "pixels": 393216,
+  "bpp": 3.3166097005208335,
+  "ssimulacra2": 88.479
+ },
+ {
+  "image": "kodim08",
+  "codec": "JXL",
+  "quality": 96,
+  "bytes": 205338,
+  "pixels": 393216,
+  "bpp": 4.1776123046875,
+  "ssimulacra2": 91.591
+ },
+ {
+  "image": "kodim13",
+  "codec": "JPEG",
+  "quality": 30,
+  "bytes": 50986,
+  "pixels": 393216,
+  "bpp": 1.0373128255208333,
+  "ssimulacra2": 46.158
+ },
+ {
+  "image": "kodim13",
+  "codec": "JPEG",
+  "quality": 40,
+  "bytes": 61576,
+  "pixels": 393216,
+  "bpp": 1.2527669270833333,
+  "ssimulacra2": 54.379
+ },
+ {
+  "image": "kodim13",
+  "codec": "JPEG",
+  "quality": 50,
+  "bytes": 71661,
+  "pixels": 393216,
+  "bpp": 1.45794677734375,
+  "ssimulacra2": 60.197
+ },
+ {
+  "image": "kodim13",
+  "codec": "JPEG",
+  "quality": 60,
+  "bytes": 82332,
+  "pixels": 393216,
+  "bpp": 1.675048828125,
+  "ssimulacra2": 64.692
+ },
+ {
+  "image": "kodim13",
+  "codec": "JPEG",
+  "quality": 65,
+  "bytes": 89227,
+  "pixels": 393216,
+  "bpp": 1.8153279622395833,
+  "ssimulacra2": 67.078
+ },
+ {
+  "image": "kodim13",
+  "codec": "JPEG",
+  "quality": 70,
+  "bytes": 97851,
+  "pixels": 393216,
+  "bpp": 1.99078369140625,
+  "ssimulacra2": 69.829
+ },
+ {
+  "image": "kodim13",
+  "codec": "JPEG",
+  "quality": 75,
+  "bytes": 107634,
+  "pixels": 393216,
+  "bpp": 2.1898193359375,
+  "ssimulacra2": 72.438
+ },
+ {
+  "image": "kodim13",
+  "codec": "JPEG",
+  "quality": 80,
+  "bytes": 122258,
+  "pixels": 393216,
+  "bpp": 2.4873453776041665,
+  "ssimulacra2": 76.177
+ },
+ {
+  "image": "kodim13",
+  "codec": "JPEG",
+  "quality": 85,
+  "bytes": 141919,
+  "pixels": 393216,
+  "bpp": 2.8873494466145835,
+  "ssimulacra2": 79.871
+ },
+ {
+  "image": "kodim13",
+  "codec": "JPEG",
+  "quality": 90,
+  "bytes": 172411,
+  "pixels": 393216,
+  "bpp": 3.5077107747395835,
+  "ssimulacra2": 84.199
+ },
+ {
+  "image": "kodim13",
+  "codec": "JPEG",
+  "quality": 95,
+  "bytes": 229674,
+  "pixels": 393216,
+  "bpp": 4.6727294921875,
+  "ssimulacra2": 89.316
+ },
+ {
+  "image": "kodim13",
+  "codec": "WEBP",
+  "quality": 30,
+  "bytes": 55794,
+  "pixels": 393216,
+  "bpp": 1.1351318359375,
+  "ssimulacra2": 49.77
+ },
+ {
+  "image": "kodim13",
+  "codec": "WEBP",
+  "quality": 40,
+  "bytes": 67574,
+  "pixels": 393216,
+  "bpp": 1.3747965494791667,
+  "ssimulacra2": 57.931
+ },
+ {
+  "image": "kodim13",
+  "codec": "WEBP",
+  "quality": 50,
+  "bytes": 76950,
+  "pixels": 393216,
+  "bpp": 1.5655517578125,
+  "ssimulacra2": 62.76
+ },
+ {
+  "image": "kodim13",
+  "codec": "WEBP",
+  "quality": 60,
+  "bytes": 86832,
+  "pixels": 393216,
+  "bpp": 1.7666015625,
+  "ssimulacra2": 67.445
+ },
+ {
+  "image": "kodim13",
+  "codec": "WEBP",
+  "quality": 65,
+  "bytes": 91768,
+  "pixels": 393216,
+  "bpp": 1.8670247395833333,
+  "ssimulacra2": 68.987
+ },
+ {
+  "image": "kodim13",
+  "codec": "WEBP",
+  "quality": 70,
+  "bytes": 98304,
+  "pixels": 393216,
+  "bpp": 2.0,
+  "ssimulacra2": 71.488
+ },
+ {
+  "image": "kodim13",
+  "codec": "WEBP",
+  "quality": 75,
+  "bytes": 102982,
+  "pixels": 393216,
+  "bpp": 2.0951741536458335,
+  "ssimulacra2": 72.987
+ },
+ {
+  "image": "kodim13",
+  "codec": "WEBP",
+  "quality": 80,
+  "bytes": 122250,
+  "pixels": 393216,
+  "bpp": 2.4871826171875,
+  "ssimulacra2": 77.99
+ },
+ {
+  "image": "kodim13",
+  "codec": "WEBP",
+  "quality": 85,
+  "bytes": 144732,
+  "pixels": 393216,
+  "bpp": 2.944580078125,
+  "ssimulacra2": 82.103
+ },
+ {
+  "image": "kodim13",
+  "codec": "WEBP",
+  "quality": 90,
+  "bytes": 177910,
+  "pixels": 393216,
+  "bpp": 3.6195882161458335,
+  "ssimulacra2": 86.931
+ },
+ {
+  "image": "kodim13",
+  "codec": "WEBP",
+  "quality": 95,
+  "bytes": 226694,
+  "pixels": 393216,
+  "bpp": 4.612101236979167,
+  "ssimulacra2": 90.47
+ },
+ {
+  "image": "kodim13",
+  "codec": "AVIF",
+  "quality": 25,
+  "bytes": 16511,
+  "pixels": 393216,
+  "bpp": 0.3359171549479167,
+  "ssimulacra2": 4.551
+ },
+ {
+  "image": "kodim13",
+  "codec": "AVIF",
+  "quality": 30,
+  "bytes": 22693,
+  "pixels": 393216,
+  "bpp": 0.4616902669270833,
+  "ssimulacra2": 19.009
+ },
+ {
+  "image": "kodim13",
+  "codec": "AVIF",
+  "quality": 35,
+  "bytes": 29008,
+  "pixels": 393216,
+  "bpp": 0.5901692708333334,
+  "ssimulacra2": 30.513
+ },
+ {
+  "image": "kodim13",
+  "codec": "AVIF",
+  "quality": 40,
+  "bytes": 36056,
+  "pixels": 393216,
+  "bpp": 0.7335611979166666,
+  "ssimulacra2": 40.151
+ },
+ {
+  "image": "kodim13",
+  "codec": "AVIF",
+  "quality": 45,
+  "bytes": 47415,
+  "pixels": 393216,
+  "bpp": 0.96466064453125,
+  "ssimulacra2": 51.434
+ },
+ {
+  "image": "kodim13",
+  "codec": "AVIF",
+  "quality": 50,
+  "bytes": 57567,
+  "pixels": 393216,
+  "bpp": 1.17120361328125,
+  "ssimulacra2": 59.157
+ },
+ {
+  "image": "kodim13",
+  "codec": "AVIF",
+  "quality": 55,
+  "bytes": 69083,
+  "pixels": 393216,
+  "bpp": 1.4054972330729167,
+  "ssimulacra2": 65.324
+ },
+ {
+  "image": "kodim13",
+  "codec": "AVIF",
+  "quality": 60,
+  "bytes": 86344,
+  "pixels": 393216,
+  "bpp": 1.7566731770833333,
+  "ssimulacra2": 72.195
+ },
+ {
+  "image": "kodim13",
+  "codec": "AVIF",
+  "quality": 65,
+  "bytes": 97524,
+  "pixels": 393216,
+  "bpp": 1.984130859375,
+  "ssimulacra2": 75.832
+ },
+ {
+  "image": "kodim13",
+  "codec": "AVIF",
+  "quality": 70,
+  "bytes": 118055,
+  "pixels": 393216,
+  "bpp": 2.4018351236979165,
+  "ssimulacra2": 80.228
+ },
+ {
+  "image": "kodim13",
+  "codec": "AVIF",
+  "quality": 80,
+  "bytes": 148964,
+  "pixels": 393216,
+  "bpp": 3.0306803385416665,
+  "ssimulacra2": 85.526
+ },
+ {
+  "image": "kodim13",
+  "codec": "HEIF",
+  "quality": 25,
+  "bytes": 30293,
+  "pixels": 393216,
+  "bpp": 0.6163126627604166,
+  "ssimulacra2": 24.595
+ },
+ {
+  "image": "kodim13",
+  "codec": "HEIF",
+  "quality": 30,
+  "bytes": 41329,
+  "pixels": 393216,
+  "bpp": 0.8408406575520834,
+  "ssimulacra2": 37.67
+ },
+ {
+  "image": "kodim13",
+  "codec": "HEIF",
+  "quality": 35,
+  "bytes": 61531,
+  "pixels": 393216,
+  "bpp": 1.2518513997395833,
+  "ssimulacra2": 52.853
+ },
+ {
+  "image": "kodim13",
+  "codec": "HEIF",
+  "quality": 40,
+  "bytes": 77314,
+  "pixels": 393216,
+  "bpp": 1.5729573567708333,
+  "ssimulacra2": 62.086
+ },
+ {
+  "image": "kodim13",
+  "codec": "HEIF",
+  "quality": 45,
+  "bytes": 102294,
+  "pixels": 393216,
+  "bpp": 2.0811767578125,
+  "ssimulacra2": 71.814
+ },
+ {
+  "image": "kodim13",
+  "codec": "HEIF",
+  "quality": 50,
+  "bytes": 120388,
+  "pixels": 393216,
+  "bpp": 2.4493001302083335,
+  "ssimulacra2": 77.154
+ },
+ {
+  "image": "kodim13",
+  "codec": "HEIF",
+  "quality": 55,
+  "bytes": 148184,
+  "pixels": 393216,
+  "bpp": 3.0148111979166665,
+  "ssimulacra2": 83.242
+ },
+ {
+  "image": "kodim13",
+  "codec": "HEIF",
+  "quality": 60,
+  "bytes": 167655,
+  "pixels": 393216,
+  "bpp": 3.41094970703125,
+  "ssimulacra2": 85.773
+ },
+ {
+  "image": "kodim13",
+  "codec": "HEIF",
+  "quality": 65,
+  "bytes": 198734,
+  "pixels": 393216,
+  "bpp": 4.043253580729167,
+  "ssimulacra2": 89.061
+ },
+ {
+  "image": "kodim13",
+  "codec": "HEIF",
+  "quality": 70,
+  "bytes": 220517,
+  "pixels": 393216,
+  "bpp": 4.486429850260417,
+  "ssimulacra2": 90.568
+ },
+ {
+  "image": "kodim13",
+  "codec": "HEIF",
+  "quality": 80,
+  "bytes": 282995,
+  "pixels": 393216,
+  "bpp": 5.757548014322917,
+  "ssimulacra2": 92.938
+ },
+ {
+  "image": "kodim13",
+  "codec": "JXL",
+  "quality": 55,
+  "bytes": 48480,
+  "pixels": 393216,
+  "bpp": 0.986328125,
+  "ssimulacra2": 48.63
+ },
+ {
+  "image": "kodim13",
+  "codec": "JXL",
+  "quality": 60,
+  "bytes": 54994,
+  "pixels": 393216,
+  "bpp": 1.1188557942708333,
+  "ssimulacra2": 53.823
+ },
+ {
+  "image": "kodim13",
+  "codec": "JXL",
+  "quality": 65,
+  "bytes": 61350,
+  "pixels": 393216,
+  "bpp": 1.2481689453125,
+  "ssimulacra2": 57.842
+ },
+ {
+  "image": "kodim13",
+  "codec": "JXL",
+  "quality": 70,
+  "bytes": 70134,
+  "pixels": 393216,
+  "bpp": 1.4268798828125,
+  "ssimulacra2": 62.498
+ },
+ {
+  "image": "kodim13",
+  "codec": "JXL",
+  "quality": 75,
+  "bytes": 80959,
+  "pixels": 393216,
+  "bpp": 1.6471150716145833,
+  "ssimulacra2": 67.208
+ },
+ {
+  "image": "kodim13",
+  "codec": "JXL",
+  "quality": 80,
+  "bytes": 96973,
+  "pixels": 393216,
+  "bpp": 1.9729207356770833,
+  "ssimulacra2": 73.121
+ },
+ {
+  "image": "kodim13",
+  "codec": "JXL",
+  "quality": 85,
+  "bytes": 118133,
+  "pixels": 393216,
+  "bpp": 2.4034220377604165,
+  "ssimulacra2": 78.458
+ },
+ {
+  "image": "kodim13",
+  "codec": "JXL",
+  "quality": 88,
+  "bytes": 134534,
+  "pixels": 393216,
+  "bpp": 2.7371012369791665,
+  "ssimulacra2": 82.1
+ },
+ {
+  "image": "kodim13",
+  "codec": "JXL",
+  "quality": 90,
+  "bytes": 148330,
+  "pixels": 393216,
+  "bpp": 3.0177815755208335,
+  "ssimulacra2": 84.108
+ },
+ {
+  "image": "kodim13",
+  "codec": "JXL",
+  "quality": 93,
+  "bytes": 176042,
+  "pixels": 393216,
+  "bpp": 3.5815836588541665,
+  "ssimulacra2": 87.488
+ },
+ {
+  "image": "kodim13",
+  "codec": "JXL",
+  "quality": 96,
+  "bytes": 215638,
+  "pixels": 393216,
+  "bpp": 4.387166341145833,
+  "ssimulacra2": 90.737
+ },
+ {
+  "image": "kodim14",
+  "codec": "JPEG",
+  "quality": 30,
+  "bytes": 38239,
+  "pixels": 393216,
+  "bpp": 0.7779744466145834,
+  "ssimulacra2": 46.38
+ },
+ {
+  "image": "kodim14",
+  "codec": "JPEG",
+  "quality": 40,
+  "bytes": 46466,
+  "pixels": 393216,
+  "bpp": 0.9453531901041666,
+  "ssimulacra2": 56.008
+ },
+ {
+  "image": "kodim14",
+  "codec": "JPEG",
+  "quality": 50,
+  "bytes": 54020,
+  "pixels": 393216,
+  "bpp": 1.0990397135416667,
+  "ssimulacra2": 61.663
+ },
+ {
+  "image": "kodim14",
+  "codec": "JPEG",
+  "quality": 60,
+  "bytes": 62102,
+  "pixels": 393216,
+  "bpp": 1.2634684244791667,
+  "ssimulacra2": 66.24
+ },
+ {
+  "image": "kodim14",
+  "codec": "JPEG",
+  "quality": 65,
+  "bytes": 67352,
+  "pixels": 393216,
+  "bpp": 1.3702799479166667,
+  "ssimulacra2": 68.649
+ },
+ {
+  "image": "kodim14",
+  "codec": "JPEG",
+  "quality": 70,
+  "bytes": 73939,
+  "pixels": 393216,
+  "bpp": 1.5042928059895833,
+  "ssimulacra2": 71.482
+ },
+ {
+  "image": "kodim14",
+  "codec": "JPEG",
+  "quality": 75,
+  "bytes": 81306,
+  "pixels": 393216,
+  "bpp": 1.6541748046875,
+  "ssimulacra2": 73.416
+ },
+ {
+  "image": "kodim14",
+  "codec": "JPEG",
+  "quality": 80,
+  "bytes": 92467,
+  "pixels": 393216,
+  "bpp": 1.8812459309895833,
+  "ssimulacra2": 76.696
+ },
+ {
+  "image": "kodim14",
+  "codec": "JPEG",
+  "quality": 85,
+  "bytes": 108036,
+  "pixels": 393216,
+  "bpp": 2.197998046875,
+  "ssimulacra2": 79.835
+ },
+ {
+  "image": "kodim14",
+  "codec": "JPEG",
+  "quality": 90,
+  "bytes": 133692,
+  "pixels": 393216,
+  "bpp": 2.719970703125,
+  "ssimulacra2": 83.733
+ },
+ {
+  "image": "kodim14",
+  "codec": "JPEG",
+  "quality": 95,
+  "bytes": 184571,
+  "pixels": 393216,
+  "bpp": 3.7551066080729165,
+  "ssimulacra2": 88.275
+ },
+ {
+  "image": "kodim14",
+  "codec": "WEBP",
+  "quality": 30,
+  "bytes": 31490,
+  "pixels": 393216,
+  "bpp": 0.6406656901041666,
+  "ssimulacra2": 46.579
+ },
+ {
+  "image": "kodim14",
+  "codec": "WEBP",
+  "quality": 40,
+  "bytes": 38094,
+  "pixels": 393216,
+  "bpp": 0.7750244140625,
+  "ssimulacra2": 53.724
+ },
+ {
+  "image": "kodim14",
+  "codec": "WEBP",
+  "quality": 50,
+  "bytes": 44520,
+  "pixels": 393216,
+  "bpp": 0.90576171875,
+  "ssimulacra2": 58.382
+ },
+ {
+  "image": "kodim14",
+  "codec": "WEBP",
+  "quality": 60,
+  "bytes": 50904,
+  "pixels": 393216,
+  "bpp": 1.03564453125,
+  "ssimulacra2": 64.767
+ },
+ {
+  "image": "kodim14",
+  "codec": "WEBP",
+  "quality": 65,
+  "bytes": 54730,
+  "pixels": 393216,
+  "bpp": 1.1134847005208333,
+  "ssimulacra2": 67.378
+ },
+ {
+  "image": "kodim14",
+  "codec": "WEBP",
+  "quality": 70,
+  "bytes": 58598,
+  "pixels": 393216,
+  "bpp": 1.1921793619791667,
+  "ssimulacra2": 69.235
+ },
+ {
+  "image": "kodim14",
+  "codec": "WEBP",
+  "quality": 75,
+  "bytes": 62250,
+  "pixels": 393216,
+  "bpp": 1.2664794921875,
+  "ssimulacra2": 70.36
+ },
+ {
+  "image": "kodim14",
+  "codec": "WEBP",
+  "quality": 80,
+  "bytes": 77106,
+  "pixels": 393216,
+  "bpp": 1.5687255859375,
+  "ssimulacra2": 76.305
+ },
+ {
+  "image": "kodim14",
+  "codec": "WEBP",
+  "quality": 85,
+  "bytes": 96354,
+  "pixels": 393216,
+  "bpp": 1.9603271484375,
+  "ssimulacra2": 80.488
+ },
+ {
+  "image": "kodim14",
+  "codec": "WEBP",
+  "quality": 90,
+  "bytes": 123600,
+  "pixels": 393216,
+  "bpp": 2.5146484375,
+  "ssimulacra2": 85.029
+ },
+ {
+  "image": "kodim14",
+  "codec": "WEBP",
+  "quality": 95,
+  "bytes": 165646,
+  "pixels": 393216,
+  "bpp": 3.3700764973958335,
+  "ssimulacra2": 88.358
+ },
+ {
+  "image": "kodim14",
+  "codec": "AVIF",
+  "quality": 25,
+  "bytes": 12694,
+  "pixels": 393216,
+  "bpp": 0.2582600911458333,
+  "ssimulacra2": 17.816
+ },
+ {
+  "image": "kodim14",
+  "codec": "AVIF",
+  "quality": 30,
+  "bytes": 16325,
+  "pixels": 393216,
+  "bpp": 0.3321329752604167,
+  "ssimulacra2": 28.829
+ },
+ {
+  "image": "kodim14",
+  "codec": "AVIF",
+  "quality": 35,
+  "bytes": 20702,
+  "pixels": 393216,
+  "bpp": 0.4211832682291667,
+  "ssimulacra2": 39.492
+ },
+ {
+  "image": "kodim14",
+  "codec": "AVIF",
+  "quality": 40,
+  "bytes": 25564,
+  "pixels": 393216,
+  "bpp": 0.5201009114583334,
+  "ssimulacra2": 47.892
+ },
+ {
+  "image": "kodim14",
+  "codec": "AVIF",
+  "quality": 45,
+  "bytes": 32741,
+  "pixels": 393216,
+  "bpp": 0.6661173502604166,
+  "ssimulacra2": 56.451
+ },
+ {
+  "image": "kodim14",
+  "codec": "AVIF",
+  "quality": 50,
+  "bytes": 40226,
+  "pixels": 393216,
+  "bpp": 0.8184000651041666,
+  "ssimulacra2": 63.225
+ },
+ {
+  "image": "kodim14",
+  "codec": "AVIF",
+  "quality": 55,
+  "bytes": 48295,
+  "pixels": 393216,
+  "bpp": 0.9825642903645834,
+  "ssimulacra2": 68.18
+ },
+ {
+  "image": "kodim14",
+  "codec": "AVIF",
+  "quality": 60,
+  "bytes": 60419,
+  "pixels": 393216,
+  "bpp": 1.2292277018229167,
+  "ssimulacra2": 73.695
+ },
+ {
+  "image": "kodim14",
+  "codec": "AVIF",
+  "quality": 65,
+  "bytes": 68368,
+  "pixels": 393216,
+  "bpp": 1.3909505208333333,
+  "ssimulacra2": 76.655
+ },
+ {
+  "image": "kodim14",
+  "codec": "AVIF",
+  "quality": 70,
+  "bytes": 82784,
+  "pixels": 393216,
+  "bpp": 1.6842447916666667,
+  "ssimulacra2": 80.527
+ },
+ {
+  "image": "kodim14",
+  "codec": "AVIF",
+  "quality": 80,
+  "bytes": 108617,
+  "pixels": 393216,
+  "bpp": 2.2098185221354165,
+  "ssimulacra2": 84.976
+ },
+ {
+  "image": "kodim14",
+  "codec": "HEIF",
+  "quality": 25,
+  "bytes": 17895,
+  "pixels": 393216,
+  "bpp": 0.36407470703125,
+  "ssimulacra2": 29.463
+ },
+ {
+  "image": "kodim14",
+  "codec": "HEIF",
+  "quality": 30,
+  "bytes": 23840,
+  "pixels": 393216,
+  "bpp": 0.4850260416666667,
+  "ssimulacra2": 41.344
+ },
+ {
+  "image": "kodim14",
+  "codec": "HEIF",
+  "quality": 35,
+  "bytes": 35865,
+  "pixels": 393216,
+  "bpp": 0.72967529296875,
+  "ssimulacra2": 55.655
+ },
+ {
+  "image": "kodim14",
+  "codec": "HEIF",
+  "quality": 40,
+  "bytes": 46235,
+  "pixels": 393216,
+  "bpp": 0.9406534830729166,
+  "ssimulacra2": 63.473
+ },
+ {
+  "image": "kodim14",
+  "codec": "HEIF",
+  "quality": 45,
+  "bytes": 64678,
+  "pixels": 393216,
+  "bpp": 1.3158772786458333,
+  "ssimulacra2": 72.856
+ },
+ {
+  "image": "kodim14",
+  "codec": "HEIF",
+  "quality": 50,
+  "bytes": 78880,
+  "pixels": 393216,
+  "bpp": 1.6048177083333333,
+  "ssimulacra2": 77.404
+ },
+ {
+  "image": "kodim14",
+  "codec": "HEIF",
+  "quality": 55,
+  "bytes": 103361,
+  "pixels": 393216,
+  "bpp": 2.1028849283854165,
+  "ssimulacra2": 83.007
+ },
+ {
+  "image": "kodim14",
+  "codec": "HEIF",
+  "quality": 60,
+  "bytes": 121617,
+  "pixels": 393216,
+  "bpp": 2.47430419921875,
+  "ssimulacra2": 85.657
+ },
+ {
+  "image": "kodim14",
+  "codec": "HEIF",
+  "quality": 65,
+  "bytes": 151379,
+  "pixels": 393216,
+  "bpp": 3.0798136393229165,
+  "ssimulacra2": 88.146
+ },
+ {
+  "image": "kodim14",
+  "codec": "HEIF",
+  "quality": 70,
+  "bytes": 172619,
+  "pixels": 393216,
+  "bpp": 3.5119425455729165,
+  "ssimulacra2": 89.265
+ },
+ {
+  "image": "kodim14",
+  "codec": "HEIF",
+  "quality": 80,
+  "bytes": 231885,
+  "pixels": 393216,
+  "bpp": 4.71771240234375,
+  "ssimulacra2": 90.763
+ },
+ {
+  "image": "kodim14",
+  "codec": "JXL",
+  "quality": 55,
+  "bytes": 36840,
+  "pixels": 393216,
+  "bpp": 0.74951171875,
+  "ssimulacra2": 56.039
+ },
+ {
+  "image": "kodim14",
+  "codec": "JXL",
+  "quality": 60,
+  "bytes": 41215,
+  "pixels": 393216,
+  "bpp": 0.8385213216145834,
+  "ssimulacra2": 59.765
+ },
+ {
+  "image": "kodim14",
+  "codec": "JXL",
+  "quality": 65,
+  "bytes": 46358,
+  "pixels": 393216,
+  "bpp": 0.9431559244791666,
+  "ssimulacra2": 63.738
+ },
+ {
+  "image": "kodim14",
+  "codec": "JXL",
+  "quality": 70,
+  "bytes": 53324,
+  "pixels": 393216,
+  "bpp": 1.0848795572916667,
+  "ssimulacra2": 68.048
+ },
+ {
+  "image": "kodim14",
+  "codec": "JXL",
+  "quality": 75,
+  "bytes": 61768,
+  "pixels": 393216,
+  "bpp": 1.2566731770833333,
+  "ssimulacra2": 72.001
+ },
+ {
+  "image": "kodim14",
+  "codec": "JXL",
+  "quality": 80,
+  "bytes": 74067,
+  "pixels": 393216,
+  "bpp": 1.50689697265625,
+  "ssimulacra2": 76.22
+ },
+ {
+  "image": "kodim14",
+  "codec": "JXL",
+  "quality": 85,
+  "bytes": 90971,
+  "pixels": 393216,
+  "bpp": 1.8508097330729167,
+  "ssimulacra2": 80.651
+ },
+ {
+  "image": "kodim14",
+  "codec": "JXL",
+  "quality": 88,
+  "bytes": 105002,
+  "pixels": 393216,
+  "bpp": 2.1362711588541665,
+  "ssimulacra2": 83.505
+ },
+ {
+  "image": "kodim14",
+  "codec": "JXL",
+  "quality": 90,
+  "bytes": 117382,
+  "pixels": 393216,
+  "bpp": 2.3881429036458335,
+  "ssimulacra2": 85.511
+ },
+ {
+  "image": "kodim14",
+  "codec": "JXL",
+  "quality": 93,
+  "bytes": 143096,
+  "pixels": 393216,
+  "bpp": 2.9112955729166665,
+  "ssimulacra2": 88.736
+ },
+ {
+  "image": "kodim14",
+  "codec": "JXL",
+  "quality": 96,
+  "bytes": 182757,
+  "pixels": 393216,
+  "bpp": 3.71820068359375,
+  "ssimulacra2": 91.704
+ },
+ {
+  "image": "kodim19",
+  "codec": "JPEG",
+  "quality": 30,
+  "bytes": 28582,
+  "pixels": 393216,
+  "bpp": 0.5815022786458334,
+  "ssimulacra2": 42.512
+ },
+ {
+  "image": "kodim19",
+  "codec": "JPEG",
+  "quality": 40,
+  "bytes": 34751,
+  "pixels": 393216,
+  "bpp": 0.7070109049479166,
+  "ssimulacra2": 53.455
+ },
+ {
+  "image": "kodim19",
+  "codec": "JPEG",
+  "quality": 50,
+  "bytes": 40587,
+  "pixels": 393216,
+  "bpp": 0.82574462890625,
+  "ssimulacra2": 59.675
+ },
+ {
+  "image": "kodim19",
+  "codec": "JPEG",
+  "quality": 60,
+  "bytes": 46864,
+  "pixels": 393216,
+  "bpp": 0.9534505208333334,
+  "ssimulacra2": 64.645
+ },
+ {
+  "image": "kodim19",
+  "codec": "JPEG",
+  "quality": 65,
+  "bytes": 51220,
+  "pixels": 393216,
+  "bpp": 1.0420735677083333,
+  "ssimulacra2": 67.792
+ },
+ {
+  "image": "kodim19",
+  "codec": "JPEG",
+  "quality": 70,
+  "bytes": 56625,
+  "pixels": 393216,
+  "bpp": 1.15203857421875,
+  "ssimulacra2": 70.268
+ },
+ {
+  "image": "kodim19",
+  "codec": "JPEG",
+  "quality": 75,
+  "bytes": 62808,
+  "pixels": 393216,
+  "bpp": 1.27783203125,
+  "ssimulacra2": 73.103
+ },
+ {
+  "image": "kodim19",
+  "codec": "JPEG",
+  "quality": 80,
+  "bytes": 72131,
+  "pixels": 393216,
+  "bpp": 1.4675089518229167,
+  "ssimulacra2": 76.528
+ },
+ {
+  "image": "kodim19",
+  "codec": "JPEG",
+  "quality": 85,
+  "bytes": 85411,
+  "pixels": 393216,
+  "bpp": 1.7376912434895833,
+  "ssimulacra2": 80.141
+ },
+ {
+  "image": "kodim19",
+  "codec": "JPEG",
+  "quality": 90,
+  "bytes": 107470,
+  "pixels": 393216,
+  "bpp": 2.1864827473958335,
+  "ssimulacra2": 84.482
+ },
+ {
+  "image": "kodim19",
+  "codec": "JPEG",
+  "quality": 95,
+  "bytes": 153280,
+  "pixels": 393216,
+  "bpp": 3.1184895833333335,
+  "ssimulacra2": 88.898
+ },
+ {
+  "image": "kodim19",
+  "codec": "WEBP",
+  "quality": 30,
+  "bytes": 20400,
+  "pixels": 393216,
+  "bpp": 0.4150390625,
+  "ssimulacra2": 33.928
+ },
+ {
+  "image": "kodim19",
+  "codec": "WEBP",
+  "quality": 40,
+  "bytes": 25252,
+  "pixels": 393216,
+  "bpp": 0.5137532552083334,
+  "ssimulacra2": 43.864
+ },
+ {
+  "image": "kodim19",
+  "codec": "WEBP",
+  "quality": 50,
+  "bytes": 29610,
+  "pixels": 393216,
+  "bpp": 0.6024169921875,
+  "ssimulacra2": 51.35
+ },
+ {
+  "image": "kodim19",
+  "codec": "WEBP",
+  "quality": 60,
+  "bytes": 34300,
+  "pixels": 393216,
+  "bpp": 0.6978352864583334,
+  "ssimulacra2": 57.151
+ },
+ {
+  "image": "kodim19",
+  "codec": "WEBP",
+  "quality": 65,
+  "bytes": 37082,
+  "pixels": 393216,
+  "bpp": 0.7544352213541666,
+  "ssimulacra2": 60.242
+ },
+ {
+  "image": "kodim19",
+  "codec": "WEBP",
+  "quality": 70,
+  "bytes": 39768,
+  "pixels": 393216,
+  "bpp": 0.80908203125,
+  "ssimulacra2": 62.629
+ },
+ {
+  "image": "kodim19",
+  "codec": "WEBP",
+  "quality": 75,
+  "bytes": 42934,
+  "pixels": 393216,
+  "bpp": 0.8734944661458334,
+  "ssimulacra2": 65.928
+ },
+ {
+  "image": "kodim19",
+  "codec": "WEBP",
+  "quality": 80,
+  "bytes": 54150,
+  "pixels": 393216,
+  "bpp": 1.1016845703125,
+  "ssimulacra2": 72.473
+ },
+ {
+  "image": "kodim19",
+  "codec": "WEBP",
+  "quality": 85,
+  "bytes": 68556,
+  "pixels": 393216,
+  "bpp": 1.394775390625,
+  "ssimulacra2": 78.004
+ },
+ {
+  "image": "kodim19",
+  "codec": "WEBP",
+  "quality": 90,
+  "bytes": 95732,
+  "pixels": 393216,
+  "bpp": 1.9476725260416667,
+  "ssimulacra2": 83.915
+ },
+ {
+  "image": "kodim19",
+  "codec": "WEBP",
+  "quality": 95,
+  "bytes": 141896,
+  "pixels": 393216,
+  "bpp": 2.8868815104166665,
+  "ssimulacra2": 88.436
+ },
+ {
+  "image": "kodim19",
+  "codec": "AVIF",
+  "quality": 25,
+  "bytes": 7249,
+  "pixels": 393216,
+  "bpp": 0.14748128255208334,
+  "ssimulacra2": 8.112
+ },
+ {
+  "image": "kodim19",
+  "codec": "AVIF",
+  "quality": 30,
+  "bytes": 9506,
+  "pixels": 393216,
+  "bpp": 0.19340006510416666,
+  "ssimulacra2": 20.965
+ },
+ {
+  "image": "kodim19",
+  "codec": "AVIF",
+  "quality": 35,
+  "bytes": 12138,
+  "pixels": 393216,
+  "bpp": 0.2469482421875,
+  "ssimulacra2": 31.668
+ },
+ {
+  "image": "kodim19",
+  "codec": "AVIF",
+  "quality": 40,
+  "bytes": 15534,
+  "pixels": 393216,
+  "bpp": 0.3160400390625,
+  "ssimulacra2": 42.299
+ },
+ {
+  "image": "kodim19",
+  "codec": "AVIF",
+  "quality": 45,
+  "bytes": 20930,
+  "pixels": 393216,
+  "bpp": 0.4258219401041667,
+  "ssimulacra2": 53.501
+ },
+ {
+  "image": "kodim19",
+  "codec": "AVIF",
+  "quality": 50,
+  "bytes": 26112,
+  "pixels": 393216,
+  "bpp": 0.53125,
+  "ssimulacra2": 60.617
+ },
+ {
+  "image": "kodim19",
+  "codec": "AVIF",
+  "quality": 55,
+  "bytes": 31497,
+  "pixels": 393216,
+  "bpp": 0.64080810546875,
+  "ssimulacra2": 65.786
+ },
+ {
+  "image": "kodim19",
+  "codec": "AVIF",
+  "quality": 60,
+  "bytes": 39877,
+  "pixels": 393216,
+  "bpp": 0.8112996419270834,
+  "ssimulacra2": 72.134
+ },
+ {
+  "image": "kodim19",
+  "codec": "AVIF",
+  "quality": 65,
+  "bytes": 45398,
+  "pixels": 393216,
+  "bpp": 0.9236246744791666,
+  "ssimulacra2": 75.078
+ },
+ {
+  "image": "kodim19",
+  "codec": "AVIF",
+  "quality": 70,
+  "bytes": 57107,
+  "pixels": 393216,
+  "bpp": 1.1618448893229167,
+  "ssimulacra2": 79.248
+ },
+ {
+  "image": "kodim19",
+  "codec": "AVIF",
+  "quality": 80,
+  "bytes": 80489,
+  "pixels": 393216,
+  "bpp": 1.6375528971354167,
+  "ssimulacra2": 84.437
+ },
+ {
+  "image": "kodim19",
+  "codec": "HEIF",
+  "quality": 25,
+  "bytes": 11414,
+  "pixels": 393216,
+  "bpp": 0.23221842447916666,
+  "ssimulacra2": 28.405
+ },
+ {
+  "image": "kodim19",
+  "codec": "HEIF",
+  "quality": 30,
+  "bytes": 15974,
+  "pixels": 393216,
+  "bpp": 0.3249918619791667,
+  "ssimulacra2": 40.577
+ },
+ {
+  "image": "kodim19",
+  "codec": "HEIF",
+  "quality": 35,
+  "bytes": 24895,
+  "pixels": 393216,
+  "bpp": 0.5064900716145834,
+  "ssimulacra2": 55.337
+ },
+ {
+  "image": "kodim19",
+  "codec": "HEIF",
+  "quality": 40,
+  "bytes": 32390,
+  "pixels": 393216,
+  "bpp": 0.6589762369791666,
+  "ssimulacra2": 62.864
+ },
+ {
+  "image": "kodim19",
+  "codec": "HEIF",
+  "quality": 45,
+  "bytes": 46228,
+  "pixels": 393216,
+  "bpp": 0.9405110677083334,
+  "ssimulacra2": 72.774
+ },
+ {
+  "image": "kodim19",
+  "codec": "HEIF",
+  "quality": 50,
+  "bytes": 57581,
+  "pixels": 393216,
+  "bpp": 1.1714884440104167,
+  "ssimulacra2": 77.461
+ },
+ {
+  "image": "kodim19",
+  "codec": "HEIF",
+  "quality": 55,
+  "bytes": 80807,
+  "pixels": 393216,
+  "bpp": 1.6440226236979167,
+  "ssimulacra2": 82.896
+ },
+ {
+  "image": "kodim19",
+  "codec": "HEIF",
+  "quality": 60,
+  "bytes": 100619,
+  "pixels": 393216,
+  "bpp": 2.0470987955729165,
+  "ssimulacra2": 85.639
+ },
+ {
+  "image": "kodim19",
+  "codec": "HEIF",
+  "quality": 65,
+  "bytes": 132487,
+  "pixels": 393216,
+  "bpp": 2.6954549153645835,
+  "ssimulacra2": 88.766
+ },
+ {
+  "image": "kodim19",
+  "codec": "HEIF",
+  "quality": 70,
+  "bytes": 155190,
+  "pixels": 393216,
+  "bpp": 3.1573486328125,
+  "ssimulacra2": 90.256
+ },
+ {
+  "image": "kodim19",
+  "codec": "HEIF",
+  "quality": 80,
+  "bytes": 219804,
+  "pixels": 393216,
+  "bpp": 4.471923828125,
+  "ssimulacra2": 92.668
+ },
+ {
+  "image": "kodim19",
+  "codec": "JXL",
+  "quality": 55,
+  "bytes": 25177,
+  "pixels": 393216,
+  "bpp": 0.5122273763020834,
+  "ssimulacra2": 52.081
+ },
+ {
+  "image": "kodim19",
+  "codec": "JXL",
+  "quality": 60,
+  "bytes": 27627,
+  "pixels": 393216,
+  "bpp": 0.56207275390625,
+  "ssimulacra2": 55.722
+ },
+ {
+  "image": "kodim19",
+  "codec": "JXL",
+  "quality": 65,
+  "bytes": 30981,
+  "pixels": 393216,
+  "bpp": 0.63031005859375,
+  "ssimulacra2": 59.434
+ },
+ {
+  "image": "kodim19",
+  "codec": "JXL",
+  "quality": 70,
+  "bytes": 35830,
+  "pixels": 393216,
+  "bpp": 0.7289632161458334,
+  "ssimulacra2": 64.601
+ },
+ {
+  "image": "kodim19",
+  "codec": "JXL",
+  "quality": 75,
+  "bytes": 41692,
+  "pixels": 393216,
+  "bpp": 0.8482259114583334,
+  "ssimulacra2": 69.152
+ },
+ {
+  "image": "kodim19",
+  "codec": "JXL",
+  "quality": 80,
+  "bytes": 51197,
+  "pixels": 393216,
+  "bpp": 1.0416056315104167,
+  "ssimulacra2": 74.126
+ },
+ {
+  "image": "kodim19",
+  "codec": "JXL",
+  "quality": 85,
+  "bytes": 65954,
+  "pixels": 393216,
+  "bpp": 1.3418375651041667,
+  "ssimulacra2": 79.55
+ },
+ {
+  "image": "kodim19",
+  "codec": "JXL",
+  "quality": 88,
+  "bytes": 78167,
+  "pixels": 393216,
+  "bpp": 1.5903116861979167,
+  "ssimulacra2": 82.861
+ },
+ {
+  "image": "kodim19",
+  "codec": "JXL",
+  "quality": 90,
+  "bytes": 88722,
+  "pixels": 393216,
+  "bpp": 1.8050537109375,
+  "ssimulacra2": 85.093
+ },
+ {
+  "image": "kodim19",
+  "codec": "JXL",
+  "quality": 93,
+  "bytes": 112594,
+  "pixels": 393216,
+  "bpp": 2.2907307942708335,
+  "ssimulacra2": 88.165
+ },
+ {
+  "image": "kodim19",
+  "codec": "JXL",
+  "quality": 96,
+  "bytes": 155463,
+  "pixels": 393216,
+  "bpp": 3.16290283203125,
+  "ssimulacra2": 91.74
+ },
+ {
+  "image": "kodim20",
+  "codec": "JPEG",
+  "quality": 30,
+  "bytes": 20221,
+  "pixels": 393216,
+  "bpp": 0.4113972981770833,
+  "ssimulacra2": 51.88
+ },
+ {
+  "image": "kodim20",
+  "codec": "JPEG",
+  "quality": 40,
+  "bytes": 24229,
+  "pixels": 393216,
+  "bpp": 0.4929402669270833,
+  "ssimulacra2": 59.316
+ },
+ {
+  "image": "kodim20",
+  "codec": "JPEG",
+  "quality": 50,
+  "bytes": 28015,
+  "pixels": 393216,
+  "bpp": 0.5699666341145834,
+  "ssimulacra2": 64.336
+ },
+ {
+  "image": "kodim20",
+  "codec": "JPEG",
+  "quality": 60,
+  "bytes": 32218,
+  "pixels": 393216,
+  "bpp": 0.6554768880208334,
+  "ssimulacra2": 68.022
+ },
+ {
+  "image": "kodim20",
+  "codec": "JPEG",
+  "quality": 65,
+  "bytes": 35129,
+  "pixels": 393216,
+  "bpp": 0.7147013346354166,
+  "ssimulacra2": 70.492
+ },
+ {
+  "image": "kodim20",
+  "codec": "JPEG",
+  "quality": 70,
+  "bytes": 38659,
+  "pixels": 393216,
+  "bpp": 0.7865193684895834,
+  "ssimulacra2": 72.778
+ },
+ {
+  "image": "kodim20",
+  "codec": "JPEG",
+  "quality": 75,
+  "bytes": 42700,
+  "pixels": 393216,
+  "bpp": 0.8687337239583334,
+  "ssimulacra2": 75.215
+ },
+ {
+  "image": "kodim20",
+  "codec": "JPEG",
+  "quality": 80,
+  "bytes": 48950,
+  "pixels": 393216,
+  "bpp": 0.9958902994791666,
+  "ssimulacra2": 77.978
+ },
+ {
+  "image": "kodim20",
+  "codec": "JPEG",
+  "quality": 85,
+  "bytes": 58006,
+  "pixels": 393216,
+  "bpp": 1.1801350911458333,
+  "ssimulacra2": 80.896
+ },
+ {
+  "image": "kodim20",
+  "codec": "JPEG",
+  "quality": 90,
+  "bytes": 73874,
+  "pixels": 393216,
+  "bpp": 1.5029703776041667,
+  "ssimulacra2": 84.804
+ },
+ {
+  "image": "kodim20",
+  "codec": "JPEG",
+  "quality": 95,
+  "bytes": 107949,
+  "pixels": 393216,
+  "bpp": 2.19622802734375,
+  "ssimulacra2": 89.111
+ },
+ {
+  "image": "kodim20",
+  "codec": "WEBP",
+  "quality": 30,
+  "bytes": 12520,
+  "pixels": 393216,
+  "bpp": 0.2547200520833333,
+  "ssimulacra2": 43.642
+ },
+ {
+  "image": "kodim20",
+  "codec": "WEBP",
+  "quality": 40,
+  "bytes": 15788,
+  "pixels": 393216,
+  "bpp": 0.3212076822916667,
+  "ssimulacra2": 53.27
+ },
+ {
+  "image": "kodim20",
+  "codec": "WEBP",
+  "quality": 50,
+  "bytes": 18736,
+  "pixels": 393216,
+  "bpp": 0.3811848958333333,
+  "ssimulacra2": 58.648
+ },
+ {
+  "image": "kodim20",
+  "codec": "WEBP",
+  "quality": 60,
+  "bytes": 21462,
+  "pixels": 393216,
+  "bpp": 0.4366455078125,
+  "ssimulacra2": 63.48
+ },
+ {
+  "image": "kodim20",
+  "codec": "WEBP",
+  "quality": 65,
+  "bytes": 22990,
+  "pixels": 393216,
+  "bpp": 0.4677327473958333,
+  "ssimulacra2": 64.935
+ },
+ {
+  "image": "kodim20",
+  "codec": "WEBP",
+  "quality": 70,
+  "bytes": 24702,
+  "pixels": 393216,
+  "bpp": 0.5025634765625,
+  "ssimulacra2": 67.157
+ },
+ {
+  "image": "kodim20",
+  "codec": "WEBP",
+  "quality": 75,
+  "bytes": 26548,
+  "pixels": 393216,
+  "bpp": 0.5401204427083334,
+  "ssimulacra2": 68.466
+ },
+ {
+  "image": "kodim20",
+  "codec": "WEBP",
+  "quality": 80,
+  "bytes": 33080,
+  "pixels": 393216,
+  "bpp": 0.6730143229166666,
+  "ssimulacra2": 75.679
+ },
+ {
+  "image": "kodim20",
+  "codec": "WEBP",
+  "quality": 85,
+  "bytes": 42618,
+  "pixels": 393216,
+  "bpp": 0.8670654296875,
+  "ssimulacra2": 80.233
+ },
+ {
+  "image": "kodim20",
+  "codec": "WEBP",
+  "quality": 90,
+  "bytes": 58308,
+  "pixels": 393216,
+  "bpp": 1.186279296875,
+  "ssimulacra2": 84.63
+ },
+ {
+  "image": "kodim20",
+  "codec": "WEBP",
+  "quality": 95,
+  "bytes": 94092,
+  "pixels": 393216,
+  "bpp": 1.914306640625,
+  "ssimulacra2": 89.023
+ },
+ {
+  "image": "kodim20",
+  "codec": "AVIF",
+  "quality": 25,
+  "bytes": 5731,
+  "pixels": 393216,
+  "bpp": 0.11659749348958333,
+  "ssimulacra2": 25.681
+ },
+ {
+  "image": "kodim20",
+  "codec": "AVIF",
+  "quality": 30,
+  "bytes": 7196,
+  "pixels": 393216,
+  "bpp": 0.14640299479166666,
+  "ssimulacra2": 35.221
+ },
+ {
+  "image": "kodim20",
+  "codec": "AVIF",
+  "quality": 35,
+  "bytes": 8833,
+  "pixels": 393216,
+  "bpp": 0.17970784505208334,
+  "ssimulacra2": 42.686
+ },
+ {
+  "image": "kodim20",
+  "codec": "AVIF",
+  "quality": 40,
+  "bytes": 11522,
+  "pixels": 393216,
+  "bpp": 0.23441569010416666,
+  "ssimulacra2": 53.936
+ },
+ {
+  "image": "kodim20",
+  "codec": "AVIF",
+  "quality": 45,
+  "bytes": 14805,
+  "pixels": 393216,
+  "bpp": 0.30120849609375,
+  "ssimulacra2": 61.202
+ },
+ {
+  "image": "kodim20",
+  "codec": "AVIF",
+  "quality": 50,
+  "bytes": 18379,
+  "pixels": 393216,
+  "bpp": 0.3739217122395833,
+  "ssimulacra2": 67.678
+ },
+ {
+  "image": "kodim20",
+  "codec": "AVIF",
+  "quality": 55,
+  "bytes": 21865,
+  "pixels": 393216,
+  "bpp": 0.4448445638020833,
+  "ssimulacra2": 71.646
+ },
+ {
+  "image": "kodim20",
+  "codec": "AVIF",
+  "quality": 60,
+  "bytes": 27312,
+  "pixels": 393216,
+  "bpp": 0.5556640625,
+  "ssimulacra2": 76.41
+ },
+ {
+  "image": "kodim20",
+  "codec": "AVIF",
+  "quality": 65,
+  "bytes": 30613,
+  "pixels": 393216,
+  "bpp": 0.6228230794270834,
+  "ssimulacra2": 78.609
+ },
+ {
+  "image": "kodim20",
+  "codec": "AVIF",
+  "quality": 70,
+  "bytes": 37972,
+  "pixels": 393216,
+  "bpp": 0.7725423177083334,
+  "ssimulacra2": 81.995
+ },
+ {
+  "image": "kodim20",
+  "codec": "AVIF",
+  "quality": 80,
+  "bytes": 53142,
+  "pixels": 393216,
+  "bpp": 1.0811767578125,
+  "ssimulacra2": 85.955
+ },
+ {
+  "image": "kodim20",
+  "codec": "HEIF",
+  "quality": 25,
+  "bytes": 8119,
+  "pixels": 393216,
+  "bpp": 0.16518147786458334,
+  "ssimulacra2": 40.519
+ },
+ {
+  "image": "kodim20",
+  "codec": "HEIF",
+  "quality": 30,
+  "bytes": 10930,
+  "pixels": 393216,
+  "bpp": 0.22237141927083334,
+  "ssimulacra2": 49.617
+ },
+ {
+  "image": "kodim20",
+  "codec": "HEIF",
+  "quality": 35,
+  "bytes": 16725,
+  "pixels": 393216,
+  "bpp": 0.34027099609375,
+  "ssimulacra2": 61.904
+ },
+ {
+  "image": "kodim20",
+  "codec": "HEIF",
+  "quality": 40,
+  "bytes": 21682,
+  "pixels": 393216,
+  "bpp": 0.4411214192708333,
+  "ssimulacra2": 68.329
+ },
+ {
+  "image": "kodim20",
+  "codec": "HEIF",
+  "quality": 45,
+  "bytes": 30877,
+  "pixels": 393216,
+  "bpp": 0.6281941731770834,
+  "ssimulacra2": 75.977
+ },
+ {
+  "image": "kodim20",
+  "codec": "HEIF",
+  "quality": 50,
+  "bytes": 39580,
+  "pixels": 393216,
+  "bpp": 0.8052571614583334,
+  "ssimulacra2": 79.875
+ },
+ {
+  "image": "kodim20",
+  "codec": "HEIF",
+  "quality": 55,
+  "bytes": 56317,
+  "pixels": 393216,
+  "bpp": 1.1457722981770833,
+  "ssimulacra2": 84.503
+ },
+ {
+  "image": "kodim20",
+  "codec": "HEIF",
+  "quality": 60,
+  "bytes": 70098,
+  "pixels": 393216,
+  "bpp": 1.4261474609375,
+  "ssimulacra2": 86.776
+ },
+ {
+  "image": "kodim20",
+  "codec": "HEIF",
+  "quality": 65,
+  "bytes": 95222,
+  "pixels": 393216,
+  "bpp": 1.9372965494791667,
+  "ssimulacra2": 89.409
+ },
+ {
+  "image": "kodim20",
+  "codec": "HEIF",
+  "quality": 70,
+  "bytes": 116607,
+  "pixels": 393216,
+  "bpp": 2.37237548828125,
+  "ssimulacra2": 90.693
+ },
+ {
+  "image": "kodim20",
+  "codec": "HEIF",
+  "quality": 80,
+  "bytes": 173467,
+  "pixels": 393216,
+  "bpp": 3.5291951497395835,
+  "ssimulacra2": 92.735
+ },
+ {
+  "image": "kodim20",
+  "codec": "JXL",
+  "quality": 55,
+  "bytes": 19668,
+  "pixels": 393216,
+  "bpp": 0.400146484375,
+  "ssimulacra2": 61.022
+ },
+ {
+  "image": "kodim20",
+  "codec": "JXL",
+  "quality": 60,
+  "bytes": 21621,
+  "pixels": 393216,
+  "bpp": 0.43988037109375,
+  "ssimulacra2": 64.037
+ },
+ {
+  "image": "kodim20",
+  "codec": "JXL",
+  "quality": 65,
+  "bytes": 23937,
+  "pixels": 393216,
+  "bpp": 0.48699951171875,
+  "ssimulacra2": 67.069
+ },
+ {
+  "image": "kodim20",
+  "codec": "JXL",
+  "quality": 70,
+  "bytes": 27073,
+  "pixels": 393216,
+  "bpp": 0.5508015950520834,
+  "ssimulacra2": 70.38
+ },
+ {
+  "image": "kodim20",
+  "codec": "JXL",
+  "quality": 75,
+  "bytes": 30979,
+  "pixels": 393216,
+  "bpp": 0.6302693684895834,
+  "ssimulacra2": 73.906
+ },
+ {
+  "image": "kodim20",
+  "codec": "JXL",
+  "quality": 80,
+  "bytes": 37529,
+  "pixels": 393216,
+  "bpp": 0.7635294596354166,
+  "ssimulacra2": 77.876
+ },
+ {
+  "image": "kodim20",
+  "codec": "JXL",
+  "quality": 85,
+  "bytes": 47296,
+  "pixels": 393216,
+  "bpp": 0.9622395833333334,
+  "ssimulacra2": 82.399
+ },
+ {
+  "image": "kodim20",
+  "codec": "JXL",
+  "quality": 88,
+  "bytes": 55221,
+  "pixels": 393216,
+  "bpp": 1.12347412109375,
+  "ssimulacra2": 85.031
+ },
+ {
+  "image": "kodim20",
+  "codec": "JXL",
+  "quality": 90,
+  "bytes": 61934,
+  "pixels": 393216,
+  "bpp": 1.2600504557291667,
+  "ssimulacra2": 86.637
+ },
+ {
+  "image": "kodim20",
+  "codec": "JXL",
+  "quality": 93,
+  "bytes": 77478,
+  "pixels": 393216,
+  "bpp": 1.5762939453125,
+  "ssimulacra2": 89.322
+ },
+ {
+  "image": "kodim20",
+  "codec": "JXL",
+  "quality": 96,
+  "bytes": 103668,
+  "pixels": 393216,
+  "bpp": 2.109130859375,
+  "ssimulacra2": 92.281
+ },
+ {
+  "image": "kodim21",
+  "codec": "JPEG",
+  "quality": 30,
+  "bytes": 29325,
+  "pixels": 393216,
+  "bpp": 0.59661865234375,
+  "ssimulacra2": 44.467
+ },
+ {
+  "image": "kodim21",
+  "codec": "JPEG",
+  "quality": 40,
+  "bytes": 35211,
+  "pixels": 393216,
+  "bpp": 0.71636962890625,
+  "ssimulacra2": 54.614
+ },
+ {
+  "image": "kodim21",
+  "codec": "JPEG",
+  "quality": 50,
+  "bytes": 40783,
+  "pixels": 393216,
+  "bpp": 0.8297322591145834,
+  "ssimulacra2": 61.589
+ },
+ {
+  "image": "kodim21",
+  "codec": "JPEG",
+  "quality": 60,
+  "bytes": 46986,
+  "pixels": 393216,
+  "bpp": 0.9559326171875,
+  "ssimulacra2": 65.027
+ },
+ {
+  "image": "kodim21",
+  "codec": "JPEG",
+  "quality": 65,
+  "bytes": 51222,
+  "pixels": 393216,
+  "bpp": 1.0421142578125,
+  "ssimulacra2": 68.345
+ },
+ {
+  "image": "kodim21",
+  "codec": "JPEG",
+  "quality": 70,
+  "bytes": 56543,
+  "pixels": 393216,
+  "bpp": 1.1503702799479167,
+  "ssimulacra2": 70.727
+ },
+ {
+  "image": "kodim21",
+  "codec": "JPEG",
+  "quality": 75,
+  "bytes": 62546,
+  "pixels": 393216,
+  "bpp": 1.2725016276041667,
+  "ssimulacra2": 74.061
+ },
+ {
+  "image": "kodim21",
+  "codec": "JPEG",
+  "quality": 80,
+  "bytes": 71742,
+  "pixels": 393216,
+  "bpp": 1.4595947265625,
+  "ssimulacra2": 76.883
+ },
+ {
+  "image": "kodim21",
+  "codec": "JPEG",
+  "quality": 85,
+  "bytes": 85247,
+  "pixels": 393216,
+  "bpp": 1.7343546549479167,
+  "ssimulacra2": 80.499
+ },
+ {
+  "image": "kodim21",
+  "codec": "JPEG",
+  "quality": 90,
+  "bytes": 107570,
+  "pixels": 393216,
+  "bpp": 2.1885172526041665,
+  "ssimulacra2": 84.364
+ },
+ {
+  "image": "kodim21",
+  "codec": "JPEG",
+  "quality": 95,
+  "bytes": 154892,
+  "pixels": 393216,
+  "bpp": 3.1512858072916665,
+  "ssimulacra2": 88.291
+ },
+ {
+  "image": "kodim21",
+  "codec": "WEBP",
+  "quality": 30,
+  "bytes": 22782,
+  "pixels": 393216,
+  "bpp": 0.4635009765625,
+  "ssimulacra2": 48.845
+ },
+ {
+  "image": "kodim21",
+  "codec": "WEBP",
+  "quality": 40,
+  "bytes": 27928,
+  "pixels": 393216,
+  "bpp": 0.5681966145833334,
+  "ssimulacra2": 56.202
+ },
+ {
+  "image": "kodim21",
+  "codec": "WEBP",
+  "quality": 50,
+  "bytes": 32792,
+  "pixels": 393216,
+  "bpp": 0.6671549479166666,
+  "ssimulacra2": 60.688
+ },
+ {
+  "image": "kodim21",
+  "codec": "WEBP",
+  "quality": 60,
+  "bytes": 37270,
+  "pixels": 393216,
+  "bpp": 0.7582600911458334,
+  "ssimulacra2": 64.24
+ },
+ {
+  "image": "kodim21",
+  "codec": "WEBP",
+  "quality": 65,
+  "bytes": 39632,
+  "pixels": 393216,
+  "bpp": 0.8063151041666666,
+  "ssimulacra2": 66.002
+ },
+ {
+  "image": "kodim21",
+  "codec": "WEBP",
+  "quality": 70,
+  "bytes": 42464,
+  "pixels": 393216,
+  "bpp": 0.8639322916666666,
+  "ssimulacra2": 68.003
+ },
+ {
+  "image": "kodim21",
+  "codec": "WEBP",
+  "quality": 75,
+  "bytes": 45390,
+  "pixels": 393216,
+  "bpp": 0.9234619140625,
+  "ssimulacra2": 69.624
+ },
+ {
+  "image": "kodim21",
+  "codec": "WEBP",
+  "quality": 80,
+  "bytes": 55324,
+  "pixels": 393216,
+  "bpp": 1.1255696614583333,
+  "ssimulacra2": 74.233
+ },
+ {
+  "image": "kodim21",
+  "codec": "WEBP",
+  "quality": 85,
+  "bytes": 68990,
+  "pixels": 393216,
+  "bpp": 1.4036051432291667,
+  "ssimulacra2": 78.068
+ },
+ {
+  "image": "kodim21",
+  "codec": "WEBP",
+  "quality": 90,
+  "bytes": 96082,
+  "pixels": 393216,
+  "bpp": 1.9547932942708333,
+  "ssimulacra2": 83.152
+ },
+ {
+  "image": "kodim21",
+  "codec": "WEBP",
+  "quality": 95,
+  "bytes": 144184,
+  "pixels": 393216,
+  "bpp": 2.9334309895833335,
+  "ssimulacra2": 87.755
+ },
+ {
+  "image": "kodim21",
+  "codec": "AVIF",
+  "quality": 25,
+  "bytes": 8574,
+  "pixels": 393216,
+  "bpp": 0.1744384765625,
+  "ssimulacra2": 22.978
+ },
+ {
+  "image": "kodim21",
+  "codec": "AVIF",
+  "quality": 30,
+  "bytes": 11171,
+  "pixels": 393216,
+  "bpp": 0.22727457682291666,
+  "ssimulacra2": 33.345
+ },
+ {
+  "image": "kodim21",
+  "codec": "AVIF",
+  "quality": 35,
+  "bytes": 14019,
+  "pixels": 393216,
+  "bpp": 0.28521728515625,
+  "ssimulacra2": 41.735
+ },
+ {
+  "image": "kodim21",
+  "codec": "AVIF",
+  "quality": 40,
+  "bytes": 17318,
+  "pixels": 393216,
+  "bpp": 0.3523356119791667,
+  "ssimulacra2": 49.031
+ },
+ {
+  "image": "kodim21",
+  "codec": "AVIF",
+  "quality": 45,
+  "bytes": 22283,
+  "pixels": 393216,
+  "bpp": 0.4533487955729167,
+  "ssimulacra2": 56.382
+ },
+ {
+  "image": "kodim21",
+  "codec": "AVIF",
+  "quality": 50,
+  "bytes": 27194,
+  "pixels": 393216,
+  "bpp": 0.5532633463541666,
+  "ssimulacra2": 63.29
+ },
+ {
+  "image": "kodim21",
+  "codec": "AVIF",
+  "quality": 55,
+  "bytes": 32337,
+  "pixels": 393216,
+  "bpp": 0.65789794921875,
+  "ssimulacra2": 67.471
+ },
+ {
+  "image": "kodim21",
+  "codec": "AVIF",
+  "quality": 60,
+  "bytes": 40073,
+  "pixels": 393216,
+  "bpp": 0.8152872721354166,
+  "ssimulacra2": 72.231
+ },
+ {
+  "image": "kodim21",
+  "codec": "AVIF",
+  "quality": 65,
+  "bytes": 45953,
+  "pixels": 393216,
+  "bpp": 0.9349161783854166,
+  "ssimulacra2": 75.119
+ },
+ {
+  "image": "kodim21",
+  "codec": "AVIF",
+  "quality": 70,
+  "bytes": 58123,
+  "pixels": 393216,
+  "bpp": 1.1825154622395833,
+  "ssimulacra2": 78.926
+ },
+ {
+  "image": "kodim21",
+  "codec": "AVIF",
+  "quality": 80,
+  "bytes": 82961,
+  "pixels": 393216,
+  "bpp": 1.6878458658854167,
+  "ssimulacra2": 83.539
+ },
+ {
+  "image": "kodim21",
+  "codec": "HEIF",
+  "quality": 25,
+  "bytes": 14481,
+  "pixels": 393216,
+  "bpp": 0.29461669921875,
+  "ssimulacra2": 37.433
+ },
+ {
+  "image": "kodim21",
+  "codec": "HEIF",
+  "quality": 30,
+  "bytes": 19183,
+  "pixels": 393216,
+  "bpp": 0.3902791341145833,
+  "ssimulacra2": 47.351
+ },
+ {
+  "image": "kodim21",
+  "codec": "HEIF",
+  "quality": 35,
+  "bytes": 27915,
+  "pixels": 393216,
+  "bpp": 0.56793212890625,
+  "ssimulacra2": 58.713
+ },
+ {
+  "image": "kodim21",
+  "codec": "HEIF",
+  "quality": 40,
+  "bytes": 35352,
+  "pixels": 393216,
+  "bpp": 0.71923828125,
+  "ssimulacra2": 65.92
+ },
+ {
+  "image": "kodim21",
+  "codec": "HEIF",
+  "quality": 45,
+  "bytes": 49182,
+  "pixels": 393216,
+  "bpp": 1.0006103515625,
+  "ssimulacra2": 73.565
+ },
+ {
+  "image": "kodim21",
+  "codec": "HEIF",
+  "quality": 50,
+  "bytes": 64566,
+  "pixels": 393216,
+  "bpp": 1.3135986328125,
+  "ssimulacra2": 78.033
+ },
+ {
+  "image": "kodim21",
+  "codec": "HEIF",
+  "quality": 55,
+  "bytes": 93208,
+  "pixels": 393216,
+  "bpp": 1.8963216145833333,
+  "ssimulacra2": 83.135
+ },
+ {
+  "image": "kodim21",
+  "codec": "HEIF",
+  "quality": 60,
+  "bytes": 113067,
+  "pixels": 393216,
+  "bpp": 2.30035400390625,
+  "ssimulacra2": 85.705
+ },
+ {
+  "image": "kodim21",
+  "codec": "HEIF",
+  "quality": 65,
+  "bytes": 146020,
+  "pixels": 393216,
+  "bpp": 2.9707845052083335,
+  "ssimulacra2": 88.778
+ },
+ {
+  "image": "kodim21",
+  "codec": "HEIF",
+  "quality": 70,
+  "bytes": 169751,
+  "pixels": 393216,
+  "bpp": 3.4535929361979165,
+  "ssimulacra2": 90.275
+ },
+ {
+  "image": "kodim21",
+  "codec": "HEIF",
+  "quality": 80,
+  "bytes": 234011,
+  "pixels": 393216,
+  "bpp": 4.760965983072917,
+  "ssimulacra2": 92.984
+ },
+ {
+  "image": "kodim21",
+  "codec": "JXL",
+  "quality": 55,
+  "bytes": 27144,
+  "pixels": 393216,
+  "bpp": 0.55224609375,
+  "ssimulacra2": 60.275
+ },
+ {
+  "image": "kodim21",
+  "codec": "JXL",
+  "quality": 60,
+  "bytes": 30417,
+  "pixels": 393216,
+  "bpp": 0.61883544921875,
+  "ssimulacra2": 63.131
+ },
+ {
+  "image": "kodim21",
+  "codec": "JXL",
+  "quality": 65,
+  "bytes": 33774,
+  "pixels": 393216,
+  "bpp": 0.6871337890625,
+  "ssimulacra2": 66.51
+ },
+ {
+  "image": "kodim21",
+  "codec": "JXL",
+  "quality": 70,
+  "bytes": 39418,
+  "pixels": 393216,
+  "bpp": 0.8019612630208334,
+  "ssimulacra2": 70.361
+ },
+ {
+  "image": "kodim21",
+  "codec": "JXL",
+  "quality": 75,
+  "bytes": 45944,
+  "pixels": 393216,
+  "bpp": 0.9347330729166666,
+  "ssimulacra2": 73.995
+ },
+ {
+  "image": "kodim21",
+  "codec": "JXL",
+  "quality": 80,
+  "bytes": 55299,
+  "pixels": 393216,
+  "bpp": 1.12506103515625,
+  "ssimulacra2": 77.669
+ },
+ {
+  "image": "kodim21",
+  "codec": "JXL",
+  "quality": 85,
+  "bytes": 68150,
+  "pixels": 393216,
+  "bpp": 1.3865152994791667,
+  "ssimulacra2": 81.614
+ },
+ {
+  "image": "kodim21",
+  "codec": "JXL",
+  "quality": 88,
+  "bytes": 79889,
+  "pixels": 393216,
+  "bpp": 1.6253458658854167,
+  "ssimulacra2": 83.989
+ },
+ {
+  "image": "kodim21",
+  "codec": "JXL",
+  "quality": 90,
+  "bytes": 90748,
+  "pixels": 393216,
+  "bpp": 1.8462727864583333,
+  "ssimulacra2": 85.747
+ },
+ {
+  "image": "kodim21",
+  "codec": "JXL",
+  "quality": 93,
+  "bytes": 114141,
+  "pixels": 393216,
+  "bpp": 2.32220458984375,
+  "ssimulacra2": 88.372
+ },
+ {
+  "image": "kodim21",
+  "codec": "JXL",
+  "quality": 96,
+  "bytes": 152707,
+  "pixels": 393216,
+  "bpp": 3.1068318684895835,
+  "ssimulacra2": 91.113
+ },
+ {
+  "image": "kodim23",
+  "codec": "JPEG",
+  "quality": 30,
+  "bytes": 19315,
+  "pixels": 393216,
+  "bpp": 0.3929646809895833,
+  "ssimulacra2": 46.346
+ },
+ {
+  "image": "kodim23",
+  "codec": "JPEG",
+  "quality": 40,
+  "bytes": 23198,
+  "pixels": 393216,
+  "bpp": 0.4719645182291667,
+  "ssimulacra2": 57.31
+ },
+ {
+  "image": "kodim23",
+  "codec": "JPEG",
+  "quality": 50,
+  "bytes": 26923,
+  "pixels": 393216,
+  "bpp": 0.5477498372395834,
+  "ssimulacra2": 63.042
+ },
+ {
+  "image": "kodim23",
+  "codec": "JPEG",
+  "quality": 60,
+  "bytes": 30886,
+  "pixels": 393216,
+  "bpp": 0.6283772786458334,
+  "ssimulacra2": 67.817
+ },
+ {
+  "image": "kodim23",
+  "codec": "JPEG",
+  "quality": 65,
+  "bytes": 33766,
+  "pixels": 393216,
+  "bpp": 0.6869710286458334,
+  "ssimulacra2": 70.512
+ },
+ {
+  "image": "kodim23",
+  "codec": "JPEG",
+  "quality": 70,
+  "bytes": 37058,
+  "pixels": 393216,
+  "bpp": 0.7539469401041666,
+  "ssimulacra2": 73.026
+ },
+ {
+  "image": "kodim23",
+  "codec": "JPEG",
+  "quality": 75,
+  "bytes": 41006,
+  "pixels": 393216,
+  "bpp": 0.8342692057291666,
+  "ssimulacra2": 75.522
+ },
+ {
+  "image": "kodim23",
+  "codec": "JPEG",
+  "quality": 80,
+  "bytes": 47533,
+  "pixels": 393216,
+  "bpp": 0.9670613606770834,
+  "ssimulacra2": 78.957
+ },
+ {
+  "image": "kodim23",
+  "codec": "JPEG",
+  "quality": 85,
+  "bytes": 56662,
+  "pixels": 393216,
+  "bpp": 1.1527913411458333,
+  "ssimulacra2": 81.542
+ },
+ {
+  "image": "kodim23",
+  "codec": "JPEG",
+  "quality": 90,
+  "bytes": 73310,
+  "pixels": 393216,
+  "bpp": 1.4914957682291667,
+  "ssimulacra2": 84.626
+ },
+ {
+  "image": "kodim23",
+  "codec": "JPEG",
+  "quality": 95,
+  "bytes": 109821,
+  "pixels": 393216,
+  "bpp": 2.23431396484375,
+  "ssimulacra2": 87.71
+ },
+ {
+  "image": "kodim23",
+  "codec": "WEBP",
+  "quality": 30,
+  "bytes": 11862,
+  "pixels": 393216,
+  "bpp": 0.2413330078125,
+  "ssimulacra2": 45.008
+ },
+ {
+  "image": "kodim23",
+  "codec": "WEBP",
+  "quality": 40,
+  "bytes": 13962,
+  "pixels": 393216,
+  "bpp": 0.2840576171875,
+  "ssimulacra2": 50.713
+ },
+ {
+  "image": "kodim23",
+  "codec": "WEBP",
+  "quality": 50,
+  "bytes": 16030,
+  "pixels": 393216,
+  "bpp": 0.3261311848958333,
+  "ssimulacra2": 56.131
+ },
+ {
+  "image": "kodim23",
+  "codec": "WEBP",
+  "quality": 60,
+  "bytes": 18158,
+  "pixels": 393216,
+  "bpp": 0.3694254557291667,
+  "ssimulacra2": 60.227
+ },
+ {
+  "image": "kodim23",
+  "codec": "WEBP",
+  "quality": 65,
+  "bytes": 19468,
+  "pixels": 393216,
+  "bpp": 0.3960774739583333,
+  "ssimulacra2": 62.981
+ },
+ {
+  "image": "kodim23",
+  "codec": "WEBP",
+  "quality": 70,
+  "bytes": 20702,
+  "pixels": 393216,
+  "bpp": 0.4211832682291667,
+  "ssimulacra2": 64.252
+ },
+ {
+  "image": "kodim23",
+  "codec": "WEBP",
+  "quality": 75,
+  "bytes": 22456,
+  "pixels": 393216,
+  "bpp": 0.4568684895833333,
+  "ssimulacra2": 66.976
+ },
+ {
+  "image": "kodim23",
+  "codec": "WEBP",
+  "quality": 80,
+  "bytes": 27578,
+  "pixels": 393216,
+  "bpp": 0.5610758463541666,
+  "ssimulacra2": 71.208
+ },
+ {
+  "image": "kodim23",
+  "codec": "WEBP",
+  "quality": 85,
+  "bytes": 35174,
+  "pixels": 393216,
+  "bpp": 0.7156168619791666,
+  "ssimulacra2": 75.382
+ },
+ {
+  "image": "kodim23",
+  "codec": "WEBP",
+  "quality": 90,
+  "bytes": 52400,
+  "pixels": 393216,
+  "bpp": 1.0660807291666667,
+  "ssimulacra2": 81.782
+ },
+ {
+  "image": "kodim23",
+  "codec": "WEBP",
+  "quality": 95,
+  "bytes": 90138,
+  "pixels": 393216,
+  "bpp": 1.8338623046875,
+  "ssimulacra2": 85.916
+ },
+ {
+  "image": "kodim23",
+  "codec": "AVIF",
+  "quality": 25,
+  "bytes": 6020,
+  "pixels": 393216,
+  "bpp": 0.12247721354166667,
+  "ssimulacra2": 36.846
+ },
+ {
+  "image": "kodim23",
+  "codec": "AVIF",
+  "quality": 30,
+  "bytes": 7450,
+  "pixels": 393216,
+  "bpp": 0.15157063802083334,
+  "ssimulacra2": 45.656
+ },
+ {
+  "image": "kodim23",
+  "codec": "AVIF",
+  "quality": 35,
+  "bytes": 8977,
+  "pixels": 393216,
+  "bpp": 0.18263753255208334,
+  "ssimulacra2": 53.285
+ },
+ {
+  "image": "kodim23",
+  "codec": "AVIF",
+  "quality": 40,
+  "bytes": 10844,
+  "pixels": 393216,
+  "bpp": 0.22062174479166666,
+  "ssimulacra2": 58.974
+ },
+ {
+  "image": "kodim23",
+  "codec": "AVIF",
+  "quality": 45,
+  "bytes": 13424,
+  "pixels": 393216,
+  "bpp": 0.2731119791666667,
+  "ssimulacra2": 64.245
+ },
+ {
+  "image": "kodim23",
+  "codec": "AVIF",
+  "quality": 50,
+  "bytes": 16235,
+  "pixels": 393216,
+  "bpp": 0.3303019205729167,
+  "ssimulacra2": 69.016
+ },
+ {
+  "image": "kodim23",
+  "codec": "AVIF",
+  "quality": 55,
+  "bytes": 19155,
+  "pixels": 393216,
+  "bpp": 0.38970947265625,
+  "ssimulacra2": 72.8
+ },
+ {
+  "image": "kodim23",
+  "codec": "AVIF",
+  "quality": 60,
+  "bytes": 22733,
+  "pixels": 393216,
+  "bpp": 0.4625040690104167,
+  "ssimulacra2": 75.642
+ },
+ {
+  "image": "kodim23",
+  "codec": "AVIF",
+  "quality": 65,
+  "bytes": 25558,
+  "pixels": 393216,
+  "bpp": 0.5199788411458334,
+  "ssimulacra2": 77.831
+ },
+ {
+  "image": "kodim23",
+  "codec": "AVIF",
+  "quality": 70,
+  "bytes": 31849,
+  "pixels": 393216,
+  "bpp": 0.6479695638020834,
+  "ssimulacra2": 80.19
+ },
+ {
+  "image": "kodim23",
+  "codec": "AVIF",
+  "quality": 80,
+  "bytes": 47688,
+  "pixels": 393216,
+  "bpp": 0.97021484375,
+  "ssimulacra2": 84.135
+ },
+ {
+  "image": "kodim23",
+  "codec": "HEIF",
+  "quality": 25,
+  "bytes": 7335,
+  "pixels": 393216,
+  "bpp": 0.14923095703125,
+  "ssimulacra2": 43.136
+ },
+ {
+  "image": "kodim23",
+  "codec": "HEIF",
+  "quality": 30,
+  "bytes": 9246,
+  "pixels": 393216,
+  "bpp": 0.1881103515625,
+  "ssimulacra2": 51.13
+ },
+ {
+  "image": "kodim23",
+  "codec": "HEIF",
+  "quality": 35,
+  "bytes": 12963,
+  "pixels": 393216,
+  "bpp": 0.26373291015625,
+  "ssimulacra2": 62.443
+ },
+ {
+  "image": "kodim23",
+  "codec": "HEIF",
+  "quality": 40,
+  "bytes": 16180,
+  "pixels": 393216,
+  "bpp": 0.3291829427083333,
+  "ssimulacra2": 67.731
+ },
+ {
+  "image": "kodim23",
+  "codec": "HEIF",
+  "quality": 45,
+  "bytes": 22770,
+  "pixels": 393216,
+  "bpp": 0.4632568359375,
+  "ssimulacra2": 74.513
+ },
+ {
+  "image": "kodim23",
+  "codec": "HEIF",
+  "quality": 50,
+  "bytes": 28997,
+  "pixels": 393216,
+  "bpp": 0.5899454752604166,
+  "ssimulacra2": 78.567
+ },
+ {
+  "image": "kodim23",
+  "codec": "HEIF",
+  "quality": 55,
+  "bytes": 45883,
+  "pixels": 393216,
+  "bpp": 0.9334920247395834,
+  "ssimulacra2": 82.848
+ },
+ {
+  "image": "kodim23",
+  "codec": "HEIF",
+  "quality": 60,
+  "bytes": 62749,
+  "pixels": 393216,
+  "bpp": 1.2766316731770833,
+  "ssimulacra2": 84.866
+ },
+ {
+  "image": "kodim23",
+  "codec": "HEIF",
+  "quality": 65,
+  "bytes": 95028,
+  "pixels": 393216,
+  "bpp": 1.933349609375,
+  "ssimulacra2": 87.428
+ },
+ {
+  "image": "kodim23",
+  "codec": "HEIF",
+  "quality": 70,
+  "bytes": 118558,
+  "pixels": 393216,
+  "bpp": 2.4120686848958335,
+  "ssimulacra2": 88.472
+ },
+ {
+  "image": "kodim23",
+  "codec": "HEIF",
+  "quality": 80,
+  "bytes": 185375,
+  "pixels": 393216,
+  "bpp": 3.7714640299479165,
+  "ssimulacra2": 90.111
+ },
+ {
+  "image": "kodim23",
+  "codec": "JXL",
+  "quality": 55,
+  "bytes": 17821,
+  "pixels": 393216,
+  "bpp": 0.3625691731770833,
+  "ssimulacra2": 67.642
+ },
+ {
+  "image": "kodim23",
+  "codec": "JXL",
+  "quality": 60,
+  "bytes": 19098,
+  "pixels": 393216,
+  "bpp": 0.3885498046875,
+  "ssimulacra2": 69.808
+ },
+ {
+  "image": "kodim23",
+  "codec": "JXL",
+  "quality": 65,
+  "bytes": 21011,
+  "pixels": 393216,
+  "bpp": 0.4274698893229167,
+  "ssimulacra2": 72.159
+ },
+ {
+  "image": "kodim23",
+  "codec": "JXL",
+  "quality": 70,
+  "bytes": 23586,
+  "pixels": 393216,
+  "bpp": 0.4798583984375,
+  "ssimulacra2": 75.363
+ },
+ {
+  "image": "kodim23",
+  "codec": "JXL",
+  "quality": 75,
+  "bytes": 27116,
+  "pixels": 393216,
+  "bpp": 0.5516764322916666,
+  "ssimulacra2": 77.871
+ },
+ {
+  "image": "kodim23",
+  "codec": "JXL",
+  "quality": 80,
+  "bytes": 32500,
+  "pixels": 393216,
+  "bpp": 0.6612141927083334,
+  "ssimulacra2": 80.94
+ },
+ {
+  "image": "kodim23",
+  "codec": "JXL",
+  "quality": 85,
+  "bytes": 40886,
+  "pixels": 393216,
+  "bpp": 0.8318277994791666,
+  "ssimulacra2": 84.204
+ },
+ {
+  "image": "kodim23",
+  "codec": "JXL",
+  "quality": 88,
+  "bytes": 48991,
+  "pixels": 393216,
+  "bpp": 0.9967244466145834,
+  "ssimulacra2": 86.38
+ },
+ {
+  "image": "kodim23",
+  "codec": "JXL",
+  "quality": 90,
+  "bytes": 56730,
+  "pixels": 393216,
+  "bpp": 1.1541748046875,
+  "ssimulacra2": 87.641
+ },
+ {
+  "image": "kodim23",
+  "codec": "JXL",
+  "quality": 93,
+  "bytes": 74926,
+  "pixels": 393216,
+  "bpp": 1.5243733723958333,
+  "ssimulacra2": 89.952
+ },
+ {
+  "image": "kodim23",
+  "codec": "JXL",
+  "quality": 96,
+  "bytes": 110058,
+  "pixels": 393216,
+  "bpp": 2.2391357421875,
+  "ssimulacra2": 92.461
+ },
+ {
+  "image": "kodim24",
+  "codec": "JPEG",
+  "quality": 30,
+  "bytes": 36792,
+  "pixels": 393216,
+  "bpp": 0.74853515625,
+  "ssimulacra2": 46.978
+ },
+ {
+  "image": "kodim24",
+  "codec": "JPEG",
+  "quality": 40,
+  "bytes": 44497,
+  "pixels": 393216,
+  "bpp": 0.9052937825520834,
+  "ssimulacra2": 56.236
+ },
+ {
+  "image": "kodim24",
+  "codec": "JPEG",
+  "quality": 50,
+  "bytes": 51629,
+  "pixels": 393216,
+  "bpp": 1.0503946940104167,
+  "ssimulacra2": 61.274
+ },
+ {
+  "image": "kodim24",
+  "codec": "JPEG",
+  "quality": 60,
+  "bytes": 59241,
+  "pixels": 393216,
+  "bpp": 1.20526123046875,
+  "ssimulacra2": 65.24
+ },
+ {
+  "image": "kodim24",
+  "codec": "JPEG",
+  "quality": 65,
+  "bytes": 64328,
+  "pixels": 393216,
+  "bpp": 1.3087565104166667,
+  "ssimulacra2": 67.555
+ },
+ {
+  "image": "kodim24",
+  "codec": "JPEG",
+  "quality": 70,
+  "bytes": 70546,
+  "pixels": 393216,
+  "bpp": 1.4352620442708333,
+  "ssimulacra2": 70.363
+ },
+ {
+  "image": "kodim24",
+  "codec": "JPEG",
+  "quality": 75,
+  "bytes": 77527,
+  "pixels": 393216,
+  "bpp": 1.5772908528645833,
+  "ssimulacra2": 72.483
+ },
+ {
+  "image": "kodim24",
+  "codec": "JPEG",
+  "quality": 80,
+  "bytes": 88160,
+  "pixels": 393216,
+  "bpp": 1.7936197916666667,
+  "ssimulacra2": 76.056
+ },
+ {
+  "image": "kodim24",
+  "codec": "JPEG",
+  "quality": 85,
+  "bytes": 102786,
+  "pixels": 393216,
+  "bpp": 2.0911865234375,
+  "ssimulacra2": 79.201
+ },
+ {
+  "image": "kodim24",
+  "codec": "JPEG",
+  "quality": 90,
+  "bytes": 126623,
+  "pixels": 393216,
+  "bpp": 2.5761515299479165,
+  "ssimulacra2": 83.116
+ },
+ {
+  "image": "kodim24",
+  "codec": "JPEG",
+  "quality": 95,
+  "bytes": 173723,
+  "pixels": 393216,
+  "bpp": 3.5344034830729165,
+  "ssimulacra2": 87.327
+ },
+ {
+  "image": "kodim24",
+  "codec": "WEBP",
+  "quality": 30,
+  "bytes": 31704,
+  "pixels": 393216,
+  "bpp": 0.64501953125,
+  "ssimulacra2": 47.998
+ },
+ {
+  "image": "kodim24",
+  "codec": "WEBP",
+  "quality": 40,
+  "bytes": 38076,
+  "pixels": 393216,
+  "bpp": 0.774658203125,
+  "ssimulacra2": 53.266
+ },
+ {
+  "image": "kodim24",
+  "codec": "WEBP",
+  "quality": 50,
+  "bytes": 44196,
+  "pixels": 393216,
+  "bpp": 0.899169921875,
+  "ssimulacra2": 59.41
+ },
+ {
+  "image": "kodim24",
+  "codec": "WEBP",
+  "quality": 60,
+  "bytes": 50434,
+  "pixels": 393216,
+  "bpp": 1.0260823567708333,
+  "ssimulacra2": 64.059
+ },
+ {
+  "image": "kodim24",
+  "codec": "WEBP",
+  "quality": 65,
+  "bytes": 53028,
+  "pixels": 393216,
+  "bpp": 1.078857421875,
+  "ssimulacra2": 65.78
+ },
+ {
+  "image": "kodim24",
+  "codec": "WEBP",
+  "quality": 70,
+  "bytes": 56302,
+  "pixels": 393216,
+  "bpp": 1.1454671223958333,
+  "ssimulacra2": 68.312
+ },
+ {
+  "image": "kodim24",
+  "codec": "WEBP",
+  "quality": 75,
+  "bytes": 60088,
+  "pixels": 393216,
+  "bpp": 1.2224934895833333,
+  "ssimulacra2": 69.887
+ },
+ {
+  "image": "kodim24",
+  "codec": "WEBP",
+  "quality": 80,
+  "bytes": 73196,
+  "pixels": 393216,
+  "bpp": 1.4891764322916667,
+  "ssimulacra2": 75.565
+ },
+ {
+  "image": "kodim24",
+  "codec": "WEBP",
+  "quality": 85,
+  "bytes": 89778,
+  "pixels": 393216,
+  "bpp": 1.8265380859375,
+  "ssimulacra2": 80.218
+ },
+ {
+  "image": "kodim24",
+  "codec": "WEBP",
+  "quality": 90,
+  "bytes": 114584,
+  "pixels": 393216,
+  "bpp": 2.3312174479166665,
+  "ssimulacra2": 84.046
+ },
+ {
+  "image": "kodim24",
+  "codec": "WEBP",
+  "quality": 95,
+  "bytes": 153660,
+  "pixels": 393216,
+  "bpp": 3.126220703125,
+  "ssimulacra2": 86.848
+ },
+ {
+  "image": "kodim24",
+  "codec": "AVIF",
+  "quality": 25,
+  "bytes": 12918,
+  "pixels": 393216,
+  "bpp": 0.2628173828125,
+  "ssimulacra2": 20.55
+ },
+ {
+  "image": "kodim24",
+  "codec": "AVIF",
+  "quality": 30,
+  "bytes": 16728,
+  "pixels": 393216,
+  "bpp": 0.34033203125,
+  "ssimulacra2": 31.244
+ },
+ {
+  "image": "kodim24",
+  "codec": "AVIF",
+  "quality": 35,
+  "bytes": 20796,
+  "pixels": 393216,
+  "bpp": 0.423095703125,
+  "ssimulacra2": 41.26
+ },
+ {
+  "image": "kodim24",
+  "codec": "AVIF",
+  "quality": 40,
+  "bytes": 25560,
+  "pixels": 393216,
+  "bpp": 0.52001953125,
+  "ssimulacra2": 49.666
+ },
+ {
+  "image": "kodim24",
+  "codec": "AVIF",
+  "quality": 45,
+  "bytes": 32323,
+  "pixels": 393216,
+  "bpp": 0.6576131184895834,
+  "ssimulacra2": 58.19
+ },
+ {
+  "image": "kodim24",
+  "codec": "AVIF",
+  "quality": 50,
+  "bytes": 38890,
+  "pixels": 393216,
+  "bpp": 0.7912190755208334,
+  "ssimulacra2": 64.175
+ },
+ {
+  "image": "kodim24",
+  "codec": "AVIF",
+  "quality": 55,
+  "bytes": 46289,
+  "pixels": 393216,
+  "bpp": 0.9417521158854166,
+  "ssimulacra2": 69.021
+ },
+ {
+  "image": "kodim24",
+  "codec": "AVIF",
+  "quality": 60,
+  "bytes": 56981,
+  "pixels": 393216,
+  "bpp": 1.1592814127604167,
+  "ssimulacra2": 74.332
+ },
+ {
+  "image": "kodim24",
+  "codec": "AVIF",
+  "quality": 65,
+  "bytes": 63831,
+  "pixels": 393216,
+  "bpp": 1.29864501953125,
+  "ssimulacra2": 77.109
+ },
+ {
+  "image": "kodim24",
+  "codec": "AVIF",
+  "quality": 70,
+  "bytes": 76299,
+  "pixels": 393216,
+  "bpp": 1.55230712890625,
+  "ssimulacra2": 80.84
+ },
+ {
+  "image": "kodim24",
+  "codec": "AVIF",
+  "quality": 80,
+  "bytes": 99202,
+  "pixels": 393216,
+  "bpp": 2.0182698567708335,
+  "ssimulacra2": 84.73
+ },
+ {
+  "image": "kodim24",
+  "codec": "HEIF",
+  "quality": 25,
+  "bytes": 19686,
+  "pixels": 393216,
+  "bpp": 0.4005126953125,
+  "ssimulacra2": 30.945
+ },
+ {
+  "image": "kodim24",
+  "codec": "HEIF",
+  "quality": 30,
+  "bytes": 25776,
+  "pixels": 393216,
+  "bpp": 0.5244140625,
+  "ssimulacra2": 42.027
+ },
+ {
+  "image": "kodim24",
+  "codec": "HEIF",
+  "quality": 35,
+  "bytes": 37136,
+  "pixels": 393216,
+  "bpp": 0.7555338541666666,
+  "ssimulacra2": 56.481
+ },
+ {
+  "image": "kodim24",
+  "codec": "HEIF",
+  "quality": 40,
+  "bytes": 46126,
+  "pixels": 393216,
+  "bpp": 0.9384358723958334,
+  "ssimulacra2": 64.402
+ },
+ {
+  "image": "kodim24",
+  "codec": "HEIF",
+  "quality": 45,
+  "bytes": 61748,
+  "pixels": 393216,
+  "bpp": 1.2562662760416667,
+  "ssimulacra2": 73.055
+ },
+ {
+  "image": "kodim24",
+  "codec": "HEIF",
+  "quality": 50,
+  "bytes": 74120,
+  "pixels": 393216,
+  "bpp": 1.5079752604166667,
+  "ssimulacra2": 77.409
+ },
+ {
+  "image": "kodim24",
+  "codec": "HEIF",
+  "quality": 55,
+  "bytes": 94887,
+  "pixels": 393216,
+  "bpp": 1.93048095703125,
+  "ssimulacra2": 82.829
+ },
+ {
+  "image": "kodim24",
+  "codec": "HEIF",
+  "quality": 60,
+  "bytes": 110870,
+  "pixels": 393216,
+  "bpp": 2.2556559244791665,
+  "ssimulacra2": 85.516
+ },
+ {
+  "image": "kodim24",
+  "codec": "HEIF",
+  "quality": 65,
+  "bytes": 137872,
+  "pixels": 393216,
+  "bpp": 2.8050130208333335,
+  "ssimulacra2": 88.058
+ },
+ {
+  "image": "kodim24",
+  "codec": "HEIF",
+  "quality": 70,
+  "bytes": 158623,
+  "pixels": 393216,
+  "bpp": 3.2271931966145835,
+  "ssimulacra2": 89.327
+ },
+ {
+  "image": "kodim24",
+  "codec": "HEIF",
+  "quality": 80,
+  "bytes": 218614,
+  "pixels": 393216,
+  "bpp": 4.447713216145833,
+  "ssimulacra2": 91.306
+ },
+ {
+  "image": "kodim24",
+  "codec": "JXL",
+  "quality": 55,
+  "bytes": 39211,
+  "pixels": 393216,
+  "bpp": 0.7977498372395834,
+  "ssimulacra2": 60.382
+ },
+ {
+  "image": "kodim24",
+  "codec": "JXL",
+  "quality": 60,
+  "bytes": 43318,
+  "pixels": 393216,
+  "bpp": 0.8813069661458334,
+  "ssimulacra2": 63.723
+ },
+ {
+  "image": "kodim24",
+  "codec": "JXL",
+  "quality": 65,
+  "bytes": 48335,
+  "pixels": 393216,
+  "bpp": 0.9833780924479166,
+  "ssimulacra2": 66.948
+ },
+ {
+  "image": "kodim24",
+  "codec": "JXL",
+  "quality": 70,
+  "bytes": 54943,
+  "pixels": 393216,
+  "bpp": 1.1178181966145833,
+  "ssimulacra2": 71.117
+ },
+ {
+  "image": "kodim24",
+  "codec": "JXL",
+  "quality": 75,
+  "bytes": 63188,
+  "pixels": 393216,
+  "bpp": 1.2855631510416667,
+  "ssimulacra2": 74.421
+ },
+ {
+  "image": "kodim24",
+  "codec": "JXL",
+  "quality": 80,
+  "bytes": 74533,
+  "pixels": 393216,
+  "bpp": 1.5163777669270833,
+  "ssimulacra2": 78.44
+ },
+ {
+  "image": "kodim24",
+  "codec": "JXL",
+  "quality": 85,
+  "bytes": 90098,
+  "pixels": 393216,
+  "bpp": 1.8330485026041667,
+  "ssimulacra2": 82.277
+ },
+ {
+  "image": "kodim24",
+  "codec": "JXL",
+  "quality": 88,
+  "bytes": 103892,
+  "pixels": 393216,
+  "bpp": 2.1136881510416665,
+  "ssimulacra2": 85.007
+ },
+ {
+  "image": "kodim24",
+  "codec": "JXL",
+  "quality": 90,
+  "bytes": 115949,
+  "pixels": 393216,
+  "bpp": 2.3589884440104165,
+  "ssimulacra2": 86.62
+ },
+ {
+  "image": "kodim24",
+  "codec": "JXL",
+  "quality": 93,
+  "bytes": 141145,
+  "pixels": 393216,
+  "bpp": 2.8716023763020835,
+  "ssimulacra2": 89.378
+ },
+ {
+  "image": "kodim24",
+  "codec": "JXL",
+  "quality": 96,
+  "bytes": 182170,
+  "pixels": 393216,
+  "bpp": 3.7062581380208335,
+  "ssimulacra2": 92.024
+ },
+ {
+  "image": "kodim01",
+  "codec": "JPEG",
+  "quality": 97,
+  "bytes": 237106,
+  "pixels": 393216,
+  "bpp": 4.823933919270833,
+  "ssimulacra2": 91.502
+ },
+ {
+  "image": "kodim01",
+  "codec": "JPEG",
+  "quality": 98,
+  "bytes": 264083,
+  "pixels": 393216,
+  "bpp": 5.372782389322917,
+  "ssimulacra2": 92.506
+ },
+ {
+  "image": "kodim01",
+  "codec": "WEBP",
+  "quality": 97,
+  "bytes": 200532,
+  "pixels": 393216,
+  "bpp": 4.079833984375,
+  "ssimulacra2": 90.77
+ },
+ {
+  "image": "kodim01",
+  "codec": "WEBP",
+  "quality": 99,
+  "bytes": 224574,
+  "pixels": 393216,
+  "bpp": 4.5689697265625,
+  "ssimulacra2": 91.346
+ },
+ {
+  "image": "kodim01",
+  "codec": "AVIF",
+  "quality": 85,
+  "bytes": 127448,
+  "pixels": 393216,
+  "bpp": 2.5929361979166665,
+  "ssimulacra2": 86.801
+ },
+ {
+  "image": "kodim01",
+  "codec": "AVIF",
+  "quality": 90,
+  "bytes": 156898,
+  "pixels": 393216,
+  "bpp": 3.1920979817708335,
+  "ssimulacra2": 89.174
+ },
+ {
+  "image": "kodim01",
+  "codec": "AVIF",
+  "quality": 95,
+  "bytes": 202635,
+  "pixels": 393216,
+  "bpp": 4.12261962890625,
+  "ssimulacra2": 91.251
+ },
+ {
+  "image": "kodim01",
+  "codec": "HEIF",
+  "quality": 85,
+  "bytes": 273695,
+  "pixels": 393216,
+  "bpp": 5.568339029947917,
+  "ssimulacra2": 93.602
+ },
+ {
+  "image": "kodim01",
+  "codec": "HEIF",
+  "quality": 90,
+  "bytes": 302155,
+  "pixels": 393216,
+  "bpp": 6.147359212239583,
+  "ssimulacra2": 94.128
+ },
+ {
+  "image": "kodim01",
+  "codec": "JXL",
+  "quality": 98,
+  "bytes": 243559,
+  "pixels": 393216,
+  "bpp": 4.955220540364583,
+  "ssimulacra2": 94.433
+ },
+ {
+  "image": "kodim01",
+  "codec": "JXL",
+  "quality": 99,
+  "bytes": 288368,
+  "pixels": 393216,
+  "bpp": 5.866861979166667,
+  "ssimulacra2": 95.653
+ },
+ {
+  "image": "kodim02",
+  "codec": "JPEG",
+  "quality": 97,
+  "bytes": 179839,
+  "pixels": 393216,
+  "bpp": 3.6588338216145835,
+  "ssimulacra2": 88.862
+ },
+ {
+  "image": "kodim02",
+  "codec": "JPEG",
+  "quality": 98,
+  "bytes": 206749,
+  "pixels": 393216,
+  "bpp": 4.206319173177083,
+  "ssimulacra2": 89.94
+ },
+ {
+  "image": "kodim02",
+  "codec": "WEBP",
+  "quality": 97,
+  "bytes": 142194,
+  "pixels": 393216,
+  "bpp": 2.8929443359375,
+  "ssimulacra2": 87.761
+ },
+ {
+  "image": "kodim02",
+  "codec": "WEBP",
+  "quality": 99,
+  "bytes": 168876,
+  "pixels": 393216,
+  "bpp": 3.435791015625,
+  "ssimulacra2": 88.722
+ },
+ {
+  "image": "kodim02",
+  "codec": "AVIF",
+  "quality": 85,
+  "bytes": 91213,
+  "pixels": 393216,
+  "bpp": 1.8557332356770833,
+  "ssimulacra2": 84.941
+ },
+ {
+  "image": "kodim02",
+  "codec": "AVIF",
+  "quality": 90,
+  "bytes": 118340,
+  "pixels": 393216,
+  "bpp": 2.4076334635416665,
+  "ssimulacra2": 87.051
+ },
+ {
+  "image": "kodim02",
+  "codec": "AVIF",
+  "quality": 95,
+  "bytes": 164305,
+  "pixels": 393216,
+  "bpp": 3.3427937825520835,
+  "ssimulacra2": 89.183
+ },
+ {
+  "image": "kodim02",
+  "codec": "HEIF",
+  "quality": 85,
+  "bytes": 261010,
+  "pixels": 393216,
+  "bpp": 5.310262044270833,
+  "ssimulacra2": 91.591
+ },
+ {
+  "image": "kodim02",
+  "codec": "HEIF",
+  "quality": 90,
+  "bytes": 284697,
+  "pixels": 393216,
+  "bpp": 5.79217529296875,
+  "ssimulacra2": 91.828
+ },
+ {
+  "image": "kodim02",
+  "codec": "JXL",
+  "quality": 98,
+  "bytes": 211730,
+  "pixels": 393216,
+  "bpp": 4.307657877604167,
+  "ssimulacra2": 94.769
+ },
+ {
+  "image": "kodim02",
+  "codec": "JXL",
+  "quality": 99,
+  "bytes": 260034,
+  "pixels": 393216,
+  "bpp": 5.2904052734375,
+  "ssimulacra2": 95.874
+ },
+ {
+  "image": "kodim03",
+  "codec": "JPEG",
+  "quality": 97,
+  "bytes": 143285,
+  "pixels": 393216,
+  "bpp": 2.9151407877604165,
+  "ssimulacra2": 90.227
+ },
+ {
+  "image": "kodim03",
+  "codec": "JPEG",
+  "quality": 98,
+  "bytes": 165964,
+  "pixels": 393216,
+  "bpp": 3.3765462239583335,
+  "ssimulacra2": 90.897
+ },
+ {
+  "image": "kodim03",
+  "codec": "WEBP",
+  "quality": 97,
+  "bytes": 97746,
+  "pixels": 393216,
+  "bpp": 1.9886474609375,
+  "ssimulacra2": 87.889
+ },
+ {
+  "image": "kodim03",
+  "codec": "WEBP",
+  "quality": 99,
+  "bytes": 123528,
+  "pixels": 393216,
+  "bpp": 2.51318359375,
+  "ssimulacra2": 89.024
+ },
+ {
+  "image": "kodim03",
+  "codec": "AVIF",
+  "quality": 85,
+  "bytes": 56710,
+  "pixels": 393216,
+  "bpp": 1.1537679036458333,
+  "ssimulacra2": 85.917
+ },
+ {
+  "image": "kodim03",
+  "codec": "AVIF",
+  "quality": 90,
+  "bytes": 78926,
+  "pixels": 393216,
+  "bpp": 1.6057535807291667,
+  "ssimulacra2": 87.923
+ },
+ {
+  "image": "kodim03",
+  "codec": "AVIF",
+  "quality": 95,
+  "bytes": 120204,
+  "pixels": 393216,
+  "bpp": 2.445556640625,
+  "ssimulacra2": 89.815
+ },
+ {
+  "image": "kodim03",
+  "codec": "HEIF",
+  "quality": 85,
+  "bytes": 211383,
+  "pixels": 393216,
+  "bpp": 4.30059814453125,
+  "ssimulacra2": 91.717
+ },
+ {
+  "image": "kodim03",
+  "codec": "HEIF",
+  "quality": 90,
+  "bytes": 231893,
+  "pixels": 393216,
+  "bpp": 4.717875162760417,
+  "ssimulacra2": 91.901
+ },
+ {
+  "image": "kodim03",
+  "codec": "JXL",
+  "quality": 98,
+  "bytes": 163942,
+  "pixels": 393216,
+  "bpp": 3.3354085286458335,
+  "ssimulacra2": 94.745
+ },
+ {
+  "image": "kodim03",
+  "codec": "JXL",
+  "quality": 99,
+  "bytes": 207790,
+  "pixels": 393216,
+  "bpp": 4.227498372395833,
+  "ssimulacra2": 95.829
+ },
+ {
+  "image": "kodim04",
+  "codec": "JPEG",
+  "quality": 97,
+  "bytes": 178155,
+  "pixels": 393216,
+  "bpp": 3.62457275390625,
+  "ssimulacra2": 90.07
+ },
+ {
+  "image": "kodim04",
+  "codec": "JPEG",
+  "quality": 98,
+  "bytes": 204192,
+  "pixels": 393216,
+  "bpp": 4.154296875,
+  "ssimulacra2": 91.065
+ },
+ {
+  "image": "kodim04",
+  "codec": "WEBP",
+  "quality": 97,
+  "bytes": 143444,
+  "pixels": 393216,
+  "bpp": 2.9183756510416665,
+  "ssimulacra2": 89.054
+ },
+ {
+  "image": "kodim04",
+  "codec": "WEBP",
+  "quality": 99,
+  "bytes": 170058,
+  "pixels": 393216,
+  "bpp": 3.4598388671875,
+  "ssimulacra2": 89.996
+ },
+ {
+  "image": "kodim04",
+  "codec": "AVIF",
+  "quality": 85,
+  "bytes": 87276,
+  "pixels": 393216,
+  "bpp": 1.775634765625,
+  "ssimulacra2": 85.85
+ },
+ {
+  "image": "kodim04",
+  "codec": "AVIF",
+  "quality": 90,
+  "bytes": 115006,
+  "pixels": 393216,
+  "bpp": 2.3398030598958335,
+  "ssimulacra2": 88.082
+ },
+ {
+  "image": "kodim04",
+  "codec": "AVIF",
+  "quality": 95,
+  "bytes": 161186,
+  "pixels": 393216,
+  "bpp": 3.2793375651041665,
+  "ssimulacra2": 90.248
+ },
+ {
+  "image": "kodim04",
+  "codec": "HEIF",
+  "quality": 85,
+  "bytes": 247310,
+  "pixels": 393216,
+  "bpp": 5.031534830729167,
+  "ssimulacra2": 92.7
+ },
+ {
+  "image": "kodim04",
+  "codec": "HEIF",
+  "quality": 90,
+  "bytes": 272969,
+  "pixels": 393216,
+  "bpp": 5.553568522135417,
+  "ssimulacra2": 93.016
+ },
+ {
+  "image": "kodim04",
+  "codec": "JXL",
+  "quality": 98,
+  "bytes": 203048,
+  "pixels": 393216,
+  "bpp": 4.131022135416667,
+  "ssimulacra2": 94.729
+ },
+ {
+  "image": "kodim04",
+  "codec": "JXL",
+  "quality": 99,
+  "bytes": 249532,
+  "pixels": 393216,
+  "bpp": 5.076741536458333,
+  "ssimulacra2": 95.912
+ },
+ {
+  "image": "kodim05",
+  "codec": "JPEG",
+  "quality": 97,
+  "bytes": 244884,
+  "pixels": 393216,
+  "bpp": 4.982177734375,
+  "ssimulacra2": 91.075
+ },
+ {
+  "image": "kodim05",
+  "codec": "JPEG",
+  "quality": 98,
+  "bytes": 273601,
+  "pixels": 393216,
+  "bpp": 5.566426595052083,
+  "ssimulacra2": 91.902
+ },
+ {
+  "image": "kodim05",
+  "codec": "WEBP",
+  "quality": 97,
+  "bytes": 204534,
+  "pixels": 393216,
+  "bpp": 4.1612548828125,
+  "ssimulacra2": 90.371
+ },
+ {
+  "image": "kodim05",
+  "codec": "WEBP",
+  "quality": 99,
+  "bytes": 237760,
+  "pixels": 393216,
+  "bpp": 4.837239583333333,
+  "ssimulacra2": 91.128
+ },
+ {
+  "image": "kodim05",
+  "codec": "AVIF",
+  "quality": 85,
+  "bytes": 124674,
+  "pixels": 393216,
+  "bpp": 2.5364990234375,
+  "ssimulacra2": 86.832
+ },
+ {
+  "image": "kodim05",
+  "codec": "AVIF",
+  "quality": 90,
+  "bytes": 152963,
+  "pixels": 393216,
+  "bpp": 3.1120402018229165,
+  "ssimulacra2": 88.903
+ },
+ {
+  "image": "kodim05",
+  "codec": "AVIF",
+  "quality": 95,
+  "bytes": 200086,
+  "pixels": 393216,
+  "bpp": 4.070760091145833,
+  "ssimulacra2": 90.671
+ },
+ {
+  "image": "kodim05",
+  "codec": "HEIF",
+  "quality": 85,
+  "bytes": 269451,
+  "pixels": 393216,
+  "bpp": 5.48199462890625,
+  "ssimulacra2": 91.862
+ },
+ {
+  "image": "kodim05",
+  "codec": "HEIF",
+  "quality": 90,
+  "bytes": 299202,
+  "pixels": 393216,
+  "bpp": 6.0872802734375,
+  "ssimulacra2": 92.18
+ },
+ {
+  "image": "kodim05",
+  "codec": "JXL",
+  "quality": 98,
+  "bytes": 258080,
+  "pixels": 393216,
+  "bpp": 5.250651041666667,
+  "ssimulacra2": 94.05
+ },
+ {
+  "image": "kodim05",
+  "codec": "JXL",
+  "quality": 99,
+  "bytes": 305038,
+  "pixels": 393216,
+  "bpp": 6.206013997395833,
+  "ssimulacra2": 95.174
+ },
+ {
+  "image": "kodim07",
+  "codec": "JPEG",
+  "quality": 97,
+  "bytes": 157346,
+  "pixels": 393216,
+  "bpp": 3.2012125651041665,
+  "ssimulacra2": 90.655
+ },
+ {
+  "image": "kodim07",
+  "codec": "JPEG",
+  "quality": 98,
+  "bytes": 181494,
+  "pixels": 393216,
+  "bpp": 3.6925048828125,
+  "ssimulacra2": 91.435
+ },
+ {
+  "image": "kodim07",
+  "codec": "WEBP",
+  "quality": 97,
+  "bytes": 116824,
+  "pixels": 393216,
+  "bpp": 2.3767903645833335,
+  "ssimulacra2": 89.362
+ },
+ {
+  "image": "kodim07",
+  "codec": "WEBP",
+  "quality": 99,
+  "bytes": 138912,
+  "pixels": 393216,
+  "bpp": 2.826171875,
+  "ssimulacra2": 90.046
+ },
+ {
+  "image": "kodim07",
+  "codec": "AVIF",
+  "quality": 85,
+  "bytes": 61768,
+  "pixels": 393216,
+  "bpp": 1.2566731770833333,
+  "ssimulacra2": 86.907
+ },
+ {
+  "image": "kodim07",
+  "codec": "AVIF",
+  "quality": 90,
+  "bytes": 84710,
+  "pixels": 393216,
+  "bpp": 1.7234293619791667,
+  "ssimulacra2": 88.568
+ },
+ {
+  "image": "kodim07",
+  "codec": "AVIF",
+  "quality": 95,
+  "bytes": 126242,
+  "pixels": 393216,
+  "bpp": 2.5684000651041665,
+  "ssimulacra2": 90.567
+ },
+ {
+  "image": "kodim07",
+  "codec": "HEIF",
+  "quality": 85,
+  "bytes": 206445,
+  "pixels": 393216,
+  "bpp": 4.20013427734375,
+  "ssimulacra2": 92.698
+ },
+ {
+  "image": "kodim07",
+  "codec": "HEIF",
+  "quality": 90,
+  "bytes": 230415,
+  "pixels": 393216,
+  "bpp": 4.68780517578125,
+  "ssimulacra2": 92.941
+ },
+ {
+  "image": "kodim07",
+  "codec": "JXL",
+  "quality": 98,
+  "bytes": 178988,
+  "pixels": 393216,
+  "bpp": 3.6415201822916665,
+  "ssimulacra2": 94.765
+ },
+ {
+  "image": "kodim07",
+  "codec": "JXL",
+  "quality": 99,
+  "bytes": 223035,
+  "pixels": 393216,
+  "bpp": 4.53765869140625,
+  "ssimulacra2": 95.644
+ },
+ {
+  "image": "kodim08",
+  "codec": "JPEG",
+  "quality": 97,
+  "bytes": 251765,
+  "pixels": 393216,
+  "bpp": 5.122172037760417,
+  "ssimulacra2": 91.369
+ },
+ {
+  "image": "kodim08",
+  "codec": "JPEG",
+  "quality": 98,
+  "bytes": 281518,
+  "pixels": 393216,
+  "bpp": 5.727498372395833,
+  "ssimulacra2": 92.362
+ },
+ {
+  "image": "kodim08",
+  "codec": "WEBP",
+  "quality": 97,
+  "bytes": 221396,
+  "pixels": 393216,
+  "bpp": 4.504313151041667,
+  "ssimulacra2": 91.028
+ },
+ {
+  "image": "kodim08",
+  "codec": "WEBP",
+  "quality": 99,
+  "bytes": 246396,
+  "pixels": 393216,
+  "bpp": 5.012939453125,
+  "ssimulacra2": 91.548
+ },
+ {
+  "image": "kodim08",
+  "codec": "AVIF",
+  "quality": 85,
+  "bytes": 126290,
+  "pixels": 393216,
+  "bpp": 2.5693766276041665,
+  "ssimulacra2": 86.473
+ },
+ {
+  "image": "kodim08",
+  "codec": "AVIF",
+  "quality": 90,
+  "bytes": 157558,
+  "pixels": 393216,
+  "bpp": 3.2055257161458335,
+  "ssimulacra2": 89.247
+ },
+ {
+  "image": "kodim08",
+  "codec": "AVIF",
+  "quality": 95,
+  "bytes": 206001,
+  "pixels": 393216,
+  "bpp": 4.19110107421875,
+  "ssimulacra2": 91.554
+ },
+ {
+  "image": "kodim08",
+  "codec": "HEIF",
+  "quality": 85,
+  "bytes": 273510,
+  "pixels": 393216,
+  "bpp": 5.5645751953125,
+  "ssimulacra2": 93.734
+ },
+ {
+  "image": "kodim08",
+  "codec": "HEIF",
+  "quality": 90,
+  "bytes": 302124,
+  "pixels": 393216,
+  "bpp": 6.146728515625,
+  "ssimulacra2": 94.196
+ },
+ {
+  "image": "kodim08",
+  "codec": "JXL",
+  "quality": 98,
+  "bytes": 260668,
+  "pixels": 393216,
+  "bpp": 5.303304036458333,
+  "ssimulacra2": 94.059
+ },
+ {
+  "image": "kodim08",
+  "codec": "JXL",
+  "quality": 99,
+  "bytes": 308019,
+  "pixels": 393216,
+  "bpp": 6.26666259765625,
+  "ssimulacra2": 95.253
+ },
+ {
+  "image": "kodim13",
+  "codec": "JPEG",
+  "quality": 97,
+  "bytes": 275629,
+  "pixels": 393216,
+  "bpp": 5.607686360677083,
+  "ssimulacra2": 91.703
+ },
+ {
+  "image": "kodim13",
+  "codec": "JPEG",
+  "quality": 98,
+  "bytes": 305880,
+  "pixels": 393216,
+  "bpp": 6.22314453125,
+  "ssimulacra2": 92.659
+ },
+ {
+  "image": "kodim13",
+  "codec": "WEBP",
+  "quality": 97,
+  "bytes": 251394,
+  "pixels": 393216,
+  "bpp": 5.1146240234375,
+  "ssimulacra2": 91.575
+ },
+ {
+  "image": "kodim13",
+  "codec": "WEBP",
+  "quality": 99,
+  "bytes": 273652,
+  "pixels": 393216,
+  "bpp": 5.567464192708333,
+  "ssimulacra2": 92.01
+ },
+ {
+  "image": "kodim13",
+  "codec": "AVIF",
+  "quality": 85,
+  "bytes": 165088,
+  "pixels": 393216,
+  "bpp": 3.3587239583333335,
+  "ssimulacra2": 87.198
+ },
+ {
+  "image": "kodim13",
+  "codec": "AVIF",
+  "quality": 90,
+  "bytes": 197808,
+  "pixels": 393216,
+  "bpp": 4.0244140625,
+  "ssimulacra2": 89.61
+ },
+ {
+  "image": "kodim13",
+  "codec": "AVIF",
+  "quality": 95,
+  "bytes": 248066,
+  "pixels": 393216,
+  "bpp": 5.046915690104167,
+  "ssimulacra2": 91.71
+ },
+ {
+  "image": "kodim13",
+  "codec": "HEIF",
+  "quality": 85,
+  "bytes": 325339,
+  "pixels": 393216,
+  "bpp": 6.619038899739583,
+  "ssimulacra2": 93.883
+ },
+ {
+  "image": "kodim13",
+  "codec": "HEIF",
+  "quality": 90,
+  "bytes": 355896,
+  "pixels": 393216,
+  "bpp": 7.24072265625,
+  "ssimulacra2": 94.1
+ },
+ {
+  "image": "kodim13",
+  "codec": "JXL",
+  "quality": 98,
+  "bytes": 270362,
+  "pixels": 393216,
+  "bpp": 5.500528971354167,
+  "ssimulacra2": 93.228
+ },
+ {
+  "image": "kodim13",
+  "codec": "JXL",
+  "quality": 99,
+  "bytes": 315230,
+  "pixels": 393216,
+  "bpp": 6.413370768229167,
+  "ssimulacra2": 94.772
+ },
+ {
+  "image": "kodim14",
+  "codec": "JPEG",
+  "quality": 97,
+  "bytes": 226383,
+  "pixels": 393216,
+  "bpp": 4.60577392578125,
+  "ssimulacra2": 89.967
+ },
+ {
+  "image": "kodim14",
+  "codec": "JPEG",
+  "quality": 98,
+  "bytes": 253643,
+  "pixels": 393216,
+  "bpp": 5.160380045572917,
+  "ssimulacra2": 90.599
+ },
+ {
+  "image": "kodim14",
+  "codec": "WEBP",
+  "quality": 97,
+  "bytes": 189522,
+  "pixels": 393216,
+  "bpp": 3.8558349609375,
+  "ssimulacra2": 89.44
+ },
+ {
+  "image": "kodim14",
+  "codec": "WEBP",
+  "quality": 99,
+  "bytes": 218066,
+  "pixels": 393216,
+  "bpp": 4.436564127604167,
+  "ssimulacra2": 90.062
+ },
+ {
+  "image": "kodim14",
+  "codec": "AVIF",
+  "quality": 85,
+  "bytes": 121992,
+  "pixels": 393216,
+  "bpp": 2.48193359375,
+  "ssimulacra2": 86.417
+ },
+ {
+  "image": "kodim14",
+  "codec": "AVIF",
+  "quality": 90,
+  "bytes": 152081,
+  "pixels": 393216,
+  "bpp": 3.0940958658854165,
+  "ssimulacra2": 88.312
+ },
+ {
+  "image": "kodim14",
+  "codec": "AVIF",
+  "quality": 95,
+  "bytes": 198522,
+  "pixels": 393216,
+  "bpp": 4.0389404296875,
+  "ssimulacra2": 89.751
+ },
+ {
+  "image": "kodim14",
+  "codec": "HEIF",
+  "quality": 85,
+  "bytes": 273940,
+  "pixels": 393216,
+  "bpp": 5.573323567708333,
+  "ssimulacra2": 91.124
+ },
+ {
+  "image": "kodim14",
+  "codec": "HEIF",
+  "quality": 90,
+  "bytes": 302315,
+  "pixels": 393216,
+  "bpp": 6.150614420572917,
+  "ssimulacra2": 91.335
+ },
+ {
+  "image": "kodim14",
+  "codec": "JXL",
+  "quality": 98,
+  "bytes": 234849,
+  "pixels": 393216,
+  "bpp": 4.77801513671875,
+  "ssimulacra2": 94.273
+ },
+ {
+  "image": "kodim14",
+  "codec": "JXL",
+  "quality": 99,
+  "bytes": 280437,
+  "pixels": 393216,
+  "bpp": 5.70550537109375,
+  "ssimulacra2": 95.324
+ },
+ {
+  "image": "kodim19",
+  "codec": "JPEG",
+  "quality": 97,
+  "bytes": 193171,
+  "pixels": 393216,
+  "bpp": 3.9300740559895835,
+  "ssimulacra2": 90.852
+ },
+ {
+  "image": "kodim19",
+  "codec": "JPEG",
+  "quality": 98,
+  "bytes": 220147,
+  "pixels": 393216,
+  "bpp": 4.478902180989583,
+  "ssimulacra2": 91.906
+ },
+ {
+  "image": "kodim19",
+  "codec": "WEBP",
+  "quality": 97,
+  "bytes": 167802,
+  "pixels": 393216,
+  "bpp": 3.4139404296875,
+  "ssimulacra2": 90.147
+ },
+ {
+  "image": "kodim19",
+  "codec": "WEBP",
+  "quality": 99,
+  "bytes": 188862,
+  "pixels": 393216,
+  "bpp": 3.8424072265625,
+  "ssimulacra2": 90.806
+ },
+ {
+  "image": "kodim19",
+  "codec": "AVIF",
+  "quality": 85,
+  "bytes": 93763,
+  "pixels": 393216,
+  "bpp": 1.9076131184895833,
+  "ssimulacra2": 86.226
+ },
+ {
+  "image": "kodim19",
+  "codec": "AVIF",
+  "quality": 90,
+  "bytes": 124189,
+  "pixels": 393216,
+  "bpp": 2.5266316731770835,
+  "ssimulacra2": 88.689
+ },
+ {
+  "image": "kodim19",
+  "codec": "AVIF",
+  "quality": 95,
+  "bytes": 170175,
+  "pixels": 393216,
+  "bpp": 3.46221923828125,
+  "ssimulacra2": 91.035
+ },
+ {
+  "image": "kodim19",
+  "codec": "HEIF",
+  "quality": 85,
+  "bytes": 261164,
+  "pixels": 393216,
+  "bpp": 5.313395182291667,
+  "ssimulacra2": 93.314
+ },
+ {
+  "image": "kodim19",
+  "codec": "HEIF",
+  "quality": 90,
+  "bytes": 285842,
+  "pixels": 393216,
+  "bpp": 5.815470377604167,
+  "ssimulacra2": 93.601
+ },
+ {
+  "image": "kodim19",
+  "codec": "JXL",
+  "quality": 98,
+  "bytes": 207934,
+  "pixels": 393216,
+  "bpp": 4.230428059895833,
+  "ssimulacra2": 94.198
+ },
+ {
+  "image": "kodim19",
+  "codec": "JXL",
+  "quality": 99,
+  "bytes": 252561,
+  "pixels": 393216,
+  "bpp": 5.13836669921875,
+  "ssimulacra2": 95.562
+ },
+ {
+  "image": "kodim20",
+  "codec": "JPEG",
+  "quality": 97,
+  "bytes": 137492,
+  "pixels": 393216,
+  "bpp": 2.7972819010416665,
+  "ssimulacra2": 91.024
+ },
+ {
+  "image": "kodim20",
+  "codec": "JPEG",
+  "quality": 98,
+  "bytes": 158289,
+  "pixels": 393216,
+  "bpp": 3.22039794921875,
+  "ssimulacra2": 91.971
+ },
+ {
+  "image": "kodim20",
+  "codec": "WEBP",
+  "quality": 97,
+  "bytes": 106950,
+  "pixels": 393216,
+  "bpp": 2.1759033203125,
+  "ssimulacra2": 89.932
+ },
+ {
+  "image": "kodim20",
+  "codec": "WEBP",
+  "quality": 99,
+  "bytes": 124026,
+  "pixels": 393216,
+  "bpp": 2.5233154296875,
+  "ssimulacra2": 90.921
+ },
+ {
+  "image": "kodim20",
+  "codec": "AVIF",
+  "quality": 85,
+  "bytes": 61265,
+  "pixels": 393216,
+  "bpp": 1.2464396158854167,
+  "ssimulacra2": 87.471
+ },
+ {
+  "image": "kodim20",
+  "codec": "AVIF",
+  "quality": 90,
+  "bytes": 80385,
+  "pixels": 393216,
+  "bpp": 1.63543701171875,
+  "ssimulacra2": 89.656
+ },
+ {
+  "image": "kodim20",
+  "codec": "AVIF",
+  "quality": 95,
+  "bytes": 123811,
+  "pixels": 393216,
+  "bpp": 2.5189412434895835,
+  "ssimulacra2": 91.528
+ },
+ {
+  "image": "kodim20",
+  "codec": "HEIF",
+  "quality": 85,
+  "bytes": 199730,
+  "pixels": 393216,
+  "bpp": 4.063517252604167,
+  "ssimulacra2": 93.311
+ },
+ {
+  "image": "kodim20",
+  "codec": "HEIF",
+  "quality": 90,
+  "bytes": 214330,
+  "pixels": 393216,
+  "bpp": 4.360555013020833,
+  "ssimulacra2": 93.53
+ },
+ {
+  "image": "kodim20",
+  "codec": "JXL",
+  "quality": 98,
+  "bytes": 142760,
+  "pixels": 393216,
+  "bpp": 2.9044596354166665,
+  "ssimulacra2": 94.615
+ },
+ {
+  "image": "kodim20",
+  "codec": "JXL",
+  "quality": 99,
+  "bytes": 175819,
+  "pixels": 393216,
+  "bpp": 3.5770467122395835,
+  "ssimulacra2": 95.856
+ },
+ {
+  "image": "kodim21",
+  "codec": "JPEG",
+  "quality": 97,
+  "bytes": 196029,
+  "pixels": 393216,
+  "bpp": 3.98822021484375,
+  "ssimulacra2": 90.357
+ },
+ {
+  "image": "kodim21",
+  "codec": "JPEG",
+  "quality": 98,
+  "bytes": 223613,
+  "pixels": 393216,
+  "bpp": 4.549418131510417,
+  "ssimulacra2": 91.483
+ },
+ {
+  "image": "kodim21",
+  "codec": "WEBP",
+  "quality": 97,
+  "bytes": 171952,
+  "pixels": 393216,
+  "bpp": 3.4983723958333335,
+  "ssimulacra2": 89.719
+ },
+ {
+  "image": "kodim21",
+  "codec": "WEBP",
+  "quality": 99,
+  "bytes": 191584,
+  "pixels": 393216,
+  "bpp": 3.8977864583333335,
+  "ssimulacra2": 90.374
+ },
+ {
+  "image": "kodim21",
+  "codec": "AVIF",
+  "quality": 85,
+  "bytes": 96387,
+  "pixels": 393216,
+  "bpp": 1.96099853515625,
+  "ssimulacra2": 85.307
+ },
+ {
+  "image": "kodim21",
+  "codec": "AVIF",
+  "quality": 90,
+  "bytes": 128925,
+  "pixels": 393216,
+  "bpp": 2.62298583984375,
+  "ssimulacra2": 87.991
+ },
+ {
+  "image": "kodim21",
+  "codec": "AVIF",
+  "quality": 95,
+  "bytes": 173883,
+  "pixels": 393216,
+  "bpp": 3.53765869140625,
+  "ssimulacra2": 90.491
+ },
+ {
+  "image": "kodim21",
+  "codec": "HEIF",
+  "quality": 85,
+  "bytes": 271059,
+  "pixels": 393216,
+  "bpp": 5.51470947265625,
+  "ssimulacra2": 93.491
+ },
+ {
+  "image": "kodim21",
+  "codec": "HEIF",
+  "quality": 90,
+  "bytes": 290468,
+  "pixels": 393216,
+  "bpp": 5.909586588541667,
+  "ssimulacra2": 93.846
+ },
+ {
+  "image": "kodim21",
+  "codec": "JXL",
+  "quality": 98,
+  "bytes": 211851,
+  "pixels": 393216,
+  "bpp": 4.31011962890625,
+  "ssimulacra2": 94.257
+ },
+ {
+  "image": "kodim21",
+  "codec": "JXL",
+  "quality": 99,
+  "bytes": 258720,
+  "pixels": 393216,
+  "bpp": 5.263671875,
+  "ssimulacra2": 95.492
+ },
+ {
+  "image": "kodim23",
+  "codec": "JPEG",
+  "quality": 97,
+  "bytes": 145170,
+  "pixels": 393216,
+  "bpp": 2.9534912109375,
+  "ssimulacra2": 89.147
+ },
+ {
+  "image": "kodim23",
+  "codec": "JPEG",
+  "quality": 98,
+  "bytes": 169503,
+  "pixels": 393216,
+  "bpp": 3.44854736328125,
+  "ssimulacra2": 89.701
+ },
+ {
+  "image": "kodim23",
+  "codec": "WEBP",
+  "quality": 97,
+  "bytes": 106818,
+  "pixels": 393216,
+  "bpp": 2.1732177734375,
+  "ssimulacra2": 86.467
+ },
+ {
+  "image": "kodim23",
+  "codec": "WEBP",
+  "quality": 99,
+  "bytes": 134448,
+  "pixels": 393216,
+  "bpp": 2.7353515625,
+  "ssimulacra2": 88.037
+ },
+ {
+  "image": "kodim23",
+  "codec": "AVIF",
+  "quality": 85,
+  "bytes": 57677,
+  "pixels": 393216,
+  "bpp": 1.1734415690104167,
+  "ssimulacra2": 85.574
+ },
+ {
+  "image": "kodim23",
+  "codec": "AVIF",
+  "quality": 90,
+  "bytes": 84583,
+  "pixels": 393216,
+  "bpp": 1.7208455403645833,
+  "ssimulacra2": 87.44
+ },
+ {
+  "image": "kodim23",
+  "codec": "AVIF",
+  "quality": 95,
+  "bytes": 128538,
+  "pixels": 393216,
+  "bpp": 2.6151123046875,
+  "ssimulacra2": 89.314
+ },
+ {
+  "image": "kodim23",
+  "codec": "HEIF",
+  "quality": 85,
+  "bytes": 225367,
+  "pixels": 393216,
+  "bpp": 4.585103352864583,
+  "ssimulacra2": 90.329
+ },
+ {
+  "image": "kodim23",
+  "codec": "HEIF",
+  "quality": 90,
+  "bytes": 245989,
+  "pixels": 393216,
+  "bpp": 5.004659016927083,
+  "ssimulacra2": 90.56
+ },
+ {
+  "image": "kodim23",
+  "codec": "JXL",
+  "quality": 98,
+  "bytes": 166905,
+  "pixels": 393216,
+  "bpp": 3.39569091796875,
+  "ssimulacra2": 94.705
+ },
+ {
+  "image": "kodim23",
+  "codec": "JXL",
+  "quality": 99,
+  "bytes": 212010,
+  "pixels": 393216,
+  "bpp": 4.3133544921875,
+  "ssimulacra2": 95.822
+ },
+ {
+  "image": "kodim24",
+  "codec": "JPEG",
+  "quality": 97,
+  "bytes": 213726,
+  "pixels": 393216,
+  "bpp": 4.3482666015625,
+  "ssimulacra2": 88.973
+ },
+ {
+  "image": "kodim24",
+  "codec": "JPEG",
+  "quality": 98,
+  "bytes": 240267,
+  "pixels": 393216,
+  "bpp": 4.88824462890625,
+  "ssimulacra2": 89.694
+ },
+ {
+  "image": "kodim24",
+  "codec": "WEBP",
+  "quality": 97,
+  "bytes": 180650,
+  "pixels": 393216,
+  "bpp": 3.6753336588541665,
+  "ssimulacra2": 88.118
+ },
+ {
+  "image": "kodim24",
+  "codec": "WEBP",
+  "quality": 99,
+  "bytes": 203298,
+  "pixels": 393216,
+  "bpp": 4.1361083984375,
+  "ssimulacra2": 88.532
+ },
+ {
+  "image": "kodim24",
+  "codec": "AVIF",
+  "quality": 85,
+  "bytes": 111405,
+  "pixels": 393216,
+  "bpp": 2.26654052734375,
+  "ssimulacra2": 86.246
+ },
+ {
+  "image": "kodim24",
+  "codec": "AVIF",
+  "quality": 90,
+  "bytes": 138263,
+  "pixels": 393216,
+  "bpp": 2.8129679361979165,
+  "ssimulacra2": 88.117
+ },
+ {
+  "image": "kodim24",
+  "codec": "AVIF",
+  "quality": 95,
+  "bytes": 183193,
+  "pixels": 393216,
+  "bpp": 3.7270711263020835,
+  "ssimulacra2": 89.581
+ },
+ {
+  "image": "kodim24",
+  "codec": "HEIF",
+  "quality": 85,
+  "bytes": 259985,
+  "pixels": 393216,
+  "bpp": 5.289408365885417,
+  "ssimulacra2": 91.794
+ },
+ {
+  "image": "kodim24",
+  "codec": "HEIF",
+  "quality": 90,
+  "bytes": 287499,
+  "pixels": 393216,
+  "bpp": 5.84918212890625,
+  "ssimulacra2": 92.109
+ },
+ {
+  "image": "kodim24",
+  "codec": "JXL",
+  "quality": 98,
+  "bytes": 235637,
+  "pixels": 393216,
+  "bpp": 4.794047037760417,
+  "ssimulacra2": 94.154
+ },
+ {
+  "image": "kodim24",
+  "codec": "JXL",
+  "quality": 99,
+  "bytes": 283144,
+  "pixels": 393216,
+  "bpp": 5.760579427083333,
+  "ssimulacra2": 95.428
+ }
+]

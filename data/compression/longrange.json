@@ -1,0 +1,54 @@
+{
+ "bytes": 67107264,
+ "revisions": 8,
+ "rows": [
+  {
+   "name": "zstd -3",
+   "note": "2 MB window: sees nothing across revisions",
+   "bytes": 14413550,
+   "ratio": 4.656,
+   "c_mb_s": 205.2,
+   "d_mb_s": 659.9
+  },
+  {
+   "name": "zstd -3 --long=27",
+   "note": "128 MB window, long-distance matcher on",
+   "bytes": 1812594,
+   "ratio": 37.023,
+   "c_mb_s": 645.9,
+   "d_mb_s": 1680.5
+  },
+  {
+   "name": "zstd -19",
+   "note": "8 MB window, still short of the 8.4 MB period",
+   "bytes": 1709323,
+   "ratio": 39.26,
+   "c_mb_s": 2.9,
+   "d_mb_s": 1545.7
+  },
+  {
+   "name": "zstd -19 --long=27",
+   "note": "the combination that actually wins",
+   "bytes": 1384260,
+   "ratio": 48.479,
+   "c_mb_s": 11.6,
+   "d_mb_s": 1604.7
+  },
+  {
+   "name": "xz -9",
+   "note": "64 MB dictionary, gets there but slowly",
+   "bytes": 1360752,
+   "ratio": 49.316,
+   "c_mb_s": 2.1,
+   "d_mb_s": 302.1
+  },
+  {
+   "name": "gzip -6",
+   "note": "32 kB window: no chance",
+   "bytes": 14968198,
+   "ratio": 4.483,
+   "c_mb_s": 35.4,
+   "d_mb_s": 230.9
+  }
+ ]
+}

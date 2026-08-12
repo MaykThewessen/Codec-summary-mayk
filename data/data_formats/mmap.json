@@ -1,0 +1,110 @@
+{
+ "corpus": "powerflow_large",
+ "column": "p_mw_MVL_KIJ_380",
+ "cases": [
+  {
+   "case": "feather_copy",
+   "fmt": "feather",
+   "label": "Feather, read into pandas",
+   "call": "pd.read_feather(p)",
+   "file_bytes": 393657210,
+   "seconds": 0.36206,
+   "rss_delta": 398479360,
+   "hwm": 898834432,
+   "base": 107016192,
+   "kind": "DataFrame",
+   "ok": true
+  },
+  {
+   "case": "feather_mmap_open",
+   "fmt": "feather",
+   "label": "Feather mapped, table opened",
+   "call": "ipc.open_file(pa.memory_map(p)).read_all()",
+   "file_bytes": 393657210,
+   "seconds": 0.00199,
+   "rss_delta": 3661824,
+   "hwm": 110723072,
+   "base": 107061248,
+   "kind": "Table",
+   "ok": true
+  },
+  {
+   "case": "feather_mmap_scan",
+   "fmt": "feather",
+   "label": "Feather mapped, mean of one column",
+   "call": "pc.mean(mapped[col])",
+   "file_bytes": 393657210,
+   "seconds": 0.0042,
+   "rss_delta": 15257600,
+   "hwm": 122368000,
+   "base": 107110400,
+   "kind": "float",
+   "ok": true
+  },
+  {
+   "case": "feather_mmap_zerocopy",
+   "fmt": "feather",
+   "label": "Feather mapped, numpy view of a column",
+   "call": "mapped[col].combine_chunks().to_numpy(zero_copy_only=True)",
+   "file_bytes": 393657210,
+   "seconds": 0.00817,
+   "rss_delta": 24715264,
+   "hwm": 131952640,
+   "base": 107237376,
+   "kind": "ndarray",
+   "ok": true
+  },
+  {
+   "case": "feather_mmap_topandas",
+   "fmt": "feather",
+   "label": "Feather mapped, then to pandas",
+   "call": "mapped.to_pandas()",
+   "file_bytes": 393657210,
+   "seconds": 0.09441,
+   "rss_delta": 792006656,
+   "hwm": 899395584,
+   "base": 107388928,
+   "kind": "DataFrame",
+   "ok": true
+  },
+  {
+   "case": "feather_zstd_mmap_open",
+   "fmt": "feather_zstd",
+   "label": "Feather zstd mapped, table opened",
+   "call": "same call, compressed file",
+   "file_bytes": 257618050,
+   "seconds": 0.30341,
+   "rss_delta": 398073856,
+   "hwm": 762519552,
+   "base": 107089920,
+   "kind": "Table",
+   "ok": true
+  },
+  {
+   "case": "parquet_copy",
+   "fmt": "parquet_zstd",
+   "label": "Parquet zstd, read into pandas",
+   "call": "pd.read_parquet(p)",
+   "file_bytes": 239785679,
+   "seconds": 0.4509,
+   "rss_delta": 831053824,
+   "hwm": 938098688,
+   "base": 107044864,
+   "kind": "DataFrame",
+   "ok": true
+  },
+  {
+   "case": "parquet_mmap_open",
+   "fmt": "parquet_zstd",
+   "label": "Parquet zstd, mapped source",
+   "call": "pq.read_table(pa.memory_map(p))",
+   "file_bytes": 239785679,
+   "seconds": 0.16892,
+   "rss_delta": 446410752,
+   "hwm": 793010176,
+   "base": 107089920,
+   "kind": "Table",
+   "ok": true
+  }
+ ]
+}

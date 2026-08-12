@@ -1,0 +1,1264 @@
+<title>Image codec trade-off map</title>
+
+<style>
+@font-face { font-family: "Tektur"; src: url(data:font/ttf;base64,@@FONT_DISPLAY@@) format("truetype"); font-weight: 500; font-display: swap; }
+@font-face { font-family: "InstrumentSans"; src: url(data:font/ttf;base64,@@FONT_BODY@@) format("truetype"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "InstrumentSans"; src: url(data:font/ttf;base64,@@FONT_BODY_BOLD@@) format("truetype"); font-weight: 700; font-display: swap; }
+@font-face { font-family: "GeistMono"; src: url(data:font/ttf;base64,@@FONT_MONO@@) format("truetype"); font-weight: 400; font-display: swap; }
+
+:root {
+  color-scheme: light;
+  --page: #f4f4f1;
+  --surface: #fcfcfb;
+  --sunken: #efefeb;
+  --ink: #0b0b0b;
+  --ink-2: #52514e;
+  --ink-3: #898781;
+  --rule: #e1e0d9;
+  --axis: #c3c2b7;
+
+  --accent: #2a78d6;
+  --wash-1: rgba(42,120,214,0.05);
+  --wash-2: rgba(42,120,214,0.16);
+  --wash-3: rgba(42,120,214,0.32);
+  --edge-1: rgba(42,120,214,0.20);
+  --edge-2: rgba(42,120,214,0.34);
+  --edge-3: rgba(42,120,214,0.50);
+
+  --st-good: #0ca30c;
+  --st-warn: #fab219;
+  --st-serious: #ec835a;
+  --st-crit: #d03b3b;
+  --chip-good: rgba(12,163,12,0.12);
+  --chip-warn: rgba(190,130,0,0.14);
+  --chip-serious: rgba(236,131,90,0.16);
+
+  --s1: #2a78d6;
+  --s2c: #eb6834;
+  --s3: #1baf7a;
+  --s4: #eda100;
+  --s5: #e87ba4;
+
+  --shadow: 0 1px 2px rgba(11,11,11,0.05), 0 8px 24px -18px rgba(11,11,11,0.35);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) {
+    color-scheme: dark;
+    --page: #0d0d0d;
+    --surface: #1a1a19;
+    --sunken: #141413;
+    --ink: #ffffff;
+    --ink-2: #c3c2b7;
+    --ink-3: #898781;
+    --rule: #2c2c2a;
+    --axis: #383835;
+
+    --accent: #3987e5;
+    --wash-1: rgba(57,135,229,0.07);
+    --wash-2: rgba(57,135,229,0.20);
+    --wash-3: rgba(57,135,229,0.38);
+    --edge-1: rgba(57,135,229,0.26);
+    --edge-2: rgba(57,135,229,0.42);
+    --edge-3: rgba(57,135,229,0.58);
+
+    --chip-good: rgba(12,163,12,0.20);
+    --chip-warn: rgba(250,178,25,0.18);
+    --chip-serious: rgba(236,131,90,0.20);
+
+    --s1: #3987e5;
+    --s2c: #d95926;
+    --s3: #199e70;
+    --s4: #c98500;
+    --s5: #d55181;
+
+    --shadow: 0 1px 2px rgba(0,0,0,0.5), 0 8px 24px -18px rgba(0,0,0,0.9);
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page: #0d0d0d;
+  --surface: #1a1a19;
+  --sunken: #141413;
+  --ink: #ffffff;
+  --ink-2: #c3c2b7;
+  --ink-3: #898781;
+  --rule: #2c2c2a;
+  --axis: #383835;
+
+  --accent: #3987e5;
+  --wash-1: rgba(57,135,229,0.07);
+  --wash-2: rgba(57,135,229,0.20);
+  --wash-3: rgba(57,135,229,0.38);
+  --edge-1: rgba(57,135,229,0.26);
+  --edge-2: rgba(57,135,229,0.42);
+  --edge-3: rgba(57,135,229,0.58);
+
+  --chip-good: rgba(12,163,12,0.20);
+  --chip-warn: rgba(250,178,25,0.18);
+  --chip-serious: rgba(236,131,90,0.20);
+
+  --s1: #3987e5;
+  --s2c: #d95926;
+  --s3: #199e70;
+  --s4: #c98500;
+  --s5: #d55181;
+
+  --shadow: 0 1px 2px rgba(0,0,0,0.5), 0 8px 24px -18px rgba(0,0,0,0.9);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--ink);
+  font-family: "InstrumentSans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 16.5px;
+  line-height: 1.62;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 24px 96px;
+  display: flex;
+  flex-direction: column;
+  gap: 68px;
+}
+
+/* ---------- typography ---------- */
+h1, h2, h3 { font-family: "Tektur", system-ui, sans-serif; font-weight: 500; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(2.1rem, 5.2vw, 3.5rem); line-height: 1.02; letter-spacing: -0.022em; }
+h2 { font-size: clamp(1.35rem, 2.8vw, 1.85rem); line-height: 1.14; letter-spacing: -0.012em; }
+h3 { font-size: 1.05rem; line-height: 1.3; letter-spacing: 0.002em; }
+p { margin: 0; max-width: 68ch; }
+a { color: var(--accent); text-underline-offset: 2px; }
+strong { font-weight: 700; }
+
+.eyebrow {
+  font-family: "Tektur", system-ui, sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.mono { font-family: "GeistMono", ui-monospace, monospace; }
+.tnum { font-variant-numeric: tabular-nums; }
+
+/* ---------- page head ---------- */
+.head {
+  padding-top: 76px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 44px;
+}
+.lede { font-size: 1.16rem; color: var(--ink-2); max-width: 62ch; }
+.head-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 26px;
+  font-size: 0.8rem;
+  color: var(--ink-3);
+  font-family: "GeistMono", monospace;
+}
+
+/* ---------- section scaffold ---------- */
+section { display: flex; flex-direction: column; gap: 20px; }
+.sec-head { display: flex; flex-direction: column; gap: 9px; }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  box-shadow: var(--shadow);
+}
+.pad { padding: 24px; }
+
+/* ---------- the map ---------- */
+.map-frame {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: 34px 1fr;
+  grid-template-rows: 1fr 34px;
+  gap: 10px;
+}
+.y-axis, .x-axis {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--ink-3);
+  font-family: "Tektur", sans-serif;
+  font-size: 0.66rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+.y-axis { writing-mode: vertical-rl; transform: rotate(180deg); padding: 4px 0; }
+.x-axis { grid-column: 2; padding: 0 4px; }
+.axis-mid { color: var(--ink-3); opacity: 0.75; }
+
+.map {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: 1fr 1.15fr 0.95fr;
+  grid-template-areas:
+    "none  jxl   hdr"
+    "webp  avif  hdr"
+    "png   jpeg  gain";
+  gap: 2px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.cell {
+  min-width: 0;
+  background: var(--surface);
+  padding: 17px 17px 16px;
+  min-height: 154px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  position: relative;
+  transition: background 140ms ease;
+}
+@media (prefers-reduced-motion: reduce) { .cell { transition: none; } }
+.cell.t1 { background: color-mix(in srgb, var(--surface) 100%, transparent); background-image: linear-gradient(var(--wash-1), var(--wash-1)); }
+.cell.t2 { background-image: linear-gradient(var(--wash-2), var(--wash-2)); background-color: var(--surface); }
+.cell.t3 { background-image: linear-gradient(var(--wash-3), var(--wash-3)); background-color: var(--surface); }
+.cell.void { background: var(--sunken); }
+
+.cell-name {
+  font-family: "Tektur", sans-serif;
+  font-size: 1.22rem;
+  letter-spacing: -0.008em;
+  line-height: 1.1;
+  color: var(--ink);
+}
+.cell.void .cell-name { color: var(--ink-3); font-size: 1rem; }
+.cell-why { font-size: 0.875rem; color: var(--ink-2); line-height: 1.45; }
+.cell-set {
+  margin-top: auto;
+  font-family: "GeistMono", monospace;
+  font-size: 0.735rem;
+  color: var(--ink-3);
+  border-top: 1px solid var(--rule);
+  padding-top: 8px;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+.chip {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: "GeistMono", monospace;
+  font-size: 0.665rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 2px 8px 2px 6px;
+  border-radius: 2px;
+  color: var(--ink-2);
+}
+.chip::before { content: ""; width: 6px; height: 6px; border-radius: 50%; flex: none; }
+.chip.good { background: var(--chip-good); }
+.chip.good::before { background: var(--st-good); }
+.chip.warn { background: var(--chip-warn); }
+.chip.warn::before { background: var(--st-warn); }
+.chip.serious { background: var(--chip-serious); }
+.chip.serious::before { background: var(--st-serious); }
+
+.map-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+  font-size: 0.8rem;
+  color: var(--ink-2);
+  align-items: center;
+}
+.tier-key { display: inline-flex; align-items: center; gap: 8px; }
+.tier-sw { width: 30px; height: 14px; border-radius: 2px; border: 1px solid var(--edge-1); }
+.tier-sw.k1 { background: var(--wash-1); }
+.tier-sw.k2 { background: var(--wash-2); border-color: var(--edge-2); }
+.tier-sw.k3 { background: var(--wash-3); border-color: var(--edge-3); }
+
+/* ---------- generic chart card ---------- */
+.chart-card { display: flex; flex-direction: column; gap: 14px; }
+.chart-title { display: flex; flex-wrap: wrap; gap: 4px 16px; align-items: baseline; justify-content: space-between; }
+.chart-sub { font-size: 0.85rem; color: var(--ink-3); }
+.chart-host { width: 100%; overflow-x: auto; }
+svg { display: block; max-width: 100%; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 0.83rem; color: var(--ink-2); }
+.legend-item { display: inline-flex; align-items: center; gap: 7px; }
+.legend-key { width: 14px; height: 3px; border-radius: 2px; flex: none; }
+
+.seg {
+  display: inline-flex;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  overflow: hidden;
+  background: var(--surface);
+}
+.seg button {
+  font: inherit;
+  font-family: "GeistMono", monospace;
+  font-size: 0.78rem;
+  padding: 5px 13px;
+  background: transparent;
+  border: 0;
+  border-right: 1px solid var(--rule);
+  color: var(--ink-2);
+  cursor: pointer;
+}
+.seg button:last-child { border-right: 0; }
+.seg button[aria-pressed="true"] { background: var(--wash-2); color: var(--ink); }
+.seg button:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+
+.tip {
+  position: fixed;
+  pointer-events: none;
+  z-index: 30;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  box-shadow: var(--shadow);
+  padding: 9px 11px;
+  font-family: "GeistMono", monospace;
+  font-size: 0.75rem;
+  color: var(--ink);
+  opacity: 0;
+  transition: opacity 90ms ease;
+  max-width: 260px;
+}
+.tip[data-on="1"] { opacity: 1; }
+.tip b { font-weight: 400; color: var(--ink-3); }
+
+/* ---------- tables ---------- */
+details.tbl { border-top: 1px solid var(--rule); padding-top: 12px; }
+details.tbl > summary {
+  cursor: pointer;
+  font-family: "GeistMono", monospace;
+  font-size: 0.76rem;
+  color: var(--ink-3);
+  letter-spacing: 0.03em;
+}
+details.tbl > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.tbl-scroll { overflow-x: auto; margin-top: 12px; }
+table { border-collapse: collapse; width: 100%; font-size: 0.84rem; }
+th, td { text-align: left; padding: 7px 14px 7px 0; border-bottom: 1px solid var(--rule); white-space: nowrap; }
+th { font-family: "Tektur", sans-serif; font-weight: 500; font-size: 0.7rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-3); }
+td.num, th.num { text-align: right; font-family: "GeistMono", monospace; font-variant-numeric: tabular-nums; padding-right: 18px; }
+td.name { font-family: "GeistMono", monospace; }
+tbody tr:last-child td { border-bottom: 0; }
+.win { color: var(--ink); font-weight: 700; }
+
+/* ---------- reach matrix ---------- */
+.matrix td.mark { text-align: center; font-family: "GeistMono", monospace; font-size: 0.78rem; padding-right: 0; }
+.mk { display: inline-block; padding: 1px 7px; border-radius: 2px; }
+.mk.y { background: var(--chip-good); color: var(--ink); }
+.mk.p { background: var(--chip-warn); color: var(--ink); }
+.mk.n { background: var(--sunken); color: var(--ink-3); }
+
+/* ---------- prose blocks ---------- */
+.cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(268px, 1fr)); gap: 2px; background: var(--rule); border: 1px solid var(--rule); border-radius: 3px; overflow: hidden; }
+/* four-card groups: force an even 2x2 so no half-empty row shows the rule colour */
+.cols.quad { grid-template-columns: repeat(auto-fit, minmax(390px, 1fr)); }
+.col { min-width: 0; background: var(--surface); padding: 20px; display: flex; flex-direction: column; gap: 8px; }
+.col h3 { color: var(--ink); }
+.col p { font-size: 0.9rem; color: var(--ink-2); }
+
+.claim { display: flex; flex-direction: column; gap: 7px; padding: 18px 0; border-bottom: 1px solid var(--rule); }
+.claim:last-child { border-bottom: 0; }
+.claim-q { font-size: 0.95rem; color: var(--ink); font-weight: 700; }
+.claim-v {
+  align-self: flex-start;
+  font-family: "GeistMono", monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 2px;
+}
+.claim-v.ok { background: var(--chip-good); color: var(--ink); }
+.claim-v.part { background: var(--chip-warn); color: var(--ink); }
+.claim-v.no { background: var(--chip-serious); color: var(--ink); }
+.claim p { font-size: 0.92rem; color: var(--ink-2); }
+
+pre {
+  margin: 0;
+  background: var(--sunken);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  padding: 14px 16px;
+  overflow-x: auto;
+  font-family: "GeistMono", monospace;
+  font-size: 0.795rem;
+  line-height: 1.72;
+  color: var(--ink);
+}
+pre .c { color: var(--ink-3); }
+code { font-family: "GeistMono", monospace; font-size: 0.88em; }
+
+.foot { border-top: 1px solid var(--rule); padding-top: 26px; font-size: 0.84rem; color: var(--ink-3); display: flex; flex-direction: column; gap: 12px; }
+.foot p { max-width: 78ch; }
+
+@media (max-width: 780px) {
+  .map { grid-template-columns: 1fr; grid-template-areas: "none" "jxl" "hdr" "webp" "avif" "png" "jpeg" "gain"; }
+  .map-frame { grid-template-columns: 1fr; grid-template-rows: auto; }
+  /* Stacked into one column the two axes no longer describe a position, and
+     each cell already carries its reach chip, so drop them rather than lie. */
+  .y-axis, .x-axis { display: none; }
+  .cell { min-height: 0; }
+}
+</style>
+
+<div class="wrap">
+
+  <header class="head">
+    <div class="eyebrow">Image codecs / measured, not folklore</div>
+    <h1>Which codec wins,<br>and exactly where</h1>
+    <p class="lede">Every image codec argument collapses into two questions: how much of the picture are you willing to throw away, and how many decoders do you need to survive. Position on those two axes decides the winner. Everything else is detail.</p>
+    <div class="head-meta">
+      <span>5 codecs</span>
+      <span><span data-fill="nimages"></span> reference photos, 1 synthetic UI</span>
+      <span><span data-fill="npoints"></span> encodes scored with SSIMULACRA2</span>
+    </div>
+  </header>
+
+  <!-- ================= THE MAP ================= -->
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">The map</div>
+      <h2>Seven regions, seven answers</h2>
+      <p>Left to right: how much continuous tone the image contains, from flat UI graphics through ordinary photography to 10-bit HDR. Bottom to top: how far you are willing to walk away from universal decoding in exchange for smaller files. Find your square, read the codec.</p>
+    </div>
+
+    <div class="card pad chart-card">
+      <div class="map-frame">
+        <div class="y-axis" aria-hidden="true"><span>Opens anywhere</span><span class="axis-mid">Decoder reach</span><span>Opt-in decoder</span></div>
+        <div class="map">
+
+          <div class="cell void" style="grid-area: none">
+            <div class="cell-name">Nothing to gain up here</div>
+            <div class="cell-why">On flat graphics the frontier codecs lose to a format every browser has shipped since 2020. JXL lossless needed <span data-fill="jxl_vs_webp_syn"></span> more bytes than WebP lossless on the test screenshot, and AVIF cannot get there at all. Climbing higher costs compatibility for a negative return.</div>
+          </div>
+
+          <div class="cell t3" style="grid-area: jxl">
+            <span class="chip serious">Opt-in decoder</span>
+            <div class="cell-name">JPEG XL</div>
+            <div class="cell-why">The top of the quality range. Above roughly visually-lossless it pulls away from AVIF, and it does true lossless photography that nothing else matches. The archival master format.</div>
+            <div class="cell-set">cjxl in.png out.jxl -d 1.0 -e 7</div>
+          </div>
+
+          <div class="cell t2" style="grid-area: hdr">
+            <span class="chip warn">Capture, then transcode</span>
+            <div class="cell-name">HEIC in,<br>AVIF or JXL out</div>
+            <div class="cell-why">HDR is a pipeline, not a pick. The camera writes HEIC because that is what the sensor pipeline speaks. Nothing on the open web decodes it, so the master gets transcoded before it is published. This cell spans two tiers because you will use both.</div>
+            <div class="cell-set">heif → avif (10-bit) · heif → jxl</div>
+          </div>
+
+          <div class="cell t2" style="grid-area: webp">
+            <span class="chip good">Every current browser</span>
+            <div class="cell-name">WebP lossless</div>
+            <div class="cell-why">The screenshot answer, and by a margin nobody expects: <span data-fill="webp_vs_png_syn"></span> smaller than optimised PNG on the test UI, pixel-identical. Also the only cell where the universally-supported option is also the smallest.</div>
+            <div class="cell-set">cwebp -lossless -z 9 -q 100</div>
+          </div>
+
+          <div class="cell t2" style="grid-area: avif">
+            <span class="chip good">Every current browser</span>
+            <div class="cell-name">AVIF</div>
+            <div class="cell-why">Photographs on the web today. At web delivery quality it landed <span data-fill="avif_saving_80"></span> under baseline JPEG for the same perceptual score, and its lead grows as you push the file smaller.</div>
+            <div class="cell-set">avifenc -q <span data-fill="q_avif_80"></span> -s 4 in.png out.avif</div>
+          </div>
+
+          <div class="cell t1" style="grid-area: png">
+            <span class="chip good">Opens anywhere</span>
+            <div class="cell-name">PNG</div>
+            <div class="cell-why">Alpha, hard edges, and software that predates this century. Still correct as an interchange and authoring format. As a delivery format it is now the expensive choice.</div>
+            <div class="cell-set">oxipng -o 4 --strip safe · pngquant 256</div>
+          </div>
+
+          <div class="cell t1" style="grid-area: jpeg">
+            <span class="chip good">Opens anywhere</span>
+            <div class="cell-name">JPEG</div>
+            <div class="cell-why">Thirty years of decoders in everything with a screen. The format is old; the encoders are not. Swapping libjpeg for jpegli buys a large fraction of the modern-codec gain while the file stays a plain JPEG.</div>
+            <div class="cell-set">cjpegli -q <span data-fill="q_jpeg_80"></span> · mozjpeg -quality <span data-fill="q_jpeg_80"></span> -progressive</div>
+          </div>
+
+          <div class="cell t1" style="grid-area: gain">
+            <span class="chip good">Opens anywhere</span>
+            <div class="cell-name">JPEG + gain map</div>
+            <div class="cell-why">The only HDR that degrades safely: an ordinary SDR JPEG plus a small map that HDR displays apply and everything else ignores. This is what Lightroom exports, and it is the answer to the Lightroom-cannot-write-HEIC complaint.</div>
+            <div class="cell-set">Lightroom: HDR output, JPEG (gain map)</div>
+          </div>
+
+        </div>
+        <div class="x-axis" aria-hidden="true"><span>Flat graphics</span><span class="axis-mid">Continuous tone</span><span>HDR 10-bit</span></div>
+      </div>
+
+      <div class="map-legend">
+        <span class="tier-key"><span class="tier-sw k1"></span> Tier 1: any decoder, any decade</span>
+        <span class="tier-key"><span class="tier-sw k2"></span> Tier 2: every browser and OS shipping today</span>
+        <span class="tier-key"><span class="tier-sw k3"></span> Tier 3: install something first</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= REACH MATRIX ================= -->
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">The constraint that actually decides</div>
+      <h2>Who can open it</h2>
+      <p>Compression efficiency is settled science and the ranking barely moves. Reach is where the real decision lives, and it is not one number: a format can be everywhere on the web and nowhere in your photo editor.</p>
+    </div>
+    <div class="card pad">
+      <div class="tbl-scroll">
+        <table class="matrix">
+          <thead>
+            <tr>
+              <th>Format</th>
+              <th class="mark">Chrome / Edge</th>
+              <th class="mark">Safari</th>
+              <th class="mark">Firefox</th>
+              <th class="mark">Windows Explorer</th>
+              <th class="mark">macOS Preview</th>
+              <th class="mark">Lightroom export</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="name">JPEG</td><td class="mark"><span class="mk y">yes</span></td><td class="mark"><span class="mk y">yes</span></td><td class="mark"><span class="mk y">yes</span></td><td class="mark"><span class="mk y">yes</span></td><td class="mark"><span class="mk y">yes</span></td><td class="mark"><span class="mk y">yes</span></td></tr>
+            <tr><td class="name">PNG</td><td class="mark"><span class="mk y">yes</span></td><td class="mark"><span class="mk y">yes</span></td><td class="mark"><span class="mk y">yes</span></td><td class="mark"><span class="mk y">yes</span></td><td class="mark"><span class="mk y">yes</span></td><td class="mark"><span class="mk y">yes</span></td></tr>
+            <tr><td class="name">WebP</td><td class="mark"><span class="mk y">yes</span></td><td class="mark"><span class="mk y">yes</span></td><td class="mark"><span class="mk y">yes</span></td><td class="mark"><span class="mk y">yes</span></td><td class="mark"><span class="mk y">yes</span></td><td class="mark"><span class="mk n">no</span></td></tr>
+            <tr><td class="name">AVIF</td><td class="mark"><span class="mk y">yes</span></td><td class="mark"><span class="mk y">yes</span></td><td class="mark"><span class="mk y">yes</span></td><td class="mark"><span class="mk p">extension</span></td><td class="mark"><span class="mk y">yes</span></td><td class="mark"><span class="mk y">HDR</span></td></tr>
+            <tr><td class="name">HEIC</td><td class="mark"><span class="mk n">no</span></td><td class="mark"><span class="mk y">yes</span></td><td class="mark"><span class="mk n">no</span></td><td class="mark"><span class="mk p">paid ext.</span></td><td class="mark"><span class="mk y">yes</span></td><td class="mark"><span class="mk n">no</span></td></tr>
+            <tr><td class="name">JPEG XL</td><td class="mark"><span class="mk n">no</span></td><td class="mark"><span class="mk y">yes</span></td><td class="mark"><span class="mk n">no</span></td><td class="mark"><span class="mk n">no</span></td><td class="mark"><span class="mk y">yes</span></td><td class="mark"><span class="mk y">HDR</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top:16px; font-size:0.86rem; color:var(--ink-3); max-width:78ch;">The HEIC row is the whole problem in one line. It is excellent at what it does and it is a dead end for anything you intend to publish: absent from two of the three browser engines, and on Windows the HEVC decoder is a paid Store extension (the roughly one-euro purchase). Treat HEIC as a capture and interchange format, never a delivery one.</p>
+    </div>
+  </section>
+
+  <!-- ================= RATE-DISTORTION ================= -->
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">Measured</div>
+      <h2>Where the curves cross</h2>
+      <p>Quality sliders are not comparable between codecs: JPEG q80 and AVIF q80 mean nothing to each other. So every encode below was scored with SSIMULACRA2, the perceptual metric libjxl ships, and the codecs are compared at matched perceptual quality instead of at matched slider numbers. Up and to the left is better.</p>
+    </div>
+
+    <div class="card pad chart-card">
+      <div class="chart-title">
+        <h3>Rate versus perceived quality, <span data-fill="nimages"></span> reference photographs</h3>
+        <span class="chart-sub">Geometric mean across images. 90 = visually lossless, 70 = high, 50 = medium.</span>
+      </div>
+      <div class="legend" id="rd-legend"></div>
+      <div class="chart-host" id="rd-chart"></div>
+      <details class="tbl">
+        <summary>Table view: bits per pixel at each perceptual target</summary>
+        <div class="tbl-scroll" id="rd-table"></div>
+      </details>
+    </div>
+
+    <div class="card pad chart-card">
+      <div class="chart-title">
+        <h3>Bytes saved against baseline JPEG at the same perceived quality</h3>
+        <div class="seg" id="target-seg" role="group" aria-label="Perceptual quality target"></div>
+      </div>
+      <div class="chart-host" id="sav-chart"></div>
+      <p class="chart-sub" style="max-width:78ch;">Move the target and the ranking rearranges itself. There is no single "forty percent better" number, which is why no two published comparisons ever agree.</p>
+      <p style="font-size:0.92rem; color:var(--ink-2);" data-fill="crossover_note"></p>
+      <details class="tbl">
+        <summary>Table view: saving versus baseline JPEG (%)</summary>
+        <div class="tbl-scroll" id="sav-table"></div>
+      </details>
+    </div>
+  </section>
+
+  <!-- ================= THE QUALITY SLIDER ================= -->
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">The slider question</div>
+      <h2>Where the knee actually sits</h2>
+      <p>The instinct that there is a sweet spot around 60 to 80 is correct, and the data puts a sharper edge on it. Below the knee, bytes buy visible quality. Above it, bytes buy almost nothing: the file keeps growing to encode noise you cannot see.</p>
+    </div>
+
+    <div class="card pad chart-card">
+      <div class="chart-title">
+        <h3>Baseline JPEG: what each quality step costs and returns</h3>
+        <span class="chart-sub">Two panels rather than two y-axes on one plot, so neither scale distorts the other.</span>
+      </div>
+      <div class="chart-host" id="knee-chart"></div>
+      <p class="chart-sub" style="max-width:78ch;" data-fill="knee_note"></p>
+    </div>
+
+    <div class="card pad chart-card">
+      <div class="chart-title">
+        <h3>The slider setting that lands on each target</h3>
+        <span class="chart-sub">Measured on this corpus. Use it to translate between encoders.</span>
+      </div>
+      <div class="tbl-scroll" id="qfor-table"></div>
+      <p class="chart-sub" style="max-width:78ch;">Read a row across and you can see why cross-codec quality advice is so confused. To reach the same picture, JPEG wants a high number, AVIF wants a middling one, and JPEG XL is on a different scale again. Copying "q80" from one encoder to another is meaningless.</p>
+    </div>
+  </section>
+
+  <!-- ================= FLAT GRAPHICS ================= -->
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">Flat graphics</div>
+      <h2>Screenshots break all of the above</h2>
+      <p>Every ranking on this page inverts once the image is a user interface instead of a photograph. Hard edges and large flat fields are exactly what DCT-based lossy coding is worst at, and exactly what lossless entropy coding is best at. The test image is a rendered <span data-fill="syn_dims"></span> application screenshot: panels, small text, hairlines, a chart, a dark log pane.</p>
+    </div>
+
+    <div class="card pad chart-card">
+      <div class="chart-title">
+        <h3>Same screenshot, every sensible encoding</h3>
+        <span class="chart-sub">Bars are file size. Anything scoring below 100 has thrown pixels away.</span>
+      </div>
+      <div class="chart-host" id="syn-chart"></div>
+      <p style="font-size:0.92rem; color:var(--ink-2);" data-fill="screenshot_note"></p>
+      <details class="tbl">
+        <summary>Table view: size and perceptual score</summary>
+        <div class="tbl-scroll" id="syn-table"></div>
+      </details>
+    </div>
+
+    <p style="font-size:0.95rem; color:var(--ink-2);" data-fill="lossless_note"></p>
+
+    <div class="cols">
+      <div class="col">
+        <h3>Lossy JPEG on a screenshot is the worst of both</h3>
+        <p>At q80 the JPEG came out <span data-fill="jpeg_vs_png_syn"></span> than the lossless PNG while scoring only <span data-fill="jpeg80_s2_syn"></span>: a bigger file <em>and</em> visible ringing around every glyph. If you have ever wondered why a screenshot pasted into a document looks smeared, this is it.</p>
+      </div>
+      <div class="col">
+        <h3>Lossy WebP loses to lossless WebP</h3>
+        <p>Same codec, same image: the lossy path at q80 produced <span data-fill="webp80_vs_ll"></span> than the lossless path, and scored <span data-fill="webp80_s2_syn"></span> instead of a perfect 100. On flat graphics WebP's lossless mode is not the conservative choice, it is simply the better one.</p>
+      </div>
+      <div class="col">
+        <h3>Lossy PNG is real and underused</h3>
+        <p>Palette quantisation to 256 colours took the PNG from <span data-fill="png_ll_bytes"></span> to <span data-fill="png8_bytes"></span> at a score of <span data-fill="png8_s2"></span>, still a PNG, still universally readable, still with alpha. It remains the best trick available when the output has to be a <code>.png</code>. It just no longer wins outright, because WebP lossless is smaller still.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= HDR ================= -->
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">The HDR lane</div>
+      <h2>Ten bits, and the Lightroom problem</h2>
+    </div>
+    <div class="cols quad">
+      <div class="col">
+        <h3>Why HEIC exists</h3>
+        <p>HEIF is a container; on an iPhone or a recent Canon it holds HEVC-coded 10-bit image data. Ten bits is the point: 8-bit JPEG cannot carry an HDR tone range without banding the sky. The camera writes HEIC because the same silicon already encodes HEVC video.</p>
+      </div>
+      <div class="col">
+        <h3>Why it stops there</h3>
+        <p>HEVC carries patent licensing, which is precisely why Chrome and Firefox never shipped it and why Windows charges for the decoder. AVIF (AV1) and JPEG XL were designed around that problem and are royalty-free. They also do 10-bit and 12-bit, so nothing is lost by leaving HEIC at the capture stage.</p>
+      </div>
+      <div class="col">
+        <h3>The export path that works</h3>
+        <p>Lightroom will not write HEIC, and it does not need to. Its HDR output writes AVIF, JPEG XL, and gain-map JPEG. Gain-map JPEG is the interesting one: HDR displays read the map, every other decoder sees an ordinary JPEG, so it degrades gracefully instead of failing.</p>
+      </div>
+      <div class="col">
+        <h3>What to keep</h3>
+        <p>Keep the raw file as the master, always. If you want a rendered master too, JPEG XL lossless from the 16-bit render is the strongest option on the page. Keep HEIC only as what came off the camera.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CLAIMS ================= -->
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">Corrections and confirmations</div>
+      <h2>Received wisdom, checked against the measurements</h2>
+    </div>
+    <div class="card pad">
+      <div class="claim">
+        <span class="claim-v ok">Holds up</span>
+        <div class="claim-q">"There is an optimum JPEG quality around 60 to 80."</div>
+        <p data-fill="claim_knee"></p>
+      </div>
+      <div class="claim">
+        <span class="claim-v ok">Holds up</span>
+        <div class="claim-q">"A better JPEG encoder already helps a lot."</div>
+        <p>The strongest cost-benefit move available, because nothing downstream has to change: the output is still a JPEG that every decoder since 1992 reads. mozjpeg's trellis quantisation and jpegli's improved quantisation matrices both close a meaningful part of the gap to WebP without touching your delivery stack. This page's JPEG numbers come from stock libjpeg-turbo, so they are the pessimistic case; a better encoder shifts the JPEG curve up and to the left.</p>
+      </div>
+      <div class="claim">
+        <span class="claim-v part">Right, with one correction</span>
+        <div class="claim-q">"WebP is mainly much better for screenshots."</div>
+        <p data-fill="claim_webp"></p>
+      </div>
+      <div class="claim">
+        <span class="claim-v part">Half right</span>
+        <div class="claim-q">"PNG is too large, but lossy PNG is a good and little-known improvement."</div>
+        <p data-fill="claim_png"></p>
+      </div>
+      <div class="claim">
+        <span class="claim-v part">True, and it is a trap</span>
+        <div class="claim-q">"HEIF is the format I like most."</div>
+        <p>As a capture format the judgement is sound: 10-bit, HDR, half the size of the JPEG the same camera would write. The trap is that liking it does not make it publishable. It is missing from two of three browser engines, it costs money to decode on Windows, and your editor will not export it. Everything you like about HEIC is also true of AVIF and JPEG XL, which are royalty-free and which Lightroom does export. The affection is better directed one format over.</p>
+      </div>
+      <div class="claim">
+        <span class="claim-v no">Worth reconsidering</span>
+        <div class="claim-q">"PNG has a large file size, so I do not like it much."</div>
+        <p>PNG is not competing in the same event. It is an authoring and interchange format: exact pixels, alpha, and a decoder in literally everything. Judged as a delivery format it is expensive; judged as the thing you hand to another tool, it is correct and its size is irrelevant. Keep it for masters and intermediates, and convert at publish time.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CHEAT SHEET ================= -->
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">Operational</div>
+      <h2>What to actually type</h2>
+      <p>Settings below are the ones that landed on a high-quality target on this corpus, not encoder defaults.</p>
+    </div>
+    <div class="card pad" style="display:flex; flex-direction:column; gap:18px;">
+      <div>
+        <h3 style="margin-bottom:8px;">Photographs, delivered on the web</h3>
+        <pre><span class="c"># the modern pair, both royalty-free, both in every current browser</span>
+avifenc -q <span data-fill="q_avif_80"></span> -s 4 photo.png photo.avif   <span class="c"># smaller below visually-lossless</span>
+cjxl photo.png photo.jxl -d 1.0 -e 7    <span class="c"># smaller above it, and does lossless</span>
+
+<span class="c"># the fallback everything can read. use a modern encoder, not stock libjpeg.</span>
+cjpegli -q <span data-fill="q_jpeg_80"></span> photo.png photo.jpg
+mozjpeg -quality <span data-fill="q_jpeg_80"></span> -progressive photo.png &gt; photo.jpg
+
+<span class="c"># already have a JPEG you cannot re-encode? strip and re-pack it losslessly.</span>
+jpegtran -copy none -progressive -optimize old.jpg &gt; new.jpg</pre>
+      </div>
+      <div>
+        <h3 style="margin-bottom:8px;">Screenshots, UI captures, diagrams, anything with text in it</h3>
+        <pre><span class="c"># exact pixels, smallest file, universal support: the default answer</span>
+cwebp -lossless -z 9 -q 100 shot.png -o shot.webp
+
+<span class="c"># if the output must stay a .png</span>
+oxipng -o 4 --strip safe shot.png          <span class="c"># lossless, typically 5-15% off</span>
+pngquant --quality=70-90 --speed 1 shot.png <span class="c"># palette, much larger saving</span>
+
+<span class="c"># never do this to a screenshot</span>
+cjpeg -quality 80 shot.png                  <span class="c"># bigger than the PNG and visibly worse</span></pre>
+      </div>
+      <div>
+        <h3 style="margin-bottom:8px;">HDR and 10-bit</h3>
+        <pre><span class="c"># camera writes HEIC. transcode before publishing, keep the raw as master.</span>
+avifenc --depth 10 --yuv 444 -q 63 -s 4 shot.heic shot.avif
+cjxl shot.heic shot.jxl -d 1.0 -e 7
+
+<span class="c"># Lightroom: Export &gt; File Settings &gt; HDR Output</span>
+<span class="c">#   AVIF          delivery, every current browser</span>
+<span class="c">#   JPEG XL       archival master, Safari and Preview only</span>
+<span class="c">#   JPEG gain map degrades to plain SDR JPEG everywhere else</span></pre>
+      </div>
+      <div>
+        <h3 style="margin-bottom:8px;">Serving both, with a safe fallback</h3>
+        <pre>&lt;picture&gt;
+  &lt;source srcset="photo.avif" type="image/avif"&gt;
+  &lt;source srcset="photo.webp" type="image/webp"&gt;
+  &lt;img src="photo.jpg" width="1600" height="1067" alt="…"&gt;
+&lt;/picture&gt;</pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= METHOD ================= -->
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">Method</div>
+      <h2>How these numbers were produced, and where not to trust them</h2>
+    </div>
+    <div class="card pad" style="display:flex; flex-direction:column; gap:14px;">
+      <p style="font-size:0.92rem; color:var(--ink-2);"><span data-fill="method_corpus"></span></p>
+      <p style="font-size:0.92rem; color:var(--ink-2);">Quality was scored with SSIMULACRA2, which correlates far better with human judgement than PSNR or SSIM and does not reward the blurring that older metrics reward. Each codec was swept across its own quality ladder; the rate at a given perceptual target was found by interpolating that codec's own curve per image, then taking the geometric mean across images.</p>
+      <div class="cols quad" style="margin-top:4px;">
+        <div class="col">
+          <h3>The JPEG figures are pessimistic</h3>
+          <p>Encoding went through stock libjpeg-turbo. mozjpeg and jpegli both do considerably better at the same quality setting, so the real-world gap between a well-encoded JPEG and the modern codecs is narrower than plotted here.</p>
+        </div>
+        <div class="col">
+          <h3>The photographs are small</h3>
+          <p>The reference set is 768 by 512. Modern camera output is 20 to 50 times larger, and the newer codecs generally do relatively better at higher resolution, so their lead is if anything understated.</p>
+        </div>
+        <div class="col">
+          <h3>One synthetic image is one data point</h3>
+          <p>The flat-graphics conclusions come from a single rendered UI. The effect is large enough that the direction is safe, but do not read the exact percentages as general constants.</p>
+        </div>
+        <div class="col">
+          <h3>AVIF lossless is missing</h3>
+          <p>The Python binding used here could not produce bit-exact AVIF: its lossless flag still round-trips through a lossy colour conversion. AVIF lossless is not competitive on flat graphics anyway, but the number is absent rather than measured.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <p>Scripts and raw measurements live in the repository beside this page, so every figure can be regenerated or argued with.</p>
+    <p class="mono" style="font-size:0.76rem;">SSIMULACRA2 scale: 100 identical · 90 visually lossless · 70 high · 50 medium · 30 low</p>
+  </footer>
+</div>
+
+<div class="tip" id="tip" role="status" aria-live="polite"></div>
+
+<script id="data" type="application/json">@@DATA@@</script>
+<script>
+(function () {
+  "use strict";
+  const D = JSON.parse(document.getElementById("data").textContent);
+  const P = D.photo, S = D.synthetic, X = D.extra;
+
+  /* ---------- house number formatting: dot thousands from 5 digits ---------- */
+  function fmtInt(v) {
+    v = Math.round(v);
+    return Math.abs(v) >= 10000 ? v.toLocaleString("nl-NL") : String(v);
+  }
+  function kb(bytes) { return fmtInt(bytes) + " B"; }
+  function pct(v, digits) { return (v >= 0 ? "" : "-") + Math.abs(v).toFixed(digits === undefined ? 0 : digits) + "%"; }
+
+  const CODECS = ["JPEG", "WEBP", "AVIF", "HEIF", "JXL"];
+  const LABEL = { JPEG: "JPEG", WEBP: "WebP", AVIF: "AVIF", HEIF: "HEIC", JXL: "JPEG XL" };
+  /* Categorical slots 1-5 in the validated order. Identity is also carried by
+     the legend and by a direct label at each line end, never by hue alone. */
+  const SLOT = { JPEG: "--s1", WEBP: "--s2c", AVIF: "--s3", HEIF: "--s4", JXL: "--s5" };
+  const cvar = (n) => getComputedStyle(document.body).getPropertyValue(n).trim();
+
+  /* Axis ticks land on round numbers, not on even divisions of the data range. */
+  function niceTicks(min, max, count) {
+    const raw = (max - min) / count;
+    const mag = Math.pow(10, Math.floor(Math.log10(raw)));
+    const step = [1, 2, 2.5, 5, 10].map((m) => m * mag).find((s) => s >= raw) || 10 * mag;
+    const out = [];
+    for (let v = Math.ceil(min / step) * step; v <= max + step * 1e-9; v += step) {
+      out.push(Math.abs(v) < step * 1e-9 ? 0 : v);
+    }
+    return { ticks: out, step };
+  }
+
+  const NS = "http://www.w3.org/2000/svg";
+  function el(tag, attrs, parent) {
+    const n = document.createElementNS(NS, tag);
+    for (const k in attrs) n.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(n);
+    return n;
+  }
+
+  /* ---------- tooltip ---------- */
+  const tip = document.getElementById("tip");
+  function showTip(html, x, y) {
+    tip.innerHTML = html;
+    tip.dataset.on = "1";
+    const r = tip.getBoundingClientRect();
+    let left = x + 14, top = y - r.height - 12;
+    if (left + r.width > window.innerWidth - 8) left = x - r.width - 14;
+    if (top < 8) top = y + 18;
+    tip.style.left = left + "px";
+    tip.style.top = top + "px";
+  }
+  function hideTip() { tip.dataset.on = "0"; }
+
+  /* ================= chart 1: rate-distortion ================= */
+  function renderRD() {
+    const host = document.getElementById("rd-chart");
+    host.innerHTML = "";
+    const W = 940, H = 470, M = { t: 14, r: 96, b: 46, l: 52 };
+    const iw = W - M.l - M.r, ih = H - M.t - M.b;
+    const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, width: W, height: H,
+                            role: "img", "aria-label": "Rate distortion curves for five codecs" }, host);
+
+    const series = CODECS.map((c) => ({
+      codec: c,
+      pts: P.curves[c].map((p) => ({ x: p.bpp, y: p.s2, q: p.q })).sort((a, b) => a.x - b.x)
+    }));
+    const xs = series.flatMap((s) => s.pts.map((p) => p.x));
+    const x0 = Math.min(...xs) * 0.92, x1 = Math.max(...xs) * 1.06;
+    const y0 = 52, y1 = 100;
+    const X_ = (v) => M.l + (Math.log(v) - Math.log(x0)) / (Math.log(x1) - Math.log(x0)) * iw;
+    const Y_ = (v) => M.t + ih - (v - y0) / (y1 - y0) * ih;
+
+    // gridlines: solid hairlines, one step off surface
+    const rule = cvar("--rule"), axis = cvar("--axis"), ink3 = cvar("--ink-3"), ink2 = cvar("--ink-2");
+    [60, 70, 80, 90, 100].forEach((v) => {
+      el("line", { x1: M.l, x2: M.l + iw, y1: Y_(v), y2: Y_(v), stroke: rule, "stroke-width": 1 }, svg);
+      const t = el("text", { x: M.l - 10, y: Y_(v) + 4, "text-anchor": "end", fill: ink3,
+                             "font-size": 11.5, "font-family": "GeistMono, monospace" }, svg);
+      t.textContent = v;
+    });
+    const xticks = [0.1, 0.2, 0.4, 0.8, 1.6, 3.2].filter((v) => v >= x0 && v <= x1);
+    xticks.forEach((v) => {
+      el("line", { x1: X_(v), x2: X_(v), y1: M.t, y2: M.t + ih, stroke: rule, "stroke-width": 1 }, svg);
+      const t = el("text", { x: X_(v), y: M.t + ih + 20, "text-anchor": "middle", fill: ink3,
+                             "font-size": 11.5, "font-family": "GeistMono, monospace" }, svg);
+      t.textContent = v;
+    });
+    el("line", { x1: M.l, x2: M.l + iw, y1: M.t + ih, y2: M.t + ih, stroke: axis, "stroke-width": 1 }, svg);
+
+    let t = el("text", { x: M.l + iw / 2, y: H - 6, "text-anchor": "middle", fill: ink2,
+                         "font-size": 12, "font-family": "Tektur, sans-serif",
+                         "letter-spacing": "0.09em" }, svg);
+    t.textContent = "BITS PER PIXEL (LOG)";
+    t = el("text", { x: -(M.t + ih / 2), y: 15, "text-anchor": "middle", fill: ink2, "font-size": 12,
+                     "font-family": "Tektur, sans-serif", "letter-spacing": "0.09em",
+                     transform: "rotate(-90)" }, svg);
+    t.textContent = "SSIMULACRA2";
+
+    // "visually lossless" reference band label
+    const bt = el("text", { x: M.l + 8, y: Y_(90) - 7, fill: ink3, "font-size": 11,
+                            "font-family": "GeistMono, monospace" }, svg);
+    bt.textContent = "visually lossless";
+
+    // The five curves converge at the top right, so stacked end-labels would
+    // detach from their lines. Spread them to a minimum spacing and connect
+    // each back to its own endpoint with a leader.
+    const ends = series.map((s) => {
+      const last = s.pts[s.pts.length - 1];
+      return { codec: s.codec, x: X_(last.x), y: Y_(last.y), ly: Y_(last.y) };
+    }).sort((a, b) => a.ly - b.ly);
+    const MINGAP = 18;
+    for (let i = 1; i < ends.length; i++) {
+      if (ends[i].ly - ends[i - 1].ly < MINGAP) ends[i].ly = ends[i - 1].ly + MINGAP;
+    }
+    const overflow = ends[ends.length - 1].ly - (M.t + ih);
+    if (overflow > 0) ends.forEach((e) => { e.ly -= overflow; });
+    const endBy = Object.fromEntries(ends.map((e) => [e.codec, e]));
+
+    series.forEach((s) => {
+      const col = cvar(SLOT[s.codec]);
+      const d = s.pts.map((p, i) => (i ? "L" : "M") + X_(p.x).toFixed(1) + " " + Y_(p.y).toFixed(1)).join(" ");
+      el("path", { d, fill: "none", stroke: col, "stroke-width": 2,
+                   "stroke-linejoin": "round", "stroke-linecap": "round" }, svg);
+      const e = endBy[s.codec];
+      const lx = M.l + iw + 22;
+      el("path", { d: `M${e.x + 6} ${e.y} L${lx - 6} ${e.ly}`, fill: "none", stroke: col,
+                   "stroke-width": 1, opacity: 0.55 }, svg);
+      el("circle", { cx: e.x, cy: e.y, r: 4, fill: col,
+                     stroke: cvar("--surface"), "stroke-width": 2 }, svg);
+      const lab = el("text", { x: lx, y: e.ly + 4, fill: ink2, "font-size": 12.5,
+                               "font-family": "InstrumentSans, sans-serif" }, svg);
+      lab.textContent = LABEL[s.codec];
+      // hover targets, sized well past the mark
+      s.pts.forEach((p) => {
+        const h = el("circle", { cx: X_(p.x), cy: Y_(p.y), r: 13, fill: "transparent" }, svg);
+        h.style.cursor = "crosshair";
+        h.addEventListener("pointerenter", (e) =>
+          showTip(`<b>${LABEL[s.codec]}</b> q${p.q}<br>${p.x.toFixed(3)} bpp<br>SSIMULACRA2 ${p.y.toFixed(1)}`,
+                  e.clientX, e.clientY));
+        h.addEventListener("pointerleave", hideTip);
+      });
+    });
+
+    const lg = document.getElementById("rd-legend");
+    lg.innerHTML = "";
+    CODECS.forEach((c) => {
+      const s = document.createElement("span");
+      s.className = "legend-item";
+      s.innerHTML = `<span class="legend-key" style="background:var(${SLOT[c]})"></span>${LABEL[c]}`;
+      lg.appendChild(s);
+    });
+
+    // table twin
+    const targets = P.targets.filter((t) => CODECS.some((c) => P.matched[c][t]));
+    let html = '<table><thead><tr><th>Codec</th>' +
+      targets.map((t) => `<th class="num">s2 ${t}</th>`).join("") + "</tr></thead><tbody>";
+    CODECS.forEach((c) => {
+      html += `<tr><td class="name">${LABEL[c]}</td>` + targets.map((t) => {
+        const m = P.matched[c][t];
+        if (!m) return '<td class="num">n/a</td>';
+        const best = Math.min(...CODECS.filter((k) => P.matched[k][t]).map((k) => P.matched[k][t].bpp));
+        return `<td class="num${m.bpp === best ? " win" : ""}">${m.bpp.toFixed(3)}</td>`;
+      }).join("") + "</tr>";
+    });
+    document.getElementById("rd-table").innerHTML = html + "</tbody></table>";
+  }
+
+  /* ================= chart 2: savings bars ================= */
+  let savTarget = 80;
+  function renderSavings() {
+    const host = document.getElementById("sav-chart");
+    host.innerHTML = "";
+    const s = P.savings[savTarget] || {};
+    const rows = CODECS.filter((c) => c !== "JPEG" && s[c] !== undefined)
+      .map((c) => ({ c, v: s[c] })).sort((a, b) => b.v - a.v);
+    const W = 940, rowH = 46, M = { t: 8, r: 24, b: 30, l: 96 };
+    const H = M.t + rows.length * rowH + M.b;
+    const iw = W - M.l - M.r;
+    const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, width: W, height: H, role: "img",
+                            "aria-label": "Size saving versus JPEG" }, host);
+    const max = Math.max(60, ...rows.map((r) => r.v));
+    const X_ = (v) => M.l + Math.max(0, v) / max * iw;
+    const rule = cvar("--rule"), ink3 = cvar("--ink-3"), ink = cvar("--ink");
+
+    [0, 20, 40, 60].filter((v) => v <= max).forEach((v) => {
+      el("line", { x1: X_(v), x2: X_(v), y1: M.t, y2: M.t + rows.length * rowH,
+                   stroke: v === 0 ? cvar("--axis") : rule, "stroke-width": 1 }, svg);
+      const t = el("text", { x: X_(v), y: H - 10, "text-anchor": "middle", fill: ink3, "font-size": 11.5,
+                             "font-family": "GeistMono, monospace" }, svg);
+      t.textContent = v + "%";
+    });
+
+    rows.forEach((r, i) => {
+      const y = M.t + i * rowH + 11;
+      const w = Math.max(2, X_(r.v) - M.l);
+      // 4px rounded data-end, square at the baseline
+      const bh = 22;
+      const p = el("path", {
+        d: `M${M.l} ${y} H${M.l + w - 4} a4 4 0 0 1 4 4 v${bh - 8} a4 4 0 0 1 -4 4 H${M.l} Z`,
+        fill: cvar(SLOT[r.c])
+      }, svg);
+      p.style.cursor = "pointer";
+      const lab = el("text", { x: M.l - 12, y: y + 16, "text-anchor": "end", fill: cvar("--ink-2"),
+                               "font-size": 13, "font-family": "InstrumentSans, sans-serif" }, svg);
+      lab.textContent = LABEL[r.c];
+      const val = el("text", { x: M.l + w + 10, y: y + 16, fill: ink, "font-size": 13,
+                               "font-family": "GeistMono, monospace" }, svg);
+      val.textContent = pct(r.v, 1);
+      const hit = el("rect", { x: M.l, y: y - 8, width: Math.max(w, 24) + 60, height: 38,
+                               fill: "transparent" }, svg);
+      const bppC = P.matched[r.c][savTarget].bpp, bppJ = P.matched.JPEG[savTarget].bpp;
+      hit.addEventListener("pointerenter", (e) => showTip(
+        `<b>${LABEL[r.c]}</b> at SSIMULACRA2 ${savTarget}<br>${bppC.toFixed(3)} bpp vs JPEG ${bppJ.toFixed(3)} bpp<br>${pct(r.v, 1)} smaller`,
+        e.clientX, e.clientY));
+      hit.addEventListener("pointerleave", hideTip);
+    });
+
+    let html = '<table><thead><tr><th>Codec</th>' +
+      Object.keys(P.savings).map((t) => `<th class="num">s2 ${t}</th>`).join("") + "</tr></thead><tbody>";
+    CODECS.filter((c) => c !== "JPEG").forEach((c) => {
+      html += `<tr><td class="name">${LABEL[c]}</td>` + Object.keys(P.savings).map((t) => {
+        const v = P.savings[t][c];
+        return `<td class="num">${v === undefined ? "n/a" : pct(v, 1)}</td>`;
+      }).join("") + "</tr>";
+    });
+    document.getElementById("sav-table").innerHTML = html + "</tbody></table>";
+  }
+
+  function buildTargetSeg() {
+    const seg = document.getElementById("target-seg");
+    const avail = Object.keys(P.savings).map(Number).sort((a, b) => b - a);
+    savTarget = avail.includes(80) ? 80 : avail[Math.floor(avail.length / 2)];
+    avail.forEach((t) => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.textContent = "s2 " + t;
+      b.setAttribute("aria-pressed", String(t === savTarget));
+      b.addEventListener("click", () => {
+        savTarget = t;
+        [...seg.children].forEach((c) => c.setAttribute("aria-pressed", String(c === b)));
+        renderSavings();
+      });
+      seg.appendChild(b);
+    });
+  }
+
+  /* ================= chart 3: the JPEG knee, two panels ================= */
+  function renderKnee() {
+    const host = document.getElementById("knee-chart");
+    host.innerHTML = "";
+    const pts = P.curves.JPEG.slice().sort((a, b) => a.q - b.q);
+    const W = 940, H = 300, gap = 56;
+    const pw = (W - gap) / 2, M = { t: 16, r: 14, b: 46, l: 52 };
+    const iw = pw - M.l - M.r, ih = H - M.t - M.b;
+    const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, width: W, height: H, role: "img",
+                            "aria-label": "JPEG file size and perceptual quality against quality setting" }, host);
+    const rule = cvar("--rule"), axis = cvar("--axis"), ink3 = cvar("--ink-3"), ink2 = cvar("--ink-2");
+    const qs = pts.map((p) => p.q);
+    const q0 = Math.min(...qs), q1 = Math.max(...qs);
+
+    // recommended band, derived from the data rather than asserted
+    const kneeQ = D.extra.knee_q;
+
+    function panel(ox, key, title, unit, fmtv) {
+      const vals = pts.map((p) => p[key]);
+      const v0 = key === "bpp" ? 0 : Math.floor(Math.min(...vals) / 10) * 10;
+      const nt = niceTicks(v0, Math.max(...vals) * 1.04, key === "bpp" ? 5 : 4);
+      const v1 = Math.max(nt.ticks[nt.ticks.length - 1], Math.max(...vals) * 1.02);
+      const X_ = (q) => ox + M.l + (q - q0) / (q1 - q0) * iw;
+      const Y_ = (v) => M.t + ih - (v - v0) / (v1 - v0) * ih;
+
+      const tt = el("text", { x: ox + M.l, y: 12, fill: ink2, "font-size": 12,
+                              "font-family": "Tektur, sans-serif", "letter-spacing": "0.09em" }, svg);
+      tt.textContent = title;
+
+      // the band where extra quality stops paying for itself
+      el("rect", { x: X_(kneeQ[0]), y: M.t, width: X_(kneeQ[1]) - X_(kneeQ[0]), height: ih,
+                   fill: cvar("--wash-2") }, svg);
+
+      nt.ticks.forEach((v) => {
+        el("line", { x1: ox + M.l, x2: ox + M.l + iw, y1: Y_(v), y2: Y_(v), stroke: rule,
+                     "stroke-width": 1 }, svg);
+        const t = el("text", { x: ox + M.l - 9, y: Y_(v) + 4, "text-anchor": "end", fill: ink3,
+                               "font-size": 11, "font-family": "GeistMono, monospace" }, svg);
+        t.textContent = fmtv(v);
+      });
+      [30, 50, 70, 90].filter((q) => q >= q0 && q <= q1).forEach((q) => {
+        const t = el("text", { x: X_(q), y: M.t + ih + 19, "text-anchor": "middle", fill: ink3,
+                               "font-size": 11, "font-family": "GeistMono, monospace" }, svg);
+        t.textContent = "q" + q;
+      });
+      el("line", { x1: ox + M.l, x2: ox + M.l + iw, y1: M.t + ih, y2: M.t + ih, stroke: axis,
+                   "stroke-width": 1 }, svg);
+
+      const d = pts.map((p, i) => (i ? "L" : "M") + X_(p.q).toFixed(1) + " " + Y_(p[key]).toFixed(1)).join(" ");
+      el("path", { d, fill: "none", stroke: cvar("--s1"), "stroke-width": 2,
+                   "stroke-linejoin": "round", "stroke-linecap": "round" }, svg);
+      pts.forEach((p) => {
+        el("circle", { cx: X_(p.q), cy: Y_(p[key]), r: 3.5, fill: cvar("--s1"),
+                       stroke: cvar("--surface"), "stroke-width": 2 }, svg);
+        const h = el("circle", { cx: X_(p.q), cy: Y_(p[key]), r: 14, fill: "transparent" }, svg);
+        h.style.cursor = "crosshair";
+        h.addEventListener("pointerenter", (e) => showTip(
+          `<b>JPEG q${p.q}</b><br>${p.bpp.toFixed(3)} bpp<br>SSIMULACRA2 ${p.s2.toFixed(1)}`,
+          e.clientX, e.clientY));
+        h.addEventListener("pointerleave", hideTip);
+      });
+      const ut = el("text", { x: ox + M.l + iw / 2, y: H - 8, "text-anchor": "middle", fill: ink3,
+                              "font-size": 11.5, "font-family": "GeistMono, monospace" }, svg);
+      ut.textContent = unit;
+    }
+
+    panel(0, "bpp", "WHAT IT COSTS", "quality setting", (v) => v.toFixed(2));
+    panel(pw + gap, "s2", "WHAT YOU GET", "quality setting", (v) => v.toFixed(0));
+
+    const note = el("text", { x: pw + gap + M.l, y: M.t + 14, fill: ink3, "font-size": 11,
+                              "font-family": "GeistMono, monospace" }, svg);
+    note.textContent = "shaded: q" + kneeQ[0] + "-" + kneeQ[1];
+  }
+
+  /* ================= chart 4: the screenshot ================= */
+  function renderSyn() {
+    const host = document.getElementById("syn-chart");
+    host.innerHTML = "";
+    const ll = Object.fromEntries(S.lossless.map((r) => [r.codec, r]));
+    const lossy = (c, q) => S.lossy.find((r) => r.codec === c && r.quality === q);
+    const pal = X.synthetic_palette.find((p) => p.colors === 256);
+    const rows = [
+      { name: "WebP lossless", bytes: ll.WEBP.bytes, s2: 100, exact: true },
+      { name: "AVIF q80", bytes: lossy("AVIF", 80).bytes, s2: lossy("AVIF", 80).ssimulacra2 },
+      { name: "PNG-8 palette, 256 colours", bytes: pal.bytes, s2: pal.ssimulacra2 },
+      { name: "WebP q80 (lossy)", bytes: lossy("WEBP", 80).bytes, s2: lossy("WEBP", 80).ssimulacra2 },
+      { name: "JPEG XL lossless", bytes: ll.JXL.bytes, s2: 100, exact: true },
+      { name: "PNG (optimised)", bytes: ll.PNG.bytes, s2: 100, exact: true },
+      { name: "JPEG q80", bytes: lossy("JPEG", 80).bytes, s2: lossy("JPEG", 80).ssimulacra2 }
+    ].sort((a, b) => a.bytes - b.bytes);
+
+    const W = 940, rowH = 44, M = { t: 8, r: 150, b: 30, l: 210 };
+    const H = M.t + rows.length * rowH + M.b;
+    const iw = W - M.l - M.r;
+    const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, width: W, height: H, role: "img",
+                            "aria-label": "File size of one screenshot across encodings" }, host);
+    const max = Math.max(...rows.map((r) => r.bytes)) * 1.02;
+    const X_ = (v) => M.l + v / max * iw;
+    const rule = cvar("--rule"), ink3 = cvar("--ink-3"), ink = cvar("--ink");
+
+    [0, 25000, 50000, 75000, 100000].filter((v) => v <= max).forEach((v) => {
+      el("line", { x1: X_(v), x2: X_(v), y1: M.t, y2: M.t + rows.length * rowH,
+                   stroke: v === 0 ? cvar("--axis") : rule, "stroke-width": 1 }, svg);
+      const t = el("text", { x: X_(v), y: H - 10, "text-anchor": "middle", fill: ink3, "font-size": 11.5,
+                             "font-family": "GeistMono, monospace" }, svg);
+      t.textContent = v === 0 ? "0" : fmtInt(v / 1000) + " kB";
+    });
+
+    rows.forEach((r, i) => {
+      const y = M.t + i * rowH + 10;
+      const w = Math.max(4, X_(r.bytes) - M.l), bh = 22;
+      el("path", {
+        d: `M${M.l} ${y} H${M.l + w - 4} a4 4 0 0 1 4 4 v${bh - 8} a4 4 0 0 1 -4 4 H${M.l} Z`,
+        fill: r.exact ? cvar("--s1") : cvar("--s3"),
+        opacity: r.exact ? 1 : 0.9
+      }, svg);
+      const lab = el("text", { x: M.l - 12, y: y + 16, "text-anchor": "end", fill: cvar("--ink-2"),
+                               "font-size": 13, "font-family": "InstrumentSans, sans-serif" }, svg);
+      lab.textContent = r.name;
+      const val = el("text", { x: M.l + w + 10, y: y + 16, fill: ink, "font-size": 12.5,
+                               "font-family": "GeistMono, monospace" }, svg);
+      val.textContent = kb(r.bytes) + (r.exact ? "" : " \u00b7 s2 " + r.s2.toFixed(0));
+      const hit = el("rect", { x: M.l, y: y - 8, width: Math.max(w, 24) + 130, height: 38,
+                               fill: "transparent" }, svg);
+      hit.addEventListener("pointerenter", (e) => showTip(
+        `<b>${r.name}</b><br>${kb(r.bytes)}<br>${r.exact ? "pixel-identical" : "SSIMULACRA2 " + r.s2.toFixed(1)}`,
+        e.clientX, e.clientY));
+      hit.addEventListener("pointerleave", hideTip);
+    });
+
+    const lgd = document.createElement("div");
+    lgd.className = "legend";
+    lgd.innerHTML =
+      `<span class="legend-item"><span class="legend-key" style="background:var(--s1)"></span>pixel-identical</span>` +
+      `<span class="legend-item"><span class="legend-key" style="background:var(--s3)"></span>lossy</span>`;
+    host.parentNode.insertBefore(lgd, host);
+
+    let html = '<table><thead><tr><th>Encoding</th><th class="num">Bytes</th><th class="num">bpp</th><th class="num">SSIMULACRA2</th></tr></thead><tbody>';
+    rows.forEach((r) => {
+      html += `<tr><td class="name">${r.name}</td><td class="num">${fmtInt(r.bytes)}</td>` +
+        `<td class="num">${(r.bytes * 8 / S.pixels).toFixed(3)}</td>` +
+        `<td class="num">${r.exact ? "exact" : r.s2.toFixed(1)}</td></tr>`;
+    });
+    document.getElementById("syn-table").innerHTML = html + "</tbody></table>";
+  }
+
+  /* ================= quality-for-target table ================= */
+  function renderQFor() {
+    const qf = P.quality_for_target;
+    const targets = P.targets.filter((t) => CODECS.some((c) => qf[c][t]));
+    let html = '<table><thead><tr><th>Perceptual target</th>' +
+      CODECS.map((c) => `<th class="num">${LABEL[c]}</th>`).join("") + "</tr></thead><tbody>";
+    const NAME = { 90: "visually lossless", 85: "very high", 80: "high, web delivery",
+                   75: "good", 70: "acceptable", 60: "thumbnails" };
+    targets.forEach((t) => {
+      html += `<tr><td>s2 ${t} <span style="color:var(--ink-3)">${NAME[t] || ""}</span></td>` +
+        CODECS.map((c) => `<td class="num">${qf[c][t] ? "q" + qf[c][t] : "n/a"}</td>`).join("") + "</tr>";
+    });
+    document.getElementById("qfor-table").innerHTML = html + "</tbody></table>";
+  }
+
+  /* ================= prose numbers, filled from the same data ================= */
+  function fillProse() {
+    const ll = Object.fromEntries(S.lossless.map((r) => [r.codec, r]));
+    const lossy = (c, q) => S.lossy.find((r) => r.codec === c && r.quality === q);
+    const pal = X.synthetic_palette.find((p) => p.colors === 256);
+    const jpeg80 = lossy("JPEG", 80), webp80 = lossy("WEBP", 80);
+    const nPoints = Object.keys(P.curves).reduce((a, c) => a + P.curves[c].length, 0) * P.n_images
+      + S.lossy.length + S.lossless.length;
+
+    const V = {
+      nimages: P.n_images,
+      npoints: fmtInt(Math.round(nPoints / 10) * 10) + "+",
+      syn_dims: "1440 by 900",
+      webp_vs_png_syn: pct(100 * (1 - ll.WEBP.bytes / ll.PNG.bytes)),
+      jxl_vs_webp_syn: pct(100 * (ll.JXL.bytes / ll.WEBP.bytes - 1)),
+      png_ll_bytes: kb(ll.PNG.bytes),
+      png8_bytes: kb(pal.bytes),
+      png8_s2: pal.ssimulacra2.toFixed(0),
+      jpeg80_s2_syn: jpeg80.ssimulacra2.toFixed(0),
+      jpeg_vs_png_syn: pct(100 * (jpeg80.bytes / ll.PNG.bytes - 1)) + " larger",
+      webp80_vs_ll: pct(100 * (webp80.bytes / ll.WEBP.bytes - 1)) + " more bytes",
+      webp80_s2_syn: webp80.ssimulacra2.toFixed(0),
+      avif_saving_80: P.savings[80] ? pct(P.savings[80].AVIF, 0) : "",
+      q_avif_80: P.quality_for_target.AVIF[80] || 55,
+      q_jpeg_80: P.quality_for_target.JPEG[80] || 80
+    };
+    Object.assign(V, X.prose || {});
+    document.querySelectorAll("[data-fill]").forEach((n) => {
+      const k = n.getAttribute("data-fill");
+      if (V[k] !== undefined) n.textContent = V[k];
+    });
+  }
+
+  renderRD();
+  buildTargetSeg();
+  renderSavings();
+  renderKnee();
+  renderSyn();
+  renderQFor();
+  fillProse();
+
+  let raf;
+  window.addEventListener("resize", () => {
+    cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(() => { renderRD(); renderSavings(); renderKnee(); });
+  });
+})();
+</script>

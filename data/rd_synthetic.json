@@ -1,0 +1,276 @@
+{
+ "pixels": 1296000,
+ "lossless": [
+  {
+   "codec": "PNG",
+   "bytes": 85602,
+   "bpp": 0.5284074074074074,
+   "exact": true
+  },
+  {
+   "codec": "WEBP",
+   "bytes": 27646,
+   "bpp": 0.17065432098765432,
+   "exact": true
+  },
+  {
+   "codec": "AVIF",
+   "bytes": 62774,
+   "bpp": 0.38749382716049385,
+   "exact": false
+  },
+  {
+   "codec": "JXL",
+   "bytes": 51828,
+   "bpp": 0.31992592592592595,
+   "exact": true
+  }
+ ],
+ "lossy": [
+  {
+   "codec": "JPEG",
+   "quality": 60,
+   "bytes": 69434,
+   "bpp": 0.42860493827160495,
+   "ssimulacra2": 59.997
+  },
+  {
+   "codec": "JPEG",
+   "quality": 70,
+   "bytes": 79132,
+   "bpp": 0.48846913580246915,
+   "ssimulacra2": 64.521
+  },
+  {
+   "codec": "JPEG",
+   "quality": 75,
+   "bytes": 84873,
+   "bpp": 0.5239074074074074,
+   "ssimulacra2": 67.402
+  },
+  {
+   "codec": "JPEG",
+   "quality": 80,
+   "bytes": 93478,
+   "bpp": 0.5770246913580247,
+   "ssimulacra2": 70.314
+  },
+  {
+   "codec": "JPEG",
+   "quality": 85,
+   "bytes": 104657,
+   "bpp": 0.6460308641975309,
+   "ssimulacra2": 74.064
+  },
+  {
+   "codec": "JPEG",
+   "quality": 90,
+   "bytes": 120693,
+   "bpp": 0.7450185185185185,
+   "ssimulacra2": 78.487
+  },
+  {
+   "codec": "JPEG",
+   "quality": 95,
+   "bytes": 149134,
+   "bpp": 0.9205802469135802,
+   "ssimulacra2": 82.42
+  },
+  {
+   "codec": "WEBP",
+   "quality": 60,
+   "bytes": 41110,
+   "bpp": 0.25376543209876545,
+   "ssimulacra2": 71.624
+  },
+  {
+   "codec": "WEBP",
+   "quality": 70,
+   "bytes": 43764,
+   "bpp": 0.27014814814814814,
+   "ssimulacra2": 74.832
+  },
+  {
+   "codec": "WEBP",
+   "quality": 75,
+   "bytes": 45094,
+   "bpp": 0.278358024691358,
+   "ssimulacra2": 75.245
+  },
+  {
+   "codec": "WEBP",
+   "quality": 80,
+   "bytes": 50426,
+   "bpp": 0.3112716049382716,
+   "ssimulacra2": 77.115
+  },
+  {
+   "codec": "WEBP",
+   "quality": 85,
+   "bytes": 56202,
+   "bpp": 0.3469259259259259,
+   "ssimulacra2": 79.717
+  },
+  {
+   "codec": "WEBP",
+   "quality": 90,
+   "bytes": 64434,
+   "bpp": 0.39774074074074073,
+   "ssimulacra2": 80.877
+  },
+  {
+   "codec": "WEBP",
+   "quality": 95,
+   "bytes": 81706,
+   "bpp": 0.504358024691358,
+   "ssimulacra2": 81.645
+  },
+  {
+   "codec": "AVIF",
+   "quality": 35,
+   "bytes": 15056,
+   "bpp": 0.09293827160493827,
+   "ssimulacra2": 55.655
+  },
+  {
+   "codec": "AVIF",
+   "quality": 45,
+   "bytes": 17092,
+   "bpp": 0.10550617283950617,
+   "ssimulacra2": 63.024
+  },
+  {
+   "codec": "AVIF",
+   "quality": 50,
+   "bytes": 18146,
+   "bpp": 0.11201234567901235,
+   "ssimulacra2": 67.178
+  },
+  {
+   "codec": "AVIF",
+   "quality": 55,
+   "bytes": 18977,
+   "bpp": 0.11714197530864197,
+   "ssimulacra2": 70.957
+  },
+  {
+   "codec": "AVIF",
+   "quality": 60,
+   "bytes": 19935,
+   "bpp": 0.12305555555555556,
+   "ssimulacra2": 79.385
+  },
+  {
+   "codec": "AVIF",
+   "quality": 70,
+   "bytes": 22197,
+   "bpp": 0.1370185185185185,
+   "ssimulacra2": 81.734
+  },
+  {
+   "codec": "AVIF",
+   "quality": 80,
+   "bytes": 25916,
+   "bpp": 0.15997530864197532,
+   "ssimulacra2": 82.758
+  },
+  {
+   "codec": "HEIF",
+   "quality": 35,
+   "bytes": 37169,
+   "bpp": 0.22943827160493827,
+   "ssimulacra2": 70.324
+  },
+  {
+   "codec": "HEIF",
+   "quality": 45,
+   "bytes": 47962,
+   "bpp": 0.29606172839506173,
+   "ssimulacra2": 79.755
+  },
+  {
+   "codec": "HEIF",
+   "quality": 50,
+   "bytes": 52932,
+   "bpp": 0.3267407407407407,
+   "ssimulacra2": 82.174
+  },
+  {
+   "codec": "HEIF",
+   "quality": 55,
+   "bytes": 61617,
+   "bpp": 0.38035185185185183,
+   "ssimulacra2": 84.882
+  },
+  {
+   "codec": "HEIF",
+   "quality": 60,
+   "bytes": 67249,
+   "bpp": 0.4151172839506173,
+   "ssimulacra2": 85.804
+  },
+  {
+   "codec": "HEIF",
+   "quality": 70,
+   "bytes": 83639,
+   "bpp": 0.5162901234567902,
+   "ssimulacra2": 86.817
+  },
+  {
+   "codec": "HEIF",
+   "quality": 80,
+   "bytes": 109526,
+   "bpp": 0.6760864197530864,
+   "ssimulacra2": 87.112
+  },
+  {
+   "codec": "JXL",
+   "quality": 70,
+   "bytes": 63640,
+   "bpp": 0.3928395061728395,
+   "ssimulacra2": 81.28
+  },
+  {
+   "codec": "JXL",
+   "quality": 75,
+   "bytes": 66865,
+   "bpp": 0.4127469135802469,
+   "ssimulacra2": 82.948
+  },
+  {
+   "codec": "JXL",
+   "quality": 80,
+   "bytes": 73041,
+   "bpp": 0.45087037037037037,
+   "ssimulacra2": 85.682
+  },
+  {
+   "codec": "JXL",
+   "quality": 85,
+   "bytes": 80985,
+   "bpp": 0.4999074074074074,
+   "ssimulacra2": 88.183
+  },
+  {
+   "codec": "JXL",
+   "quality": 90,
+   "bytes": 92151,
+   "bpp": 0.5688333333333333,
+   "ssimulacra2": 91.214
+  },
+  {
+   "codec": "JXL",
+   "quality": 93,
+   "bytes": 103042,
+   "bpp": 0.6360617283950617,
+   "ssimulacra2": 93.014
+  },
+  {
+   "codec": "JXL",
+   "quality": 96,
+   "bytes": 95571,
+   "bpp": 0.5899444444444445,
+   "ssimulacra2": 94.779
+  }
+ ]
+}

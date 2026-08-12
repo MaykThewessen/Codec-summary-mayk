@@ -1,0 +1,1367 @@
+<title>General-purpose compression trade-off map</title>
+
+<style>
+@font-face { font-family: "Tektur"; src: url(data:font/ttf;base64,@@FONT_DISPLAY@@) format("truetype"); font-weight: 500; font-display: swap; }
+@font-face { font-family: "InstrumentSans"; src: url(data:font/ttf;base64,@@FONT_BODY@@) format("truetype"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "InstrumentSans"; src: url(data:font/ttf;base64,@@FONT_BODY_BOLD@@) format("truetype"); font-weight: 700; font-display: swap; }
+@font-face { font-family: "GeistMono"; src: url(data:font/ttf;base64,@@FONT_MONO@@) format("truetype"); font-weight: 400; font-display: swap; }
+
+:root {
+  color-scheme: light;
+  --page: #f4f4f1;
+  --surface: #fcfcfb;
+  --sunken: #efefeb;
+  --ink: #0b0b0b;
+  --ink-2: #52514e;
+  --ink-3: #898781;
+  --rule: #e1e0d9;
+  --axis: #c3c2b7;
+
+  --accent: #2a78d6;
+  --wash-1: rgba(42,120,214,0.05);
+  --wash-2: rgba(42,120,214,0.16);
+  --wash-3: rgba(42,120,214,0.32);
+  --edge-1: rgba(42,120,214,0.20);
+  --edge-2: rgba(42,120,214,0.34);
+  --edge-3: rgba(42,120,214,0.50);
+
+  --st-good: #0ca30c;
+  --st-warn: #fab219;
+  --st-serious: #ec835a;
+  --st-crit: #d03b3b;
+  --chip-good: rgba(12,163,12,0.12);
+  --chip-warn: rgba(190,130,0,0.14);
+  --chip-serious: rgba(236,131,90,0.16);
+
+  --s1: #2a78d6;
+  --s2c: #eb6834;
+  --s3: #1baf7a;
+  --s4: #eda100;
+  --s5: #e87ba4;
+
+  --shadow: 0 1px 2px rgba(11,11,11,0.05), 0 8px 24px -18px rgba(11,11,11,0.35);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) {
+    color-scheme: dark;
+    --page: #0d0d0d;
+    --surface: #1a1a19;
+    --sunken: #141413;
+    --ink: #ffffff;
+    --ink-2: #c3c2b7;
+    --ink-3: #898781;
+    --rule: #2c2c2a;
+    --axis: #383835;
+
+    --accent: #3987e5;
+    --wash-1: rgba(57,135,229,0.07);
+    --wash-2: rgba(57,135,229,0.20);
+    --wash-3: rgba(57,135,229,0.38);
+    --edge-1: rgba(57,135,229,0.26);
+    --edge-2: rgba(57,135,229,0.42);
+    --edge-3: rgba(57,135,229,0.58);
+
+    --chip-good: rgba(12,163,12,0.20);
+    --chip-warn: rgba(250,178,25,0.18);
+    --chip-serious: rgba(236,131,90,0.20);
+
+    --s1: #3987e5;
+    --s2c: #d95926;
+    --s3: #199e70;
+    --s4: #c98500;
+    --s5: #d55181;
+
+    --shadow: 0 1px 2px rgba(0,0,0,0.5), 0 8px 24px -18px rgba(0,0,0,0.9);
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page: #0d0d0d;
+  --surface: #1a1a19;
+  --sunken: #141413;
+  --ink: #ffffff;
+  --ink-2: #c3c2b7;
+  --ink-3: #898781;
+  --rule: #2c2c2a;
+  --axis: #383835;
+
+  --accent: #3987e5;
+  --wash-1: rgba(57,135,229,0.07);
+  --wash-2: rgba(57,135,229,0.20);
+  --wash-3: rgba(57,135,229,0.38);
+  --edge-1: rgba(57,135,229,0.26);
+  --edge-2: rgba(57,135,229,0.42);
+  --edge-3: rgba(57,135,229,0.58);
+
+  --chip-good: rgba(12,163,12,0.20);
+  --chip-warn: rgba(250,178,25,0.18);
+  --chip-serious: rgba(236,131,90,0.20);
+
+  --s1: #3987e5;
+  --s2c: #d95926;
+  --s3: #199e70;
+  --s4: #c98500;
+  --s5: #d55181;
+
+  --shadow: 0 1px 2px rgba(0,0,0,0.5), 0 8px 24px -18px rgba(0,0,0,0.9);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--ink);
+  font-family: "InstrumentSans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 16.5px;
+  line-height: 1.62;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 24px 96px;
+  display: flex;
+  flex-direction: column;
+  gap: 68px;
+}
+
+/* ---------- typography ---------- */
+h1, h2, h3 { font-family: "Tektur", system-ui, sans-serif; font-weight: 500; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(2.1rem, 5.2vw, 3.5rem); line-height: 1.02; letter-spacing: -0.022em; }
+h2 { font-size: clamp(1.35rem, 2.8vw, 1.85rem); line-height: 1.14; letter-spacing: -0.012em; }
+h3 { font-size: 1.05rem; line-height: 1.3; letter-spacing: 0.002em; }
+p { margin: 0; max-width: 68ch; }
+a { color: var(--accent); text-underline-offset: 2px; }
+strong { font-weight: 700; }
+
+.eyebrow {
+  font-family: "Tektur", system-ui, sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.mono { font-family: "GeistMono", ui-monospace, monospace; }
+.tnum { font-variant-numeric: tabular-nums; }
+
+/* ---------- page head ---------- */
+.head {
+  padding-top: 76px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 44px;
+}
+.lede { font-size: 1.16rem; color: var(--ink-2); max-width: 62ch; }
+.head-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 26px;
+  font-size: 0.8rem;
+  color: var(--ink-3);
+  font-family: "GeistMono", monospace;
+}
+
+/* ---------- section scaffold ---------- */
+section { display: flex; flex-direction: column; gap: 20px; }
+.sec-head { display: flex; flex-direction: column; gap: 9px; }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  box-shadow: var(--shadow);
+}
+.pad { padding: 24px; }
+
+/* ---------- the map ---------- */
+.map-frame {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: 34px 1fr;
+  grid-template-rows: 1fr 34px;
+  gap: 10px;
+}
+.y-axis, .x-axis {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--ink-3);
+  font-family: "Tektur", sans-serif;
+  font-size: 0.66rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+.y-axis { writing-mode: vertical-rl; transform: rotate(180deg); padding: 4px 0; }
+.x-axis { grid-column: 2; padding: 0 4px; }
+.axis-mid { color: var(--ink-3); opacity: 0.75; }
+
+.map {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: 1fr 1.1fr 0.95fr;
+  grid-template-areas:
+    "arch  static  none"
+    "bulk  general hot"
+    "compat block  ram";
+  gap: 2px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.cell {
+  min-width: 0;
+  background: var(--surface);
+  padding: 17px 17px 16px;
+  min-height: 168px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  position: relative;
+  transition: background 140ms ease;
+}
+@media (prefers-reduced-motion: reduce) { .cell { transition: none; } }
+.cell.t1 { background: color-mix(in srgb, var(--surface) 100%, transparent); background-image: linear-gradient(var(--wash-1), var(--wash-1)); }
+.cell.t2 { background-image: linear-gradient(var(--wash-2), var(--wash-2)); background-color: var(--surface); }
+.cell.t3 { background-image: linear-gradient(var(--wash-3), var(--wash-3)); background-color: var(--surface); }
+.cell.void { background: var(--sunken); }
+
+.cell-name {
+  font-family: "Tektur", sans-serif;
+  font-size: 1.22rem;
+  letter-spacing: -0.008em;
+  line-height: 1.1;
+  color: var(--ink);
+}
+.cell.void .cell-name { color: var(--ink-3); font-size: 1rem; }
+.cell-why { font-size: 0.875rem; color: var(--ink-2); line-height: 1.45; }
+.cell-num {
+  font-family: "GeistMono", monospace;
+  font-size: 0.735rem;
+  color: var(--ink-3);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 14px;
+}
+.cell-set {
+  margin-top: auto;
+  font-family: "GeistMono", monospace;
+  font-size: 0.735rem;
+  color: var(--ink-3);
+  border-top: 1px solid var(--rule);
+  padding-top: 8px;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+.chip {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: "GeistMono", monospace;
+  font-size: 0.665rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 2px 8px 2px 6px;
+  border-radius: 2px;
+  color: var(--ink-2);
+}
+.chip::before { content: ""; width: 6px; height: 6px; border-radius: 50%; flex: none; }
+.chip.good { background: var(--chip-good); }
+.chip.good::before { background: var(--st-good); }
+.chip.warn { background: var(--chip-warn); }
+.chip.warn::before { background: var(--st-warn); }
+.chip.serious { background: var(--chip-serious); }
+.chip.serious::before { background: var(--st-serious); }
+
+.map-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+  font-size: 0.8rem;
+  color: var(--ink-2);
+  align-items: center;
+}
+.tier-key { display: inline-flex; align-items: center; gap: 8px; }
+.tier-sw { width: 30px; height: 14px; border-radius: 2px; border: 1px solid var(--edge-1); }
+.tier-sw.k1 { background: var(--wash-1); }
+.tier-sw.k2 { background: var(--wash-2); border-color: var(--edge-2); }
+.tier-sw.k3 { background: var(--wash-3); border-color: var(--edge-3); }
+
+/* ---------- generic chart card ---------- */
+.chart-card { display: flex; flex-direction: column; gap: 14px; }
+.chart-title { display: flex; flex-wrap: wrap; gap: 4px 16px; align-items: baseline; justify-content: space-between; }
+.chart-sub { font-size: 0.85rem; color: var(--ink-3); }
+.chart-host { width: 100%; overflow-x: auto; }
+svg { display: block; max-width: 100%; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 0.83rem; color: var(--ink-2); }
+.legend-item { display: inline-flex; align-items: center; gap: 7px; }
+.legend-key { width: 14px; height: 3px; border-radius: 2px; flex: none; }
+
+.seg {
+  display: inline-flex;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  overflow: hidden;
+  background: var(--surface);
+}
+.seg button {
+  font: inherit;
+  font-family: "GeistMono", monospace;
+  font-size: 0.78rem;
+  padding: 5px 13px;
+  background: transparent;
+  border: 0;
+  border-right: 1px solid var(--rule);
+  color: var(--ink-2);
+  cursor: pointer;
+}
+.seg button:last-child { border-right: 0; }
+.seg button[aria-pressed="true"] { background: var(--wash-2); color: var(--ink); }
+.seg button:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+
+.tip {
+  position: fixed;
+  pointer-events: none;
+  z-index: 30;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  box-shadow: var(--shadow);
+  padding: 9px 11px;
+  font-family: "GeistMono", monospace;
+  font-size: 0.75rem;
+  color: var(--ink);
+  opacity: 0;
+  transition: opacity 90ms ease;
+  max-width: 260px;
+}
+.tip[data-on="1"] { opacity: 1; }
+.tip b { font-weight: 400; color: var(--ink-3); }
+
+/* ---------- tables ---------- */
+details.tbl { border-top: 1px solid var(--rule); padding-top: 12px; }
+details.tbl > summary {
+  cursor: pointer;
+  font-family: "GeistMono", monospace;
+  font-size: 0.76rem;
+  color: var(--ink-3);
+  letter-spacing: 0.03em;
+}
+details.tbl > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.tbl-scroll { overflow-x: auto; margin-top: 12px; }
+table { border-collapse: collapse; width: 100%; font-size: 0.84rem; }
+th, td { text-align: left; padding: 7px 14px 7px 0; border-bottom: 1px solid var(--rule); white-space: nowrap; }
+th { font-family: "Tektur", sans-serif; font-weight: 500; font-size: 0.7rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-3); }
+td.num, th.num { text-align: right; font-family: "GeistMono", monospace; font-variant-numeric: tabular-nums; padding-right: 18px; }
+td.name { font-family: "GeistMono", monospace; }
+tbody tr:last-child td { border-bottom: 0; }
+.win { color: var(--ink); font-weight: 700; }
+
+/* ---------- reach matrix ---------- */
+.matrix td.mark { text-align: center; font-family: "GeistMono", monospace; font-size: 0.78rem; padding-right: 0; }
+.mk { display: inline-block; padding: 1px 7px; border-radius: 2px; }
+.mk.y { background: var(--chip-good); color: var(--ink); }
+.mk.p { background: var(--chip-warn); color: var(--ink); }
+.mk.n { background: var(--sunken); color: var(--ink-3); }
+
+/* ---------- prose blocks ---------- */
+.cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(268px, 1fr)); gap: 2px; background: var(--rule); border: 1px solid var(--rule); border-radius: 3px; overflow: hidden; }
+/* four-card groups: force an even 2x2 so no half-empty row shows the rule colour */
+.cols.quad { grid-template-columns: repeat(auto-fit, minmax(390px, 1fr)); }
+.col { min-width: 0; background: var(--surface); padding: 20px; display: flex; flex-direction: column; gap: 8px; }
+.col h3 { color: var(--ink); }
+.col p { font-size: 0.9rem; color: var(--ink-2); }
+
+.claim { display: flex; flex-direction: column; gap: 7px; padding: 18px 0; border-bottom: 1px solid var(--rule); }
+.claim:last-child { border-bottom: 0; }
+.claim-q { font-size: 0.95rem; color: var(--ink); font-weight: 700; }
+.claim-v {
+  align-self: flex-start;
+  font-family: "GeistMono", monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 2px;
+}
+.claim-v.ok { background: var(--chip-good); color: var(--ink); }
+.claim-v.part { background: var(--chip-warn); color: var(--ink); }
+.claim-v.no { background: var(--chip-serious); color: var(--ink); }
+.claim p { font-size: 0.92rem; color: var(--ink-2); }
+
+pre {
+  margin: 0;
+  background: var(--sunken);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  padding: 14px 16px;
+  overflow-x: auto;
+  font-family: "GeistMono", monospace;
+  font-size: 0.795rem;
+  line-height: 1.72;
+  color: var(--ink);
+}
+pre .c { color: var(--ink-3); }
+code { font-family: "GeistMono", monospace; font-size: 0.88em; }
+
+.foot { border-top: 1px solid var(--rule); padding-top: 26px; font-size: 0.84rem; color: var(--ink-3); display: flex; flex-direction: column; gap: 12px; }
+.foot p { max-width: 78ch; }
+
+/* ---------- additions for this page ---------- */
+/* Charts keep their intrinsic width and scroll inside their own host. Letting
+   max-width shrink them instead letterboxes the drawing inside a fixed-height
+   box: on a phone that produced a postage stamp with 400px of white above it. */
+.chart-host svg { max-width: none; }
+/* The corpus control has six options. inline-flex with overflow:hidden clipped
+   the last one at narrow widths without producing document overflow, so it was
+   invisible rather than obviously broken. */
+.seg { flex-wrap: wrap; max-width: 100%; }
+.legend-key.dot { width: 11px; height: 11px; border-radius: 50%; }
+.legend-key.pareto { width: 20px; height: 0; border-top: 2px solid var(--ink-3); border-radius: 0; }
+.ctl-row { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; justify-content: space-between; }
+.ctl-lab { font-family: "Tektur", sans-serif; font-size: 0.66rem; letter-spacing: 0.13em; text-transform: uppercase; color: var(--ink-3); }
+.note { font-size: 0.86rem; color: var(--ink-3); max-width: 78ch; }
+td.cited, th.cited { color: var(--ink-3); }
+.tag {
+  font-family: "GeistMono", monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 1px 6px;
+  border-radius: 2px;
+  background: var(--sunken);
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+.tag.cite { background: var(--chip-warn); color: var(--ink-2); }
+
+@media (max-width: 780px) {
+  .map { grid-template-columns: 1fr; grid-template-areas: "arch" "static" "none" "bulk" "general" "hot" "compat" "block" "ram"; }
+  .map-frame { grid-template-columns: 1fr; grid-template-rows: auto; }
+  /* Stacked into one column the two axes no longer describe a position, and
+     each cell already carries its own read-rate line, so drop them rather than lie. */
+  .y-axis, .x-axis { display: none; }
+  .cell { min-height: 0; }
+}
+</style>
+
+<div class="wrap">
+
+  <header class="head">
+    <div class="eyebrow">General-purpose compression / measured, not folklore</div>
+    <h1>Ratio, speed, and<br>where each one wins</h1>
+    <p class="lede">Every compressor argument is the same argument: how small, how fast to write, how fast to read. Two of those you can have. The third is what you are choosing when you pick a tool and a level, and the answer moves depending on what you are compressing.</p>
+    <div class="head-meta">
+      <span>6 codec families</span>
+      <span><span data-fill="n_points"></span> codec-and-level settings</span>
+      <span><span data-fill="n_corpora"></span> corpora, <span data-fill="corpus_mb"></span> each</span>
+      <span><span data-fill="n_measurements"></span> timed round trips</span>
+    </div>
+  </header>
+
+  <!-- ================= THE MAP ================= -->
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">The map</div>
+      <h2>Eight regions, eight answers</h2>
+      <p>Left to right: how fast the data has to come back out, from an archive nobody reads until something breaks, through content served to users all day, to a buffer read in a loop. Bottom to top: how much the last few percent of size is worth to you. Find your square, read the tool and the level. Every number in a cell was measured here; the shading is the window the compressed file asks its <em>reader</em> to hold, which is the constraint people forget until it bites.</p>
+    </div>
+
+    <div class="card pad chart-card">
+      <div class="map-frame">
+        <div class="y-axis" aria-hidden="true"><span>Size barely matters</span><span class="axis-mid">Value of the last few percent</span><span>Every byte counts</span></div>
+        <div class="map">
+
+          <div class="cell t3" style="grid-area: arch">
+            <span class="chip warn">Reader needs a <span data-fill="xz_dmem"></span></span>
+            <div class="cell-name">xz -9<br><span style="font-size:0.8rem; color:var(--ink-3); font-family:GeistMono, monospace">(7z is the same coder)</span></div>
+            <div class="cell-why">The best ratio among the tools you would actually tar with, bought with the slowest encoder on the page. This is why Linux distributions ship <code>.tar.xz</code>: the package is compressed once on a build machine and downloaded a million times, so encode cost is free and every byte saved is bandwidth saved. The price is paid by every reader, in time and in RAM.</div>
+            <div class="cell-num"><span data-fill="cell_xz_ratio"></span><span data-fill="cell_xz_speed"></span></div>
+            <div class="cell-set">XZ_OPT=-9e tar -cJf backup.tar.xz dir/</div>
+          </div>
+
+          <div class="cell t2" style="grid-area: static">
+            <span class="chip good">Every browser, 16 MB window</span>
+            <div class="cell-name">brotli -11</div>
+            <div class="cell-why">Static web assets, compressed once at build time and served with <code>Content-Encoding: br</code>. On the HTML, CSS and JS corpus it beat gzip -6 by <span data-fill="cell_br_vs_gzip"></span> and still decoded fast enough that nobody notices. Its encoder is far too slow for anything generated per request.</div>
+            <div class="cell-num"><span data-fill="cell_br_ratio"></span><span data-fill="cell_br_speed"></span></div>
+            <div class="cell-set">brotli -q 11 -o app.js.br app.js</div>
+          </div>
+
+          <div class="cell void" style="grid-area: none">
+            <div class="cell-name">Nothing lives up here</div>
+            <div class="cell-why">Top ratio and gigabyte-per-second reads are not both available. The frontier runs the other way: the codecs that decode in a hot loop give up roughly a third of the compression, and the ones that squeeze hardest read back an order of magnitude slower. If you are in this square, one of your two requirements is negotiable.</div>
+          </div>
+
+          <div class="cell t2" style="grid-area: bulk">
+            <span class="chip good">8 MB window</span>
+            <div class="cell-name">zstd -19 --long</div>
+            <div class="cell-why">Large datasets and backups where you still want the restore to finish. Within a few percent of xz on ratio, and it reads back roughly <span data-fill="cell_zstd_vs_xz_dspeed"></span> faster. <code>--long=27</code> widens the match window to 128 MB, which is what finds the redundancy between near-identical files in a big tarball.</div>
+            <div class="cell-num"><span data-fill="cell_z19_ratio"></span><span data-fill="cell_z19_speed"></span></div>
+            <div class="cell-set">zstd -19 --long=27 -T0 dump.sql</div>
+          </div>
+
+          <div class="cell t2" style="grid-area: general">
+            <span class="chip good">The default answer</span>
+            <div class="cell-name">zstd -6</div>
+            <div class="cell-why">Where most real work belongs. Compresses about as well as gzip -9 while compressing several times faster, and decompresses several times faster than gzip on top of that. If you are replacing gzip anywhere and do not want to think about it, this is the setting.</div>
+            <div class="cell-num"><span data-fill="cell_z6_ratio"></span><span data-fill="cell_z6_speed"></span></div>
+            <div class="cell-set">tar -I 'zstd -6 -T0' -cf out.tar.zst dir/</div>
+          </div>
+
+          <div class="cell t1" style="grid-area: hot">
+            <span class="chip good">64 kB window</span>
+            <div class="cell-name">lz4 -9 (HC)</div>
+            <div class="cell-why">A hot path that still wants the data smaller: message queues, RPC payloads, in-memory column blocks. The high-compression mode is slow to write and identical to read, so it fits anything written once and read constantly.</div>
+            <div class="cell-num"><span data-fill="cell_lz4hc_ratio"></span><span data-fill="cell_lz4hc_speed"></span></div>
+            <div class="cell-set">lz4 -9 pages.bin pages.lz4</div>
+          </div>
+
+          <div class="cell t1" style="grid-area: compat">
+            <span class="chip good">In every stdlib on earth</span>
+            <div class="cell-name">gzip -6</div>
+            <div class="cell-why">Not because it is good. Because DEFLATE is in every language runtime, every browser, every embedded toolchain and every twenty-year-old appliance you have to interoperate with. When the receiver is unknown, this is the floor, and <code>zip</code> is the same coder in a different envelope.</div>
+            <div class="cell-num"><span data-fill="cell_gzip_ratio"></span><span data-fill="cell_gzip_speed"></span></div>
+            <div class="cell-set">tar -czf out.tar.gz dir/</div>
+          </div>
+
+          <div class="cell t2" style="grid-area: block">
+            <span class="chip good">Parquet, ORC, RocksDB, ZFS</span>
+            <div class="cell-name">zstd -1 to -3</div>
+            <div class="cell-why">Block and page compression inside a storage engine, where every read pays the decompression cost and blocks are small. Low levels give up little ratio, cost almost nothing to write, and are the reason zstd has become the default in so many storage formats.</div>
+            <div class="cell-num"><span data-fill="cell_z3_ratio"></span><span data-fill="cell_z3_speed"></span></div>
+            <div class="cell-set">pq.write_table(t, path, compression="zstd")</div>
+          </div>
+
+          <div class="cell t1" style="grid-area: ram">
+            <span class="chip good">64 kB window</span>
+            <div class="cell-name">lz4, default</div>
+            <div class="cell-why">Compression as a memory-bandwidth trick rather than a storage one. At <span data-fill="cell_lz4_speed_bare"></span> it is faster to store a page compressed and expand it than to fetch the uncompressed version from further down the memory hierarchy. Ratio is an afterthought here and that is the correct priority.</div>
+            <div class="cell-num"><span data-fill="cell_lz4_ratio"></span><span data-fill="cell_lz4_speed"></span></div>
+            <div class="cell-set">lz4 -1 cache.bin cache.lz4</div>
+          </div>
+
+        </div>
+        <div class="x-axis" aria-hidden="true"><span>Read once</span><span class="axis-mid">Decompression rate you need</span><span>Read in a hot loop</span></div>
+      </div>
+
+      <div class="map-legend">
+        <span class="ctl-lab">Window the file asks its reader to hold</span>
+        <span class="tier-key"><span class="tier-sw k1"></span> Under 1 MB</span>
+        <span class="tier-key"><span class="tier-sw k2"></span> 1 to 16 MB</span>
+        <span class="tier-key"><span class="tier-sw k3"></span> Over 16 MB</span>
+      </div>
+      <p class="note">Ratios in the cells are on the source-code corpus, the most representative of the six. The commands are what you would type; the measurements behind them used the Python bindings of the same reference libraries, because the <code>zstd</code>, <code>brotli</code>, <code>lz4</code> and <code>7z</code> command-line binaries are not installed in this container.</p>
+    </div>
+  </section>
+
+  <!-- ================= THE PARETO CHART ================= -->
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">The chart that settles it</div>
+      <h2>Ratio against read speed</h2>
+      <p>Every codec at every level, plotted against how fast the result decompresses. Up is smaller, right is faster to read, so up and to the right wins. The grey staircase is the Pareto frontier: the points where nothing else is both smaller <em>and</em> faster. Anything below the staircase is a setting you should not be using, because something on the frontier beats it on both counts at once.</p>
+    </div>
+
+    <div class="card pad chart-card">
+      <div class="chart-title">
+        <h3>Compression ratio versus decompression throughput</h3>
+        <span class="chart-sub">Log speed axis. Both axes rescale per corpus.</span>
+      </div>
+      <div class="ctl-row">
+        <span class="ctl-lab">Corpus</span>
+        <div class="seg" data-corpus-seg role="group" aria-label="Corpus"></div>
+      </div>
+      <div class="legend" id="pareto-legend"></div>
+      <div class="chart-host" id="pareto-chart"></div>
+      <p class="note" data-fill="note_pareto"></p>
+      <details class="tbl">
+        <summary>Table view: every codec and level on this corpus</summary>
+        <div class="tbl-scroll" id="pareto-table"></div>
+      </details>
+    </div>
+
+    <div class="card pad chart-card">
+      <div class="chart-title">
+        <h3>Compression ratio versus compression throughput</h3>
+        <span class="chart-sub">The other half of the trade, on its own axes rather than sharing them.</span>
+      </div>
+      <div class="ctl-row">
+        <span class="ctl-lab">Corpus</span>
+        <div class="seg" data-corpus-seg role="group" aria-label="Corpus"></div>
+      </div>
+      <div class="chart-host" id="comp-chart"></div>
+      <p class="note" data-fill="note_comp"></p>
+      <details class="tbl">
+        <summary>Table view: compression throughput by codec and level</summary>
+        <div class="tbl-scroll" id="comp-table"></div>
+      </details>
+    </div>
+  </section>
+
+  <!-- ================= CORPUS DEPENDENCE ================= -->
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">What you are compressing</div>
+      <h2>The data decides more than the codec does</h2>
+      <p>The spread between the best and the worst codec on one corpus is smaller than the spread between corpora for one codec. Any benchmark that reports a single ratio has averaged that away and told you nothing. The last row is the one worth internalising: data that has already been through an entropy coder has nothing left to give.</p>
+    </div>
+
+    <div class="card pad chart-card">
+      <div class="chart-title">
+        <h3>Ratio by corpus, each codec at the level you would pick for size</h3>
+        <span class="chart-sub">1.0 means the output is the same size as the input.</span>
+      </div>
+      <div class="legend" id="corpus-legend"></div>
+      <div class="chart-host" id="corpus-chart"></div>
+      <p style="font-size:0.92rem; color:var(--ink-2);" data-fill="note_corpus"></p>
+      <details class="tbl">
+        <summary>Table view: ratio and bytes saved per corpus</summary>
+        <div class="tbl-scroll" id="corpus-table"></div>
+      </details>
+    </div>
+
+    <div class="cols quad">
+      <div class="col">
+        <h3>Already compressed: do not bother</h3>
+        <p data-fill="note_compressed"></p>
+      </div>
+      <div class="col">
+        <h3>Logs and CSV: the easy wins</h3>
+        <p data-fill="note_logs"></p>
+      </div>
+      <div class="col">
+        <h3>HTML, CSS and JS</h3>
+        <p data-fill="note_web"></p>
+      </div>
+      <div class="col">
+        <h3>bzip2 refused to stay retired</h3>
+        <p data-fill="note_bzip2"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= LEVEL BEHAVIOUR ================= -->
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">Checking a specific claim</div>
+      <h2>Does zstd really decompress at the same speed at every level?</h2>
+      <p>This is the property zstd is usually sold on, and it is checkable. Compression level changes how hard the encoder searches; the decoder just follows the instructions it is given, so in principle the level should barely touch read speed. Two panels rather than two y-axes, because the two scales differ by two orders of magnitude.</p>
+    </div>
+
+    <div class="card pad chart-card">
+      <div class="chart-title">
+        <h3>zstd across its full level ladder, 1 to 22</h3>
+        <div class="seg" data-corpus-seg role="group" aria-label="Corpus"></div>
+      </div>
+      <div class="chart-host" id="zstd-chart"></div>
+      <p style="font-size:0.92rem; color:var(--ink-2);" data-fill="claim_zstd_flat"></p>
+      <details class="tbl">
+        <summary>Table view: zstd decompression spread on every corpus</summary>
+        <div class="tbl-scroll" id="zstd-table"></div>
+      </details>
+    </div>
+  </section>
+
+  <!-- ================= LONG RANGE ================= -->
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">The flag worth knowing</div>
+      <h2>Long-range matching, on data that needs it</h2>
+      <p>A compressor can only reuse what fits inside its match window. gzip's window is 32 kB; zstd's default is a couple of megabytes; xz -9 carries a 64 MB dictionary, which is a large part of why it wins on ratio and why it is so slow. <code>--long=27</code> gives zstd a 128 MB window with a cheap long-distance matcher in front of it, and on data with far-apart repeats it changes the answer entirely.</p>
+    </div>
+    <div class="card pad chart-card">
+      <div class="chart-title">
+        <h3><span data-fill="lr_mb"></span> of near-identical revisions, roughly 8 MB apart</h3>
+        <span class="chart-sub">Single pass, not median of repeats: this one is about ratio, not timing.</span>
+      </div>
+      <div class="tbl-scroll" id="lr-table"></div>
+      <p style="font-size:0.92rem; color:var(--ink-2);" data-fill="note_longrange"></p>
+    </div>
+  </section>
+
+  <!-- ================= CONTAINERS ================= -->
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">A distinction worth making</div>
+      <h2>zip, 7z and RAR are containers, not codecs</h2>
+      <p>gzip, zstd, brotli, xz and lz4 are compressors: bytes in, bytes out. zip, 7z and RAR are archive formats that bundle a directory, store names, permissions and checksums, and then call a compressor on the contents. Comparing "zip versus zstd" compares a filing cabinet with a hydraulic press. The interesting question is which compressor a container uses and whether it compresses the files together or one at a time.</p>
+    </div>
+    <div class="card pad chart-card">
+      <div class="chart-title">
+        <h3>The same <span data-fill="cont_files"></span> source files, packed seven ways</h3>
+        <span class="chart-sub">Solid means the whole stream is compressed at once, so matches can cross file boundaries.</span>
+      </div>
+      <div class="tbl-scroll" id="cont-table"></div>
+      <p style="font-size:0.92rem; color:var(--ink-2);" data-fill="note_containers"></p>
+    </div>
+    <div class="cols">
+      <div class="col">
+        <h3>zip</h3>
+        <p>DEFLATE per member, by default. That per-member choice is what makes it random-access (you can extract one file without reading the archive) and what makes it larger. Modern zip can carry other coders including bzip2, LZMA and zstd, but a <code>.zip</code> produced by anything you are likely to receive is deflate.</p>
+      </div>
+      <div class="col">
+        <h3>7z</h3>
+        <p>LZMA2 by default, solid by default, which is exactly the pair that makes it beat zip so heavily on directories of similar files. The coder inside it is the same one <code>xz</code> uses, so 7z and tar.xz land within a rounding error of each other, as the table shows.</p>
+      </div>
+      <div class="col">
+        <h3>RAR <span class="tag cite">cited, not measured</span></h3>
+        <p>No RAR encoder exists in this container and none is freely licensed, so RAR is absent from every chart on this page rather than estimated. Published comparisons put RAR5 between 7z and zip on ratio, with a proprietary encoder, a paid licence for compression, and no advantage that survives the existence of zstd and xz. Its remaining reason to exist is that somebody sent you one.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= MEMORY ================= -->
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">The constraint nobody checks</div>
+      <h2>What the reader has to hold in RAM</h2>
+      <p>Ratio and speed are what benchmarks report. Memory is what breaks things: a codec's match window has to be resident on both sides, so the setting that squeezes hardest also demands the most from whatever has to open the file. That includes phones, embedded devices, browser tabs, and any server holding thousands of streams open at once. The window column is the number that travels with the file.</p>
+    </div>
+    <div class="card pad chart-card">
+      <div class="tbl-scroll" id="mem-table"></div>
+      <p style="font-size:0.92rem; color:var(--ink-2);" data-fill="note_memory"></p>
+      <p class="note" data-fill="note_memory_method"></p>
+    </div>
+  </section>
+
+  <!-- ================= CLAIMS ================= -->
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">Corrections and confirmations</div>
+      <h2>Received wisdom, checked against the measurements</h2>
+    </div>
+    <div class="card pad">
+      <div class="claim">
+        <span class="claim-v ok">Holds up</span>
+        <div class="claim-q">"zstd is Meta's, and its decompression is very fast."</div>
+        <p data-fill="claim_zstd_fast"></p>
+      </div>
+      <div class="claim">
+        <span class="claim-v part">Right, with a caveat</span>
+        <div class="claim-q">"zstd at -9 or higher is efficient."</div>
+        <p data-fill="claim_zstd9"></p>
+      </div>
+      <div class="claim">
+        <span class="claim-v ok">Holds up</span>
+        <div class="claim-q">"xz is the one the Linux distributions use."</div>
+        <p data-fill="claim_xz"></p>
+        <p class="note" data-fill="note_scale"></p>
+      </div>
+      <div class="claim">
+        <span class="claim-v part">Half a category error</span>
+        <div class="claim-q">"gzip/zip, zstd, 7z, xz and RAR."</div>
+        <p>Three of those five are compressors and two are archive containers. gzip and zip are the same coder: DEFLATE, one as a stream and one as a filing format. 7z is a container whose default coder is LZMA2, which is the coder <code>xz</code> is a stream format for, so "7z versus xz" is mostly a question of envelope rather than compression. RAR is a container with its own proprietary coder. Sorting the list into two columns makes the choice much easier: pick the coder on the evidence, then pick the container on what the receiver needs to open it.</p>
+      </div>
+      <div class="claim">
+        <span class="claim-v no">Not measured here</span>
+        <div class="claim-q">"RAR/WinRAR."</div>
+        <p>There is no freely licensed RAR encoder, and none is installed in this container, so no RAR number appears anywhere on this page. Every figure here comes from an encode run on this machine; a cited RAR ratio would be the only exception and it would sit next to numbers it was never measured against. Treat published RAR comparisons as directional at best, since they rarely control for corpus.</p>
+      </div>
+      <div class="claim">
+        <span class="claim-v part">True, and usually the wrong lever</span>
+        <div class="claim-q">"Turn the level up to get a smaller file."</div>
+        <p data-fill="claim_levels"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CHEAT SHEET ================= -->
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">Operational</div>
+      <h2>What to actually type</h2>
+      <p>Six situations, and the setting that measured best in each on this hardware.</p>
+    </div>
+    <div class="card pad" style="display:flex; flex-direction:column; gap:18px;">
+      <div>
+        <h3 style="margin-bottom:8px;">Tarballs and directory archives</h3>
+        <pre><span class="c"># the modern default: near-xz ratio, reads back many times faster</span>
+tar -I 'zstd -19 -T0 --long=27' -cf release.tar.zst dist/
+
+<span class="c"># when the receiver is unknown or ancient</span>
+tar -czf release.tar.gz dist/          <span class="c"># deflate, decodes everywhere</span>
+
+<span class="c"># when the file will be downloaded far more often than built</span>
+XZ_OPT=-9e tar -cJf release.tar.xz dist/   <span class="c"># slowest to write, smallest result</span></pre>
+      </div>
+      <div>
+        <h3 style="margin-bottom:8px;">HTTP responses</h3>
+        <pre><span class="c"># static assets: precompress at build time, serve the file as-is</span>
+brotli -q 11 -o app.js.br app.js
+zstd  -19 -o app.js.zst app.js         <span class="c"># if your CDN negotiates zstd</span>
+gzip  -9 -k app.js                     <span class="c"># the fallback that is always accepted</span>
+
+<span class="c"># dynamic responses: compress per request, so the encoder has to be cheap</span>
+<span class="c">#   nginx: brotli_comp_level 4-5, or zstd -3</span>
+<span class="c">#   never brotli -11 or zstd -19 on the request path</span></pre>
+      </div>
+      <div>
+        <h3 style="margin-bottom:8px;">Long-term archives and backups</h3>
+        <pre><span class="c"># smallest, if the restore can be slow and the reader has the RAM</span>
+XZ_OPT=-9e tar -cJf archive.tar.xz data/
+
+<span class="c"># within a few percent, and restores far faster: usually the better trade</span>
+zstd -19 --long=27 -T0 archive.tar
+
+<span class="c"># check the decoder side before committing to xz -9</span>
+xz --robot -lvv archive.tar.xz | grep memory</pre>
+      </div>
+      <div>
+        <h3 style="margin-bottom:8px;">Hot path, in memory</h3>
+        <pre><span class="c"># written once, read constantly: lz4 high-compression</span>
+lz4 -9 pages.bin pages.lz4
+
+<span class="c"># written and read constantly: lz4 default, or zstd -1 if you want the ratio</span>
+lz4 -1 buffer.bin buffer.lz4</pre>
+      </div>
+      <div>
+        <h3 style="margin-bottom:8px;">Parquet and time-series work</h3>
+        <pre><span class="c"># zstd is the right default inside a columnar file. the codec runs per</span>
+<span class="c"># page, so the level buys much less than it does on a whole-file encode.</span>
+pq.write_table(tbl, "prices.parquet", compression="zstd", compression_level=3)
+
+<span class="c"># the encoding matters more than the codec: dictionary-encode low-cardinality</span>
+<span class="c"># string columns and use the smallest numeric type that fits, first.</span>
+pa.array(zones).dictionary_encode()
+
+<span class="c"># do NOT then compress the parquet file again</span>
+gzip prices.parquet                    <span class="c"># measured gain: see the corpus chart</span></pre>
+      </div>
+      <div>
+        <h3 style="margin-bottom:8px;">Someone sent you an archive</h3>
+        <pre>7z x thing.7z          <span class="c"># p7zip, reads 7z, zip, xz, and rar with the extra codec</span>
+unar thing.rar         <span class="c"># unarchiver: free RAR decoder, no encoder</span>
+bsdtar -xf thing.zip   <span class="c"># libarchive reads essentially all of them</span></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= METHOD ================= -->
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">Method</div>
+      <h2>How these numbers were produced, and where not to trust them</h2>
+    </div>
+    <div class="card pad" style="display:flex; flex-direction:column; gap:14px;">
+      <p style="font-size:0.92rem; color:var(--ink-2);" data-fill="method_corpus"></p>
+      <p style="font-size:0.92rem; color:var(--ink-2);" data-fill="method_timing"></p>
+      <p style="font-size:0.92rem; color:var(--ink-2);" data-fill="note_scale"></p>
+      <div class="cols quad" style="margin-top:4px;">
+        <div class="col">
+          <h3>Throughput here is noisy</h3>
+          <p data-fill="method_noise"></p>
+        </div>
+        <div class="col">
+          <h3>Single-threaded, one buffer</h3>
+          <p>Every encode is one thread on one in-memory buffer. Real <code>zstd -T0</code> and <code>xz -T0</code> split the input across cores and get most of a linear speed-up, which changes the compression-speed picture but not the ratio and not the decompression speed. Multi-threading also costs a little ratio, because the blocks stop sharing history.</p>
+        </div>
+        <div class="col">
+          <h3>Two corpora are generated</h3>
+          <p>The log and time-series corpora are synthesised, because no permissively redistributable real equivalent exists. Their statistical shape is the point and it is reproduced honestly, but a real log stream with more entropy in its message bodies would compress somewhat less well than the one here.</p>
+        </div>
+        <div class="col">
+          <h3>Decompressor memory is declared, not measured</h3>
+          <p>Compressor peak is a real measurement. The decompressor side is not: these libraries allocate their window lazily out of heap the process had already faulted in, so the peak-RSS delta read zero even for codecs with an 8 MB window. The window each file declares in its own header is reported instead, which is the number a reader is actually constrained by.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <p>Scripts and raw measurements live in the repository beside this page, so every figure can be regenerated or argued with.</p>
+    <p class="mono" style="font-size:0.76rem;">ratio = input bytes / output bytes &nbsp;&middot;&nbsp; throughput = input bytes / elapsed seconds &nbsp;&middot;&nbsp; median of <span data-fill="n_rounds"></span> rounds</p>
+  </footer>
+</div>
+
+<div class="tip" id="tip" role="status" aria-live="polite"></div>
+
+<script id="data" type="application/json">@@DATA@@</script>
+<script>
+(function () {
+  "use strict";
+  const D = JSON.parse(document.getElementById("data").textContent);
+
+  /* ---------- house number formatting: dot thousands from 5 digits ---------- */
+  function fmtInt(v) {
+    v = Math.round(v);
+    return Math.abs(v) >= 10000 ? v.toLocaleString("nl-NL") : String(v);
+  }
+  function spd(v) { return v >= 100 ? fmtInt(v) : v.toFixed(1); }
+  function ratio(v) { return v.toFixed(2); }
+  function saved(r) { return (100 * (1 - 1 / r)).toFixed(1) + "%"; }
+
+  const FAM = D.families;
+  const LABEL = { gzip: "gzip / DEFLATE", zstd: "zstd", brotli: "brotli",
+                  xz: "xz / LZMA2", lz4: "lz4", bzip2: "bzip2 (legacy)" };
+  const SHORT = { gzip: "gzip", zstd: "zstd", brotli: "brotli", xz: "xz", lz4: "lz4", bzip2: "bzip2" };
+  /* Categorical slots 1-5 in the validated order, one family each. bzip2 is
+     drawn in neutral ink rather than a sixth invented hue: it is on the page as
+     the legacy reference, not as a candidate. */
+  const SLOT = { gzip: "--s1", zstd: "--s2c", brotli: "--s3", xz: "--s4", lz4: "--s5", bzip2: "--ink-2" };
+  const CORPUS = { web: "HTML / CSS / JS", code: "Source code", logs: "JSON logs",
+                   timeseries: "CSV time series", compressed: "Already compressed",
+                   prose: "English prose" };
+  const CORPUS_SHORT = { web: "web", code: "code", logs: "logs", timeseries: "csv",
+                         compressed: "compressed", prose: "prose" };
+  const cvar = (n) => getComputedStyle(document.body).getPropertyValue(n).trim();
+
+  let corpus = D.corpora.includes("code") ? "code" : D.corpora[0];
+
+  /* Axis ticks land on round numbers, not on even divisions of the data range. */
+  function niceTicks(min, max, count) {
+    const raw = (max - min) / count;
+    const mag = Math.pow(10, Math.floor(Math.log10(raw)));
+    const step = [1, 2, 2.5, 5, 10].map((m) => m * mag).find((s) => s >= raw) || 10 * mag;
+    const out = [];
+    for (let v = Math.ceil(min / step) * step; v <= max + step * 1e-9; v += step) {
+      out.push(Math.abs(v) < step * 1e-9 ? 0 : v);
+    }
+    return { ticks: out, step };
+  }
+  function logTicks(x0, x1) {
+    const out = [];
+    for (let e = Math.floor(Math.log10(x0)); e <= Math.ceil(Math.log10(x1)); e++) {
+      for (const m of [1, 2, 5]) {
+        const v = m * Math.pow(10, e);
+        if (v >= x0 && v <= x1) out.push(v);
+      }
+    }
+    return out;
+  }
+
+  const NS = "http://www.w3.org/2000/svg";
+  function el(tag, attrs, parent) {
+    const n = document.createElementNS(NS, tag);
+    for (const k in attrs) n.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(n);
+    return n;
+  }
+
+  /* ---------- tooltip ---------- */
+  const tip = document.getElementById("tip");
+  function showTip(html, x, y) {
+    tip.innerHTML = html;
+    tip.dataset.on = "1";
+    const r = tip.getBoundingClientRect();
+    let left = x + 14, top = y - r.height - 12;
+    if (left + r.width > window.innerWidth - 8) left = x - r.width - 14;
+    if (top < 8) top = y + 18;
+    tip.style.left = left + "px";
+    tip.style.top = top + "px";
+  }
+  function hideTip() { tip.dataset.on = "0"; }
+
+  function pointTip(r) {
+    return `<b>${SHORT[r.codec]} -${r.level}</b> on ${CORPUS[r.corpus]}<br>` +
+      `ratio ${ratio(r.ratio)} &middot; ${saved(r.ratio)} smaller<br>` +
+      `${fmtInt(r.out_bytes)} B out<br>` +
+      `<b>compress</b> ${spd(r.c_mb_s)} MB/s<br><b>decompress</b> ${spd(r.d_mb_s)} MB/s`;
+  }
+
+  /* ================= charts 1 and 2: the two trade-off planes ================= */
+  function renderScatter(opt) {
+    const host = document.getElementById(opt.host);
+    host.innerHTML = "";
+    const rows = D.rows.filter((r) => r.corpus === corpus);
+    const front = new Set((D[opt.frontier] || {})[corpus] || []);
+
+    const W = 940, H = 520, M = { t: 20, r: 118, b: 54, l: 58 };
+    const iw = W - M.l - M.r, ih = H - M.t - M.b;
+    const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, width: W, height: H,
+                            role: "img", "aria-label": opt.aria }, host);
+
+    const xs = rows.map((r) => r[opt.xkey]);
+    const x0 = Math.min(...xs) * 0.7, x1 = Math.max(...xs) * 1.45;
+    const ys = rows.map((r) => r.ratio);
+    const span = Math.max(Math.max(...ys) - Math.min(...ys), 0.02);
+    const y0 = Math.max(0, Math.min(...ys) - span * 0.12), y1 = Math.max(...ys) + span * 0.10;
+    const X_ = (v) => M.l + (Math.log(v) - Math.log(x0)) / (Math.log(x1) - Math.log(x0)) * iw;
+    const Y_ = (v) => M.t + ih - (v - y0) / (y1 - y0) * ih;
+
+    const rule = cvar("--rule"), axis = cvar("--axis"), ink3 = cvar("--ink-3"), ink2 = cvar("--ink-2");
+
+    niceTicks(y0, y1, 5).ticks.forEach((v) => {
+      el("line", { x1: M.l, x2: M.l + iw, y1: Y_(v), y2: Y_(v), stroke: rule, "stroke-width": 1 }, svg);
+      const t = el("text", { x: M.l - 10, y: Y_(v) + 4, "text-anchor": "end", fill: ink3,
+                             "font-size": 11.5, "font-family": "GeistMono, monospace" }, svg);
+      t.textContent = v.toFixed(span < 0.25 ? 2 : 1);
+    });
+    logTicks(x0, x1).forEach((v) => {
+      el("line", { x1: X_(v), x2: X_(v), y1: M.t, y2: M.t + ih, stroke: rule, "stroke-width": 1 }, svg);
+      const t = el("text", { x: X_(v), y: M.t + ih + 20, "text-anchor": "middle", fill: ink3,
+                             "font-size": 11.5, "font-family": "GeistMono, monospace" }, svg);
+      t.textContent = v >= 1000 ? fmtInt(v / 1000) + "k" : String(v);
+    });
+    el("line", { x1: M.l, x2: M.l + iw, y1: M.t + ih, y2: M.t + ih, stroke: axis, "stroke-width": 1 }, svg);
+
+    let t = el("text", { x: M.l + iw / 2, y: H - 6, "text-anchor": "middle", fill: ink2,
+                         "font-size": 12, "font-family": "Tektur, sans-serif",
+                         "letter-spacing": "0.09em" }, svg);
+    t.textContent = opt.xlabel;
+    t = el("text", { x: -(M.t + ih / 2), y: 15, "text-anchor": "middle", fill: ink2, "font-size": 12,
+                     "font-family": "Tektur, sans-serif", "letter-spacing": "0.09em",
+                     transform: "rotate(-90)" }, svg);
+    t.textContent = "COMPRESSION RATIO";
+
+    /* the frontier staircase, drawn first so the series sit on top of it */
+    if (front.size) {
+      const fp = rows.filter((r) => front.has(r.id)).sort((a, b) => a[opt.xkey] - b[opt.xkey]);
+      let d = "";
+      fp.forEach((p, i) => {
+        if (!i) { d = `M${X_(p[opt.xkey]).toFixed(1)} ${Y_(p.ratio).toFixed(1)}`; return; }
+        const prev = fp[i - 1];
+        d += ` L${X_(p[opt.xkey]).toFixed(1)} ${Y_(prev.ratio).toFixed(1)}` +
+             ` L${X_(p[opt.xkey]).toFixed(1)} ${Y_(p.ratio).toFixed(1)}`;
+      });
+      el("path", { d, fill: "none", stroke: ink3, "stroke-width": 1.5, opacity: 0.6,
+                   "stroke-linejoin": "round" }, svg);
+      const ft = el("text", { x: X_(fp[0][opt.xkey]) + 6, y: Y_(fp[0].ratio) - 12, fill: ink3,
+                              "font-size": 11, "font-family": "GeistMono, monospace" }, svg);
+      ft.textContent = "Pareto frontier";
+    }
+
+    /* end labels: spread to a minimum spacing, each tied back with a leader */
+    const anchors = FAM.map((f) => {
+      const pts = rows.filter((r) => r.codec === f);
+      if (!pts.length) return null;
+      const end = pts.reduce((a, b) => (b[opt.xkey] > a[opt.xkey] ? b : a));
+      return { fam: f, x: X_(end[opt.xkey]), y: Y_(end.ratio), ly: Y_(end.ratio) };
+    }).filter(Boolean).sort((a, b) => a.ly - b.ly);
+    const MINGAP = 19;
+    for (let i = 1; i < anchors.length; i++) {
+      if (anchors[i].ly - anchors[i - 1].ly < MINGAP) anchors[i].ly = anchors[i - 1].ly + MINGAP;
+    }
+    const over = anchors[anchors.length - 1].ly - (M.t + ih);
+    if (over > 0) anchors.forEach((a) => { a.ly -= over; });
+
+    FAM.forEach((f) => {
+      const pts = rows.filter((r) => r.codec === f).sort((a, b) => a.level - b.level);
+      if (!pts.length) return;
+      const col = cvar(SLOT[f]);
+      const d = pts.map((p, i) => (i ? "L" : "M") + X_(p[opt.xkey]).toFixed(1) + " " +
+                                  Y_(p.ratio).toFixed(1)).join(" ");
+      el("path", { d, fill: "none", stroke: col, "stroke-width": 2, opacity: f === "bzip2" ? 0.8 : 1,
+                   "stroke-linejoin": "round", "stroke-linecap": "round" }, svg);
+      pts.forEach((p) => {
+        const on = front.has(p.id);
+        if (on) {
+          el("circle", { cx: X_(p[opt.xkey]), cy: Y_(p.ratio), r: 8.5, fill: "none",
+                         stroke: col, "stroke-width": 1.5, opacity: 0.45 }, svg);
+        }
+        el("circle", { cx: X_(p[opt.xkey]), cy: Y_(p.ratio), r: 4.6, fill: col,
+                       stroke: cvar("--surface"), "stroke-width": 2 }, svg);
+        const h = el("circle", { cx: X_(p[opt.xkey]), cy: Y_(p.ratio), r: 15, fill: "transparent" }, svg);
+        h.style.cursor = "crosshair";
+        h.addEventListener("pointerenter", (e) => showTip(
+          pointTip(p) + (on ? "<br><b>on the Pareto frontier</b>" : ""), e.clientX, e.clientY));
+        h.addEventListener("pointerleave", hideTip);
+      });
+      const a = anchors.find((z) => z.fam === f);
+      const lx = M.l + iw + 20;
+      el("path", { d: `M${a.x + 7} ${a.y} L${lx - 6} ${a.ly}`, fill: "none", stroke: col,
+                   "stroke-width": 1, opacity: 0.55 }, svg);
+      const lab = el("text", { x: lx, y: a.ly + 4, fill: ink2, "font-size": 12.5,
+                               "font-family": "InstrumentSans, sans-serif" }, svg);
+      lab.textContent = SHORT[f];
+    });
+
+    /* table twin */
+    const sorted = rows.slice().sort((a, b) => b.ratio - a.ratio);
+    let html = '<table><thead><tr><th>Codec</th><th class="num">Ratio</th><th class="num">Saved</th>' +
+      '<th class="num">Output</th><th class="num">Compress</th><th class="num">Decompress</th>' +
+      '<th>Frontier</th></tr></thead><tbody>';
+    sorted.forEach((r) => {
+      html += `<tr><td class="name">${SHORT[r.codec]} -${r.level}</td>` +
+        `<td class="num${front.has(r.id) ? " win" : ""}">${ratio(r.ratio)}</td>` +
+        `<td class="num">${saved(r.ratio)}</td>` +
+        `<td class="num">${fmtInt(r.out_bytes)} B</td>` +
+        `<td class="num">${spd(r.c_mb_s)} MB/s</td>` +
+        `<td class="num">${spd(r.d_mb_s)} MB/s</td>` +
+        `<td>${front.has(r.id) ? '<span class="mk y">yes</span>' : '<span class="mk n">no</span>'}</td></tr>`;
+    });
+    document.getElementById(opt.table).innerHTML = html + "</tbody></table>";
+  }
+
+  function renderLegend(id) {
+    const lg = document.getElementById(id);
+    lg.innerHTML = FAM.map((f) =>
+      `<span class="legend-item"><span class="legend-key dot" style="background:var(${SLOT[f]})"></span>${LABEL[f]}</span>`
+    ).join("") +
+      '<span class="legend-item"><span class="legend-key pareto"></span>Pareto frontier</span>';
+  }
+
+  /* ================= chart 3: ratio by corpus ================= */
+  function renderCorpusChart() {
+    const host = document.getElementById("corpus-chart");
+    host.innerHTML = "";
+    const corpora = D.corpora;
+    const barH = 15, barGap = 3, groupGap = 24;
+    const groupH = FAM.length * (barH + barGap) + groupGap;
+    const W = 940, M = { t: 10, r: 84, b: 34, l: 152 };
+    const H = M.t + corpora.length * groupH + M.b;
+    const iw = W - M.l - M.r;
+    const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, width: W, height: H, role: "img",
+                            "aria-label": "Compression ratio for six codecs on six corpora" }, host);
+    const max = Math.max(...corpora.flatMap((c) => FAM.map(
+      (f) => (D.by_corpus[c][f] || { ratio: 0 }).ratio))) * 1.06;
+    const X_ = (v) => M.l + v / max * iw;
+    const rule = cvar("--rule"), ink3 = cvar("--ink-3"), ink = cvar("--ink"), ink2 = cvar("--ink-2");
+
+    niceTicks(0, max, 6).ticks.forEach((v) => {
+      el("line", { x1: X_(v), x2: X_(v), y1: M.t, y2: M.t + corpora.length * groupH - groupGap + 6,
+                   stroke: v === 0 ? cvar("--axis") : rule, "stroke-width": 1 }, svg);
+      const t = el("text", { x: X_(v), y: H - 12, "text-anchor": "middle", fill: ink3, "font-size": 11.5,
+                             "font-family": "GeistMono, monospace" }, svg);
+      t.textContent = v === 0 ? "0" : v.toFixed(0) + "x";
+    });
+    /* 1.0 is the line where compression has achieved nothing at all */
+    el("line", { x1: X_(1), x2: X_(1), y1: M.t, y2: M.t + corpora.length * groupH - groupGap + 6,
+                 stroke: cvar("--axis"), "stroke-width": 1 }, svg);
+
+    corpora.forEach((c, gi) => {
+      const gy = M.t + gi * groupH;
+      const lab = el("text", { x: M.l - 14, y: gy + FAM.length * (barH + barGap) / 2 + 1,
+                               "text-anchor": "end", fill: ink, "font-size": 13.5,
+                               "font-family": "InstrumentSans, sans-serif" }, svg);
+      lab.textContent = CORPUS[c];
+      FAM.forEach((f, fi) => {
+        const rec = D.by_corpus[c][f];
+        if (!rec) return;
+        const y = gy + fi * (barH + barGap);
+        const w = Math.max(2, X_(rec.ratio) - M.l);
+        el("path", {
+          d: `M${M.l} ${y} H${M.l + w - 4} a4 4 0 0 1 4 4 v${barH - 8} a4 4 0 0 1 -4 4 H${M.l} Z`,
+          fill: cvar(SLOT[f]), opacity: f === "bzip2" ? 0.75 : 1
+        }, svg);
+        const val = el("text", { x: M.l + w + 8, y: y + barH - 3, fill: ink2, "font-size": 11,
+                                 "font-family": "GeistMono, monospace" }, svg);
+        val.textContent = ratio(rec.ratio) + "x";
+        const hit = el("rect", { x: M.l, y: y - 1, width: Math.max(w, 20) + 70, height: barH + 3,
+                                 fill: "transparent" }, svg);
+        hit.style.cursor = "pointer";
+        hit.addEventListener("pointerenter", (e) => showTip(
+          `<b>${SHORT[f]} -${rec.id.split("-")[1]}</b> on ${CORPUS[c]}<br>` +
+          `ratio ${ratio(rec.ratio)} &middot; ${rec.saved.toFixed(1)}% smaller<br>` +
+          `${fmtInt(rec.out_bytes)} B out<br>decompress ${spd(rec.d_mb_s)} MB/s`,
+          e.clientX, e.clientY));
+        hit.addEventListener("pointerleave", hideTip);
+      });
+    });
+
+    const lg = document.getElementById("corpus-legend");
+    lg.innerHTML = FAM.map((f) =>
+      `<span class="legend-item"><span class="legend-key" style="background:var(${SLOT[f]})"></span>` +
+      `${SHORT[f]} -${D.representative[f]}</span>`).join("");
+
+    let html = '<table><thead><tr><th>Corpus</th>' +
+      FAM.map((f) => `<th class="num">${SHORT[f]} -${D.representative[f]}</th>`).join("") +
+      '<th class="num">Best</th></tr></thead><tbody>';
+    corpora.forEach((c) => {
+      const best = Math.max(...FAM.map((f) => (D.by_corpus[c][f] || { ratio: 0 }).ratio));
+      html += `<tr><td>${CORPUS[c]}</td>` + FAM.map((f) => {
+        const r = D.by_corpus[c][f];
+        return r ? `<td class="num${r.ratio === best ? " win" : ""}">${ratio(r.ratio)}</td>`
+                 : '<td class="num">n/a</td>';
+      }).join("") + `<td class="num">${saved(best)} smaller</td></tr>`;
+    });
+    document.getElementById("corpus-table").innerHTML = html + "</tbody></table>";
+  }
+
+  /* ================= chart 4: zstd across its ladder, two panels ================= */
+  function renderZstd() {
+    const host = document.getElementById("zstd-chart");
+    host.innerHTML = "";
+    const pts = D.rows.filter((r) => r.corpus === corpus && r.codec === "zstd")
+      .sort((a, b) => a.level - b.level);
+    const W = 940, H = 320, gap = 62;
+    const pw = (W - gap) / 2, M = { t: 20, r: 16, b: 50, l: 62 };
+    const iw = pw - M.l - M.r, ih = H - M.t - M.b;
+    const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, width: W, height: H, role: "img",
+                            "aria-label": "zstd compression and decompression throughput by level" }, host);
+    const rule = cvar("--rule"), axis = cvar("--axis"), ink3 = cvar("--ink-3"), ink2 = cvar("--ink-2");
+    const col = cvar(SLOT.zstd);
+
+    function panel(ox, key, title, logscale) {
+      const vals = pts.map((p) => p[key]);
+      const X_ = (i) => ox + M.l + (i / (pts.length - 1)) * iw;
+      let Y_, ticks;
+      if (logscale) {
+        const v0 = Math.min(...vals) * 0.6, v1 = Math.max(...vals) * 1.6;
+        Y_ = (v) => M.t + ih - (Math.log(v) - Math.log(v0)) / (Math.log(v1) - Math.log(v0)) * ih;
+        ticks = logTicks(v0, v1);
+      } else {
+        const v1 = Math.max(...vals) * 1.12;
+        Y_ = (v) => M.t + ih - v / v1 * ih;
+        ticks = niceTicks(0, v1, 6).ticks;
+      }
+      const tt = el("text", { x: ox + M.l, y: 12, fill: ink2, "font-size": 12,
+                              "font-family": "Tektur, sans-serif", "letter-spacing": "0.09em" }, svg);
+      tt.textContent = title;
+      ticks.forEach((v) => {
+        el("line", { x1: ox + M.l, x2: ox + M.l + iw, y1: Y_(v), y2: Y_(v), stroke: rule,
+                     "stroke-width": 1 }, svg);
+        const t = el("text", { x: ox + M.l - 9, y: Y_(v) + 4, "text-anchor": "end", fill: ink3,
+                               "font-size": 11, "font-family": "GeistMono, monospace" }, svg);
+        t.textContent = v >= 10 ? fmtInt(v) : (Number.isInteger(v) ? String(v) : v.toFixed(1));
+      });
+      el("line", { x1: ox + M.l, x2: ox + M.l + iw, y1: M.t + ih, y2: M.t + ih, stroke: axis,
+                   "stroke-width": 1 }, svg);
+      pts.forEach((p, i) => {
+        const t = el("text", { x: X_(i), y: M.t + ih + 19, "text-anchor": "middle", fill: ink3,
+                               "font-size": 11, "font-family": "GeistMono, monospace" }, svg);
+        t.textContent = "-" + p.level;
+      });
+      const d = pts.map((p, i) => (i ? "L" : "M") + X_(i).toFixed(1) + " " + Y_(p[key]).toFixed(1)).join(" ");
+      el("path", { d, fill: "none", stroke: col, "stroke-width": 2, "stroke-linejoin": "round" }, svg);
+      pts.forEach((p, i) => {
+        el("circle", { cx: X_(i), cy: Y_(p[key]), r: 4.2, fill: col, stroke: cvar("--surface"),
+                       "stroke-width": 2 }, svg);
+        const h = el("circle", { cx: X_(i), cy: Y_(p[key]), r: 15, fill: "transparent" }, svg);
+        h.style.cursor = "crosshair";
+        h.addEventListener("pointerenter", (e) => showTip(pointTip(p), e.clientX, e.clientY));
+        h.addEventListener("pointerleave", hideTip);
+      });
+      const ut = el("text", { x: ox + M.l + iw / 2, y: H - 8, "text-anchor": "middle", fill: ink3,
+                              "font-size": 11.5, "font-family": "GeistMono, monospace" }, svg);
+      ut.textContent = "zstd level";
+    }
+
+    panel(0, "c_mb_s", "COMPRESSION MB/S (LOG)", true);
+    panel(pw + gap, "d_mb_s", "DECOMPRESSION MB/S (LINEAR FROM 0)", false);
+
+    let html = '<table><thead><tr><th>Corpus</th><th class="num">Slowest level</th>' +
+      '<th class="num">Fastest level</th><th class="num">Spread</th>' +
+      '<th class="num">Compression speed range</th></tr></thead><tbody>';
+    D.corpora.forEach((c) => {
+      const li = D.level_independence[c];
+      html += `<tr><td>${CORPUS[c]}</td><td class="num">${spd(li.lo)} MB/s</td>` +
+        `<td class="num">${spd(li.hi)} MB/s</td>` +
+        `<td class="num">${li.spread_pct.toFixed(0)}%</td>` +
+        `<td class="num">${li.c_ratio.toFixed(0)}x</td></tr>`;
+    });
+    document.getElementById("zstd-table").innerHTML = html + "</tbody></table>";
+  }
+
+  /* ================= plain tables ================= */
+  function renderTables() {
+    const lr = D.longrange;
+    let html = '<table><thead><tr><th>Setting</th><th class="num">Output</th>' +
+      '<th class="num">Ratio</th><th class="num">Compress</th><th class="num">Decompress</th>' +
+      '<th>What the window can see</th></tr></thead><tbody>';
+    const bestLr = Math.max(...lr.rows.map((r) => r.ratio));
+    lr.rows.forEach((r) => {
+      html += `<tr><td class="name">${r.name}</td><td class="num">${fmtInt(r.bytes)} B</td>` +
+        `<td class="num${r.ratio === bestLr ? " win" : ""}">${r.ratio.toFixed(1)}x</td>` +
+        `<td class="num">${spd(r.c_mb_s)} MB/s</td><td class="num">${spd(r.d_mb_s)} MB/s</td>` +
+        `<td style="white-space:normal">${r.note}</td></tr>`;
+    });
+    document.getElementById("lr-table").innerHTML = html + "</tbody></table>";
+
+    const co = D.containers;
+    html = '<table><thead><tr><th>Archive</th><th class="num">Output</th><th class="num">Ratio</th>' +
+      '<th class="num">Compress</th><th>Layout</th></tr></thead><tbody>';
+    const bestCo = Math.max(...co.rows.map((r) => r.ratio));
+    co.rows.forEach((r) => {
+      html += `<tr><td class="name">${r.name}</td><td class="num">${fmtInt(r.bytes)} B</td>` +
+        `<td class="num${r.ratio === bestCo ? " win" : ""}">${r.ratio.toFixed(2)}x</td>` +
+        `<td class="num">${spd(r.c_mb_s)} MB/s</td>` +
+        `<td style="white-space:normal">${r.note}</td></tr>`;
+    });
+    html += `<tr><td class="name">rar5 <span class="tag cite">cited</span></td>` +
+      '<td class="num cited">not measured</td><td class="num cited">-</td><td class="num cited">-</td>' +
+      '<td class="cited" style="white-space:normal">No encoder exists in this environment. ' +
+      'Published figures place it between 7z and zip; nothing here tested it.</td></tr>';
+    document.getElementById("cont-table").innerHTML = html + "</tbody></table>";
+
+    const mem = D.memory || [];
+    const byFam = {};
+    mem.forEach((m) => { (byFam[m.codec] = byFam[m.codec] || []).push(m); });
+    const MB = (kb) => (kb < 1024 ? "under 1 MB" : (kb / 1024).toFixed(0) + " MB");
+    const WIN = (b) => (b < 1048576 ? fmtInt(b / 1024) + " kB" : (b / 1048576).toFixed(0) + " MB");
+    html = '<table><thead><tr><th>Codec</th><th class="num">Level</th>' +
+      '<th class="num">Compressor peak</th><th class="num">Window the file declares</th>' +
+      '<th>What that means</th></tr></thead><tbody>';
+    const MEMNOTE = {
+      gzip: "32 kB window, fixed by the format. Runs anywhere, including an 8-bit microcontroller.",
+      zstd: "The window is written into the frame header, so the file states its own demand.",
+      brotli: "16 MB window here (lgwin 24), plus a 120 kB static dictionary of web text.",
+      xz: "The dictionary is the ratio. Preset 9 asks the reader for 64 MB whether it has it or not.",
+      lz4: "64 kB window. This is why it turns up inside filesystems and databases.",
+      bzip2: "Block-sorted. The figure is the block size; a decoder needs a few times it."
+    };
+    FAM.forEach((f) => {
+      const rowsF = (byFam[f] || []).sort((a, b) => a.level - b.level);
+      rowsF.forEach((m, i) => {
+        html += `<tr><td class="name">${i ? "" : SHORT[f]}</td><td class="num">-${m.level}</td>` +
+          `<td class="num">${MB(m.c_kb)}</td>` +
+          `<td class="num">${WIN(m.window_bytes)}</td>` +
+          `<td style="white-space:normal">${i ? "" : MEMNOTE[f]}</td></tr>`;
+      });
+    });
+    document.getElementById("mem-table").innerHTML = html + "</tbody></table>";
+  }
+
+  /* ================= corpus selectors, all kept in sync ================= */
+  function buildCorpusSegs() {
+    document.querySelectorAll("[data-corpus-seg]").forEach((seg) => {
+      seg.innerHTML = "";
+      D.corpora.forEach((c) => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.textContent = CORPUS_SHORT[c];
+        b.dataset.corpus = c;
+        b.setAttribute("aria-pressed", String(c === corpus));
+        b.addEventListener("click", () => {
+          corpus = c;
+          document.querySelectorAll("[data-corpus-seg] button").forEach((x) =>
+            x.setAttribute("aria-pressed", String(x.dataset.corpus === corpus)));
+          renderAllCorpusCharts();
+        });
+        seg.appendChild(b);
+      });
+    });
+  }
+
+  function renderAllCorpusCharts() {
+    renderScatter({ host: "pareto-chart", table: "pareto-table", xkey: "d_mb_s",
+                    frontier: "pareto_decomp", xlabel: "DECOMPRESSION MB/S (LOG)",
+                    aria: "Compression ratio against decompression throughput" });
+    renderScatter({ host: "comp-chart", table: "comp-table", xkey: "c_mb_s",
+                    frontier: "pareto_comp", xlabel: "COMPRESSION MB/S (LOG)",
+                    aria: "Compression ratio against compression throughput" });
+    renderZstd();
+  }
+
+  /* ================= prose numbers, from the same data ================= */
+  /* The strings come from make_prose.py in this repository, not from anything
+     a reader can supply, so they are allowed the odd <code> or <em>. */
+  function fillProse() {
+    const V = Object.assign({}, D.prose || {});
+    document.querySelectorAll("[data-fill]").forEach((n) => {
+      const k = n.getAttribute("data-fill");
+      if (V[k] !== undefined) n.innerHTML = V[k];
+    });
+  }
+
+  renderLegend("pareto-legend");
+  buildCorpusSegs();
+  renderAllCorpusCharts();
+  renderCorpusChart();
+  renderTables();
+  fillProse();
+
+  let raf;
+  window.addEventListener("resize", () => {
+    cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(() => { renderAllCorpusCharts(); renderCorpusChart(); });
+  });
+})();
+</script>

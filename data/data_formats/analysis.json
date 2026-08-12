@@ -1,0 +1,288 @@
+{
+ "pareto": {
+  "powerflow|small": [
+   "duckdb",
+   "feather_zstd",
+   "parquet_snappy",
+   "parquet_none",
+   "feather"
+  ],
+  "powerflow|large": [
+   "parquet_gzip",
+   "parquet_zstd",
+   "parquet_snappy",
+   "feather_zstd",
+   "feather_lz4",
+   "feather"
+  ],
+  "prices|small": [
+   "feather_zstd",
+   "feather_lz4",
+   "feather"
+  ],
+  "prices|large": [
+   "parquet_gzip",
+   "parquet_zstd",
+   "parquet_snappy",
+   "feather"
+  ],
+  "weather|small": [
+   "parquet_gzip",
+   "parquet_snappy",
+   "parquet_none",
+   "feather_lz4",
+   "feather"
+  ],
+  "weather|large": [
+   "parquet_gzip",
+   "parquet_zstd",
+   "parquet_none",
+   "feather_lz4",
+   "feather"
+  ],
+  "assets|small": [
+   "feather_zstd",
+   "feather_lz4",
+   "feather"
+  ],
+  "assets|large": [
+   "parquet_gzip",
+   "parquet_zstd",
+   "feather_zstd",
+   "feather_lz4"
+  ]
+ },
+ "projection": {
+  "powerflow|small": {
+   "csv": 1.61,
+   "csv_gz": 1.27,
+   "xlsx": 1.02,
+   "feather": 4.53,
+   "feather_lz4": 4.81,
+   "feather_zstd": 7.92,
+   "parquet_none": 6.18,
+   "parquet_snappy": 6.85,
+   "parquet_zstd": 6.74,
+   "parquet_gzip": 7.79,
+   "duckdb": 4.39,
+   "parquet_duckdb": 3.56
+  },
+  "powerflow|large": {
+   "csv": 1.42,
+   "csv_gz": 1.28,
+   "feather": 9.13,
+   "feather_lz4": 8.5,
+   "feather_zstd": 11.33,
+   "parquet_none": 11.92,
+   "parquet_snappy": 12.05,
+   "parquet_zstd": 9.11,
+   "parquet_gzip": 10.6,
+   "duckdb": 13.69,
+   "parquet_duckdb": 10.24
+  },
+  "prices|small": {
+   "csv": 1.03,
+   "csv_gz": 1.04,
+   "xlsx": 1.04,
+   "feather": 1.38,
+   "feather_lz4": 1.06,
+   "feather_zstd": 1.2,
+   "parquet_none": 1.39,
+   "parquet_snappy": 1.48,
+   "parquet_zstd": 0.98,
+   "parquet_gzip": 1.1,
+   "duckdb": 0.8,
+   "parquet_duckdb": 1.58
+  },
+  "prices|large": {
+   "csv": 1.01,
+   "csv_gz": 1.06,
+   "feather": 0.96,
+   "feather_lz4": 1.16,
+   "feather_zstd": 1.1,
+   "parquet_none": 3.3,
+   "parquet_snappy": 1.6,
+   "parquet_zstd": 1.15,
+   "parquet_gzip": 1.62,
+   "duckdb": 1.17,
+   "parquet_duckdb": 3.02
+  },
+  "weather|small": {
+   "csv": 1.09,
+   "csv_gz": 1.32,
+   "xlsx": 1.03,
+   "feather": 2.03,
+   "feather_lz4": 3.15,
+   "feather_zstd": 3.47,
+   "parquet_none": 2.68,
+   "parquet_snappy": 3.34,
+   "parquet_zstd": 4.16,
+   "parquet_gzip": 3.44,
+   "duckdb": 1.78,
+   "parquet_duckdb": 3.33
+  },
+  "weather|large": {
+   "csv": 1.17,
+   "csv_gz": 1.15,
+   "feather": 2.22,
+   "feather_lz4": 2.58,
+   "feather_zstd": 4.43,
+   "parquet_none": 4.08,
+   "parquet_snappy": 6.99,
+   "parquet_zstd": 7.78,
+   "parquet_gzip": 3.48,
+   "duckdb": 7.05,
+   "parquet_duckdb": 9.18
+  },
+  "assets|small": {
+   "csv": 5.06,
+   "csv_gz": 3.4,
+   "xlsx": 0.99,
+   "feather": 1.65,
+   "feather_lz4": 1.54,
+   "feather_zstd": 2.51,
+   "parquet_none": 3.08,
+   "parquet_snappy": 4.1,
+   "parquet_zstd": 3.43,
+   "parquet_gzip": 4.0,
+   "duckdb": 5.37,
+   "parquet_duckdb": 2.54
+  },
+  "assets|large": {
+   "csv": 6.13,
+   "csv_gz": 4.05,
+   "feather": 5.57,
+   "feather_lz4": 3.59,
+   "feather_zstd": 3.9,
+   "parquet_none": 9.61,
+   "parquet_snappy": 8.28,
+   "parquet_zstd": 6.96,
+   "parquet_gzip": 8.61,
+   "duckdb": 19.14,
+   "parquet_duckdb": 3.51
+  }
+ },
+ "compression": {
+  "prices|small": {
+   "csv": 2.1153,
+   "csv_gz": 0.3252,
+   "json": 4.4677,
+   "xlsx": 0.98,
+   "feather": 1.0015,
+   "feather_lz4": 0.419,
+   "feather_zstd": 0.2438,
+   "parquet_none": 0.4107,
+   "parquet_snappy": 0.3453,
+   "parquet_zstd": 0.3143,
+   "parquet_gzip": 0.2731,
+   "duckdb": 0.593,
+   "parquet_duckdb": 0.3143
+  },
+  "prices|large": {
+   "csv": 2.118,
+   "csv_gz": 0.3407,
+   "json": 4.471,
+   "feather": 1.0003,
+   "feather_lz4": 0.3176,
+   "feather_zstd": 0.2044,
+   "parquet_none": 0.2086,
+   "parquet_snappy": 0.1663,
+   "parquet_zstd": 0.1559,
+   "parquet_gzip": 0.1442,
+   "duckdb": 0.2164,
+   "parquet_duckdb": 0.1559
+  },
+  "powerflow|small": {
+   "csv": 1.5683,
+   "csv_gz": 0.7442,
+   "json": 4.1279,
+   "xlsx": 1.2434,
+   "feather": 1.0007,
+   "feather_lz4": 0.773,
+   "feather_zstd": 0.6549,
+   "parquet_none": 0.7707,
+   "parquet_snappy": 0.7523,
+   "parquet_zstd": 0.7159,
+   "parquet_gzip": 0.7041,
+   "duckdb": 0.6477,
+   "parquet_duckdb": 0.7159
+  },
+  "powerflow|large": {
+   "csv": 1.5729,
+   "csv_gz": 0.7471,
+   "feather": 1.0001,
+   "feather_lz4": 0.7746,
+   "feather_zstd": 0.6545,
+   "parquet_none": 0.6472,
+   "parquet_snappy": 0.6393,
+   "parquet_zstd": 0.6092,
+   "parquet_gzip": 0.6026,
+   "duckdb": 0.6554,
+   "parquet_duckdb": 0.6092
+  },
+  "weather|small": {
+   "csv": 1.1772,
+   "csv_gz": 0.1996,
+   "json": 3.5612,
+   "xlsx": 0.7074,
+   "feather": 0.9781,
+   "feather_lz4": 0.3058,
+   "feather_zstd": 0.1554,
+   "parquet_none": 0.143,
+   "parquet_snappy": 0.113,
+   "parquet_zstd": 0.0979,
+   "parquet_gzip": 0.0963,
+   "duckdb": 0.2431,
+   "parquet_duckdb": 0.0979
+  },
+  "weather|large": {
+   "csv": 1.182,
+   "csv_gz": 0.1975,
+   "feather": 0.9772,
+   "feather_lz4": 0.3881,
+   "feather_zstd": 0.2448,
+   "parquet_none": 0.1512,
+   "parquet_snappy": 0.1368,
+   "parquet_zstd": 0.126,
+   "parquet_gzip": 0.1218,
+   "duckdb": 0.1408,
+   "parquet_duckdb": 0.126
+  },
+  "assets|small": {
+   "csv": 1.0746,
+   "csv_gz": 0.3027,
+   "json": 2.1445,
+   "xlsx": 0.5764,
+   "feather": 0.9998,
+   "feather_lz4": 0.5735,
+   "feather_zstd": 0.2812,
+   "parquet_none": 0.7523,
+   "parquet_snappy": 0.4495,
+   "parquet_zstd": 0.2877,
+   "parquet_gzip": 0.2881,
+   "duckdb": 0.2881,
+   "parquet_duckdb": 0.2877
+  },
+  "assets|large": {
+   "csv": 1.0761,
+   "csv_gz": 0.3029,
+   "feather": 1.0001,
+   "feather_lz4": 0.5735,
+   "feather_zstd": 0.2819,
+   "parquet_none": 0.7249,
+   "parquet_snappy": 0.4169,
+   "parquet_zstd": 0.2682,
+   "parquet_gzip": 0.2567,
+   "duckdb": 0.2576,
+   "parquet_duckdb": 0.2682
+  }
+ },
+ "totals": {
+  "formats": 13,
+  "corpora": 4,
+  "cases": 97,
+  "skipped": 7,
+  "timings": 2057,
+  "rows_written": 123966880
+ }
+}

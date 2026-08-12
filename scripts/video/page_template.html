@@ -1,0 +1,1496 @@
+<title>Video codec trade-off map</title>
+
+<style>
+@font-face { font-family: "Tektur"; src: url(data:font/ttf;base64,@@FONT_DISPLAY@@) format("truetype"); font-weight: 500; font-display: swap; }
+@font-face { font-family: "InstrumentSans"; src: url(data:font/ttf;base64,@@FONT_BODY@@) format("truetype"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "InstrumentSans"; src: url(data:font/ttf;base64,@@FONT_BODY_BOLD@@) format("truetype"); font-weight: 700; font-display: swap; }
+@font-face { font-family: "GeistMono"; src: url(data:font/ttf;base64,@@FONT_MONO@@) format("truetype"); font-weight: 400; font-display: swap; }
+
+:root {
+  color-scheme: light;
+  --page: #f4f4f1;
+  --surface: #fcfcfb;
+  --sunken: #efefeb;
+  --ink: #0b0b0b;
+  --ink-2: #52514e;
+  --ink-3: #898781;
+  --rule: #e1e0d9;
+  --axis: #c3c2b7;
+
+  --accent: #2a78d6;
+  --wash-1: rgba(42,120,214,0.05);
+  --wash-2: rgba(42,120,214,0.14);
+  --wash-3: rgba(42,120,214,0.26);
+  --wash-4: rgba(42,120,214,0.42);
+  --edge-1: rgba(42,120,214,0.20);
+  --edge-2: rgba(42,120,214,0.34);
+  --edge-3: rgba(42,120,214,0.50);
+  --edge-4: rgba(42,120,214,0.66);
+
+  --st-good: #0ca30c;
+  --st-warn: #fab219;
+  --st-serious: #ec835a;
+  --st-crit: #d03b3b;
+  --chip-good: rgba(12,163,12,0.12);
+  --chip-warn: rgba(190,130,0,0.14);
+  --chip-serious: rgba(236,131,90,0.16);
+
+  --s1: #2a78d6;
+  --s2c: #eb6834;
+  --s3: #1baf7a;
+  --s4: #eda100;
+  --s5: #e87ba4;
+
+  --shadow: 0 1px 2px rgba(11,11,11,0.05), 0 8px 24px -18px rgba(11,11,11,0.35);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) {
+    color-scheme: dark;
+    --page: #0d0d0d;
+    --surface: #1a1a19;
+    --sunken: #141413;
+    --ink: #ffffff;
+    --ink-2: #c3c2b7;
+    --ink-3: #898781;
+    --rule: #2c2c2a;
+    --axis: #383835;
+
+    --accent: #3987e5;
+    --wash-1: rgba(57,135,229,0.07);
+    --wash-2: rgba(57,135,229,0.18);
+    --wash-3: rgba(57,135,229,0.30);
+    --wash-4: rgba(57,135,229,0.46);
+    --edge-1: rgba(57,135,229,0.26);
+    --edge-2: rgba(57,135,229,0.42);
+    --edge-3: rgba(57,135,229,0.58);
+    --edge-4: rgba(57,135,229,0.74);
+
+    --chip-good: rgba(12,163,12,0.20);
+    --chip-warn: rgba(250,178,25,0.18);
+    --chip-serious: rgba(236,131,90,0.20);
+
+    --s1: #3987e5;
+    --s2c: #d95926;
+    --s3: #199e70;
+    --s4: #c98500;
+    --s5: #d55181;
+
+    --shadow: 0 1px 2px rgba(0,0,0,0.5), 0 8px 24px -18px rgba(0,0,0,0.9);
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page: #0d0d0d;
+  --surface: #1a1a19;
+  --sunken: #141413;
+  --ink: #ffffff;
+  --ink-2: #c3c2b7;
+  --ink-3: #898781;
+  --rule: #2c2c2a;
+  --axis: #383835;
+
+  --accent: #3987e5;
+  --wash-1: rgba(57,135,229,0.07);
+  --wash-2: rgba(57,135,229,0.18);
+  --wash-3: rgba(57,135,229,0.30);
+  --wash-4: rgba(57,135,229,0.46);
+  --edge-1: rgba(57,135,229,0.26);
+  --edge-2: rgba(57,135,229,0.42);
+  --edge-3: rgba(57,135,229,0.58);
+  --edge-4: rgba(57,135,229,0.74);
+
+  --chip-good: rgba(12,163,12,0.20);
+  --chip-warn: rgba(250,178,25,0.18);
+  --chip-serious: rgba(236,131,90,0.20);
+
+  --s1: #3987e5;
+  --s2c: #d95926;
+  --s3: #199e70;
+  --s4: #c98500;
+  --s5: #d55181;
+
+  --shadow: 0 1px 2px rgba(0,0,0,0.5), 0 8px 24px -18px rgba(0,0,0,0.9);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--ink);
+  font-family: "InstrumentSans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 16.5px;
+  line-height: 1.62;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 24px 96px;
+  display: flex;
+  flex-direction: column;
+  gap: 68px;
+}
+
+/* ---------- typography ---------- */
+h1, h2, h3 { font-family: "Tektur", system-ui, sans-serif; font-weight: 500; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(2.1rem, 5.2vw, 3.5rem); line-height: 1.02; letter-spacing: -0.022em; }
+h2 { font-size: clamp(1.35rem, 2.8vw, 1.85rem); line-height: 1.14; letter-spacing: -0.012em; }
+h3 { font-size: 1.05rem; line-height: 1.3; letter-spacing: 0.002em; }
+p { margin: 0; max-width: 68ch; }
+a { color: var(--accent); text-underline-offset: 2px; }
+strong { font-weight: 700; }
+
+.eyebrow {
+  font-family: "Tektur", system-ui, sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.mono { font-family: "GeistMono", ui-monospace, monospace; }
+.tnum { font-variant-numeric: tabular-nums; }
+
+/* ---------- page head ---------- */
+.head {
+  padding-top: 76px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 44px;
+}
+.lede { font-size: 1.16rem; color: var(--ink-2); max-width: 62ch; }
+.head-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 26px;
+  font-size: 0.8rem;
+  color: var(--ink-3);
+  font-family: "GeistMono", monospace;
+}
+
+/* ---------- section scaffold ---------- */
+section { display: flex; flex-direction: column; gap: 20px; }
+.sec-head { display: flex; flex-direction: column; gap: 9px; }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  box-shadow: var(--shadow);
+}
+.pad { padding: 24px; }
+
+/* ---------- the map ---------- */
+.map-frame {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: 34px 1fr;
+  grid-template-rows: 1fr 34px;
+  gap: 10px;
+}
+.y-axis, .x-axis {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--ink-3);
+  font-family: "Tektur", sans-serif;
+  font-size: 0.66rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+.y-axis { writing-mode: vertical-rl; transform: rotate(180deg); padding: 4px 0; }
+.x-axis { grid-column: 2; padding: 0 4px; }
+.axis-mid { color: var(--ink-3); opacity: 0.75; }
+
+.map {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: 1fr 1.1fr 1fr;
+  grid-template-areas:
+    "vvc    vvc     vvc"
+    "av1lo  av1mid  conv"
+    "hevc   hevcvp9 vp9"
+    "h264lo h264mid h264hi";
+  gap: 2px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.cell {
+  min-width: 0;
+  background: var(--surface);
+  padding: 17px 17px 16px;
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  position: relative;
+  transition: background 140ms ease;
+}
+@media (prefers-reduced-motion: reduce) { .cell { transition: none; } }
+.cell.t1 { background-image: linear-gradient(var(--wash-1), var(--wash-1)); background-color: var(--surface); }
+.cell.t2 { background-image: linear-gradient(var(--wash-2), var(--wash-2)); background-color: var(--surface); }
+.cell.t3 { background-image: linear-gradient(var(--wash-3), var(--wash-3)); background-color: var(--surface); }
+.cell.t4 { background-image: linear-gradient(var(--wash-4), var(--wash-4)); background-color: var(--surface); }
+.cell.void { background: var(--sunken); }
+
+.cell-name {
+  font-family: "Tektur", sans-serif;
+  font-size: 1.22rem;
+  letter-spacing: -0.008em;
+  line-height: 1.1;
+  color: var(--ink);
+}
+.cell.void .cell-name { color: var(--ink-3); font-size: 1rem; }
+.cell-why { font-size: 0.875rem; color: var(--ink-2); line-height: 1.45; }
+.cell-set {
+  margin-top: auto;
+  font-family: "GeistMono", monospace;
+  font-size: 0.735rem;
+  color: var(--ink-3);
+  border-top: 1px solid var(--rule);
+  padding-top: 8px;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+.chip {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: "GeistMono", monospace;
+  font-size: 0.665rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 2px 8px 2px 6px;
+  border-radius: 2px;
+  color: var(--ink-2);
+}
+.chip::before { content: ""; width: 6px; height: 6px; border-radius: 50%; flex: none; }
+.chip.good { background: var(--chip-good); }
+.chip.good::before { background: var(--st-good); }
+.chip.warn { background: var(--chip-warn); }
+.chip.warn::before { background: var(--st-warn); }
+.chip.serious { background: var(--chip-serious); }
+.chip.serious::before { background: var(--st-serious); }
+.chip.crit { background: var(--sunken); }
+.chip.crit::before { background: var(--st-crit); }
+
+.map-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+  font-size: 0.8rem;
+  color: var(--ink-2);
+  align-items: center;
+}
+.tier-key { display: inline-flex; align-items: center; gap: 8px; }
+.tier-sw { width: 30px; height: 14px; border-radius: 2px; border: 1px solid var(--edge-1); }
+.tier-sw.k1 { background: var(--wash-1); }
+.tier-sw.k2 { background: var(--wash-2); border-color: var(--edge-2); }
+.tier-sw.k3 { background: var(--wash-3); border-color: var(--edge-3); }
+.tier-sw.k4 { background: var(--wash-4); border-color: var(--edge-4); }
+
+/* ---------- generic chart card ---------- */
+.chart-card { display: flex; flex-direction: column; gap: 14px; }
+.chart-title { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: baseline; justify-content: space-between; }
+.chart-sub { font-size: 0.85rem; color: var(--ink-3); }
+.chart-host { width: 100%; overflow-x: auto; }
+svg { display: block; max-width: 100%; }
+/* Below about 700px the 940-unit charts scale down far enough that the axis
+   labels stop being readable. Let the chart scroll inside its own card
+   instead: the document itself still never scrolls sideways. */
+.chart-host svg { min-width: 700px; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 0.83rem; color: var(--ink-2); }
+.legend-item { display: inline-flex; align-items: center; gap: 7px; }
+.legend-key { width: 14px; height: 3px; border-radius: 2px; flex: none; }
+.legend-key.tall { height: 11px; border-radius: 2px; }
+/* The two AV1 encoders share one hue because they are one format. The dashed
+   key repeats the dashed line in the chart, and both carry a direct label. */
+.legend-key.dashed {
+  height: 0;
+  border-top: 3px dashed currentColor;
+  border-radius: 0;
+  background: none !important;
+}
+
+.seg {
+  display: inline-flex;
+  flex-wrap: wrap;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  overflow: hidden;
+  background: var(--surface);
+}
+.seg button {
+  font: inherit;
+  font-family: "GeistMono", monospace;
+  font-size: 0.78rem;
+  padding: 5px 13px;
+  background: transparent;
+  border: 0;
+  border-right: 1px solid var(--rule);
+  color: var(--ink-2);
+  cursor: pointer;
+}
+.seg button:last-child { border-right: 0; }
+.seg button[aria-pressed="true"] { background: var(--wash-2); color: var(--ink); }
+.seg button:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+
+.tip {
+  position: fixed;
+  pointer-events: none;
+  z-index: 30;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  box-shadow: var(--shadow);
+  padding: 9px 11px;
+  font-family: "GeistMono", monospace;
+  font-size: 0.75rem;
+  color: var(--ink);
+  opacity: 0;
+  transition: opacity 90ms ease;
+  max-width: 270px;
+}
+.tip[data-on="1"] { opacity: 1; }
+.tip b { font-weight: 400; color: var(--ink-3); }
+
+/* ---------- tables ---------- */
+details.tbl { border-top: 1px solid var(--rule); padding-top: 12px; }
+details.tbl > summary {
+  cursor: pointer;
+  font-family: "GeistMono", monospace;
+  font-size: 0.76rem;
+  color: var(--ink-3);
+  letter-spacing: 0.03em;
+}
+details.tbl > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.tbl-scroll { overflow-x: auto; margin-top: 12px; }
+table { border-collapse: collapse; width: 100%; font-size: 0.84rem; }
+th, td { text-align: left; padding: 7px 14px 7px 0; border-bottom: 1px solid var(--rule); white-space: nowrap; }
+th { font-family: "Tektur", sans-serif; font-weight: 500; font-size: 0.7rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-3); }
+td.num, th.num { text-align: right; font-family: "GeistMono", monospace; font-variant-numeric: tabular-nums; padding-right: 18px; }
+td.name { font-family: "GeistMono", monospace; }
+tbody tr:last-child td { border-bottom: 0; }
+.win { color: var(--ink); font-weight: 700; }
+td.wrap-cell { white-space: normal; min-width: 190px; }
+
+/* ---------- reach matrix ---------- */
+.matrix td.mark { text-align: center; font-family: "GeistMono", monospace; font-size: 0.78rem; padding-right: 0; }
+.mk { display: inline-block; padding: 1px 7px; border-radius: 2px; }
+.mk.y { background: var(--chip-good); color: var(--ink); }
+.mk.p { background: var(--chip-warn); color: var(--ink); }
+.mk.n { background: var(--sunken); color: var(--ink-3); }
+
+/* ---------- prose blocks ---------- */
+.cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(268px, 100%), 1fr)); gap: 2px; background: var(--rule); border: 1px solid var(--rule); border-radius: 3px; overflow: hidden; }
+.cols.quad { grid-template-columns: repeat(auto-fit, minmax(min(390px, 100%), 1fr)); }
+.col { min-width: 0; background: var(--surface); padding: 20px; display: flex; flex-direction: column; gap: 8px; }
+.col h3 { color: var(--ink); }
+.col p { font-size: 0.9rem; color: var(--ink-2); }
+
+.claim { display: flex; flex-direction: column; gap: 7px; padding: 18px 0; border-bottom: 1px solid var(--rule); }
+.claim:last-child { border-bottom: 0; }
+.claim-q { font-size: 0.95rem; color: var(--ink); font-weight: 700; }
+.claim-v {
+  align-self: flex-start;
+  font-family: "GeistMono", monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 2px;
+}
+.claim-v.ok { background: var(--chip-good); color: var(--ink); }
+.claim-v.part { background: var(--chip-warn); color: var(--ink); }
+.claim-v.no { background: var(--chip-serious); color: var(--ink); }
+.claim p { font-size: 0.92rem; color: var(--ink-2); }
+
+.callout {
+  border: 1px solid var(--edge-2);
+  border-left: 3px solid var(--edge-4);
+  border-radius: 3px;
+  padding: 14px 16px;
+  background: var(--wash-1);
+  font-size: 0.88rem;
+  color: var(--ink-2);
+}
+.callout strong { color: var(--ink); }
+
+pre {
+  margin: 0;
+  background: var(--sunken);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  padding: 14px 16px;
+  overflow-x: auto;
+  font-family: "GeistMono", monospace;
+  font-size: 0.795rem;
+  line-height: 1.72;
+  color: var(--ink);
+}
+pre .c { color: var(--ink-3); }
+code { font-family: "GeistMono", monospace; font-size: 0.88em; }
+
+.foot { border-top: 1px solid var(--rule); padding-top: 26px; font-size: 0.84rem; color: var(--ink-3); display: flex; flex-direction: column; gap: 12px; }
+.foot p { max-width: 78ch; }
+
+@media (max-width: 860px) {
+  .map {
+    grid-template-columns: 1fr;
+    grid-template-areas: "vvc" "av1lo" "av1mid" "conv" "hevc" "hevcvp9" "vp9" "h264lo" "h264mid" "h264hi";
+  }
+  .map-frame { grid-template-columns: 1fr; grid-template-rows: auto; }
+  /* Stacked into one column the two axes no longer describe a position, and
+     every cell already carries its own band label and reach chip. */
+  .y-axis, .x-axis { display: none; }
+  .cell { min-height: 0; }
+}
+</style>
+
+<div class="wrap">
+
+  <header class="head">
+    <div class="eyebrow">Video codecs / measured, not folklore</div>
+    <h1>The winner is the same<br>everywhere. The margin<br>is not.</h1>
+    <p class="lede" data-fill="lede">Normalise the bitrate to <em>bits per pixel per frame</em> and the question becomes answerable.</p>
+    <div class="head-meta">
+      <span>6 encoders, 5 formats, all measured</span>
+      <span><span data-fill="nclips"></span> pristine clips, 3 resolutions</span>
+      <span><span data-fill="nencodes"></span> encodes scored with VMAF</span>
+      <span data-fill="enc_hours"></span>
+      <span>one ffmpeg build for every row</span>
+    </div>
+  </header>
+
+  <!-- ================= THE MAP ================= -->
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">The map</div>
+      <h2>Ten regions, ten answers</h2>
+      <p>Left to right: how many bits each pixel of each frame gets, from heavily constrained to near transparent. This is the axis that actually decides the winner, and it is where resolution enters: 4K at a normal streaming bitrate sits <em>further left</em> than 1080p at the same bitrate, because the same bits are spread over four times as many pixels. Bottom to top: how far you are willing to walk away from universal decoding. Find your square, read the codec.</p>
+    </div>
+
+    <div class="card pad chart-card">
+      <div class="map-frame">
+        <div class="y-axis" aria-hidden="true"><span>Decodes anywhere</span><span class="axis-mid">Decoder reach</span><span>Not yet</span></div>
+        <div class="map">
+
+          <div class="cell t4" style="grid-area: vvc">
+            <span class="chip crit" data-fill="chip_vvc">Measured, undeployable</span>
+            <div class="cell-name">VVC / H.266</div>
+            <div class="cell-why" data-fill="vvc_map_why"></div>
+            <div class="cell-set" data-fill="vvc_map_cmd">libvvenc -preset medium -qp 27</div>
+          </div>
+
+          <div class="cell t3" style="grid-area: av1lo">
+            <span class="chip serious">Modern hardware</span>
+            <div class="cell-name">AV1</div>
+            <div class="cell-why" data-fill="av1_low_why"></div>
+            <div class="cell-set">1080p30 &lt;2 Mbit/s &middot; 4K60 &lt;17 Mbit/s</div>
+          </div>
+
+          <div class="cell t3" style="grid-area: av1mid">
+            <span class="chip serious">Modern hardware</span>
+            <div class="cell-name">AV1</div>
+            <div class="cell-why" data-fill="av1_mid_why"></div>
+            <div class="cell-set">libsvtav1 -preset 6 &middot; 1080p30 2-7 Mbit/s</div>
+          </div>
+
+          <div class="cell void" style="grid-area: conv">
+            <div class="cell-name">Nothing to gain up here</div>
+            <div class="cell-why">Above roughly 0.11 bits per pixel per frame (1080p30 over 7 Mbit/s) every codec is close to transparent and the curves bunch: <span data-fill="converge_note"></span>. Paying for reach you do not have, to save bytes you were not going to notice, is a bad trade. Mezzanine and archive work belongs on a lightly compressed intra codec anyway.</div>
+          </div>
+
+          <div class="cell t2" style="grid-area: hevc">
+            <span class="chip warn" data-fill="chip_low_tier2">Current hardware</span>
+            <div class="cell-name" data-fill="low_tier2_name">HEVC</div>
+            <div class="cell-why" data-fill="low_tier2_why"></div>
+            <div class="cell-set" data-fill="low_tier2_cmd">x265 -preset medium -crf 28</div>
+          </div>
+
+          <div class="cell t2" style="grid-area: hevcvp9">
+            <span class="chip good">Every browser, most hardware</span>
+            <div class="cell-name" data-fill="mid_tier2_name">VP9 or HEVC</div>
+            <div class="cell-why" data-fill="mid_tier2_why"></div>
+            <div class="cell-set">vpxenc --cq-level=40 &middot; x265 --crf 26</div>
+          </div>
+
+          <div class="cell t2" style="grid-area: vp9">
+            <span class="chip warn">Hardware everywhere, licensed</span>
+            <div class="cell-name">HEVC, for the ecosystem</div>
+            <div class="cell-why" data-fill="vp9_high_why"></div>
+            <div class="cell-set">Broadcast &middot; Blu-ray UHD &middot; Apple</div>
+          </div>
+
+          <div class="cell t1" style="grid-area: h264lo">
+            <span class="chip good">Decodes anywhere</span>
+            <div class="cell-name">H.264, and it hurts</div>
+            <div class="cell-why">This is the square where staying universal is most expensive. At VMAF <span data-fill="t_low"></span> the newer codecs need roughly <span data-fill="h264_penalty"></span> of H.264's bits for the same picture. If you are serving 4K or a low-bandwidth audience on H.264 only, this is the cost you are paying.</div>
+            <div class="cell-set">x264 -preset medium -crf 30</div>
+          </div>
+
+          <div class="cell t1" style="grid-area: h264mid">
+            <span class="chip good">Decodes anywhere</span>
+            <div class="cell-name">H.264</div>
+            <div class="cell-why">Still the right bottom rung of every ladder. Every browser, every TV, every phone, hardware encode in every SoC, and the last core patents are expiring. Ship it alongside something better, never instead of one.</div>
+            <div class="cell-set">x264 -preset medium -crf 23 -profile:v high</div>
+          </div>
+
+          <div class="cell t1" style="grid-area: h264hi">
+            <span class="chip good">Decodes anywhere</span>
+            <div class="cell-name">H.264 High 4:4:4, or ProRes</div>
+            <div class="cell-why">At near-transparent density the argument stops being about compression ratio and starts being about workflow: intra-only coding, fast seeking, 10-bit, 4:2:2. That is a different tool. Editing masters want ProRes or DNxHR; delivery masters want a lightly compressed H.264 or HEVC intra file.</div>
+            <div class="cell-set">prores_ks -profile:v 3 &middot; x264 -crf 12</div>
+          </div>
+
+        </div>
+        <div class="x-axis" aria-hidden="true"><span>Bits are scarce</span><span class="axis-mid">Bits per pixel per frame</span><span>Near transparent</span></div>
+      </div>
+
+      <div class="map-legend">
+        <span class="tier-key"><span class="tier-sw k1"></span> Tier 1: decodes on anything, any decade</span>
+        <span class="tier-key"><span class="tier-sw k2"></span> Tier 2: every browser, hardware on most devices</span>
+        <span class="tier-key"><span class="tier-sw k3"></span> Tier 3: needs 2023-era silicon to decode cheaply</span>
+        <span class="tier-key"><span class="tier-sw k4"></span> Tier 4: measured here, but almost nothing can decode it</span>
+      </div>
+      <p class="chart-sub" style="max-width:78ch;">Savings quoted in the cells are the mean over 540p, 720p and 1080p; the per-resolution figures are in the savings chart and the spread is wide. Column boundaries: 0.035 and 0.11 bits per pixel per frame. In 1080p30 terms that is 2.2 and 6.8 Mbit/s; in 4K60 terms 17 and 55 Mbit/s. The same stream can sit in different columns at different resolutions, which is the whole point of the axis.</p>
+    </div>
+  </section>
+
+  <!-- ================= NORMALISATION ================= -->
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">How to normalise, which was the real question</div>
+      <h2>Bits per pixel per frame</h2>
+      <p>Megabits per second is not a property of a picture, it is a property of a picture <em>and</em> a resolution <em>and</em> a frame rate. Divide it out and you get one number that means the same thing everywhere: <code>bits / (width &times; height &times; frames)</code>. Everything on this page uses it, which is why three resolutions can share one axis.</p>
+    </div>
+    <div class="card pad chart-card">
+      <div class="chart-title">
+        <h3>What familiar bitrates look like once normalised</h3>
+        <span class="chart-sub">Sorted from the most constrained to the most generous.</span>
+      </div>
+      <div class="tbl-scroll" id="anchor-table"></div>
+      <p style="font-size:0.92rem; color:var(--ink-2); max-width:78ch;">Read the 4K row against the 1080p rows and the hypothesis answers itself. A 4K60 stream at 15 Mbit/s is <em>more</em> compressed per pixel than a 1080p30 stream at 3 Mbit/s, not less. That is why the question "which codec wins at 4K" is largely "which codec wins when bits are scarce". 4K earns the modern codecs their keep twice over: they are furthest ahead when bits are scarce, and their lead also grows with resolution, as the chart two sections down shows.</p>
+    </div>
+  </section>
+
+  <!-- ================= RATE-DISTORTION ================= -->
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">Measured</div>
+      <h2>Rate against quality, one resolution at a time</h2>
+      <p>CRF numbers are not comparable across encoders: x264 CRF 23 and libaom CRF 23 are unrelated settings. Every encode below was scored with VMAF, so codecs are compared at matched perceptual quality instead. Up and to the left is better. Switch the resolution: the order of the six lines barely moves, but the gaps between them do. The two AV1 lines share a colour because they are the same format and the same decoder, separated only by which encoder produced the file: solid is libaom, dashed is SVT-AV1.</p>
+    </div>
+
+    <div class="card pad chart-card">
+      <div class="chart-title">
+        <h3>VMAF against bits per pixel per frame</h3>
+        <div class="seg" id="res-seg" role="group" aria-label="Resolution"></div>
+      </div>
+      <div class="legend" id="rd-legend"></div>
+      <div class="chart-host" id="rd-chart"></div>
+      <p class="chart-sub" style="max-width:78ch;">VMAF 93 and above is transparent for most viewers on most content; 80 is streaming-acceptable; below 70 you can see it. Each encode is scored against the reference at its <em>own</em> resolution, so this measures how well a codec preserves the signal it was given, not how a 540p stream looks blown up on a 1080p panel.</p>
+      <details class="tbl">
+        <summary>Table view: bits per pixel per frame at each VMAF target</summary>
+        <div class="tbl-scroll" id="rd-table"></div>
+      </details>
+    </div>
+
+    <div class="card pad chart-card">
+      <div class="chart-title">
+        <h3>The same codec, three resolutions</h3>
+        <div class="seg" id="codec-seg" role="group" aria-label="Codec"></div>
+      </div>
+      <div class="legend" id="shift-legend"></div>
+      <div class="chart-host" id="shift-chart"></div>
+      <p style="font-size:0.92rem; color:var(--ink-2);" data-fill="collapse_note"></p>
+      <details class="tbl">
+        <summary>Table view: VMAF at fixed bits per pixel per frame</summary>
+        <div class="tbl-scroll" id="shift-table"></div>
+      </details>
+    </div>
+  </section>
+
+  <!-- ================= SAVINGS ================= -->
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">The hypothesis, tested</div>
+      <h2>Saving against H.264 at matched VMAF</h2>
+      <p data-fill="savings_lede">Three bars per encoder, one per resolution. If the best codec really changed with resolution, the groups would reorder. What changes instead is the length of the bars, and it changes a lot. That is the answer to the hypothesis, and it is not the answer the hypothesis expected.</p>
+    </div>
+
+    <div class="card pad chart-card">
+      <div class="chart-title">
+        <h3>Bits saved against H.264 for the same VMAF</h3>
+        <div class="seg" id="target-seg" role="group" aria-label="VMAF target"></div>
+      </div>
+      <div class="legend" id="sav-legend"></div>
+      <div class="chart-host" id="sav-chart"></div>
+      <p style="font-size:0.92rem; color:var(--ink-2);" data-fill="ranking_note"></p>
+      <details class="tbl">
+        <summary>Table view: saving against H.264 (%), every resolution and target</summary>
+        <div class="tbl-scroll" id="sav-table"></div>
+      </details>
+    </div>
+  </section>
+
+  <!-- ================= ENCODE COST ================= -->
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">The axis nobody puts on the chart</div>
+      <h2>What the smaller file costs to make</h2>
+      <p>A codec that is 30% smaller but several times slower to encode is not a free win: it decides live against VOD, and it decides how much of your catalogue you can afford to re-encode. Measured here as encoder CPU seconds per frame, single-threaded, at matched VMAF <span data-fill="cost_target"></span>, so it is the cost of the <em>same picture</em> rather than the cost of the same settings.</p>
+    </div>
+    <div class="card pad chart-card">
+      <div class="chart-title">
+        <h3>Encoder CPU seconds per 1080p frame at matched quality</h3>
+        <span class="chart-sub">One thread per encode. Real pipelines parallelise, which changes the wall clock but not the bill. The two AV1 rows are the same format and the same decoder, so they share a colour.</span>
+      </div>
+      <div class="chart-host" id="cost-chart"></div>
+      <p style="font-size:0.92rem; color:var(--ink-2);" data-fill="cost_note"></p>
+      <details class="tbl">
+        <summary>Table view: encoder CPU seconds per frame at every resolution</summary>
+        <div class="tbl-scroll" id="cost-table"></div>
+      </details>
+    </div>
+    <div class="cols">
+      <div class="col">
+        <h3>libaom is not AV1's speed</h3>
+        <p data-fill="av1_encoders_note"></p>
+      </div>
+      <div class="col">
+        <h3>Decode is the other half, and it is cheap</h3>
+        <p>Decode cost per frame is a small fraction of encode cost for every codec here, and on any device with a hardware decoder it is essentially free. That asymmetry is the single most misunderstood thing about AV1: the expensive half is the one a viewer never runs. It is also why the VVC bar on this chart says nothing about whether a phone could play the file. It could. It is not allowed to, for reasons that have nothing to do with silicon.</p>
+      </div>
+      <div class="col">
+        <h3>Presets move this a lot</h3>
+        <p>Everything here uses one preset per codec. Slower presets buy several percent of BD-rate for a multiple of the time; faster ones give it back. The choice is a business decision about how many times a file will be watched. The ranges are wide: libvvenc has five presets and SVT-AV1 has fourteen, and moving along either one changes the bar far more than switching format does. Read every bar as one point on a curve, not as a property of the codec.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= REACH MATRIX ================= -->
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">The constraint that actually decides</div>
+      <h2>Who can play it</h2>
+      <p>The ordering of the codecs barely moves, even if the size of the gaps does. Reach is where the real decision lives, and for video it has four independent parts: browsers, phone silicon, TV silicon, and whether a lawyer has to be involved.</p>
+    </div>
+    <div class="card pad">
+      <div class="tbl-scroll">
+        <table class="matrix">
+          <thead>
+            <tr>
+              <th>Codec</th>
+              <th class="mark">Browsers</th>
+              <th class="mark">Phone HW decode</th>
+              <th class="mark">TV / box HW decode</th>
+              <th class="mark">Desktop GPU</th>
+              <th class="mark">Licensing</th>
+              <th>Typical use</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="name">H.264 / AVC</td>
+              <td class="mark"><span class="mk y">all</span></td>
+              <td class="mark"><span class="mk y">all</span></td>
+              <td class="mark"><span class="mk y">all</span></td>
+              <td class="mark"><span class="mk y">all</span></td>
+              <td class="mark"><span class="mk p">pool, expiring</span></td>
+              <td class="wrap-cell">The fallback rung of every ladder; WebRTC; anything that must just work</td>
+            </tr>
+            <tr>
+              <td class="name">HEVC / H.265</td>
+              <td class="mark"><span class="mk p">Safari, Edge</span></td>
+              <td class="mark"><span class="mk y">all</span></td>
+              <td class="mark"><span class="mk y">all</span></td>
+              <td class="mark"><span class="mk y">all</span></td>
+              <td class="mark"><span class="mk n">3 pools + holdouts</span></td>
+              <td class="wrap-cell">Broadcast, Blu-ray UHD, Apple ecosystem, camera originals</td>
+            </tr>
+            <tr>
+              <td class="name">VP9</td>
+              <td class="mark"><span class="mk y">all</span></td>
+              <td class="mark"><span class="mk y">2016+</span></td>
+              <td class="mark"><span class="mk y">most</span></td>
+              <td class="mark"><span class="mk y">2015+</span></td>
+              <td class="mark"><span class="mk y">royalty-free</span></td>
+              <td class="wrap-cell">YouTube's workhorse; the safe non-H.264 rung on the open web</td>
+            </tr>
+            <tr>
+              <td class="name">AV1</td>
+              <td class="mark"><span class="mk y">all</span></td>
+              <td class="mark"><span class="mk p">2023+ flagships</span></td>
+              <td class="mark"><span class="mk y">most 2023+</span></td>
+              <td class="mark"><span class="mk y">RTX 30 / RDNA2 / Arc+</span></td>
+              <td class="mark"><span class="mk y">royalty-free</span></td>
+              <td class="wrap-cell">YouTube and Netflix at scale; the top rung of a modern ladder. libaom and SVT-AV1 are two encoders for this one row: same bitstream, same decoders, same reach</td>
+            </tr>
+            <tr>
+              <td class="name">VVC / H.266</td>
+              <td class="mark"><span class="mk n">none</span></td>
+              <td class="mark"><span class="mk n">almost none</span></td>
+              <td class="mark"><span class="mk n">a few 2024+</span></td>
+              <td class="mark"><span class="mk n">none</span></td>
+              <td class="mark"><span class="mk n">pool, unsettled</span></td>
+              <td class="wrap-cell">Broadcast trials (DVB, ATSC 3.0). Not a delivery option on the web, whatever the curves say</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top:16px; font-size:0.86rem; color:var(--ink-3); max-width:78ch;">The licensing column is the one that predicts adoption. H.264's pool was a single, predictable licence and it went everywhere. HEVC fractured into three pools plus unlicensed holders, and Chrome and Firefox never shipped it. AV1 exists because a consortium of the companies paying those bills decided to route around the problem. VVC has repeated HEVC's structure, and the browsers have again declined.</p>
+    </div>
+  </section>
+
+  <!-- ================= VVC ================= -->
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">Measured, and still not shippable</div>
+      <h2>VVC / H.266, the one that wins and cannot be used</h2>
+    </div>
+    <div class="card pad" style="display:flex; flex-direction:column; gap:16px;">
+      <div class="callout">
+        <strong>This section used to be citation only. It is now measured.</strong> libvvenc is on every chart on this page, swept on the same clips, the same ladder method and the same binary as the other five encoders. One caveat is specific to it: libvvenc accepts only 10-bit input, so VVC alone codes 10-bit internally and is decoded back to 8-bit for scoring. That is worth a few percent to VVC and it is forced by the encoder, not chosen here.
+      </div>
+      <div class="cols quad">
+        <div class="col">
+          <h3>What it is</h3>
+          <p>VVC is Versatile Video Coding, standardised as ITU-T H.266 in July 2020 by the same joint group that produced H.264 and HEVC. The name is the answer to the "VVC1" question: there is no VVC1 and no VVC2, just VVC, also called H.266.</p>
+        </div>
+        <div class="col">
+          <h3>How much better, measured here</h3>
+          <p data-fill="vvc_efficiency"></p>
+        </div>
+        <div class="col">
+          <h3>What it costs</h3>
+          <p data-fill="vvc_cost"></p>
+        </div>
+        <div class="col">
+          <h3>Why nobody ships it, and what to do</h3>
+          <p>Not compute on the decode side: VVC decode is heavier than HEVC but well within a modern SoC, and software decoders exist. The blocker is licensing. VVC arrived with a patent pool structure that looks like HEVC's, the one that kept HEVC out of Chrome and Firefox for a decade, and browsers have given no indication they intend to ship it. So: nothing, for web delivery. In broadcast, DVB and ATSC 3.0 profiles exist and the calculation is different. For everyone else the practical successor to HEVC is AV1, and the successor to AV1 will be AV2, for the same royalty-free reason.</p>
+        </div>
+      </div>
+      <div>
+        <h3 style="margin-bottom:6px;">Measured here against the published figures</h3>
+        <p style="font-size:0.92rem; color:var(--ink-2); max-width:88ch;" data-fill="vvc_vs_lit"></p>
+      </div>
+      <p style="font-size:0.86rem; color:var(--ink-3); max-width:78ch;">Published comparison referenced above: T. Nguyen and D. Marpe, "Compression efficiency analysis of AV1, VVC, and HEVC for random access applications", APSIPA Transactions on Signal and Information Processing, vol. 10, 2021. Subjective testing in B. Bross et al., "Overview of the Versatile Video Coding (VVC) Standard and its Applications", IEEE TCSVT, 2021, reports up to 50% against HEVC. Pool structure per Access Advance's VVC Advance programme. Those are the only figures on this page that were not measured here, and they are here to be compared against, not relied on.</p>
+    </div>
+  </section>
+
+  <!-- ================= CLAIMS ================= -->
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">Corrections and confirmations</div>
+      <h2>Received wisdom, checked against the measurements</h2>
+    </div>
+    <div class="card pad">
+      <div class="claim">
+        <span class="claim-v" data-fill="v_hevc50_class">Optimistic</span>
+        <div class="claim-q">"H.265 is like 50% better than H.264."</div>
+        <p data-fill="claim_hevc50"></p>
+      </div>
+      <div class="claim">
+        <span class="claim-v" data-fill="v_vp9_class">Half right</span>
+        <div class="claim-q">"YouTube streams VP9, which achieves maybe similar performance. One wins at low bitrate, the other at high. They are very equal."</div>
+        <p data-fill="claim_vp9"></p>
+      </div>
+      <div class="claim">
+        <span class="claim-v no">Backwards</span>
+        <div class="claim-q">"AV1 needs a hardware decoder because it is a high computing load."</div>
+        <p data-fill="claim_av1"></p>
+      </div>
+      <div class="claim">
+        <span class="claim-v" data-fill="v_vvc_class">True, and now measured here</span>
+        <div class="claim-q">"VVC1 is a very advanced video codec."</div>
+        <p data-fill="claim_vvc"></p>
+      </div>
+      <div class="claim">
+        <span class="claim-v no">It never shipped</span>
+        <div class="claim-q">"I do not know if we have VP10."</div>
+        <p>You do not. VP10 was Google's in-progress successor to VP9 and it was never released. In 2015 Google folded that work into the Alliance for Open Media, and it became AV1 together with contributions from Cisco's Thor and Mozilla's Daala. So AV1 <em>is</em> VP10, under a name that reflects who owns it. There will not be a VP11 either; the next one is AV2.</p>
+      </div>
+      <div class="claim">
+        <span class="claim-v part">Right question, wrong axis</span>
+        <div class="claim-q">"Maybe HEVC wins for 1080p between 1 and 10 Mbit/s, but something else wins at 4K."</div>
+        <p data-fill="claim_hypothesis"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CONTAINERS ================= -->
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">The other half of the question</div>
+      <h2>MP4, MOV, MKV, WebM</h2>
+      <p>Containers do not compress anything. They decide what can go inside, how a player finds a seek point, and what survives a round trip. Four of them matter and they differ less than the arguments suggest.</p>
+    </div>
+    <div class="card pad">
+      <div class="tbl-scroll">
+        <table class="matrix">
+          <thead>
+            <tr>
+              <th>Container</th>
+              <th>Base</th>
+              <th class="mark">Video it carries</th>
+              <th class="mark">Streamable</th>
+              <th class="mark">Subtitles</th>
+              <th>Where it belongs</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="name">MP4</td>
+              <td>ISO BMFF</td>
+              <td class="mark"><span class="mk y">H.264, HEVC, AV1, VP9</span></td>
+              <td class="mark"><span class="mk y">fMP4 / DASH / HLS</span></td>
+              <td class="mark"><span class="mk p">TTML, WebVTT</span></td>
+              <td class="wrap-cell">Delivery. The default, and the only one that is safe everywhere</td>
+            </tr>
+            <tr>
+              <td class="name">MOV</td>
+              <td>QuickTime</td>
+              <td class="mark"><span class="mk y">+ ProRes, DNx, timecode</span></td>
+              <td class="mark"><span class="mk n">no</span></td>
+              <td class="mark"><span class="mk p">QT text tracks</span></td>
+              <td class="wrap-cell">Production. MP4 is a descendant of it; ProRes and edit metadata are the reason to keep it</td>
+            </tr>
+            <tr>
+              <td class="name">MKV</td>
+              <td>Matroska</td>
+              <td class="mark"><span class="mk y">anything at all</span></td>
+              <td class="mark"><span class="mk p">not over HTTP</span></td>
+              <td class="mark"><span class="mk y">SRT, ASS, PGS, many</span></td>
+              <td class="wrap-cell">Archive and local playback. Multiple tracks, chapters, real subtitle formats</td>
+            </tr>
+            <tr>
+              <td class="name">WebM</td>
+              <td>Matroska subset</td>
+              <td class="mark"><span class="mk p">VP8, VP9, AV1 only</span></td>
+              <td class="mark"><span class="mk y">yes</span></td>
+              <td class="mark"><span class="mk y">WebVTT</span></td>
+              <td class="wrap-cell">The royalty-free web lane. A deliberately narrowed MKV</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="cols" style="margin-top:20px;">
+        <div class="col">
+          <h3>The practical advice</h3>
+          <p>Deliver MP4 unless you have a specific reason not to; it is the only container every player, browser and TV accepts. Archive MKV, because it will hold anything and it keeps every audio track, chapter and subtitle you had. Keep MOV only where ProRes or an NLE requires it.</p>
+        </div>
+        <div class="col">
+          <h3>Streaming is a muxing question</h3>
+          <p>A plain MP4 puts its index at the end, so a player has to fetch the tail before it can start. <code>-movflags +faststart</code> moves it to the front, and fragmented MP4 splits the file into independently fetchable pieces, which is what DASH and HLS actually ship. MKV has no equivalent story over HTTP, which is the real reason it is not a delivery format.</p>
+        </div>
+        <div class="col">
+          <h3>Remuxing is free, transcoding is not</h3>
+          <p>Changing container is a copy, not a re-encode: <code>ffmpeg -i in.mkv -c copy out.mp4</code> takes seconds and loses nothing, as long as the target container can carry the codecs inside. If it cannot (ProRes into WebM, PGS subtitles into MP4) that is a container limit, not a quality one.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CHEAT SHEET ================= -->
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">Operational</div>
+      <h2>What to actually type</h2>
+      <p data-fill="crf_note">CRF values below are the ones that landed on VMAF 93 on this corpus, not encoder defaults.</p>
+    </div>
+    <div class="card pad" style="display:flex; flex-direction:column; gap:18px;">
+      <div>
+        <h3 style="margin-bottom:8px;">A delivery ladder that covers everyone</h3>
+        <pre><span class="c"># top rung: smallest file, royalty-free, needs a modern decoder.</span>
+<span class="c"># SVT-AV1 is the one to run. measured here at <span data-fill="av1_encoders_pair"></span>x less CPU than libaom</span>
+<span class="c"># for the same VMAF, same bitstream, same decoders.</span>
+ffmpeg -i in.mov -c:v libsvtav1 -preset 6 -crf <span data-fill="crf_svtav1"></span> -g 48 out_av1.mp4
+<span class="c"># libaom, the reference encoder. its -crf scale is not SVT's: do not copy the number across.</span>
+ffmpeg -i in.mov -c:v libaom-av1 -b:v 0 -crf <span data-fill="crf_av1"></span> -cpu-used 6 -g 48 out_aom.mp4
+
+<span class="c"># middle rung: every browser, hardware on most devices, no licence</span>
+ffmpeg -i in.mov -c:v libvpx-vp9 -b:v 0 -crf <span data-fill="crf_vp9"></span> -cpu-used 2 -row-mt 1 out_vp9.webm
+
+<span class="c"># bottom rung: it plays on everything ever made</span>
+ffmpeg -i in.mov -c:v libx264 -preset medium -crf <span data-fill="crf_h264"></span> \
+       -profile:v high -movflags +faststart out_h264.mp4
+
+<span class="c"># not a rung, because nothing on the open web decodes it. here because it was measured,</span>
+<span class="c"># and because the qp below is the one that landed on the operating point, not a default.</span>
+ffmpeg -i in.mov -c:v libvvenc -preset medium -qp <span data-fill="crf_vvc"></span> -period 2 out_vvc.266</pre>
+      </div>
+      <div>
+        <h3 style="margin-bottom:8px;">Measuring it yourself, which is the only way to be sure</h3>
+        <pre><span class="c"># VMAF against the original. compare codecs here, never at matched CRF.</span>
+ffmpeg -i encoded.mp4 -i original.y4m \
+  -lavfi "[0:v]setpts=PTS-STARTPTS[d];[1:v]setpts=PTS-STARTPTS[r];[d][r]libvmaf=\
+feature='name=psnr|name=float_ssim':log_fmt=json:log_path=out.json" -f null -
+
+<span class="c"># normalise: bits per pixel per frame is the only comparable rate unit</span>
+<span class="c">#   bpppf = bytes * 8 / (width * height * frames)</span></pre>
+      </div>
+      <div>
+        <h3 style="margin-bottom:8px;">Container work</h3>
+        <pre>ffmpeg -i in.mkv -c copy out.mp4              <span class="c"># remux, seconds, lossless</span>
+ffmpeg -i in.mp4 -c copy -movflags +faststart out.mp4  <span class="c"># index to the front</span>
+ffmpeg -i in.mp4 -c copy -f dash -seg_duration 4 out.mpd <span class="c"># fragmented</span></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= METHOD ================= -->
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">Method</div>
+      <h2>How these numbers were produced, and where not to trust them</h2>
+    </div>
+    <div class="card pad" style="display:flex; flex-direction:column; gap:14px;">
+      <p style="font-size:0.92rem; color:var(--ink-2);" data-fill="method_corpus"></p>
+      <p style="font-size:0.92rem; color:var(--ink-2);" data-fill="method_metric"></p>
+      <div class="callout" data-fill="method_binary"></div>
+      <div id="metric-block">
+        <h3 style="margin-bottom:6px;">The same comparison, judged by three metrics</h3>
+        <p class="chart-sub" style="margin-bottom:4px;">Saving against H.264 at 1080p at the VMAF <span id="metric-target"></span> operating point, scored three ways. If VMAF were flattering one codec, this is where it would show. Every target is in the raw data.</p>
+        <div class="tbl-scroll" id="metric-table"></div>
+      </div>
+      <p style="font-size:0.92rem; color:var(--ink-2);" data-fill="metric_note"></p>
+      <div class="cols quad" style="margin-top:4px;">
+        <div class="col">
+          <h3>The presets are not the slowest available</h3>
+          <p data-fill="caveat_presets"></p>
+        </div>
+        <div class="col">
+          <h3>VMAF has known biases</h3>
+          <p data-fill="caveat_vmaf"></p>
+        </div>
+        <div class="col">
+          <h3>The corpus is small, and deliberately hard</h3>
+          <p data-fill="caveat_corpus"></p>
+        </div>
+        <div class="col">
+          <h3>What could not be measured at all</h3>
+          <p>No hardware encoders: NVENC, QuickSync and AMF are a different quality-per-bit story at a different price, and nothing here says anything about them. No 4K source, because the derf collection tops out at 1080p and upscaling would have invented detail that was never there: the 4K conclusions come from the normalised axis, not from 4K encodes. No rav1e, and only one preset per encoder. Audio is a separate page, and this ffmpeg build ships without libfdk-aac, so fdk-aac-class comparisons are missing there rather than here.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <p>Scripts and raw measurements live in the repository beside this page, so every figure can be regenerated or argued with. The raw sweep is one JSON line per encode, with size, VMAF, PSNR, SSIM and encoder CPU time.</p>
+    <p class="mono" style="font-size:0.76rem;">VMAF scale: 100 identical &middot; 93+ transparent for most viewers &middot; 80 streaming-acceptable &middot; 70 visibly degraded &middot; 60 poor</p>
+  </footer>
+</div>
+
+<div class="tip" id="tip" role="status" aria-live="polite"></div>
+
+<script id="data" type="application/json">@@DATA@@</script>
+<script>
+(function () {
+  "use strict";
+  const D = JSON.parse(document.getElementById("data").textContent);
+  const A = D.analysis, CLIPS = D.clips, PROSE = D.prose || {};
+
+  const CODECS = ["H264", "HEVC", "VP9", "AV1", "SVTAV1", "VVC"];
+  const LABEL = { H264: "H.264", HEVC: "HEVC", VP9: "VP9",
+                  AV1: "AV1 (libaom)", SVTAV1: "AV1 (SVT)", VVC: "VVC / H.266" };
+  const SHORT = { H264: "H.264", HEVC: "HEVC", VP9: "VP9",
+                  AV1: "AV1 libaom", SVTAV1: "AV1 SVT", VVC: "VVC" };
+  /* Categorical slots 1-5 in the validated order, used in order and never
+     cycled. Six series, five slots: the two AV1 encoders are the same format
+     and share slot 4, separated by stroke style and by a direct label rather
+     than by an invented sixth hue. Identity is never carried by hue alone. */
+  const SLOT = { H264: "--s1", HEVC: "--s2c", VP9: "--s3", AV1: "--s4",
+                 SVTAV1: "--s4", VVC: "--s5" };
+  const DASH = { SVTAV1: "8 5" };
+  const RES = A.resolutions;
+  /* Resolution is an ordered tier, so it is one hue at increasing depth rather
+     than a second categorical run. */
+  const RES_DEPTH = { "1080p": 1, "720p": 0.62, "540p": 0.36 };
+
+  const cvar = (n) => getComputedStyle(document.body).getPropertyValue(n).trim();
+
+  function fmtInt(v) {
+    v = Math.round(v);
+    return Math.abs(v) >= 10000 ? v.toLocaleString("nl-NL") : String(v);
+  }
+  function pct(v, d) { return (v >= 0 ? "" : "-") + Math.abs(v).toFixed(d === undefined ? 0 : d) + "%"; }
+
+  function niceTicks(min, max, count) {
+    const raw = (max - min) / count;
+    const mag = Math.pow(10, Math.floor(Math.log10(raw)));
+    const step = [1, 2, 2.5, 5, 10].map((m) => m * mag).find((s) => s >= raw) || 10 * mag;
+    const out = [];
+    for (let v = Math.ceil(min / step) * step; v <= max + step * 1e-9; v += step) {
+      out.push(Math.abs(v) < step * 1e-9 ? 0 : v);
+    }
+    return { ticks: out, step };
+  }
+
+  const NS = "http://www.w3.org/2000/svg";
+  function el(tag, attrs, parent) {
+    const n = document.createElementNS(NS, tag);
+    for (const k in attrs) n.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(n);
+    return n;
+  }
+
+  const tip = document.getElementById("tip");
+  function showTip(html, x, y) {
+    tip.innerHTML = html;
+    tip.dataset.on = "1";
+    const r = tip.getBoundingClientRect();
+    let left = x + 14, top = y - r.height - 12;
+    if (left + r.width > window.innerWidth - 8) left = x - r.width - 14;
+    if (left < 8) left = 8;
+    if (top < 8) top = y + 18;
+    tip.style.left = left + "px";
+    tip.style.top = top + "px";
+  }
+  function hideTip() { tip.dataset.on = "0"; }
+
+  function seg(hostId, items, initial, onPick) {
+    const host = document.getElementById(hostId);
+    host.innerHTML = "";
+    items.forEach((it) => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.textContent = it.label;
+      b.setAttribute("aria-pressed", String(it.value === initial));
+      b.addEventListener("click", () => {
+        [...host.children].forEach((c) => c.setAttribute("aria-pressed", String(c === b)));
+        onPick(it.value);
+      });
+      host.appendChild(b);
+    });
+  }
+
+  /* ---------- one shared rate-distortion renderer -------------------------
+     Two charts use it: codecs at one resolution, and one codec at three
+     resolutions. Same axes, same hit targets, same leader-line end labels. */
+  function renderCurves(hostId, legendId, series, aria) {
+    const host = document.getElementById(hostId);
+    host.innerHTML = "";
+    const W = 940, H = 470, M = { t: 16, r: 104, b: 62, l: 54 };
+    const iw = W - M.l - M.r, ih = H - M.t - M.b;
+    const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, width: W, height: H,
+                            role: "img", "aria-label": aria }, host);
+
+    const xs = series.flatMap((s) => s.pts.map((p) => p.x));
+    const ys = series.flatMap((s) => s.pts.map((p) => p.y));
+    const x0 = Math.min(...xs) * 0.9, x1 = Math.max(...xs) * 1.08;
+    const y0 = Math.max(40, Math.floor(Math.min(...ys) / 5) * 5), y1 = 100;
+    const X_ = (v) => M.l + (Math.log(v) - Math.log(x0)) / (Math.log(x1) - Math.log(x0)) * iw;
+    const Y_ = (v) => M.t + ih - (v - y0) / (y1 - y0) * ih;
+
+    const rule = cvar("--rule"), axis = cvar("--axis"), ink3 = cvar("--ink-3"), ink2 = cvar("--ink-2");
+    const yt = niceTicks(y0, y1, 5).ticks;
+    yt.forEach((v) => {
+      el("line", { x1: M.l, x2: M.l + iw, y1: Y_(v), y2: Y_(v), stroke: rule, "stroke-width": 1 }, svg);
+      const t = el("text", { x: M.l - 10, y: Y_(v) + 4, "text-anchor": "end", fill: ink3,
+                             "font-size": 11.5, "font-family": "GeistMono, monospace" }, svg);
+      t.textContent = v;
+    });
+    const xticks = [0.004, 0.006, 0.008, 0.01, 0.015, 0.02, 0.03, 0.04, 0.06, 0.08,
+                    0.12, 0.16, 0.24, 0.32, 0.48, 0.64].filter((v) => v >= x0 && v <= x1);
+    xticks.forEach((v) => {
+      el("line", { x1: X_(v), x2: X_(v), y1: M.t, y2: M.t + ih, stroke: rule, "stroke-width": 1 }, svg);
+      const t = el("text", { x: X_(v), y: M.t + ih + 19, "text-anchor": "middle", fill: ink3,
+                             "font-size": 11.5, "font-family": "GeistMono, monospace" }, svg);
+      t.textContent = String(v);
+      // the same measure in a familiar unit, not a second axis
+      const t2 = el("text", { x: X_(v), y: M.t + ih + 33, "text-anchor": "middle", fill: ink3,
+                              "font-size": 10, "font-family": "GeistMono, monospace", opacity: 0.8 }, svg);
+      t2.textContent = (v * 1920 * 1080 * 30 / 1e6).toFixed(v < 0.05 ? 1 : 0);
+    });
+    el("line", { x1: M.l, x2: M.l + iw, y1: M.t + ih, y2: M.t + ih, stroke: axis, "stroke-width": 1 }, svg);
+
+    let t = el("text", { x: M.l + iw / 2, y: H - 6, "text-anchor": "middle", fill: ink2,
+                         "font-size": 11.5, "font-family": "Tektur, sans-serif",
+                         "letter-spacing": "0.08em" }, svg);
+    t.textContent = "BITS PER PIXEL PER FRAME (LOG)  \u00b7  SECOND ROW: MBIT/S AT 1080P30";
+    t = el("text", { x: -(M.t + ih / 2), y: 15, "text-anchor": "middle", fill: ink2, "font-size": 12,
+                     "font-family": "Tektur, sans-serif", "letter-spacing": "0.09em",
+                     transform: "rotate(-90)" }, svg);
+    t.textContent = "VMAF";
+
+    if (y0 < 93) {
+      el("line", { x1: M.l, x2: M.l + iw, y1: Y_(93), y2: Y_(93), stroke: cvar("--edge-2"),
+                   "stroke-width": 1 }, svg);
+      const bt = el("text", { x: M.l + 8, y: Y_(93) - 7, fill: ink3, "font-size": 11,
+                              "font-family": "GeistMono, monospace" }, svg);
+      bt.textContent = "transparent for most viewers";
+    }
+
+    const ends = series.map((s) => {
+      const last = s.pts[s.pts.length - 1];
+      return { key: s.key, label: s.label, colour: s.colour, opacity: s.opacity,
+               x: X_(last.x), y: Y_(last.y), ly: Y_(last.y) };
+    }).sort((a, b) => a.ly - b.ly);
+    const MINGAP = 19;
+    for (let i = 1; i < ends.length; i++) {
+      if (ends[i].ly - ends[i - 1].ly < MINGAP) ends[i].ly = ends[i - 1].ly + MINGAP;
+    }
+    const overflow = ends[ends.length - 1].ly - (M.t + ih);
+    if (overflow > 0) ends.forEach((e) => { e.ly -= overflow; });
+    const endBy = Object.fromEntries(ends.map((e) => [e.key, e]));
+
+    series.forEach((s) => {
+      const d = s.pts.map((p, i) => (i ? "L" : "M") + X_(p.x).toFixed(1) + " " + Y_(p.y).toFixed(1)).join(" ");
+      const line = { d, fill: "none", stroke: s.colour, opacity: s.opacity, "stroke-width": 2,
+                     "stroke-linejoin": "round", "stroke-linecap": "round" };
+      if (s.dash) line["stroke-dasharray"] = s.dash;
+      el("path", line, svg);
+      const e = endBy[s.key];
+      const lx = M.l + iw + 20;
+      el("path", { d: `M${e.x + 6} ${e.y} L${lx - 6} ${e.ly}`, fill: "none", stroke: s.colour,
+                   "stroke-width": 1, opacity: (s.opacity || 1) * 0.55 }, svg);
+      el("circle", s.dash
+        ? { cx: e.x, cy: e.y, r: 5, fill: cvar("--surface"), opacity: s.opacity,
+            stroke: s.colour, "stroke-width": 2.4 }
+        : { cx: e.x, cy: e.y, r: 4.5, fill: s.colour, opacity: s.opacity,
+            stroke: cvar("--surface"), "stroke-width": 2 }, svg);
+      const lab = el("text", { x: lx, y: e.ly + 4, fill: ink2, "font-size": 12.5,
+                               "font-family": "InstrumentSans, sans-serif" }, svg);
+      lab.textContent = s.label;
+      s.pts.forEach((p) => {
+        // Hollow markers for the dashed series, so the two AV1 encoders stay
+        // apart in a greyscale print as well as in colour.
+        el("circle", s.dash
+          ? { cx: X_(p.x), cy: Y_(p.y), r: 4.5, fill: cvar("--surface"), opacity: s.opacity,
+              stroke: s.colour, "stroke-width": 2.4 }
+          : { cx: X_(p.x), cy: Y_(p.y), r: 4, fill: s.colour, opacity: s.opacity,
+              stroke: cvar("--surface"), "stroke-width": 2 }, svg);
+        const h = el("circle", { cx: X_(p.x), cy: Y_(p.y), r: 13, fill: "transparent" }, svg);
+        h.style.cursor = "crosshair";
+        h.addEventListener("pointerenter", (ev) => showTip(
+          `<b>${s.label}</b><br>${p.x.toFixed(4)} bits/px/frame<br>` +
+          `= ${(p.x * 1920 * 1080 * 30 / 1e6).toFixed(2)} Mbit/s at 1080p30<br>VMAF ${p.y.toFixed(1)}`,
+          ev.clientX, ev.clientY));
+        h.addEventListener("pointerleave", hideTip);
+      });
+    });
+
+    if (legendId) {
+      const lg = document.getElementById(legendId);
+      lg.innerHTML = "";
+      series.forEach((s) => {
+        const n = document.createElement("span");
+        n.className = "legend-item";
+        n.innerHTML = s.dash
+          ? `<span class="legend-key dashed" style="color:${s.colour};opacity:${s.opacity || 1}"></span>${s.label}`
+          : `<span class="legend-key" style="background:${s.colour};opacity:${s.opacity || 1}"></span>${s.label}`;
+        lg.appendChild(n);
+      });
+    }
+  }
+
+  /* ================= chart 1: codecs at one resolution ================= */
+  let rdRes = "1080p";
+  function renderRD() {
+    const series = CODECS.map((c) => ({
+      key: c, label: LABEL[c], colour: cvar(SLOT[c]), opacity: 1, dash: DASH[c],
+      pts: A.curves[rdRes][c].map((p) => ({ x: p.bpppf, y: p.vmaf }))
+                             .sort((a, b) => a.x - b.x)
+    }));
+    renderCurves("rd-chart", "rd-legend", series,
+                 "VMAF against bits per pixel per frame for six encoders at " + rdRes);
+
+    let html = '<table><thead><tr><th>Codec</th>' +
+      A.targets.map((t) => `<th class="num">VMAF ${t}</th>`).join("") + "</tr></thead><tbody>";
+    CODECS.forEach((c) => {
+      html += `<tr><td class="name">${LABEL[c]}</td>` + A.targets.map((t) => {
+        const m = A.matched[rdRes][c][t];
+        if (!m) return '<td class="num">n/a</td>';
+        const vals = CODECS.map((k) => A.matched[rdRes][k][t]).filter(Boolean).map((k) => k.bpppf);
+        const best = Math.min(...vals);
+        return `<td class="num${m.bpppf === best ? " win" : ""}">${m.bpppf.toFixed(4)}</td>`;
+      }).join("") + "</tr>";
+    });
+    document.getElementById("rd-table").innerHTML =
+      html + "</tbody></table>" +
+      `<p class="chart-sub" style="margin-top:10px;">Bits per pixel per frame at ${rdRes}, geometric mean over the clips. Lower is better; the smallest in each column is bold.</p>`;
+  }
+
+  /* ================= chart 2: one codec at three resolutions ================= */
+  let shiftCodec = "AV1";
+  function renderShift() {
+    const col = cvar(SLOT[shiftCodec]);
+    const series = RES.map((r) => ({
+      key: r, label: r, colour: col, opacity: RES_DEPTH[r], dash: DASH[shiftCodec],
+      pts: A.curves[r][shiftCodec].map((p) => ({ x: p.bpppf, y: p.vmaf }))
+                                  .sort((a, b) => a.x - b.x)
+    }));
+    renderCurves("shift-chart", "shift-legend", series,
+                 "VMAF against bits per pixel per frame for " + LABEL[shiftCodec] +
+                 " at three resolutions");
+
+    const probes = A.collapse_probes;
+    let html = '<table><thead><tr><th>Codec</th><th>Resolution</th>' +
+      probes.map((p) => `<th class="num">${p} bpppf</th>`).join("") + "</tr></thead><tbody>";
+    CODECS.forEach((c) => {
+      RES.forEach((r, i) => {
+        html += `<tr><td class="name">${i === 0 ? LABEL[c] : ""}</td><td class="name">${r}</td>` +
+          probes.map((p) => {
+            const v = A.collapse[c][r][p];
+            return `<td class="num">${v === null || v === undefined ? "n/a" : v.toFixed(1)}</td>`;
+          }).join("") + "</tr>";
+      });
+    });
+    document.getElementById("shift-table").innerHTML =
+      html + "</tbody></table>" +
+      '<p class="chart-sub" style="margin-top:10px;">VMAF reached at a fixed normalised bitrate. Read down a column: if resolution mattered on this axis, these would differ.</p>';
+  }
+
+  /* ================= chart 3: savings, grouped by codec ================= */
+  let savTarget = 90;
+  function renderSavings() {
+    const host = document.getElementById("sav-chart");
+    host.innerHTML = "";
+    const codecs = CODECS.filter((c) => c !== "H264");
+    const groupH = 112, barH = 22, W = 940, M = { t: 10, r: 76, b: 34, l: 156 };
+    const H = M.t + codecs.length * groupH + M.b;
+    const iw = W - M.l - M.r;
+    const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, width: W, height: H, role: "img",
+                            "aria-label": "Size saving against H.264 by codec and resolution" }, host);
+    const all = [];
+    codecs.forEach((c) => RES.forEach((r) => {
+      const s = A.savings[r][savTarget];
+      if (s && s[c] !== undefined) all.push(s[c]);
+    }));
+    const max = Math.max(50, ...all) * 1.02;
+    const X_ = (v) => M.l + Math.max(0, v) / max * iw;
+    const rule = cvar("--rule"), ink3 = cvar("--ink-3"), ink = cvar("--ink"), ink2 = cvar("--ink-2");
+
+    niceTicks(0, max, 5).ticks.forEach((v) => {
+      el("line", { x1: X_(v), x2: X_(v), y1: M.t, y2: M.t + codecs.length * groupH,
+                   stroke: v === 0 ? cvar("--axis") : rule, "stroke-width": 1 }, svg);
+      const t = el("text", { x: X_(v), y: H - 12, "text-anchor": "middle", fill: ink3, "font-size": 11.5,
+                             "font-family": "GeistMono, monospace" }, svg);
+      t.textContent = v + "%";
+    });
+
+    codecs.forEach((c, gi) => {
+      const gy = M.t + gi * groupH;
+      const col = cvar(SLOT[c]);
+      // codec name in its own left gutter, resolution labels beside the bars,
+      // so the two label runs cannot collide
+      const nm = el("text", { x: 0, y: gy + groupH / 2, fill: ink,
+                              "font-size": 14, "font-family": "InstrumentSans, sans-serif",
+                              "font-weight": 700 }, svg);
+      nm.textContent = SHORT[c];
+      RES.forEach((r, ri) => {
+        const s = A.savings[r][savTarget];
+        const y = gy + 8 + ri * (barH + 8);
+        const rl = el("text", { x: M.l - 12, y: y + 15, "text-anchor": "end", fill: ink3,
+                                "font-size": 11, "font-family": "GeistMono, monospace" }, svg);
+        rl.textContent = r;
+        if (!s || s[c] === undefined) {
+          const na = el("text", { x: M.l + 6, y: y + 15, fill: ink3, "font-size": 11.5,
+                                  "font-family": "GeistMono, monospace" }, svg);
+          na.textContent = "not reached on this ladder";
+          return;
+        }
+        // A codec can lose to H.264 on some content. There is no room left of
+        // zero, so say it in words rather than draw a misleading stub bar.
+        const neg = s[c] < 0;
+        const w = neg ? 0 : Math.max(3, X_(s[c]) - M.l);
+        if (!neg) {
+          el("path", {
+            d: `M${M.l} ${y} H${M.l + w - 4} a4 4 0 0 1 4 4 v${barH - 8} a4 4 0 0 1 -4 4 H${M.l} Z`,
+            fill: col, opacity: RES_DEPTH[r]
+          }, svg);
+        }
+        const val = el("text", { x: M.l + w + 9, y: y + 16, fill: ink, "font-size": 12.5,
+                                 "font-family": "GeistMono, monospace" }, svg);
+        val.textContent = neg ? pct(-s[c], 1) + "  larger than H.264" : pct(s[c], 1);
+        const hit = el("rect", { x: M.l - 60, y: y - 3, width: Math.max(w, 24) + 120, height: barH + 6,
+                                 fill: "transparent" }, svg);
+        const mb = A.matched[r][c][savTarget], mh = A.matched[r].H264[savTarget];
+        hit.addEventListener("pointerenter", (e) => showTip(
+          `<b>${LABEL[c]} at ${r}</b>, VMAF ${savTarget}<br>` +
+          `${mb.bpppf.toFixed(4)} vs H.264 ${mh.bpppf.toFixed(4)} bits/px/frame<br>` +
+          `${pct(s[c], 1)} smaller`, e.clientX, e.clientY));
+        hit.addEventListener("pointerleave", hideTip);
+      });
+      if (gi < codecs.length - 1) {
+        el("line", { x1: 0, x2: M.l + iw, y1: gy + groupH - 4, y2: gy + groupH - 4,
+                     stroke: rule, "stroke-width": 1 }, svg);
+      }
+    });
+
+    const lg = document.getElementById("sav-legend");
+    lg.innerHTML = '<span class="legend-item">Shade of each bar:</span>' + RES.map((r) =>
+      `<span class="legend-item"><span class="legend-key tall" style="background:${cvar("--ink-2")};opacity:${RES_DEPTH[r]}"></span>${r}</span>`).join("");
+
+    let html = '<table><thead><tr><th>Codec</th><th>Resolution</th>' +
+      A.targets.map((t) => `<th class="num">VMAF ${t}</th>`).join("") + "</tr></thead><tbody>";
+    codecs.forEach((c) => RES.forEach((r, i) => {
+      html += `<tr><td class="name">${i === 0 ? LABEL[c] : ""}</td><td class="name">${r}</td>` +
+        A.targets.map((t) => {
+          const s = A.savings[r][t];
+          return `<td class="num">${s && s[c] !== undefined ? pct(s[c], 1) : "n/a"}</td>`;
+        }).join("") + "</tr>";
+    }));
+    document.getElementById("sav-table").innerHTML = html + "</tbody></table>";
+  }
+
+  /* ================= chart 4: encode cost ================= */
+  function renderCost() {
+    const host = document.getElementById("cost-chart");
+    host.innerHTML = "";
+    const rows = CODECS.map((c) => ({ c, v: (A.enc_cost["1080p"][c] || {}).cpu_s_per_frame,
+                                      rel: (A.enc_cost["1080p"][c] || {}).rel }))
+                       .filter((r) => r.v !== undefined)
+                       .sort((a, b) => a.v - b.v);
+    const W = 940, rowH = 50, M = { t: 8, r: 200, b: 32, l: 124 };
+    const H = M.t + rows.length * rowH + M.b;
+    const iw = W - M.l - M.r;
+    const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, width: W, height: H, role: "img",
+                            "aria-label": "Encoder CPU seconds per frame at matched quality" }, host);
+    const max = Math.max(...rows.map((r) => r.v)) * 1.04;
+    const X_ = (v) => M.l + v / max * iw;
+    const rule = cvar("--rule"), ink3 = cvar("--ink-3"), ink = cvar("--ink");
+
+    niceTicks(0, max, 5).ticks.forEach((v) => {
+      el("line", { x1: X_(v), x2: X_(v), y1: M.t, y2: M.t + rows.length * rowH,
+                   stroke: v === 0 ? cvar("--axis") : rule, "stroke-width": 1 }, svg);
+      const t = el("text", { x: X_(v), y: H - 11, "text-anchor": "middle", fill: ink3, "font-size": 11.5,
+                             "font-family": "GeistMono, monospace" }, svg);
+      // niceTicks accumulates float error; +toFixed drops it without padding zeros
+      t.textContent = +v.toFixed(6) + "s";
+    });
+
+    rows.forEach((r, i) => {
+      const y = M.t + i * rowH + 13, w = Math.max(3, X_(r.v) - M.l), bh = 22;
+      el("path", {
+        d: `M${M.l} ${y} H${M.l + w - 4} a4 4 0 0 1 4 4 v${bh - 8} a4 4 0 0 1 -4 4 H${M.l} Z`,
+        fill: cvar(SLOT[r.c])
+      }, svg);
+      const lab = el("text", { x: M.l - 12, y: y + 16, "text-anchor": "end", fill: cvar("--ink-2"),
+                               "font-size": 13, "font-family": "InstrumentSans, sans-serif" }, svg);
+      lab.textContent = SHORT[r.c];
+      const val = el("text", { x: M.l + w + 10, y: y + 16, fill: ink, "font-size": 12.5,
+                               "font-family": "GeistMono, monospace" }, svg);
+      val.textContent = r.v.toFixed(2) + "s  \u00b7  " + r.rel.toFixed(1) + "x H.264";
+      const hit = el("rect", { x: M.l, y: y - 8, width: Math.max(w, 24) + 200, height: 40,
+                               fill: "transparent" }, svg);
+      hit.addEventListener("pointerenter", (e) => showTip(
+        `<b>${LABEL[r.c]}</b> at VMAF ${A.cost_target}, 1080p<br>${r.v.toFixed(3)} CPU s per frame<br>` +
+        `${r.rel.toFixed(1)}x the cost of H.264`, e.clientX, e.clientY));
+      hit.addEventListener("pointerleave", hideTip);
+    });
+
+    let html = '<table><thead><tr><th>Codec</th>' +
+      RES.map((r) => `<th class="num">${r} (s/frame)</th>`).join("") +
+      RES.map((r) => `<th class="num">${r} (x H.264)</th>`).join("") + "</tr></thead><tbody>";
+    CODECS.forEach((c) => {
+      html += `<tr><td class="name">${LABEL[c]}</td>` +
+        RES.map((r) => {
+          const e = A.enc_cost[r][c];
+          return `<td class="num">${e ? e.cpu_s_per_frame.toFixed(3) : "n/a"}</td>`;
+        }).join("") +
+        RES.map((r) => {
+          const e = A.enc_cost[r][c];
+          return `<td class="num">${e ? e.rel.toFixed(1) + "x" : "n/a"}</td>`;
+        }).join("") + "</tr>";
+    });
+    document.getElementById("cost-table").innerHTML = html + "</tbody></table>";
+  }
+
+  /* ================= metric cross-check ================= */
+  function renderMetrics() {
+    const M = A.by_metric["1080p"];
+    const names = { vmaf: "VMAF", psnr_y: "PSNR-Y", ssim: "SSIM" };
+    const codecs = CODECS.filter((c) => c !== "H264");
+    const ts = A.targets.filter((t) => M.vmaf[t] && M.psnr_y[t] && M.ssim[t]);
+    if (!ts.length) {
+      // Nothing to show rather than something invented: see the note beneath.
+      document.getElementById("metric-block").hidden = true;
+      return;
+    }
+    const t = ts.includes(90) ? 90 : ts[Math.floor(ts.length / 2)];
+    let html = '<table><thead><tr><th>Scored with</th>' +
+      codecs.map((c) => `<th class="num">${LABEL[c]}</th>`).join("") + "</tr></thead><tbody>";
+    Object.keys(names).forEach((m) => {
+      html += `<tr><td class="name">${names[m]}</td>` +
+        codecs.map((c) => `<td class="num">${M[m][t] && M[m][t][c] !== undefined
+          ? pct(M[m][t][c], 1) : "n/a"}</td>`).join("") + "</tr>";
+    });
+    document.getElementById("metric-table").innerHTML = html + "</tbody></table>";
+    document.getElementById("metric-target").textContent = t;
+  }
+
+  /* ================= the normalisation anchor table ================= */
+  function renderAnchors() {
+    const rows = A.anchors.slice().sort((a, b) => a.bpppf - b.bpppf);
+    let html = '<table><thead><tr><th>Stream</th><th class="num">Bits per pixel per frame</th>' +
+      '<th>Where that lands</th></tr></thead><tbody>';
+    rows.forEach((a) => {
+      let band = "Ordinary streaming";
+      if (a.bpppf < 0.035) band = "Bits are scarce";
+      else if (a.bpppf > 0.11) band = "Near transparent";
+      html += `<tr><td class="name">${a.label}</td><td class="num">${a.bpppf.toFixed(4)}</td>` +
+        `<td>${band}</td></tr>`;
+    });
+    document.getElementById("anchor-table").innerHTML = html + "</tbody></table>";
+  }
+
+  /* ================= prose numbers, from the same data ================= */
+  function fillProse() {
+    const V = Object.assign({
+      nclips: CLIPS.length,
+      nencodes: fmtInt(A.n_encodes),
+      cost_target: A.cost_target,
+      enc_hours: (A.total_enc_cpu_s / 3600).toFixed(1) + " CPU-hours of encoding"
+    }, PROSE);
+    document.querySelectorAll("[data-fill]").forEach((n) => {
+      const k = n.getAttribute("data-fill");
+      if (V[k] === undefined) return;
+      if (k.startsWith("v_") && k.endsWith("_class")) {
+        n.className = "claim-v " + V[k].cls;
+        n.textContent = V[k].text;
+      } else if (k.startsWith("chip_")) {
+        n.className = "chip " + V[k].cls;
+        n.textContent = V[k].text;
+      } else {
+        // Prose is generated by make_prose.py in this repository, not user input,
+        // and a few sentences carry <em>. innerHTML keeps that emphasis.
+        n.innerHTML = V[k];
+      }
+    });
+  }
+
+  seg("res-seg", RES.map((r) => ({ label: r, value: r })), rdRes, (v) => { rdRes = v; renderRD(); });
+  seg("codec-seg", CODECS.map((c) => ({ label: SHORT[c], value: c })), shiftCodec,
+      (v) => { shiftCodec = v; renderShift(); });
+  // only offer targets some codec actually reached
+  const avail = A.targets.filter((t) => RES.some((r) => A.savings[r][t]))
+                         .sort((a, b) => b - a);
+  savTarget = avail.includes(90) ? 90 : avail[Math.floor(avail.length / 2)];
+  seg("target-seg", avail.map((t) => ({ label: "VMAF " + t, value: t })), savTarget,
+      (v) => { savTarget = v; renderSavings(); });
+
+  renderRD();
+  renderShift();
+  renderSavings();
+  renderCost();
+  renderAnchors();
+  renderMetrics();
+  fillProse();
+
+  let raf;
+  window.addEventListener("resize", () => {
+    cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(() => { renderRD(); renderShift(); renderSavings(); renderCost(); });
+  });
+})();
+</script>

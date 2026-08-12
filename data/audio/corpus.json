@@ -1,0 +1,108 @@
+{
+ "sample_rate": 48000,
+ "seconds": 30,
+ "channels": 2,
+ "bit_depth": 16,
+ "clips": [
+  {
+   "name": "music_synthwave",
+   "kind": "music",
+   "synthetic": false,
+   "licence": "CC BY 3.0",
+   "credit": "Alexi Action, I Am Robot",
+   "note": "dense electronic, loud, broadband",
+   "source_file": "Alexi_Action_-_I_Am_Robot_(dark_synthwave).flac",
+   "source_seconds": 37.8,
+   "start": 7.56,
+   "seconds": 30,
+   "bytes": 5760210
+  },
+  {
+   "name": "music_ambient",
+   "kind": "music",
+   "synthetic": false,
+   "licence": "CC BY 3.0",
+   "credit": "HOME, Resting State 33",
+   "note": "quiet sustained synth, low crest factor",
+   "source_file": "HOME_-_Resting_State_-_33.flac",
+   "source_seconds": 111.8,
+   "start": 40,
+   "seconds": 30,
+   "bytes": 5760194
+  },
+  {
+   "name": "music_orchestral",
+   "kind": "music",
+   "synthetic": false,
+   "licence": "CC BY 3.0",
+   "credit": "raspberrymusic, Aliens",
+   "note": "cinematic orchestral, wide dynamics",
+   "source_file": "Raspberrymusic_-_Aliens_(trailer_music;_cinematic_epic_electronic_classical_music).flac",
+   "source_seconds": 150.0,
+   "start": 60,
+   "seconds": 30,
+   "bytes": 5760230
+  },
+  {
+   "name": "piano_solo",
+   "kind": "music",
+   "synthetic": false,
+   "licence": "Public domain",
+   "credit": "Schubert D664 III, Paul Pitman",
+   "note": "solo piano, hard tonal transients",
+   "source_file": "Schubert_-_Piano_Sonata_No._13_in_A_major,_D664_-_III._Allegro_(Paul_Pitman).flac",
+   "source_seconds": 347.9,
+   "start": 30,
+   "seconds": 30,
+   "bytes": 5760210
+  },
+  {
+   "name": "percussion",
+   "kind": "music",
+   "synthetic": false,
+   "licence": "CC BY-SA 4.0",
+   "credit": "jhanjh cymbals",
+   "note": "metal cymbals: broadband attacks, long HF decay",
+   "source_file": "Jhanjo.flac",
+   "source_seconds": 14.8,
+   "start": 0.0,
+   "seconds": 14.65,
+   "bytes": 2812946
+  },
+  {
+   "name": "speech_en",
+   "kind": "speech",
+   "synthetic": false,
+   "licence": "CC BY-SA 4.0",
+   "credit": "Angela Byron, spoken English",
+   "note": "single voice, close mic: the podcast case",
+   "source_file": "Angela_Byron_-_voice_-en.flac",
+   "source_seconds": 54.6,
+   "start": 5,
+   "seconds": 30,
+   "bytes": 5760146
+  },
+  {
+   "name": "probe_sweep",
+   "kind": "probe",
+   "synthetic": true,
+   "licence": "generated here",
+   "credit": "synthesised",
+   "note": "log sweep 20 Hz to 22 kHz",
+   "source_file": "",
+   "seconds": 30.0,
+   "bytes": 5760044
+  },
+  {
+   "name": "probe_noise",
+   "kind": "probe",
+   "synthetic": true,
+   "licence": "generated here",
+   "credit": "synthesised",
+   "note": "pink noise plus a tone comb to 21 kHz",
+   "source_file": "",
+   "seconds": 30.0,
+   "bytes": 5760044
+  }
+ ]
+}

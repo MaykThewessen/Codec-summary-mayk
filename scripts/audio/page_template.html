@@ -1,0 +1,1609 @@
+<meta charset="utf-8">
+<title>Audio codec trade-off map</title>
+
+<style>
+@font-face { font-family: "Tektur"; src: url(data:font/ttf;base64,@@FONT_DISPLAY@@) format("truetype"); font-weight: 500; font-display: swap; }
+@font-face { font-family: "InstrumentSans"; src: url(data:font/ttf;base64,@@FONT_BODY@@) format("truetype"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "InstrumentSans"; src: url(data:font/ttf;base64,@@FONT_BODY_BOLD@@) format("truetype"); font-weight: 700; font-display: swap; }
+@font-face { font-family: "GeistMono"; src: url(data:font/ttf;base64,@@FONT_MONO@@) format("truetype"); font-weight: 400; font-display: swap; }
+
+:root {
+  color-scheme: light;
+  --page: #f4f4f1;
+  --surface: #fcfcfb;
+  --sunken: #efefeb;
+  --ink: #0b0b0b;
+  --ink-2: #52514e;
+  --ink-3: #898781;
+  --rule: #e1e0d9;
+  --axis: #c3c2b7;
+
+  --accent: #2a78d6;
+  --wash-1: rgba(42,120,214,0.05);
+  --wash-2: rgba(42,120,214,0.16);
+  --wash-3: rgba(42,120,214,0.32);
+  --edge-1: rgba(42,120,214,0.20);
+  --edge-2: rgba(42,120,214,0.34);
+  --edge-3: rgba(42,120,214,0.50);
+
+  --st-good: #0ca30c;
+  --st-warn: #fab219;
+  --st-serious: #ec835a;
+  --st-crit: #d03b3b;
+  --chip-good: rgba(12,163,12,0.12);
+  --chip-warn: rgba(190,130,0,0.14);
+  --chip-serious: rgba(236,131,90,0.16);
+
+  --s1: #2a78d6;
+  --s2c: #eb6834;
+  --s3: #1baf7a;
+  --s4: #eda100;
+  --s5: #e87ba4;
+
+  --shadow: 0 1px 2px rgba(11,11,11,0.05), 0 8px 24px -18px rgba(11,11,11,0.35);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) {
+    color-scheme: dark;
+    --page: #0d0d0d;
+    --surface: #1a1a19;
+    --sunken: #141413;
+    --ink: #ffffff;
+    --ink-2: #c3c2b7;
+    --ink-3: #898781;
+    --rule: #2c2c2a;
+    --axis: #383835;
+
+    --accent: #3987e5;
+    --wash-1: rgba(57,135,229,0.07);
+    --wash-2: rgba(57,135,229,0.20);
+    --wash-3: rgba(57,135,229,0.38);
+    --edge-1: rgba(57,135,229,0.26);
+    --edge-2: rgba(57,135,229,0.42);
+    --edge-3: rgba(57,135,229,0.58);
+
+    --chip-good: rgba(12,163,12,0.20);
+    --chip-warn: rgba(250,178,25,0.18);
+    --chip-serious: rgba(236,131,90,0.20);
+
+    --s1: #3987e5;
+    --s2c: #d95926;
+    --s3: #199e70;
+    --s4: #c98500;
+    --s5: #d55181;
+
+    --shadow: 0 1px 2px rgba(0,0,0,0.5), 0 8px 24px -18px rgba(0,0,0,0.9);
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page: #0d0d0d;
+  --surface: #1a1a19;
+  --sunken: #141413;
+  --ink: #ffffff;
+  --ink-2: #c3c2b7;
+  --ink-3: #898781;
+  --rule: #2c2c2a;
+  --axis: #383835;
+
+  --accent: #3987e5;
+  --wash-1: rgba(57,135,229,0.07);
+  --wash-2: rgba(57,135,229,0.20);
+  --wash-3: rgba(57,135,229,0.38);
+  --edge-1: rgba(57,135,229,0.26);
+  --edge-2: rgba(57,135,229,0.42);
+  --edge-3: rgba(57,135,229,0.58);
+
+  --chip-good: rgba(12,163,12,0.20);
+  --chip-warn: rgba(250,178,25,0.18);
+  --chip-serious: rgba(236,131,90,0.20);
+
+  --s1: #3987e5;
+  --s2c: #d95926;
+  --s3: #199e70;
+  --s4: #c98500;
+  --s5: #d55181;
+
+  --shadow: 0 1px 2px rgba(0,0,0,0.5), 0 8px 24px -18px rgba(0,0,0,0.9);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--ink);
+  font-family: "InstrumentSans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 16.5px;
+  line-height: 1.62;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 24px 96px;
+  display: flex;
+  flex-direction: column;
+  gap: 68px;
+}
+
+/* ---------- typography ---------- */
+h1, h2, h3 { font-family: "Tektur", system-ui, sans-serif; font-weight: 500; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(2.1rem, 5.2vw, 3.5rem); line-height: 1.02; letter-spacing: -0.022em; }
+h2 { font-size: clamp(1.35rem, 2.8vw, 1.85rem); line-height: 1.14; letter-spacing: -0.012em; }
+h3 { font-size: 1.05rem; line-height: 1.3; letter-spacing: 0.002em; }
+p { margin: 0; max-width: 68ch; }
+a { color: var(--accent); text-underline-offset: 2px; }
+strong { font-weight: 700; }
+
+.eyebrow {
+  font-family: "Tektur", system-ui, sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.mono { font-family: "GeistMono", ui-monospace, monospace; }
+.tnum { font-variant-numeric: tabular-nums; }
+
+/* ---------- page head ---------- */
+.head {
+  padding-top: 76px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 44px;
+}
+.lede { font-size: 1.16rem; color: var(--ink-2); max-width: 62ch; }
+.head-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 26px;
+  font-size: 0.8rem;
+  color: var(--ink-3);
+  font-family: "GeistMono", monospace;
+}
+
+/* ---------- section scaffold ---------- */
+section { display: flex; flex-direction: column; gap: 20px; }
+.sec-head { display: flex; flex-direction: column; gap: 9px; }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  box-shadow: var(--shadow);
+}
+.pad { padding: 24px; }
+
+/* ---------- the map ---------- */
+.map-frame {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: 34px 1fr;
+  grid-template-rows: 1fr 34px;
+  gap: 10px;
+}
+.y-axis, .x-axis {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--ink-3);
+  font-family: "Tektur", sans-serif;
+  font-size: 0.66rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+.y-axis { writing-mode: vertical-rl; transform: rotate(180deg); padding: 4px 0; }
+.x-axis { grid-column: 2; padding: 0 4px; }
+.axis-mid { color: var(--ink-3); opacity: 0.75; }
+
+.map {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: 1fr 1.05fr 1.05fr 0.92fr;
+  grid-template-areas:
+    "voice   opus  opus  flac"
+    "heaac   aac   aac   flac"
+    "thin    mp3   mp3   wav";
+  gap: 2px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.cell {
+  min-width: 0;
+  background: var(--surface);
+  padding: 17px 17px 16px;
+  min-height: 154px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  position: relative;
+  transition: background 140ms ease;
+}
+@media (prefers-reduced-motion: reduce) { .cell { transition: none; } }
+.cell.t1 { background: color-mix(in srgb, var(--surface) 100%, transparent); background-image: linear-gradient(var(--wash-1), var(--wash-1)); }
+.cell.t2 { background-image: linear-gradient(var(--wash-2), var(--wash-2)); background-color: var(--surface); }
+.cell.t3 { background-image: linear-gradient(var(--wash-3), var(--wash-3)); background-color: var(--surface); }
+.cell.void { background: var(--sunken); }
+
+.cell-name {
+  font-family: "Tektur", sans-serif;
+  font-size: 1.22rem;
+  letter-spacing: -0.008em;
+  line-height: 1.1;
+  color: var(--ink);
+}
+.cell.void .cell-name { color: var(--ink-3); font-size: 1rem; }
+.cell-why { font-size: 0.875rem; color: var(--ink-2); line-height: 1.45; }
+.cell-set {
+  margin-top: auto;
+  font-family: "GeistMono", monospace;
+  font-size: 0.735rem;
+  color: var(--ink-3);
+  border-top: 1px solid var(--rule);
+  padding-top: 8px;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+.chip {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: "GeistMono", monospace;
+  font-size: 0.665rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 2px 8px 2px 6px;
+  border-radius: 2px;
+  color: var(--ink-2);
+}
+.chip::before { content: ""; width: 6px; height: 6px; border-radius: 50%; flex: none; }
+.chip.good { background: var(--chip-good); }
+.chip.good::before { background: var(--st-good); }
+.chip.warn { background: var(--chip-warn); }
+.chip.warn::before { background: var(--st-warn); }
+.chip.serious { background: var(--chip-serious); }
+.chip.serious::before { background: var(--st-serious); }
+
+.map-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+  font-size: 0.8rem;
+  color: var(--ink-2);
+  align-items: center;
+}
+.tier-key { display: inline-flex; align-items: center; gap: 8px; }
+.tier-sw { width: 30px; height: 14px; border-radius: 2px; border: 1px solid var(--edge-1); }
+.tier-sw.k1 { background: var(--wash-1); }
+.tier-sw.k2 { background: var(--wash-2); border-color: var(--edge-2); }
+.tier-sw.k3 { background: var(--wash-3); border-color: var(--edge-3); }
+
+/* ---------- generic chart card ---------- */
+.chart-card { display: flex; flex-direction: column; gap: 14px; }
+.chart-title { display: flex; flex-wrap: wrap; gap: 4px 16px; align-items: baseline; justify-content: space-between; }
+.chart-sub { font-size: 0.85rem; color: var(--ink-3); }
+.chart-host { width: 100%; overflow-x: auto; }
+/* height:auto keeps a scaled-down chart from letterboxing inside its own box. */
+svg { display: block; max-width: 100%; height: auto; }
+/* Below the width where a 940px chart would shrink to illegibility, let the
+   host scroll instead. A scrollable chart beats a five pixel axis label. */
+@media (max-width: 900px) { .chart-host > svg { max-width: none; } }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 0.83rem; color: var(--ink-2); }
+.legend-item { display: inline-flex; align-items: center; gap: 7px; }
+.legend-key { width: 14px; height: 3px; border-radius: 2px; flex: none; }
+.legend-dot { width: 11px; height: 11px; border-radius: 50%; flex: none; }
+.legend-ring { width: 11px; height: 11px; border-radius: 50%; flex: none; background: transparent; border: 2px solid var(--s2c); }
+
+.seg {
+  display: inline-flex;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  overflow: hidden;
+  background: var(--surface);
+}
+.seg button {
+  font: inherit;
+  font-family: "GeistMono", monospace;
+  font-size: 0.78rem;
+  padding: 5px 13px;
+  background: transparent;
+  border: 0;
+  border-right: 1px solid var(--rule);
+  color: var(--ink-2);
+  cursor: pointer;
+}
+.seg button:last-child { border-right: 0; }
+.seg button[aria-pressed="true"] { background: var(--wash-2); color: var(--ink); }
+.seg button:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+
+.tip {
+  position: fixed;
+  pointer-events: none;
+  z-index: 30;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  box-shadow: var(--shadow);
+  padding: 9px 11px;
+  font-family: "GeistMono", monospace;
+  font-size: 0.75rem;
+  color: var(--ink);
+  opacity: 0;
+  transition: opacity 90ms ease;
+  max-width: 280px;
+}
+.tip[data-on="1"] { opacity: 1; }
+.tip b { font-weight: 400; color: var(--ink-3); }
+
+/* ---------- tables ---------- */
+details.tbl { border-top: 1px solid var(--rule); padding-top: 12px; }
+details.tbl > summary {
+  cursor: pointer;
+  font-family: "GeistMono", monospace;
+  font-size: 0.76rem;
+  color: var(--ink-3);
+  letter-spacing: 0.03em;
+}
+details.tbl > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.tbl-scroll { overflow-x: auto; margin-top: 12px; }
+table { border-collapse: collapse; width: 100%; font-size: 0.84rem; }
+th, td { text-align: left; padding: 7px 14px 7px 0; border-bottom: 1px solid var(--rule); white-space: nowrap; }
+th { font-family: "Tektur", sans-serif; font-weight: 500; font-size: 0.7rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-3); }
+td.num, th.num { text-align: right; font-family: "GeistMono", monospace; font-variant-numeric: tabular-nums; padding-right: 18px; }
+td.name { font-family: "GeistMono", monospace; }
+tbody tr:last-child td { border-bottom: 0; }
+.win { color: var(--ink); font-weight: 700; }
+td.wrap-cell { white-space: normal; min-width: 22ch; }
+
+/* ---------- reach matrix ---------- */
+.matrix td.mark { text-align: center; font-family: "GeistMono", monospace; font-size: 0.78rem; padding-right: 0; }
+.mk { display: inline-block; padding: 1px 7px; border-radius: 2px; }
+.mk.y { background: var(--chip-good); color: var(--ink); }
+.mk.p { background: var(--chip-warn); color: var(--ink); }
+.mk.n { background: var(--sunken); color: var(--ink-3); }
+
+/* ---------- prose blocks ---------- */
+.cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(268px, 1fr)); gap: 2px; background: var(--rule); border: 1px solid var(--rule); border-radius: 3px; overflow: hidden; }
+.cols.quad { grid-template-columns: repeat(auto-fit, minmax(390px, 1fr)); }
+.col { min-width: 0; background: var(--surface); padding: 20px; display: flex; flex-direction: column; gap: 8px; }
+.col h3 { color: var(--ink); }
+.col p { font-size: 0.9rem; color: var(--ink-2); }
+
+.claim { display: flex; flex-direction: column; gap: 7px; padding: 18px 0; border-bottom: 1px solid var(--rule); }
+.claim:last-child { border-bottom: 0; }
+.claim-q { font-size: 0.95rem; color: var(--ink); font-weight: 700; }
+.claim-v {
+  align-self: flex-start;
+  font-family: "GeistMono", monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 2px;
+}
+.claim-v.ok { background: var(--chip-good); color: var(--ink); }
+.claim-v.part { background: var(--chip-warn); color: var(--ink); }
+.claim-v.no { background: var(--chip-serious); color: var(--ink); }
+.claim p { font-size: 0.92rem; color: var(--ink-2); }
+
+.banner {
+  border-left: 3px solid var(--accent);
+  background: var(--wash-1);
+  padding: 16px 18px;
+  border-radius: 0 3px 3px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.banner p { font-size: 0.92rem; color: var(--ink-2); max-width: 76ch; }
+
+pre {
+  margin: 0;
+  background: var(--sunken);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  padding: 14px 16px;
+  overflow-x: auto;
+  font-family: "GeistMono", monospace;
+  font-size: 0.795rem;
+  line-height: 1.72;
+  color: var(--ink);
+}
+pre .c { color: var(--ink-3); }
+code { font-family: "GeistMono", monospace; font-size: 0.88em; }
+
+.cites { display: flex; flex-direction: column; gap: 10px; font-size: 0.84rem; color: var(--ink-2); }
+.cites div { max-width: 88ch; overflow-wrap: anywhere; }
+.cites a { overflow-wrap: anywhere; }
+.cites .k { font-family: "GeistMono", monospace; font-size: 0.74rem; color: var(--ink-3); }
+
+.foot { border-top: 1px solid var(--rule); padding-top: 26px; font-size: 0.84rem; color: var(--ink-3); display: flex; flex-direction: column; gap: 12px; }
+.foot p { max-width: 78ch; }
+
+@media (max-width: 860px) {
+  .map { grid-template-columns: 1fr; grid-template-areas: "voice" "opus" "heaac" "aac" "flac" "thin" "mp3" "wav"; }
+  .map-frame { grid-template-columns: 1fr; grid-template-rows: auto; }
+  /* Stacked into one column the two axes no longer describe a position, and
+     each cell already carries its bitrate band and reach chip, so drop them
+     rather than lie. */
+  .y-axis, .x-axis { display: none; }
+  .cell { min-height: 0; }
+}
+</style>
+
+<div class="wrap">
+
+  <header class="head">
+    <div class="eyebrow">Audio codecs / two graphs, because one would lie</div>
+    <h1>Which audio codec wins,<br>and exactly where</h1>
+    <p class="lede">Audio has a problem images do not: quality here is a fact about human ears, and this machine has none. So the page carries two separate graphs. One is the published listening-test record, cited line by line. The other is what this box can genuinely measure. They mostly agree. Where they do not is the interesting part.</p>
+    <div class="head-meta">
+      <span>6 codecs</span>
+      <span><span data-fill="n_encodes"></span> encodes measured here</span>
+      <span><span data-fill="n_test_entries"></span> published listening-test results cited</span>
+      <span>ffmpeg 7.0.2</span>
+    </div>
+  </header>
+
+  <!-- ================= THE MAP ================= -->
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">The map</div>
+      <h2>Eight regions, eight answers</h2>
+      <p>Left to right: bitrate, from the thin end where codec choice decides whether the result is listenable, through the streaming band, up to high bitrate and then off the scale into lossless. Bottom to top: how far you are willing to walk away from universal playback. Find your square, read the codec, copy the setting.</p>
+    </div>
+
+    <div class="card pad chart-card">
+      <div class="map-frame">
+        <div class="y-axis" aria-hidden="true"><span>Plays on anything</span><span class="axis-mid">Decoder reach</span><span>Modern devices only</span></div>
+        <div class="map">
+
+          <div class="cell t3" style="grid-area: voice">
+            <span class="chip warn">No CarPlay, no old hardware</span>
+            <div class="cell-name">Opus,<br>speech mode</div>
+            <div class="cell-why">Podcasts, voice notes, anything where a person is talking. At low bitrate Opus hands the low frequencies to SILK, a speech coder, in the hybrid mode RFC 6716 defines, and stays intelligible where every music codec has collapsed. On the five speech tracks of the 2014 test it scored <span data-fill="voice_opus"></span> against Vorbis at <span data-fill="voice_vorbis"></span>.</div>
+            <div class="cell-set">opusenc --bitrate 32 --vbr</div>
+          </div>
+
+          <div class="cell t3" style="grid-area: opus">
+            <span class="chip warn">Browsers yes, car heads mostly no</span>
+            <div class="cell-name">Opus</div>
+            <div class="cell-why">The best answer at every bitrate a listening test has covered, and by margins that clear the confidence intervals: first at 64 kbps in 2011 and first at 96 kbps in 2014, where it beat an MP3 that was allowed <span data-fill="mp3_extra_bitrate"></span> more bitrate. The catch is reach, not quality.</div>
+            <div class="cell-set">opusenc --bitrate 128 --vbr music.wav music.opus</div>
+          </div>
+
+          <div class="cell t2" style="grid-area: flac">
+            <span class="chip good">Everything current, except Apple Music</span>
+            <div class="cell-name">FLAC</div>
+            <div class="cell-why">Bit exact, verified here: <span data-fill="flac_exact"></span> of the corpus round tripped to identical PCM, at <span data-fill="flac_saving"></span> off WAV. ALAC is the same idea with worse compression (<span data-fill="alac_saving"></span> off WAV here) and exists only because Apple would not ship FLAC. WAV stays as the interchange format, not the storage one.</div>
+            <div class="cell-set">flac -8 --verify in.wav</div>
+          </div>
+
+          <div class="cell t2" style="grid-area: heaac">
+            <span class="chip serious">Not measurable here</span>
+            <div class="cell-name">HE-AAC v1</div>
+            <div class="cell-why">The band SBR was built for. No encoder for it exists in this environment, so this cell is positioned from the literature alone: in 2011 Apple's HE-AAC scored 3.82 at 64 kbps against Opus at 4.00. It is what DAB+ radio transmits. Use it when the receiver is a broadcast chip, not when you get to choose.</div>
+            <div class="cell-set">cited, not measured here</div>
+          </div>
+
+          <div class="cell t2" style="grid-area: aac">
+            <span class="chip good">Every phone, browser, car and TV</span>
+            <div class="cell-name">AAC-LC</div>
+            <div class="cell-why">The default when something other than your own software has to play it. Second in every multiformat test since 2011 and never far behind. Reach is its real argument: it is the only modern codec that a 2012 car stereo and a 2025 phone both accept.</div>
+            <div class="cell-set">qaac --tvbr 91  /  ffmpeg -c:a aac -b:a 192k</div>
+          </div>
+
+          <div class="cell void" style="grid-area: thin">
+            <div class="cell-name">Nothing universal survives down here</div>
+            <div class="cell-why">MP3 at 32 to 48 kbps stereo is not a quality trade, it is a broken result, and libvorbis <span data-fill="vorbis_floor"></span>. The whole reason Opus and HE-AAC exist is that this square was empty. If the file must be an MP3, go mono and use <code>--abr 64 -m m</code>, and accept it.</div>
+          </div>
+
+          <div class="cell t1" style="grid-area: mp3">
+            <span class="chip good">Plays on anything, any decade</span>
+            <div class="cell-name">MP3, LAME</div>
+            <div class="cell-why">Old format, modern encoder, and the encoder is the whole story: at 128 kbps the 1994 encoder scored 1.56 and LAME 3.98 scored 4.51 on the same samples. At <code>-V2</code> it measured <span data-fill="mp3_v2_kbps"></span> here and is transparent for most listeners. Choose it for reach, never for efficiency.</div>
+            <div class="cell-set">lame -V2 in.wav out.mp3   <span data-fill="mp3_v2_kbps_short"></span></div>
+          </div>
+
+          <div class="cell t1" style="grid-area: wav">
+            <span class="chip good">Plays on anything</span>
+            <div class="cell-name">WAV</div>
+            <div class="cell-why">The baseline and the interchange format: <span data-fill="wav_kbps"></span> for 16-bit stereo at 48 kHz, no decoder, no delay, no argument. Correct as what you hand to another tool. Wrong as what you store or ship, because FLAC is the same samples for roughly half the bytes.</div>
+            <div class="cell-set">1536 kbps, no encoder</div>
+          </div>
+
+        </div>
+        <div class="x-axis" aria-hidden="true"><span>32 kbps</span><span class="axis-mid">Bitrate (log)</span><span>320 kbps → lossless</span></div>
+      </div>
+
+      <div class="map-legend">
+        <span class="tier-key"><span class="tier-sw k1"></span> Tier 1: any decoder, any decade</span>
+        <span class="tier-key"><span class="tier-sw k2"></span> Tier 2: everything shipping today</span>
+        <span class="tier-key"><span class="tier-sw k3"></span> Tier 3: modern software, narrower hardware</span>
+      </div>
+    </div>
+
+    <div class="banner">
+      <div class="eyebrow">The short answer</div>
+      <p><strong>Opus, unless something else has to play it.</strong> It wins every published listening test it has entered, at every bitrate tested, and it is royalty free. The one real catch is hardware: car head units, older Bluetooth stacks, hi-fi streamers and set-top boxes very often speak AAC and MP3 and not Opus. That is a distribution problem, not a quality one, and it is the only reason AAC is still the right default for anything you hand to a stranger.</p>
+    </div>
+  </section>
+
+  <!-- ================= GRAPH A ================= -->
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">Graph A / perceptual quality, cited not measured</div>
+      <h2>What listeners actually reported</h2>
+      <p>None of these numbers were produced here. Each is a mean opinion score from a public blind listening test, on the ITU five point impairment scale where 5 is imperceptible and 1 is very annoying. Scores are only comparable inside one test: different panels, samples and years do not share a scale. Read each group on its own.</p>
+    </div>
+
+    <div class="card pad chart-card">
+      <div class="chart-title">
+        <h3>Format against format, four public tests</h3>
+        <span class="chart-sub">Mean opinion score, 95% confidence interval where the source publishes one.</span>
+      </div>
+      <div class="legend" id="ta-legend"></div>
+      <div class="chart-host" id="ta-chart"></div>
+      <p class="chart-sub" style="max-width:80ch;" data-fill="graph_a_note"></p>
+      <details class="tbl">
+        <summary>Table view: every cited result with its test, year and encoder</summary>
+        <div class="tbl-scroll" id="ta-table"></div>
+      </details>
+    </div>
+
+    <div class="card pad chart-card">
+      <div class="chart-title">
+        <h3>The encoder matters more than the format does</h3>
+        <span class="chart-sub">Same format, same bitrate, same samples. Only the encoder changed.</span>
+      </div>
+      <div class="chart-host" id="tb-chart"></div>
+      <p style="font-size:0.92rem; color:var(--ink-2);" data-fill="encoder_note"></p>
+      <details class="tbl">
+        <summary>Table view: encoder comparisons</summary>
+        <div class="tbl-scroll" id="tb-table"></div>
+      </details>
+    </div>
+
+    <div class="card pad chart-card">
+      <div class="chart-title">
+        <h3>The speech subset, where the ranking changes shape</h3>
+        <span class="chart-sub">The five tracks the 2014 test labels Voice, averaged from its per-track table.</span>
+      </div>
+      <div class="chart-host" id="voice-chart"></div>
+      <p style="font-size:0.92rem; color:var(--ink-2);" data-fill="voice_note"></p>
+      <details class="tbl">
+        <summary>Table view: per track, the five voice samples</summary>
+        <div class="tbl-scroll" id="voice-table"></div>
+      </details>
+    </div>
+
+    <div class="card pad">
+      <div class="eyebrow" style="margin-bottom:12px;">Sources</div>
+      <div class="cites" id="cites"></div>
+      <p style="margin-top:16px; font-size:0.86rem; color:var(--ink-3); max-width:80ch;">Every one of these tests is at least eleven years old, and the newest public multiformat test is from 2014. Encoders have moved since: Opus 1.5 and its later releases improved low bitrate and speech handling considerably, and LAME and the Apple AAC encoder have both had work. The direction of every result below is still sound. Treat the exact gaps as historical.</p>
+    </div>
+  </section>
+
+  <!-- ================= GRAPH B ================= -->
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">Graph B / measurable properties, not perceptual quality</div>
+      <h2>What this machine can honestly measure</h2>
+      <p>Everything below was produced by the scripts beside this page, on a corpus of <span data-fill="corpus_desc"></span>. None of it is a quality score. There is no PEAQ, no ViSQOL and no listening panel here, and turning a signal difference into a quality ranking would be the single most misleading thing this page could do. What follows are properties that are true by construction: what the encoder emitted, how fast, how large, and which part of the spectrum it kept.</p>
+    </div>
+
+    <div class="card pad chart-card">
+      <div class="chart-title">
+        <h3>Effective audio bandwidth: where each codec stops coding</h3>
+        <span class="chart-sub">Measured on the stationary full band probe, where the question has an unambiguous answer.</span>
+      </div>
+      <div class="legend" id="bw-legend"></div>
+      <div class="chart-host" id="bw-chart"></div>
+      <p style="font-size:0.92rem; color:var(--ink-2);" data-fill="bandwidth_note"></p>
+      <div class="banner" style="margin-top:4px;">
+        <p><strong>Bandwidth is not quality.</strong> It is one measurable property and it explains one specific artefact, the dull muffled sound of a low bitrate MP3. It says nothing about how well the bands that survive are coded. Opus keeps the top octave at bitrates where MP3 throws it away, but Opus is also filling that octave with coarsely coded noise energy rather than detail. Read this chart as "what the codec chose to keep", not as a ranking.</p>
+      </div>
+      <details class="tbl">
+        <summary>Table view: effective bandwidth in kHz</summary>
+        <div class="tbl-scroll" id="bw-table"></div>
+      </details>
+    </div>
+
+    <div class="card pad chart-card">
+      <div class="chart-title">
+        <h3>Achieved bitrate against the one you asked for</h3>
+        <span class="chart-sub">Median over the six real clips, file size on disk including container.</span>
+      </div>
+      <div class="legend" id="ach-legend"></div>
+      <div class="chart-host" id="ach-chart"></div>
+      <p style="font-size:0.92rem; color:var(--ink-2);" data-fill="achieved_note"></p>
+      <details class="tbl">
+        <summary>Table view: achieved kbps and the ratio to the request</summary>
+        <div class="tbl-scroll" id="ach-table"></div>
+      </details>
+    </div>
+
+    <div class="card pad chart-card">
+      <div class="chart-title">
+        <h3>The quality dials people actually type</h3>
+        <span class="chart-sub">LAME <code>-V</code> and Vorbis <code>-q</code> are quality handles, not bitrates. This is what they cost on this corpus.</span>
+      </div>
+      <div class="chart-host" id="native-chart"></div>
+      <p class="chart-sub" style="max-width:80ch;">The bar is the median across the corpus, the thin line the spread from the quietest clip to the densest. That spread is the entire point of VBR: the same setting costs very different amounts on different material, which is why a bitrate is a bad way to specify quality.</p>
+      <details class="tbl">
+        <summary>Table view: measured bitrate for each ladder setting</summary>
+        <div class="tbl-scroll" id="native-table"></div>
+      </details>
+    </div>
+
+    <div class="card pad chart-card">
+      <div class="chart-title">
+        <h3>Lossless: compression, and proof it is lossless</h3>
+        <span class="chart-sub">Whole corpus, and a raw PCM hash on both sides of every round trip.</span>
+      </div>
+      <div class="chart-host" id="ll-chart"></div>
+      <p style="font-size:0.92rem; color:var(--ink-2);" data-fill="lossless_note"></p>
+      <details class="tbl">
+        <summary>Table view: size, ratio, speed and bit exactness</summary>
+        <div class="tbl-scroll" id="ll-table"></div>
+      </details>
+    </div>
+
+    <div class="card pad chart-card">
+      <div class="chart-title">
+        <h3>Encode and decode speed</h3>
+        <span class="chart-sub">Single thread, times realtime. Two panels rather than two axes, because the two scales are an order of magnitude apart.</span>
+      </div>
+      <div class="chart-host" id="speed-chart"></div>
+      <p style="font-size:0.92rem; color:var(--ink-2);" data-fill="speed_note"></p>
+      <details class="tbl">
+        <summary>Table view: encode and decode speed</summary>
+        <div class="tbl-scroll" id="speed-table"></div>
+      </details>
+    </div>
+  </section>
+
+  <!-- ================= WHERE A AND B DISAGREE ================= -->
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">The interesting part</div>
+      <h2>Where the measurements and the listeners disagree</h2>
+      <p>Three places where they part company, and one where they reinforce each other. In all three disagreements the listeners are right and the measurement is answering a different question, which is exactly why graph B is not allowed to stand in for graph A.</p>
+    </div>
+    <div class="card pad">
+      <div class="claim">
+        <span class="claim-v no">Measurement misleads</span>
+        <div class="claim-q">Bandwidth says Vorbis beats AAC at low bitrate. Listeners said the opposite.</div>
+        <p data-fill="disagree_bandwidth"></p>
+      </div>
+      <div class="claim">
+        <span class="claim-v part">Measurement is silent</span>
+        <div class="claim-q">Nothing measurable here separates Opus from AAC, yet every test does.</div>
+        <p data-fill="disagree_opus"></p>
+      </div>
+      <div class="claim">
+        <span class="claim-v no">Measurement cannot see the encoder</span>
+        <div class="claim-q">Two MP3 files, same bitrate, same bandwidth, 2.95 grades apart.</div>
+        <p data-fill="disagree_encoder"></p>
+      </div>
+      <div class="claim">
+        <span class="claim-v ok">They agree here</span>
+        <div class="claim-q">MP3 below 64 kbps is not a trade-off, it is a failure.</div>
+        <p data-fill="disagree_agree"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= REACH MATRIX ================= -->
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">The constraint that actually decides</div>
+      <h2>Who can play it</h2>
+      <p>Compression efficiency has a clear ranking and it barely moves. Reach is where the real decision lives, and for audio it is worse than for images, because the awkward decoders are not browsers, they are car stereos, Bluetooth chips, DAB radios and set-top boxes that were built once and never updated.</p>
+    </div>
+    <div class="card pad">
+      <div class="tbl-scroll">
+        <table class="matrix">
+          <thead>
+            <tr>
+              <th>Format</th>
+              <th class="mark">Browsers</th>
+              <th class="mark">iOS</th>
+              <th class="mark">Android</th>
+              <th class="mark">Car head units</th>
+              <th class="mark">Bluetooth</th>
+              <th class="mark">DAB / broadcast</th>
+              <th class="mark">Streaming services</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="name">MP3</td><td class="mark"><span class="mk y">yes</span></td><td class="mark"><span class="mk y">yes</span></td><td class="mark"><span class="mk y">yes</span></td><td class="mark"><span class="mk y">yes</span></td><td class="mark"><span class="mk p">transcoded</span></td><td class="mark"><span class="mk n">no</span></td><td class="mark"><span class="mk p">downloads</span></td></tr>
+            <tr><td class="name">AAC-LC</td><td class="mark"><span class="mk y">yes</span></td><td class="mark"><span class="mk y">yes</span></td><td class="mark"><span class="mk y">yes</span></td><td class="mark"><span class="mk y">yes</span></td><td class="mark"><span class="mk y">native</span></td><td class="mark"><span class="mk p">DAB+ core</span></td><td class="mark"><span class="mk y">yes</span></td></tr>
+            <tr><td class="name">HE-AAC v1/v2</td><td class="mark"><span class="mk y">yes</span></td><td class="mark"><span class="mk y">yes</span></td><td class="mark"><span class="mk y">yes</span></td><td class="mark"><span class="mk p">varies</span></td><td class="mark"><span class="mk p">transcoded</span></td><td class="mark"><span class="mk y">DAB+</span></td><td class="mark"><span class="mk p">low tiers</span></td></tr>
+            <tr><td class="name">Opus</td><td class="mark"><span class="mk y">yes</span></td><td class="mark"><span class="mk p">iOS 18.4+</span></td><td class="mark"><span class="mk y">yes</span></td><td class="mark"><span class="mk n">rarely</span></td><td class="mark"><span class="mk n">no profile</span></td><td class="mark"><span class="mk n">no</span></td><td class="mark"><span class="mk y">YouTube</span></td></tr>
+            <tr><td class="name">Vorbis</td><td class="mark"><span class="mk y">yes</span></td><td class="mark"><span class="mk n">no</span></td><td class="mark"><span class="mk y">yes</span></td><td class="mark"><span class="mk n">rarely</span></td><td class="mark"><span class="mk p">transcoded</span></td><td class="mark"><span class="mk n">no</span></td><td class="mark"><span class="mk p">legacy</span></td></tr>
+            <tr><td class="name">FLAC</td><td class="mark"><span class="mk y">yes</span></td><td class="mark"><span class="mk y">iOS 11+</span></td><td class="mark"><span class="mk y">yes</span></td><td class="mark"><span class="mk p">varies</span></td><td class="mark"><span class="mk p">transcoded</span></td><td class="mark"><span class="mk n">no</span></td><td class="mark"><span class="mk y">lossless tiers</span></td></tr>
+            <tr><td class="name">ALAC</td><td class="mark"><span class="mk p">Safari</span></td><td class="mark"><span class="mk y">yes</span></td><td class="mark"><span class="mk p">varies</span></td><td class="mark"><span class="mk p">varies</span></td><td class="mark"><span class="mk p">transcoded</span></td><td class="mark"><span class="mk n">no</span></td><td class="mark"><span class="mk y">Apple Music</span></td></tr>
+            <tr><td class="name">WAV</td><td class="mark"><span class="mk y">yes</span></td><td class="mark"><span class="mk y">yes</span></td><td class="mark"><span class="mk y">yes</span></td><td class="mark"><span class="mk p">varies</span></td><td class="mark"><span class="mk p">transcoded</span></td><td class="mark"><span class="mk n">no</span></td><td class="mark"><span class="mk n">no</span></td></tr>
+            <tr><td class="name">WMA / WMA Pro</td><td class="mark"><span class="mk n">no</span></td><td class="mark"><span class="mk n">no</span></td><td class="mark"><span class="mk n">no</span></td><td class="mark"><span class="mk p">legacy</span></td><td class="mark"><span class="mk p">transcoded</span></td><td class="mark"><span class="mk n">no</span></td><td class="mark"><span class="mk n">no</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top:16px; font-size:0.86rem; color:var(--ink-3); max-width:80ch;">"Transcoded" in the Bluetooth column is the honest answer for almost everything: A2DP carries SBC, AAC, aptX or LDAC, so whatever format is on disk is decoded and re-encoded before it reaches the headphones. There is no Opus profile in A2DP, which is why Opus over Bluetooth is always a second lossy generation; Bluetooth LE Audio replaced SBC with LC3, which is not Opus either. Two more corrections the table earns: classic DAB carries MPEG-1 Layer II rather than MP3, and DAB+ carries HE-AAC v2, whose core layer is AAC-LC. And Safari was the last browser to the Opus party, only decoding Opus in Ogg and WebM from version 18.4 in March 2025, which is why the iOS cell is marked rather than green.</p>
+    </div>
+  </section>
+
+  <!-- ================= CLAIMS ================= -->
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">Corrections and confirmations</div>
+      <h2>Received wisdom, checked against both graphs</h2>
+    </div>
+    <div class="card pad">
+      <div class="claim">
+        <span class="claim-v no">Right behaviour, wrong codec</span>
+        <div class="claim-q">"Vorbis switches between a speech and a music mode and holds up remarkably well on voice at low bitrate."</div>
+        <p data-fill="claim_vorbis"></p>
+      </div>
+      <div class="claim">
+        <span class="claim-v ok">Correct, and it is the whole story</span>
+        <div class="claim-q">"The MP3 encoder matters enormously. LAME at a good VBR setting is far better than MP3's reputation."</div>
+        <p data-fill="claim_lame"></p>
+      </div>
+      <div class="claim">
+        <span class="claim-v part">Largely right, with one caveat about my own numbers</span>
+        <div class="claim-q">"AAC is very widely supported and very efficient, and it is my favourite."</div>
+        <p data-fill="claim_aac"></p>
+      </div>
+      <div class="claim">
+        <span class="claim-v part">Right shape, too generous a ratio</span>
+        <div class="claim-q">"HE-AAC at 96 kbps is comparable to a 250 kbps MP3."</div>
+        <p data-fill="claim_heaac"></p>
+      </div>
+      <div class="claim">
+        <span class="claim-v part">Half true, and it changed</span>
+        <div class="claim-q">"Spotify uses Ogg Vorbis."</div>
+        <p data-fill="claim_spotify"></p>
+      </div>
+      <div class="claim">
+        <span class="claim-v no">Effectively dead</span>
+        <div class="claim-q">"What about WMA?"</div>
+        <p data-fill="claim_wma"></p>
+      </div>
+      <div class="claim">
+        <span class="claim-v ok">Yes, there is a better one</span>
+        <div class="claim-q">"Correct me if I am wrong and there is another one that is even better."</div>
+        <p data-fill="claim_better"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CHEAT SHEET ================= -->
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">Operational</div>
+      <h2>What to actually type</h2>
+      <p>Bitrates in the comments are what these settings measured on this corpus, not encoder documentation.</p>
+    </div>
+    <div class="card pad" style="display:flex; flex-direction:column; gap:18px;">
+      <div>
+        <h3 style="margin-bottom:8px;">Music, your own pipeline, best result per byte</h3>
+        <pre><span class="c"># Opus. VBR is the default and it is the right default.</span>
+opusenc --bitrate 128 --vbr music.wav music.opus   <span class="c"># measured <span data-fill="opus_128_kbps"></span></span>
+opusenc --bitrate 96  --vbr music.wav music.opus   <span class="c"># measured <span data-fill="opus_96_kbps"></span></span>
+ffmpeg -i music.wav -c:a libopus -b:a 128k -vbr on music.opus
+
+<span class="c"># above roughly 160 kbps stereo Opus is already past the point</span>
+<span class="c"># where any listening test could tell it from the source</span></pre>
+      </div>
+      <div>
+        <h3 style="margin-bottom:8px;">Music, handed to someone else's device</h3>
+        <pre><span class="c"># AAC. Use a good encoder: Apple's qaac or fdk-aac, not ffmpeg's native one.</span>
+qaac --tvbr 91 music.wav -o music.m4a       <span class="c"># true VBR, roughly 192 kbps</span>
+fdkaac -m 4 music.wav -o music.m4a          <span class="c"># the free alternative</span>
+ffmpeg -i music.wav -c:a aac -b:a 192k music.m4a  <span class="c"># the pessimistic case, see below</span>
+
+<span class="c"># MP3 when it truly has to be an MP3</span>
+lame -V2 music.wav music.mp3   <span class="c"># measured <span data-fill="mp3_v2_kbps"></span>, transparent for most listeners</span>
+lame -V0 music.wav music.mp3   <span class="c"># measured <span data-fill="mp3_v0_kbps"></span>, the archival end of MP3</span>
+lame -V5 music.wav music.mp3   <span class="c"># measured <span data-fill="mp3_v5_kbps"></span>, the 2014 test setting</span></pre>
+      </div>
+      <div>
+        <h3 style="margin-bottom:8px;">Speech, podcasts, voice notes</h3>
+        <pre><span class="c"># Opus, mono, and let it drop into its speech coder</span>
+opusenc --bitrate 32 --vbr --downmix-mono talk.wav talk.opus
+ffmpeg -i talk.wav -c:a libopus -b:a 32k -ac 1 -application voip talk.opus
+
+<span class="c"># if the podcast host or the feed demands MP3, go mono first</span>
+lame --abr 64 -m m talk.wav talk.mp3
+
+<span class="c"># what not to do: 64 kbps stereo MP3. Half the bitrate is spent</span>
+<span class="c"># on a stereo image a single voice does not have.</span></pre>
+      </div>
+      <div>
+        <h3 style="margin-bottom:8px;">Archiving and masters</h3>
+        <pre><span class="c"># FLAC, verified bit exact. -8 is the sensible top of the ladder.</span>
+flac -8 --verify master.wav                 <span class="c"># <span data-fill="flac_saving"></span> off WAV on this corpus</span>
+ffmpeg -i master.wav -c:a flac -compression_level 8 master.flac
+
+<span class="c"># -12 exists and buys almost nothing for a lot of time</span>
+<span class="c">#   level 8  <span data-fill="flac8_line"></span></span>
+<span class="c">#   level 12 <span data-fill="flac12_line"></span></span>
+
+<span class="c"># ALAC only if the Apple ecosystem forces it</span>
+ffmpeg -i master.wav -c:a alac master.m4a   <span class="c"># <span data-fill="alac_saving"></span> off WAV, larger than FLAC</span></pre>
+      </div>
+      <div>
+        <h3 style="margin-bottom:8px;">Serving both, with a fallback</h3>
+        <pre>&lt;audio controls&gt;
+  &lt;source src="track.opus" type="audio/ogg; codecs=opus"&gt;
+  &lt;source src="track.m4a"  type="audio/mp4; codecs=mp4a.40.2"&gt;
+  &lt;source src="track.mp3"  type="audio/mpeg"&gt;
+&lt;/audio&gt;</pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= METHOD ================= -->
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">Method</div>
+      <h2>How these numbers were produced, and what is missing</h2>
+    </div>
+    <div class="card pad" style="display:flex; flex-direction:column; gap:14px;">
+      <p style="font-size:0.92rem; color:var(--ink-2);" data-fill="method_corpus"></p>
+      <p style="font-size:0.92rem; color:var(--ink-2);" data-fill="method_bandwidth"></p>
+      <div class="cols quad" style="margin-top:4px;">
+        <div class="col">
+          <h3>No perceptual metric exists here</h3>
+          <p>PEAQ, ViSQOL and POLQA are all absent, and no listening panel was run. That is the reason for the two graph structure. Every quality claim on this page is cited to a published test and marked as such, and nothing in graph B is presented as a quality score.</p>
+        </div>
+        <div class="col">
+          <h3>The AAC numbers are the pessimistic case</h3>
+          <p>Encoding went through ffmpeg's native AAC encoder, which is the weakest of the widely used ones. The 2011 AAC test measured 0.69 of a grade between the best and worst encoders of the same format at the same bitrate, and ffmpeg's native encoder was not even in that field. Exactly the same caveat as stock libjpeg-turbo on the images page.</p>
+        </div>
+        <div class="col">
+          <h3>HE-AAC could not be measured at all</h3>
+          <p>libfdk-aac is not present, so there is no HE-AAC v1 or v2 encoder in this environment. Everything on this page about HE-AAC comes from the cited tests. Its position on the map is a literature position, not a measurement, and it is marked that way in its cell.</p>
+        </div>
+        <div class="col">
+          <h3>WMA was not measured either</h3>
+          <p>ffmpeg ships wmav1 and wmav2 encoders but not WMA Pro, and the two it has are not representative of what Microsoft shipped. Measuring them would have produced a number that looked precise and meant nothing. The 2005 and 2007 tests, where WMA Pro was genuinely competitive, are cited instead.</p>
+        </div>
+        <div class="col">
+          <h3>The corpus is small and short</h3>
+          <p>Six real clips totalling under four minutes. It is enough for bandwidth, bitrate and speed, which are stable properties, and nowhere near enough for a quality judgement, which is one more reason quality is not attempted here.</p>
+        </div>
+        <div class="col">
+          <h3>Speed depends on this machine</h3>
+          <p>Single threaded, one shared container, one CPU, process startup included in the timing. Read the ratios between codecs, not the absolute multiples, and expect any real machine to be faster.</p>
+        </div>
+        <div class="col">
+          <h3>The listening tests are old</h3>
+          <p>The newest public multiformat test is from 2014 and the oldest cited here is from 2005. Every encoder in them has been improved since, Opus most of all. The direction of the results has held up in every later private test, but the exact margins are historical.</p>
+        </div>
+        <div class="col">
+          <h3>xHE-AAC is absent</h3>
+          <p>The newest member of the AAC family, used by Netflix and for adaptive streaming, has no encoder here and no public multiformat listening test to cite. It is genuinely interesting at very low bitrate and this page has nothing honest to say about it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <p>Scripts and raw measurements live in the repository beside this page, so every figure can be regenerated or argued with. The listening-test numbers are transcribed from the public results pages linked above and are marked throughout as cited rather than measured.</p>
+    <p class="mono" style="font-size:0.76rem;">ITU five point impairment scale: 5 imperceptible · 4 perceptible but not annoying · 3 slightly annoying · 2 annoying · 1 very annoying</p>
+  </footer>
+</div>
+
+<div class="tip" id="tip" role="status" aria-live="polite"></div>
+
+<script id="data" type="application/json">@@DATA@@</script>
+<script>
+(function () {
+  "use strict";
+  const D = JSON.parse(document.getElementById("data").textContent);
+  const M = D.measured, T = D.tests, PR = D.prose;
+
+  /* ---------- house number formatting: dot thousands from 5 digits ---------- */
+  function fmtInt(v) {
+    v = Math.round(v);
+    return Math.abs(v) >= 10000 ? v.toLocaleString("nl-NL") : String(v);
+  }
+  function pct(v, digits) { return (v >= 0 ? "" : "-") + Math.abs(v).toFixed(digits === undefined ? 0 : digits) + "%"; }
+  function mb(bytes) { return (bytes / 1048576).toFixed(2) + " MB"; }
+
+  const CODECS = ["OPUS", "AAC", "VORBIS", "MP3"];
+  const LABEL = { OPUS: "Opus", AAC: "AAC-LC", VORBIS: "Vorbis", MP3: "MP3" };
+  /* Categorical slots 1-5 in the validated order, assigned once for the whole
+     page so a codec keeps its colour from the first chart to the last. HE-AAC
+     shares the AAC slot because it is AAC, and is separated by an open marker
+     and by its label, never by hue alone. */
+  const SLOT = { OPUS: "--s1", AAC: "--s2c", VORBIS: "--s3", MP3: "--s4", WMA: "--s5" };
+  const FAM_SLOT = { opus: "--s1", aac: "--s2c", "he-aac": "--s2c", vorbis: "--s3",
+                     mp3: "--s4", wma: "--s5" };
+  const cvar = (n) => getComputedStyle(document.body).getPropertyValue(n).trim();
+
+  /* Axis ticks land on round numbers, not on even divisions of the data range. */
+  function niceTicks(min, max, count) {
+    const raw = (max - min) / count;
+    const mag = Math.pow(10, Math.floor(Math.log10(raw)));
+    const step = [1, 2, 2.5, 5, 10].map((m) => m * mag).find((s) => s >= raw) || 10 * mag;
+    const out = [];
+    for (let v = Math.ceil(min / step) * step; v <= max + step * 1e-9; v += step) {
+      out.push(Math.abs(v) < step * 1e-9 ? 0 : v);
+    }
+    return { ticks: out, step };
+  }
+
+  const NS = "http://www.w3.org/2000/svg";
+  function el(tag, attrs, parent) {
+    const n = document.createElementNS(NS, tag);
+    for (const k in attrs) n.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(n);
+    return n;
+  }
+
+  /* ---------- tooltip ---------- */
+  const tip = document.getElementById("tip");
+  function showTip(html, x, y) {
+    tip.innerHTML = html;
+    tip.dataset.on = "1";
+    const r = tip.getBoundingClientRect();
+    let left = x + 14, top = y - r.height - 12;
+    if (left + r.width > window.innerWidth - 8) left = x - r.width - 14;
+    if (top < 8) top = y + 18;
+    tip.style.left = left + "px";
+    tip.style.top = top + "px";
+  }
+  function hideTip() { tip.dataset.on = "0"; }
+
+  /* ================= graph A: the listening tests ================= */
+  function renderTests(group, hostId, tableId) {
+    const host = document.getElementById(hostId);
+    host.innerHTML = "";
+    const tests = T.tests.filter((t) => t.group === group);
+    const ROW = 27, HEAD = 40;
+    const M_ = { t: 16, r: 64, b: 50, l: 262 };
+    const W = 940;
+    let H = M_.t + M_.b;
+    tests.forEach((t) => { H += HEAD + t.entries.length * ROW + 10; });
+    const iw = W - M_.l - M_.r;
+    const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, width: W, height: H, role: "img",
+                            "aria-label": "Mean opinion scores from published listening tests" }, host);
+    const rule = cvar("--rule"), axis = cvar("--axis"), ink3 = cvar("--ink-3"),
+          ink2 = cvar("--ink-2"), ink = cvar("--ink"), surface = cvar("--surface");
+    const x0 = 1, x1 = 5;
+    const X_ = (v) => M_.l + (v - x0) / (x1 - x0) * iw;
+
+    for (let v = 1; v <= 5; v++) {
+      el("line", { x1: X_(v), x2: X_(v), y1: M_.t, y2: H - M_.b, stroke: v === 1 ? axis : rule,
+                   "stroke-width": 1 }, svg);
+      const t = el("text", { x: X_(v), y: H - M_.b + 20, "text-anchor": "middle", fill: ink3,
+                             "font-size": 11.5, "font-family": "GeistMono, monospace" }, svg);
+      t.textContent = v;
+    }
+    const cap = el("text", { x: M_.l + iw / 2, y: H - 8, "text-anchor": "middle", fill: ink2,
+                             "font-size": 11.5, "font-family": "Tektur, sans-serif",
+                             "letter-spacing": "0.09em" }, svg);
+    cap.textContent = "MEAN OPINION SCORE, 1 VERY ANNOYING TO 5 IMPERCEPTIBLE";
+
+    let y = M_.t;
+    tests.forEach((t) => {
+      const hd = el("text", { x: 0, y: y + 15, fill: ink, "font-size": 13.5,
+                              "font-family": "Tektur, sans-serif" }, svg);
+      hd.textContent = `${t.title} · ${t.year}`;
+      const sub = el("text", { x: 0, y: y + 31, fill: ink3, "font-size": 11,
+                               "font-family": "GeistMono, monospace" }, svg);
+      sub.textContent = `${t.organiser.split(",")[0]} · ${t.samples} samples` +
+        (t.results ? ` · ${t.results} results` : "");
+      el("line", { x1: 0, x2: W - M_.r, y1: y + 38, y2: y + 38, stroke: rule, "stroke-width": 1 }, svg);
+      y += HEAD;
+
+      t.entries.forEach((e) => {
+        const cy = y + ROW / 2;
+        const col = e.family === "anchor" ? ink3 : cvar(FAM_SLOT[e.family]);
+        const lab = el("text", { x: M_.l - 14, y: cy + 4, "text-anchor": "end",
+                                 fill: e.family === "anchor" ? ink3 : ink2, "font-size": 12,
+                                 "font-family": "InstrumentSans, sans-serif" }, svg);
+        lab.textContent = e.label;
+        if (e.ci) {
+          el("line", { x1: X_(e.mean - e.ci), x2: X_(e.mean + e.ci), y1: cy, y2: cy,
+                       stroke: col, "stroke-width": 2, opacity: 0.75 }, svg);
+          [-1, 1].forEach((s) => el("line", {
+            x1: X_(e.mean + s * e.ci), x2: X_(e.mean + s * e.ci), y1: cy - 5, y2: cy + 5,
+            stroke: col, "stroke-width": 2, opacity: 0.75 }, svg));
+        }
+        const open = e.family === "he-aac";
+        el("circle", { cx: X_(e.mean), cy: cy, r: open ? 5 : 5,
+                       fill: open ? surface : col, stroke: open ? col : surface,
+                       "stroke-width": 2 }, svg);
+        // clear of the upper confidence cap, so the number never sits on a mark
+        const val = el("text", { x: X_(e.mean + (e.ci || 0)) + 12, y: cy + 4, fill: ink3,
+                                 "font-size": 11.5, "font-family": "GeistMono, monospace" }, svg);
+        val.textContent = e.mean.toFixed(2);
+        const hit = el("rect", { x: 0, y: y, width: W - M_.r, height: ROW, fill: "transparent" }, svg);
+        hit.style.cursor = "crosshair";
+        hit.addEventListener("pointerenter", (ev) => showTip(
+          `<b>${t.title} ${t.year}</b><br>${e.label}<br>score ${e.mean.toFixed(2)}` +
+          (e.ci ? ` &plusmn;${e.ci.toFixed(3)}` : " (no interval published)") +
+          (e.kbps ? `<br>actual ${e.kbps} kbps` : "") +
+          (e.note ? `<br>${e.note}` : ""), ev.clientX, ev.clientY));
+        hit.addEventListener("pointerleave", hideTip);
+        y += ROW;
+      });
+      y += 10;
+    });
+
+    let html = '<table><thead><tr><th>Test</th><th>Year</th><th>Encoder</th>' +
+      '<th class="num">Score</th><th class="num">95% CI</th><th class="num">kbps</th></tr></thead><tbody>';
+    tests.forEach((t) => {
+      const best = Math.max(...t.entries.filter((e) => e.family !== "anchor").map((e) => e.mean));
+      t.entries.forEach((e) => {
+        html += `<tr><td>${t.title}</td><td class="num">${t.year}</td>` +
+          `<td class="name">${e.label}</td>` +
+          `<td class="num${e.mean === best ? " win" : ""}">${e.mean.toFixed(2)}</td>` +
+          `<td class="num">${e.ci ? "±" + e.ci.toFixed(3) : "not published"}</td>` +
+          `<td class="num">${e.kbps || ""}</td></tr>`;
+      });
+    });
+    document.getElementById(tableId).innerHTML = html + "</tbody></table>";
+  }
+
+  function buildTestLegend() {
+    const lg = document.getElementById("ta-legend");
+    lg.innerHTML = "";
+    const items = [["Opus", "--s1", 0], ["AAC-LC", "--s2c", 0], ["HE-AAC", "--s2c", 1],
+                   ["Vorbis", "--s3", 0], ["MP3", "--s4", 0], ["WMA Pro", "--s5", 0]];
+    items.forEach(([name, slot, open]) => {
+      const s = document.createElement("span");
+      s.className = "legend-item";
+      s.innerHTML = open
+        ? `<span class="legend-dot" style="background:transparent;border:2px solid var(${slot})"></span>${name}`
+        : `<span class="legend-dot" style="background:var(${slot})"></span>${name}`;
+      lg.appendChild(s);
+    });
+    const a = document.createElement("span");
+    a.className = "legend-item";
+    a.innerHTML = `<span class="legend-dot" style="background:var(--ink-3)"></span>anchor, not a contender`;
+    lg.appendChild(a);
+  }
+
+  /* ================= graph A3: the speech subset ================= */
+  function renderVoice() {
+    const host = document.getElementById("voice-chart");
+    host.innerHTML = "";
+    const V = T.voice_2014;
+    const KEY = { Opus: "OPUS", AAC: "AAC", Vorbis: "VORBIS", MP3: "MP3" };
+    const rows = Object.keys(V.means).map((k) => ({ k, v: V.means[k] }))
+      .sort((a, b) => b.v - a.v);
+    const W = 940, rowH = 46, M_ = { t: 8, r: 64, b: 32, l: 120 };
+    const H = M_.t + rows.length * rowH + M_.b;
+    const iw = W - M_.l - M_.r;
+    const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, width: W, height: H, role: "img",
+                            "aria-label": "Mean opinion score on the five voice tracks" }, host);
+    const rule = cvar("--rule"), axis = cvar("--axis"), ink3 = cvar("--ink-3"), ink = cvar("--ink");
+    const X_ = (v) => M_.l + (v - 1) / 4 * iw;
+    for (let v = 1; v <= 5; v++) {
+      el("line", { x1: X_(v), x2: X_(v), y1: M_.t, y2: M_.t + rows.length * rowH,
+                   stroke: v === 1 ? axis : rule, "stroke-width": 1 }, svg);
+      const t = el("text", { x: X_(v), y: H - 12, "text-anchor": "middle", fill: ink3,
+                             "font-size": 11.5, "font-family": "GeistMono, monospace" }, svg);
+      t.textContent = v;
+    }
+    // Dots rather than bars: the impairment scale starts at 1, not at 0, so a
+    // bar drawn from the axis would exaggerate every difference on it.
+    rows.forEach((r, i) => {
+      const y = M_.t + i * rowH + 11, cy = y + 11;
+      const col = cvar(SLOT[KEY[r.k]]);
+      el("line", { x1: M_.l, x2: X_(r.v), y1: cy, y2: cy, stroke: col, "stroke-width": 1.5,
+                   opacity: 0.32 }, svg);
+      el("circle", { cx: X_(r.v), cy: cy, r: 6, fill: col, stroke: cvar("--surface"),
+                     "stroke-width": 2 }, svg);
+      const lab = el("text", { x: M_.l - 12, y: cy + 5, "text-anchor": "end", fill: cvar("--ink-2"),
+                               "font-size": 13, "font-family": "InstrumentSans, sans-serif" }, svg);
+      lab.textContent = LABEL[KEY[r.k]];
+      const val = el("text", { x: X_(r.v) + 14, y: cy + 5, fill: ink, "font-size": 13,
+                               "font-family": "GeistMono, monospace" }, svg);
+      val.textContent = r.v.toFixed(2);
+      const hit = el("rect", { x: 0, y: y - 10, width: W, height: rowH, fill: "transparent" }, svg);
+      hit.addEventListener("pointerenter", (e) => showTip(
+        `<b>${LABEL[KEY[r.k]]}</b> on ${V.n_tracks} voice tracks<br>mean ${r.v.toFixed(2)} of 5` +
+        `<br>2014 public multiformat test`, e.clientX, e.clientY));
+      hit.addEventListener("pointerleave", hideTip);
+    });
+
+    const names = Object.keys(V.per_track);
+    let html = '<table><thead><tr><th>Track</th>' +
+      Object.keys(V.means).map((k) => `<th class="num">${LABEL[KEY[k]]}</th>`).join("") +
+      "</tr></thead><tbody>";
+    names.forEach((n) => {
+      const row = V.per_track[n];
+      const best = Math.max(...Object.values(row));
+      html += `<tr><td class="name">${n}</td>` + Object.keys(V.means).map((k) =>
+        `<td class="num${row[k] === best ? " win" : ""}">${row[k].toFixed(2)}</td>`).join("") + "</tr>";
+    });
+    html += `<tr><td><strong>mean</strong></td>` + Object.keys(V.means).map((k) =>
+      `<td class="num"><strong>${V.means[k].toFixed(2)}</strong></td>`).join("") + "</tr>";
+    document.getElementById("voice-table").innerHTML = html + "</tbody></table>";
+  }
+
+  /* ================= graph B1: effective bandwidth =================
+     Plotted from the stationary probe only. The same measurement on real
+     music answers for some clips and not others, because a recording with no
+     energy above 15 kHz has nothing up there for a codec to discard, so a
+     line through those points would be an artefact of the material. Both
+     readings, and how many clips each rests on, are in the table twin. */
+  function renderBandwidth() {
+    const host = document.getElementById("bw-chart");
+    host.innerHTML = "";
+    const W = 940, H = 400, M_ = { t: 16, r: 92, b: 48, l: 56 };
+    const iw = W - M_.l - M_.r, ih = H - M_.t - M_.b;
+    const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, width: W, height: H, role: "img",
+                            "aria-label": "Effective audio bandwidth against requested bitrate" }, host);
+    const rule = cvar("--rule"), axis = cvar("--axis"), ink3 = cvar("--ink-3"), ink2 = cvar("--ink-2");
+    const b0 = 30, b1 = 340, y0 = 0, y1 = 23;
+    const X_ = (v) => M_.l + (Math.log(v) - Math.log(b0)) / (Math.log(b1) - Math.log(b0)) * iw;
+    const Y_ = (v) => M_.t + ih - (v - y0) / (y1 - y0) * ih;
+    // Where no cut was found inside the source's own band the point is parked
+    // on this line, above every measured cutoff so the two never collide.
+    const FULL = 22.4;
+
+    [0, 4, 8, 12, 16, 20].forEach((v) => {
+      el("line", { x1: M_.l, x2: M_.l + iw, y1: Y_(v), y2: Y_(v), stroke: rule, "stroke-width": 1 }, svg);
+      const t = el("text", { x: M_.l - 10, y: Y_(v) + 4, "text-anchor": "end", fill: ink3,
+                             "font-size": 11.5, "font-family": "GeistMono, monospace" }, svg);
+      t.textContent = v;
+    });
+    M.targets.forEach((b) => {
+      el("line", { x1: X_(b), x2: X_(b), y1: M_.t, y2: M_.t + ih, stroke: rule, "stroke-width": 1 }, svg);
+      const t = el("text", { x: X_(b), y: M_.t + ih + 20, "text-anchor": "middle", fill: ink3,
+                             "font-size": 11, "font-family": "GeistMono, monospace" }, svg);
+      t.textContent = b;
+    });
+    el("line", { x1: M_.l, x2: M_.l + iw, y1: M_.t + ih, y2: M_.t + ih, stroke: axis, "stroke-width": 1 }, svg);
+    el("line", { x1: M_.l, x2: M_.l + iw, y1: Y_(FULL), y2: Y_(FULL), stroke: axis,
+                 "stroke-width": 1, opacity: 0.6 }, svg);
+    const ft = el("text", { x: M_.l + 8, y: Y_(FULL) + 15, fill: ink3, "font-size": 11,
+                            "font-family": "GeistMono, monospace" }, svg);
+    ft.textContent = "nothing discarded inside the source band";
+
+    let t = el("text", { x: M_.l + iw / 2, y: H - 8, "text-anchor": "middle", fill: ink2,
+                         "font-size": 12, "font-family": "Tektur, sans-serif",
+                         "letter-spacing": "0.09em" }, svg);
+    t.textContent = "REQUESTED BITRATE, KBPS (LOG)";
+    t = el("text", { x: -(M_.t + ih / 2), y: 16, "text-anchor": "middle", fill: ink2, "font-size": 12,
+                     "font-family": "Tektur, sans-serif", "letter-spacing": "0.09em",
+                     transform: "rotate(-90)" }, svg);
+    t.textContent = "KHZ KEPT";
+
+    const ends = [];
+    CODECS.forEach((c) => {
+      const col = cvar(SLOT[c]);
+      const pts = [];
+      M.targets.forEach((b) => {
+        const d = M.bandwidth[c] && M.bandwidth[c][b];
+        if (!d) return;
+        const hz = d.probe;
+        pts.push({ b, khz: hz === null || hz === undefined ? FULL : hz / 1000,
+                   full: hz === null || hz === undefined });
+      });
+      if (!pts.length) return;
+      const d = pts.map((p, i) => (i ? "L" : "M") + X_(p.b).toFixed(1) + " " + Y_(p.khz).toFixed(1)).join(" ");
+      el("path", { d, fill: "none", stroke: col, "stroke-width": 2, "stroke-linejoin": "round",
+                   "stroke-linecap": "round" }, svg);
+      pts.forEach((p) => {
+        el("circle", { cx: X_(p.b), cy: Y_(p.khz), r: 4, fill: p.full ? cvar("--surface") : col,
+                       stroke: col, "stroke-width": 2 }, svg);
+        const h = el("circle", { cx: X_(p.b), cy: Y_(p.khz), r: 14, fill: "transparent" }, svg);
+        h.style.cursor = "crosshair";
+        h.addEventListener("pointerenter", (ev) => showTip(
+          `<b>${LABEL[c]}</b> at ${p.b} kbps<br>` +
+          (p.full ? "no cut inside the source band" : `keeps to ${p.khz.toFixed(1)} kHz`) +
+          `<br>stationary full band probe`, ev.clientX, ev.clientY));
+        h.addEventListener("pointerleave", hideTip);
+      });
+      const last = pts[pts.length - 1];
+      ends.push({ c, x: X_(last.b), y: Y_(last.khz), ly: Y_(last.khz), col });
+    });
+    ends.sort((a, b) => a.ly - b.ly);
+    for (let i = 1; i < ends.length; i++) {
+      if (ends[i].ly - ends[i - 1].ly < 17) ends[i].ly = ends[i - 1].ly + 17;
+    }
+    const over = ends.length ? ends[ends.length - 1].ly - (M_.t + ih) : 0;
+    if (over > 0) ends.forEach((e) => { e.ly -= over; });
+    ends.forEach((e) => {
+      const lx = M_.l + iw + 20;
+      el("path", { d: `M${e.x + 6} ${e.y} L${lx - 6} ${e.ly}`, fill: "none", stroke: e.col,
+                   "stroke-width": 1, opacity: 0.55 }, svg);
+      const lab = el("text", { x: lx, y: e.ly + 4, fill: ink2, "font-size": 12.5,
+                               "font-family": "InstrumentSans, sans-serif" }, svg);
+      lab.textContent = LABEL[e.c];
+    });
+
+    const lg = document.getElementById("bw-legend");
+    lg.innerHTML = "";
+    CODECS.forEach((c) => {
+      const s = document.createElement("span");
+      s.className = "legend-item";
+      s.innerHTML = `<span class="legend-key" style="background:var(${SLOT[c]})"></span>${LABEL[c]}`;
+      lg.appendChild(s);
+    });
+
+    let html = '<table><thead><tr><th>Codec</th><th>Signal</th>' +
+      M.targets.map((b) => `<th class="num">${b}k</th>`).join("") + "</tr></thead><tbody>";
+    CODECS.forEach((c) => {
+      [["probe", "probe, kHz"], ["music_median", "music median, kHz"]].forEach(([sig, name]) => {
+        html += `<tr><td class="name">${LABEL[c]}</td><td>${name}</td>` +
+          M.targets.map((b) => {
+            const d = M.bandwidth[c] && M.bandwidth[c][b];
+            if (!d) return '<td class="num">refused</td>';
+            const v = d[sig];
+            if (v === null || v === undefined) {
+              return `<td class="num">${sig === "probe" ? "no cut" :
+                "0 of " + d.music_of}</td>`;
+            }
+            return `<td class="num">${(v / 1000).toFixed(1)}` +
+              (sig === "music_median" ? ` <span style="color:var(--ink-3)">n${d.music_n}</span>` : "") +
+              "</td>";
+          }).join("") + "</tr>";
+      });
+    });
+    document.getElementById("bw-table").innerHTML = html + "</tbody></table>" +
+      '<p class="chart-sub" style="margin-top:10px;max-width:78ch;">"no cut" means nothing was ' +
+      'discarded inside the band the source itself occupies. On the music rows, n is how many of ' +
+      'the music clips the question could be answered for: the rest carry too little high ' +
+      'frequency energy for a codec lowpass to be distinguishable from the recording.</p>';
+  }
+
+  /* ================= graph B2: achieved against requested ================= */
+  function renderAchieved() {
+    const host = document.getElementById("ach-chart");
+    host.innerHTML = "";
+    const W = 940, H = 380, M_ = { t: 16, r: 92, b: 48, l: 56 };
+    const iw = W - M_.l - M_.r, ih = H - M_.t - M_.b;
+    const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, width: W, height: H, role: "img",
+                            "aria-label": "Achieved bitrate as a percentage of the requested bitrate" }, host);
+    const rule = cvar("--rule"), axis = cvar("--axis"), ink3 = cvar("--ink-3"), ink2 = cvar("--ink-2");
+    const b0 = 30, b1 = 340;
+    const all = [];
+    CODECS.forEach((c) => M.targets.forEach((b) => {
+      const a = M.achieved[c] && M.achieved[c][b];
+      if (a) all.push(a.ratio * 100);
+    }));
+    const lo = Math.min(90, Math.floor(Math.min(...all) / 5) * 5);
+    const hi = Math.max(115, Math.ceil(Math.max(...all) / 5) * 5);
+    const X_ = (v) => M_.l + (Math.log(v) - Math.log(b0)) / (Math.log(b1) - Math.log(b0)) * iw;
+    const Y_ = (v) => M_.t + ih - (v - lo) / (hi - lo) * ih;
+
+    niceTicks(lo, hi, 5).ticks.forEach((v) => {
+      el("line", { x1: M_.l, x2: M_.l + iw, y1: Y_(v), y2: Y_(v),
+                   stroke: v === 100 ? axis : rule, "stroke-width": 1 }, svg);
+      const t = el("text", { x: M_.l - 10, y: Y_(v) + 4, "text-anchor": "end", fill: ink3,
+                             "font-size": 11.5, "font-family": "GeistMono, monospace" }, svg);
+      t.textContent = v + "%";
+    });
+    const rt = el("text", { x: M_.l + 8, y: Y_(100) - 7, fill: ink3, "font-size": 11,
+                            "font-family": "GeistMono, monospace" }, svg);
+    rt.textContent = "exactly what was asked for";
+    M.targets.forEach((b) => {
+      el("line", { x1: X_(b), x2: X_(b), y1: M_.t, y2: M_.t + ih, stroke: rule, "stroke-width": 1 }, svg);
+      const t = el("text", { x: X_(b), y: M_.t + ih + 20, "text-anchor": "middle", fill: ink3,
+                             "font-size": 11, "font-family": "GeistMono, monospace" }, svg);
+      t.textContent = b;
+    });
+    let t = el("text", { x: M_.l + iw / 2, y: H - 8, "text-anchor": "middle", fill: ink2,
+                         "font-size": 12, "font-family": "Tektur, sans-serif",
+                         "letter-spacing": "0.09em" }, svg);
+    t.textContent = "REQUESTED BITRATE, KBPS (LOG)";
+    t = el("text", { x: -(M_.t + ih / 2), y: 16, "text-anchor": "middle", fill: ink2, "font-size": 12,
+                     "font-family": "Tektur, sans-serif", "letter-spacing": "0.09em",
+                     transform: "rotate(-90)" }, svg);
+    t.textContent = "ACHIEVED / REQUESTED";
+
+    const ends = [];
+    CODECS.forEach((c) => {
+      const col = cvar(SLOT[c]);
+      const pts = M.targets.filter((b) => M.achieved[c] && M.achieved[c][b])
+        .map((b) => ({ b, a: M.achieved[c][b] }));
+      if (!pts.length) return;
+      const d = pts.map((p, i) => (i ? "L" : "M") + X_(p.b).toFixed(1) + " " +
+        Y_(p.a.ratio * 100).toFixed(1)).join(" ");
+      el("path", { d, fill: "none", stroke: col, "stroke-width": 2, "stroke-linejoin": "round",
+                   "stroke-linecap": "round" }, svg);
+      pts.forEach((p) => {
+        el("circle", { cx: X_(p.b), cy: Y_(p.a.ratio * 100), r: 4, fill: col,
+                       stroke: cvar("--surface"), "stroke-width": 2 }, svg);
+        const h = el("circle", { cx: X_(p.b), cy: Y_(p.a.ratio * 100), r: 14, fill: "transparent" }, svg);
+        h.style.cursor = "crosshair";
+        h.addEventListener("pointerenter", (ev) => showTip(
+          `<b>${LABEL[c]}</b> asked for ${p.b} kbps<br>got ${p.a.median} kbps ` +
+          `(${(p.a.ratio * 100).toFixed(0)}%)<br>range ${p.a.lo} to ${p.a.hi} across the corpus`,
+          ev.clientX, ev.clientY));
+        h.addEventListener("pointerleave", hideTip);
+      });
+      const last = pts[pts.length - 1];
+      ends.push({ c, x: X_(last.b), y: Y_(last.a.ratio * 100), ly: Y_(last.a.ratio * 100), col });
+    });
+    ends.sort((a, b) => a.ly - b.ly);
+    for (let i = 1; i < ends.length; i++) {
+      if (ends[i].ly - ends[i - 1].ly < 17) ends[i].ly = ends[i - 1].ly + 17;
+    }
+    ends.forEach((e) => {
+      const lx = M_.l + iw + 20;
+      el("path", { d: `M${e.x + 6} ${e.y} L${lx - 6} ${e.ly}`, fill: "none", stroke: e.col,
+                   "stroke-width": 1, opacity: 0.55 }, svg);
+      const lab = el("text", { x: lx, y: e.ly + 4, fill: ink2, "font-size": 12.5,
+                               "font-family": "InstrumentSans, sans-serif" }, svg);
+      lab.textContent = LABEL[e.c];
+    });
+
+    const lg = document.getElementById("ach-legend");
+    lg.innerHTML = "";
+    CODECS.forEach((c) => {
+      const s = document.createElement("span");
+      s.className = "legend-item";
+      s.innerHTML = `<span class="legend-key" style="background:var(${SLOT[c]})"></span>${LABEL[c]}`;
+      lg.appendChild(s);
+    });
+
+    let html = '<table><thead><tr><th>Codec</th>' +
+      M.targets.map((b) => `<th class="num">${b}k</th>`).join("") + "</tr></thead><tbody>";
+    CODECS.forEach((c) => {
+      html += `<tr><td class="name">${LABEL[c]}</td>` + M.targets.map((b) => {
+        const a = M.achieved[c] && M.achieved[c][b];
+        return a ? `<td class="num">${a.median.toFixed(1)}</td>` : '<td class="num">refused</td>';
+      }).join("") + "</tr>";
+    });
+    document.getElementById("ach-table").innerHTML = html + "</tbody></table>";
+  }
+
+  /* ================= graph B3: the native quality ladders ================= */
+  function renderNative() {
+    const host = document.getElementById("native-chart");
+    host.innerHTML = "";
+    const groups = [["MP3", M.native.MP3], ["VORBIS", M.native.VORBIS]].filter((g) => g[1]);
+    const rows = [];
+    groups.forEach(([c, g]) => g.points.forEach((p) =>
+      rows.push({ c, label: `${LABEL[c]} -${g.kind}${p.setting}`, p })));
+    const W = 940, rowH = 30, M_ = { t: 10, r: 120, b: 34, l: 132 };
+    const H = M_.t + rows.length * rowH + M_.b;
+    const iw = W - M_.l - M_.r;
+    const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, width: W, height: H, role: "img",
+                            "aria-label": "Measured bitrate of each native quality setting" }, host);
+    const rule = cvar("--rule"), axis = cvar("--axis"), ink3 = cvar("--ink-3"), ink = cvar("--ink");
+    const max = Math.max(...rows.map((r) => r.p.hi)) * 1.04;
+    const X_ = (v) => M_.l + v / max * iw;
+    niceTicks(0, max, 6).ticks.forEach((v) => {
+      el("line", { x1: X_(v), x2: X_(v), y1: M_.t, y2: M_.t + rows.length * rowH,
+                   stroke: v === 0 ? axis : rule, "stroke-width": 1 }, svg);
+      const t = el("text", { x: X_(v), y: H - 12, "text-anchor": "middle", fill: ink3,
+                             "font-size": 11, "font-family": "GeistMono, monospace" }, svg);
+      t.textContent = v;
+    });
+    const cap = el("text", { x: M_.l + iw / 2, y: H - 1, "text-anchor": "middle", fill: ink3,
+                             "font-size": 11, "font-family": "GeistMono, monospace" }, svg);
+    cap.textContent = "kbps measured on this corpus";
+    rows.forEach((r, i) => {
+      const y = M_.t + i * rowH + 5, bh = 16;
+      const w = Math.max(3, X_(r.p.kbps) - M_.l);
+      el("path", { d: `M${M_.l} ${y} H${M_.l + w - 4} a4 4 0 0 1 4 4 v${bh - 8} a4 4 0 0 1 -4 4 H${M_.l} Z`,
+                   fill: cvar(SLOT[r.c]) }, svg);
+      el("line", { x1: X_(r.p.lo), x2: X_(r.p.hi), y1: y + bh / 2, y2: y + bh / 2,
+                   stroke: cvar("--ink-3"), "stroke-width": 1.5, opacity: 0.8 }, svg);
+      [r.p.lo, r.p.hi].forEach((v) => el("line", { x1: X_(v), x2: X_(v), y1: y + 1, y2: y + bh - 1,
+                                                   stroke: cvar("--ink-3"), "stroke-width": 1.5,
+                                                   opacity: 0.8 }, svg));
+      const lab = el("text", { x: M_.l - 12, y: y + 13, "text-anchor": "end", fill: cvar("--ink-2"),
+                               "font-size": 12, "font-family": "GeistMono, monospace" }, svg);
+      lab.textContent = r.label;
+      const val = el("text", { x: X_(r.p.hi) + 10, y: y + 13, fill: ink, "font-size": 11.5,
+                               "font-family": "GeistMono, monospace" }, svg);
+      val.textContent = r.p.kbps.toFixed(0) + " kbps";
+      const hit = el("rect", { x: 0, y: y - 5, width: W, height: rowH, fill: "transparent" }, svg);
+      hit.addEventListener("pointerenter", (e) => showTip(
+        `<b>${r.label}</b><br>median ${r.p.kbps} kbps<br>${r.p.lo} to ${r.p.hi} across the corpus` +
+        (r.p.bandwidth ? `<br>keeps to ${(r.p.bandwidth / 1000).toFixed(1)} kHz` : "<br>no cut found"),
+        e.clientX, e.clientY));
+      hit.addEventListener("pointerleave", hideTip);
+    });
+
+    let html = '<table><thead><tr><th>Setting</th><th class="num">Median kbps</th>' +
+      '<th class="num">Lowest</th><th class="num">Highest</th><th class="num">Bandwidth kHz</th></tr></thead><tbody>';
+    rows.forEach((r) => {
+      html += `<tr><td class="name">${r.label}</td><td class="num">${r.p.kbps.toFixed(1)}</td>` +
+        `<td class="num">${r.p.lo}</td><td class="num">${r.p.hi}</td>` +
+        `<td class="num">${r.p.bandwidth ? (r.p.bandwidth / 1000).toFixed(1) : "full"}</td></tr>`;
+    });
+    document.getElementById("native-table").innerHTML = html + "</tbody></table>";
+  }
+
+  /* ================= graph B4: lossless ================= */
+  function renderLossless() {
+    const host = document.getElementById("ll-chart");
+    host.innerHTML = "";
+    const keys = Object.keys(M.lossless);
+    const rows = [{ name: "WAV, 16-bit 48 kHz", bytes: M.corpus.wav_bytes, base: true }]
+      .concat(keys.map((k) => ({ name: k.replace("FLAC-", "FLAC level "), bytes: M.lossless[k].bytes,
+                                 exact: M.lossless[k].bit_exact, k })));
+    const W = 940, rowH = 40, M_ = { t: 8, r: 200, b: 32, l: 148 };
+    const H = M_.t + rows.length * rowH + M_.b;
+    const iw = W - M_.l - M_.r;
+    const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, width: W, height: H, role: "img",
+                            "aria-label": "Lossless size for the whole corpus" }, host);
+    const rule = cvar("--rule"), axis = cvar("--axis"), ink3 = cvar("--ink-3"), ink = cvar("--ink");
+    const max = M.corpus.wav_bytes * 1.02;
+    const X_ = (v) => M_.l + v / max * iw;
+    [0, 10, 20, 30, 40].map((v) => v * 1048576).filter((v) => v <= max).forEach((v) => {
+      el("line", { x1: X_(v), x2: X_(v), y1: M_.t, y2: M_.t + rows.length * rowH,
+                   stroke: v === 0 ? axis : rule, "stroke-width": 1 }, svg);
+      const t = el("text", { x: X_(v), y: H - 12, "text-anchor": "middle", fill: ink3,
+                             "font-size": 11, "font-family": "GeistMono, monospace" }, svg);
+      t.textContent = (v / 1048576).toFixed(0) + " MB";
+    });
+    rows.forEach((r, i) => {
+      const y = M_.t + i * rowH + 9, bh = 22;
+      const w = Math.max(3, X_(r.bytes) - M_.l);
+      el("path", { d: `M${M_.l} ${y} H${M_.l + w - 4} a4 4 0 0 1 4 4 v${bh - 8} a4 4 0 0 1 -4 4 H${M_.l} Z`,
+                   fill: r.base ? cvar("--axis") : (r.k === "ALAC" ? cvar("--s2c") : cvar("--s1")) }, svg);
+      const lab = el("text", { x: M_.l - 12, y: y + 16, "text-anchor": "end", fill: cvar("--ink-2"),
+                               "font-size": 13, "font-family": "InstrumentSans, sans-serif" }, svg);
+      lab.textContent = r.name;
+      const val = el("text", { x: M_.l + w + 10, y: y + 16, fill: ink, "font-size": 12.5,
+                               "font-family": "GeistMono, monospace" }, svg);
+      val.textContent = mb(r.bytes) + (r.base ? "  ·  baseline"
+        : "  ·  " + pct(100 * (1 - r.bytes / M.corpus.wav_bytes), 1) + " off  ·  " +
+          (r.exact ? "bit exact" : "NOT EXACT"));
+      const hit = el("rect", { x: 0, y: y - 9, width: W, height: rowH, fill: "transparent" }, svg);
+      hit.addEventListener("pointerenter", (e) => showTip(
+        `<b>${r.name}</b><br>${fmtInt(r.bytes)} bytes` +
+        (r.base ? "" : `<br>${M.lossless[r.k].kbps} kbps<br>encode ${M.lossless[r.k].encode_x}x, ` +
+          `decode ${M.lossless[r.k].decode_x}x realtime<br>` +
+          `${M.lossless[r.k].n_exact} of ${M.lossless[r.k].n} clips bit exact`),
+        e.clientX, e.clientY));
+      hit.addEventListener("pointerleave", hideTip);
+    });
+
+    const lgd = document.createElement("div");
+    lgd.className = "legend";
+    lgd.innerHTML =
+      `<span class="legend-item"><span class="legend-key" style="background:var(--axis)"></span>uncompressed baseline</span>` +
+      `<span class="legend-item"><span class="legend-key" style="background:var(--s1)"></span>FLAC</span>` +
+      `<span class="legend-item"><span class="legend-key" style="background:var(--s2c)"></span>ALAC</span>`;
+    host.parentNode.insertBefore(lgd, host);
+
+    let html = '<table><thead><tr><th>Encoding</th><th class="num">Bytes</th><th class="num">kbps</th>' +
+      '<th class="num">Off WAV</th><th class="num">Encode</th><th class="num">Decode</th>' +
+      '<th>Round trip</th></tr></thead><tbody>';
+    html += `<tr><td class="name">WAV</td><td class="num">${fmtInt(M.corpus.wav_bytes)}</td>` +
+      `<td class="num">${M.corpus.wav_kbps}</td><td class="num">baseline</td>` +
+      `<td class="num">n/a</td><td class="num">n/a</td><td>identity</td></tr>`;
+    const best = Math.min(...keys.map((k) => M.lossless[k].bytes));
+    keys.forEach((k) => {
+      const v = M.lossless[k];
+      html += `<tr><td class="name">${k}</td><td class="num${v.bytes === best ? " win" : ""}">${fmtInt(v.bytes)}</td>` +
+        `<td class="num">${v.kbps}</td><td class="num">${pct(v.saving, 1)}</td>` +
+        `<td class="num">${v.encode_x}x</td><td class="num">${v.decode_x}x</td>` +
+        `<td>${v.bit_exact ? "bit exact, " + v.n_exact + " of " + v.n : "not exact"}</td></tr>`;
+    });
+    document.getElementById("ll-table").innerHTML = html + "</tbody></table>";
+  }
+
+  /* ================= graph B5: speed, two panels ================= */
+  function renderSpeed() {
+    const host = document.getElementById("speed-chart");
+    host.innerHTML = "";
+    const items = CODECS.map((c) => ({ name: LABEL[c], col: cvar(SLOT[c]),
+                                       enc: M.speed[c].encode_x, dec: M.speed[c].decode_x }))
+      .concat([{ name: "FLAC level 8", col: cvar("--s1"), enc: M.lossless["FLAC-8"].encode_x,
+                 dec: M.lossless["FLAC-8"].decode_x, dim: true },
+               { name: "ALAC", col: cvar("--s2c"), enc: M.lossless.ALAC.encode_x,
+                 dec: M.lossless.ALAC.decode_x, dim: true }]);
+    const W = 940, rowH = 34, gap = 56;
+    const pw = (W - gap) / 2, M_ = { t: 26, r: 62, b: 30, l: 108 };
+    const H = M_.t + items.length * rowH + M_.b;
+    const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, width: W, height: H, role: "img",
+                            "aria-label": "Encode and decode speed" }, host);
+    const rule = cvar("--rule"), axis = cvar("--axis"), ink3 = cvar("--ink-3"),
+          ink2 = cvar("--ink-2"), ink = cvar("--ink");
+
+    function panel(ox, key, title) {
+      const iw = pw - M_.l - M_.r;
+      const max = Math.max(...items.map((r) => r[key])) * 1.06;
+      const X_ = (v) => ox + M_.l + v / max * iw;
+      const tt = el("text", { x: ox + M_.l - 96 + 96, y: 14, fill: ink2, "font-size": 12,
+                              "font-family": "Tektur, sans-serif", "letter-spacing": "0.09em" }, svg);
+      tt.setAttribute("x", ox + 2);
+      tt.textContent = title;
+      niceTicks(0, max, 4).ticks.forEach((v) => {
+        el("line", { x1: X_(v), x2: X_(v), y1: M_.t, y2: M_.t + items.length * rowH,
+                     stroke: v === 0 ? axis : rule, "stroke-width": 1 }, svg);
+        const t = el("text", { x: X_(v), y: H - 12, "text-anchor": "middle", fill: ink3,
+                               "font-size": 11, "font-family": "GeistMono, monospace" }, svg);
+        t.textContent = fmtInt(v) + "x";
+      });
+      items.forEach((r, i) => {
+        const y = M_.t + i * rowH + 7, bh = 18;
+        const w = Math.max(3, X_(r[key]) - ox - M_.l);
+        el("path", { d: `M${ox + M_.l} ${y} H${ox + M_.l + w - 4} a4 4 0 0 1 4 4 v${bh - 8} a4 4 0 0 1 -4 4 H${ox + M_.l} Z`,
+                     fill: r.col, opacity: r.dim ? 0.55 : 1 }, svg);
+        const lab = el("text", { x: ox + M_.l - 12, y: y + 14, "text-anchor": "end", fill: ink2,
+                                 "font-size": 12, "font-family": "InstrumentSans, sans-serif" }, svg);
+        lab.textContent = r.name;
+        const val = el("text", { x: ox + M_.l + w + 8, y: y + 14, fill: ink, "font-size": 11.5,
+                                 "font-family": "GeistMono, monospace" }, svg);
+        val.textContent = fmtInt(r[key]) + "x";
+        const hit = el("rect", { x: ox, y: y - 7, width: pw, height: rowH, fill: "transparent" }, svg);
+        hit.addEventListener("pointerenter", (e) => showTip(
+          `<b>${r.name}</b><br>${title.toLowerCase()} ${fmtInt(r[key])} times realtime<br>single thread`,
+          e.clientX, e.clientY));
+        hit.addEventListener("pointerleave", hideTip);
+      });
+    }
+    panel(0, "enc", "ENCODE");
+    panel(pw + gap, "dec", "DECODE");
+
+    let html = '<table><thead><tr><th>Codec</th><th class="num">Encode</th><th class="num">Decode</th></tr></thead><tbody>';
+    items.forEach((r) => {
+      html += `<tr><td class="name">${r.name}</td><td class="num">${fmtInt(r.enc)}x</td>` +
+        `<td class="num">${fmtInt(r.dec)}x</td></tr>`;
+    });
+    document.getElementById("speed-table").innerHTML = html + "</tbody></table>";
+  }
+
+  /* ================= sources ================= */
+  function renderCites() {
+    const host = document.getElementById("cites");
+    host.innerHTML = "";
+    T.sources.forEach((s) => {
+      const d = document.createElement("div");
+      d.innerHTML = `<span class="k">${s.key}</span> ${s.cite}. <a href="${s.url}">${s.url}</a>`;
+      host.appendChild(d);
+    });
+  }
+
+  /* ================= prose numbers, from the same data ================= */
+  /* Prose strings are generated by scripts/audio/make_prose.py and shipped in
+     this page's own data block, so the small amount of markup they carry
+     (<code> around encoder flags) is written here rather than escaped. */
+  function fillProse() {
+    document.querySelectorAll("[data-fill]").forEach((n) => {
+      const k = n.getAttribute("data-fill");
+      if (PR[k] !== undefined) n.innerHTML = PR[k];
+    });
+  }
+
+  buildTestLegend();
+  renderTests("format", "ta-chart", "ta-table");
+  renderTests("encoder", "tb-chart", "tb-table");
+  renderVoice();
+  renderBandwidth();
+  renderAchieved();
+  renderNative();
+  renderLossless();
+  renderSpeed();
+  renderCites();
+  fillProse();
+
+  let raf;
+  window.addEventListener("resize", () => {
+    cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(() => {
+      renderTests("format", "ta-chart", "ta-table");
+      renderTests("encoder", "tb-chart", "tb-table");
+      renderBandwidth();
+      renderAchieved();
+      renderSpeed();
+    });
+  });
+})();
+</script>

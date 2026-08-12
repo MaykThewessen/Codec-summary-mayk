@@ -1,0 +1,1539 @@
+{
+ "corpus": {
+  "clips": [
+   {
+    "name": "music_synthwave",
+    "kind": "music",
+    "synthetic": false,
+    "licence": "CC BY 3.0",
+    "credit": "Alexi Action, I Am Robot",
+    "note": "dense electronic, loud, broadband",
+    "source_file": "Alexi_Action_-_I_Am_Robot_(dark_synthwave).flac",
+    "source_seconds": 37.8,
+    "start": 7.56,
+    "seconds": 30,
+    "bytes": 5760210
+   },
+   {
+    "name": "music_ambient",
+    "kind": "music",
+    "synthetic": false,
+    "licence": "CC BY 3.0",
+    "credit": "HOME, Resting State 33",
+    "note": "quiet sustained synth, low crest factor",
+    "source_file": "HOME_-_Resting_State_-_33.flac",
+    "source_seconds": 111.8,
+    "start": 40,
+    "seconds": 30,
+    "bytes": 5760194
+   },
+   {
+    "name": "music_orchestral",
+    "kind": "music",
+    "synthetic": false,
+    "licence": "CC BY 3.0",
+    "credit": "raspberrymusic, Aliens",
+    "note": "cinematic orchestral, wide dynamics",
+    "source_file": "Raspberrymusic_-_Aliens_(trailer_music;_cinematic_epic_electronic_classical_music).flac",
+    "source_seconds": 150.0,
+    "start": 60,
+    "seconds": 30,
+    "bytes": 5760230
+   },
+   {
+    "name": "piano_solo",
+    "kind": "music",
+    "synthetic": false,
+    "licence": "Public domain",
+    "credit": "Schubert D664 III, Paul Pitman",
+    "note": "solo piano, hard tonal transients",
+    "source_file": "Schubert_-_Piano_Sonata_No._13_in_A_major,_D664_-_III._Allegro_(Paul_Pitman).flac",
+    "source_seconds": 347.9,
+    "start": 30,
+    "seconds": 30,
+    "bytes": 5760210
+   },
+   {
+    "name": "percussion",
+    "kind": "music",
+    "synthetic": false,
+    "licence": "CC BY-SA 4.0",
+    "credit": "jhanjh cymbals",
+    "note": "metal cymbals: broadband attacks, long HF decay",
+    "source_file": "Jhanjo.flac",
+    "source_seconds": 14.8,
+    "start": 0.0,
+    "seconds": 14.65,
+    "bytes": 2812946
+   },
+   {
+    "name": "speech_en",
+    "kind": "speech",
+    "synthetic": false,
+    "licence": "CC BY-SA 4.0",
+    "credit": "Angela Byron, spoken English",
+    "note": "single voice, close mic: the podcast case",
+    "source_file": "Angela_Byron_-_voice_-en.flac",
+    "source_seconds": 54.6,
+    "start": 5,
+    "seconds": 30,
+    "bytes": 5760146
+   },
+   {
+    "name": "probe_sweep",
+    "kind": "probe",
+    "synthetic": true,
+    "licence": "generated here",
+    "credit": "synthesised",
+    "note": "log sweep 20 Hz to 22 kHz",
+    "source_file": "",
+    "seconds": 30.0,
+    "bytes": 5760044
+   },
+   {
+    "name": "probe_noise",
+    "kind": "probe",
+    "synthetic": true,
+    "licence": "generated here",
+    "credit": "synthesised",
+    "note": "pink noise plus a tone comb to 21 kHz",
+    "source_file": "",
+    "seconds": 30.0,
+    "bytes": 5760044
+   }
+  ],
+  "real": [
+   "music_synthwave",
+   "music_ambient",
+   "music_orchestral",
+   "piano_solo",
+   "percussion",
+   "speech_en"
+  ],
+  "music": [
+   "music_synthwave",
+   "music_ambient",
+   "music_orchestral",
+   "piano_solo",
+   "percussion"
+  ],
+  "speech": [
+   "speech_en"
+  ],
+  "wav_bytes": 31613936,
+  "seconds": 164.65,
+  "wav_kbps": 1536.1
+ },
+ "targets": [
+  32,
+  48,
+  64,
+  96,
+  128,
+  160,
+  192,
+  256,
+  320
+ ],
+ "achieved": {
+  "OPUS": {
+   "32": {
+    "median": 34.98,
+    "lo": 29.99,
+    "hi": 40.39,
+    "ratio": 1.093,
+    "n": 6,
+    "per_clip": {
+     "music_synthwave": 35.46,
+     "music_ambient": 40.39,
+     "music_orchestral": 29.99,
+     "piano_solo": 38.08,
+     "percussion": 34.5,
+     "speech_en": 33.93
+    }
+   },
+   "48": {
+    "median": 50.97,
+    "lo": 45.51,
+    "hi": 59.42,
+    "ratio": 1.062,
+    "n": 6,
+    "per_clip": {
+     "music_synthwave": 51.93,
+     "music_ambient": 59.42,
+     "music_orchestral": 45.51,
+     "piano_solo": 55.95,
+     "percussion": 49.16,
+     "speech_en": 50.01
+    }
+   },
+   "64": {
+    "median": 71.57,
+    "lo": 60.77,
+    "hi": 95.24,
+    "ratio": 1.118,
+    "n": 6,
+    "per_clip": {
+     "music_synthwave": 68.63,
+     "music_ambient": 78.28,
+     "music_orchestral": 60.77,
+     "piano_solo": 74.52,
+     "percussion": 61.8,
+     "speech_en": 95.24
+    }
+   },
+   "96": {
+    "median": 106.88,
+    "lo": 88.85,
+    "hi": 138.65,
+    "ratio": 1.113,
+    "n": 6,
+    "per_clip": {
+     "music_synthwave": 102.16,
+     "music_ambient": 117.58,
+     "music_orchestral": 91.62,
+     "piano_solo": 111.59,
+     "percussion": 88.85,
+     "speech_en": 138.65
+    }
+   },
+   "128": {
+    "median": 141.4,
+    "lo": 117.15,
+    "hi": 174.85,
+    "ratio": 1.105,
+    "n": 6,
+    "per_clip": {
+     "music_synthwave": 135.32,
+     "music_ambient": 155.57,
+     "music_orchestral": 123.46,
+     "piano_solo": 147.48,
+     "percussion": 117.15,
+     "speech_en": 174.85
+    }
+   },
+   "160": {
+    "median": 176.42,
+    "lo": 143.87,
+    "hi": 210.4,
+    "ratio": 1.103,
+    "n": 6,
+    "per_clip": {
+     "music_synthwave": 168.43,
+     "music_ambient": 192.9,
+     "music_orchestral": 154.45,
+     "piano_solo": 184.41,
+     "percussion": 143.87,
+     "speech_en": 210.4
+    }
+   },
+   "192": {
+    "median": 208.15,
+    "lo": 175.0,
+    "hi": 246.21,
+    "ratio": 1.084,
+    "n": 6,
+    "per_clip": {
+     "music_synthwave": 200.59,
+     "music_ambient": 228.79,
+     "music_orchestral": 185.92,
+     "piano_solo": 215.71,
+     "percussion": 175.0,
+     "speech_en": 246.21
+    }
+   },
+   "256": {
+    "median": 271.79,
+    "lo": 236.96,
+    "hi": 317.28,
+    "ratio": 1.062,
+    "n": 6,
+    "per_clip": {
+     "music_synthwave": 265.34,
+     "music_ambient": 300.51,
+     "music_orchestral": 249.21,
+     "piano_solo": 278.25,
+     "percussion": 236.96,
+     "speech_en": 317.28
+    }
+   },
+   "320": {
+    "median": 333.77,
+    "lo": 297.37,
+    "hi": 381.43,
+    "ratio": 1.043,
+    "n": 6,
+    "per_clip": {
+     "music_synthwave": 327.7,
+     "music_ambient": 360.3,
+     "music_orchestral": 311.16,
+     "piano_solo": 339.85,
+     "percussion": 297.37,
+     "speech_en": 381.43
+    }
+   }
+  },
+  "AAC": {
+   "32": {
+    "median": 33.3,
+    "lo": 32.22,
+    "hi": 34.05,
+    "ratio": 1.04,
+    "n": 6,
+    "per_clip": {
+     "music_synthwave": 32.48,
+     "music_ambient": 32.83,
+     "music_orchestral": 33.76,
+     "piano_solo": 33.84,
+     "percussion": 34.05,
+     "speech_en": 32.22
+    }
+   },
+   "48": {
+    "median": 49.8,
+    "lo": 48.13,
+    "hi": 50.15,
+    "ratio": 1.037,
+    "n": 6,
+    "per_clip": {
+     "music_synthwave": 49.48,
+     "music_ambient": 49.64,
+     "music_orchestral": 49.96,
+     "piano_solo": 49.98,
+     "percussion": 50.15,
+     "speech_en": 48.13
+    }
+   },
+   "64": {
+    "median": 66.34,
+    "lo": 66.03,
+    "hi": 67.0,
+    "ratio": 1.037,
+    "n": 6,
+    "per_clip": {
+     "music_synthwave": 66.37,
+     "music_ambient": 66.77,
+     "music_orchestral": 66.05,
+     "piano_solo": 66.03,
+     "percussion": 66.31,
+     "speech_en": 67.0
+    }
+   },
+   "96": {
+    "median": 98.26,
+    "lo": 97.96,
+    "hi": 99.97,
+    "ratio": 1.024,
+    "n": 6,
+    "per_clip": {
+     "music_synthwave": 98.41,
+     "music_ambient": 99.62,
+     "music_orchestral": 98.06,
+     "piano_solo": 97.96,
+     "percussion": 98.11,
+     "speech_en": 99.97
+    }
+   },
+   "128": {
+    "median": 130.98,
+    "lo": 129.91,
+    "hi": 138.07,
+    "ratio": 1.023,
+    "n": 6,
+    "per_clip": {
+     "music_synthwave": 131.05,
+     "music_ambient": 138.07,
+     "music_orchestral": 130.27,
+     "piano_solo": 129.91,
+     "percussion": 130.9,
+     "speech_en": 133.81
+    }
+   },
+   "160": {
+    "median": 163.16,
+    "lo": 162.13,
+    "hi": 173.18,
+    "ratio": 1.02,
+    "n": 6,
+    "per_clip": {
+     "music_synthwave": 163.68,
+     "music_ambient": 173.18,
+     "music_orchestral": 162.64,
+     "piano_solo": 162.13,
+     "percussion": 162.62,
+     "speech_en": 166.41
+    }
+   },
+   "192": {
+    "median": 196.67,
+    "lo": 194.27,
+    "hi": 206.94,
+    "ratio": 1.024,
+    "n": 6,
+    "per_clip": {
+     "music_synthwave": 197.65,
+     "music_ambient": 206.94,
+     "music_orchestral": 194.95,
+     "piano_solo": 194.27,
+     "percussion": 195.68,
+     "speech_en": 199.03
+    }
+   },
+   "256": {
+    "median": 259.01,
+    "lo": 255.99,
+    "hi": 279.7,
+    "ratio": 1.012,
+    "n": 6,
+    "per_clip": {
+     "music_synthwave": 258.25,
+     "music_ambient": 279.7,
+     "music_orchestral": 259.78,
+     "piano_solo": 255.99,
+     "percussion": 257.15,
+     "speech_en": 263.74
+    }
+   },
+   "320": {
+    "median": 308.76,
+    "lo": 288.86,
+    "hi": 345.84,
+    "ratio": 0.965,
+    "n": 6,
+    "per_clip": {
+     "music_synthwave": 311.21,
+     "music_ambient": 345.84,
+     "music_orchestral": 325.01,
+     "piano_solo": 288.86,
+     "percussion": 306.32,
+     "speech_en": 304.27
+    }
+   }
+  },
+  "MP3": {
+   "32": {
+    "median": 32.13,
+    "lo": 32.11,
+    "hi": 32.25,
+    "ratio": 1.004,
+    "n": 6,
+    "per_clip": {
+     "music_synthwave": 32.13,
+     "music_ambient": 32.13,
+     "music_orchestral": 32.13,
+     "piano_solo": 32.13,
+     "percussion": 32.25,
+     "speech_en": 32.11
+    }
+   },
+   "48": {
+    "median": 48.14,
+    "lo": 48.12,
+    "hi": 48.29,
+    "ratio": 1.003,
+    "n": 6,
+    "per_clip": {
+     "music_synthwave": 48.14,
+     "music_ambient": 48.14,
+     "music_orchestral": 48.15,
+     "piano_solo": 48.14,
+     "percussion": 48.29,
+     "speech_en": 48.12
+    }
+   },
+   "64": {
+    "median": 64.15,
+    "lo": 64.13,
+    "hi": 64.34,
+    "ratio": 1.002,
+    "n": 6,
+    "per_clip": {
+     "music_synthwave": 64.15,
+     "music_ambient": 64.15,
+     "music_orchestral": 64.16,
+     "piano_solo": 64.15,
+     "percussion": 64.34,
+     "speech_en": 64.13
+    }
+   },
+   "96": {
+    "median": 96.2,
+    "lo": 96.19,
+    "hi": 96.47,
+    "ratio": 1.002,
+    "n": 6,
+    "per_clip": {
+     "music_synthwave": 96.21,
+     "music_ambient": 96.2,
+     "music_orchestral": 96.21,
+     "piano_solo": 96.2,
+     "percussion": 96.47,
+     "speech_en": 96.19
+    }
+   },
+   "128": {
+    "median": 128.26,
+    "lo": 128.24,
+    "hi": 128.61,
+    "ratio": 1.002,
+    "n": 6,
+    "per_clip": {
+     "music_synthwave": 128.26,
+     "music_ambient": 128.25,
+     "music_orchestral": 128.26,
+     "piano_solo": 128.26,
+     "percussion": 128.61,
+     "speech_en": 128.24
+    }
+   },
+   "160": {
+    "median": 160.31,
+    "lo": 160.29,
+    "hi": 160.74,
+    "ratio": 1.002,
+    "n": 6,
+    "per_clip": {
+     "music_synthwave": 160.31,
+     "music_ambient": 160.3,
+     "music_orchestral": 160.31,
+     "piano_solo": 160.31,
+     "percussion": 160.74,
+     "speech_en": 160.29
+    }
+   },
+   "192": {
+    "median": 192.36,
+    "lo": 192.34,
+    "hi": 192.88,
+    "ratio": 1.002,
+    "n": 6,
+    "per_clip": {
+     "music_synthwave": 192.36,
+     "music_ambient": 192.36,
+     "music_orchestral": 192.36,
+     "piano_solo": 192.36,
+     "percussion": 192.88,
+     "speech_en": 192.34
+    }
+   },
+   "256": {
+    "median": 256.46,
+    "lo": 256.44,
+    "hi": 257.15,
+    "ratio": 1.002,
+    "n": 6,
+    "per_clip": {
+     "music_synthwave": 256.46,
+     "music_ambient": 256.46,
+     "music_orchestral": 256.47,
+     "piano_solo": 256.46,
+     "percussion": 257.15,
+     "speech_en": 256.44
+    }
+   },
+   "320": {
+    "median": 320.56,
+    "lo": 320.54,
+    "hi": 321.42,
+    "ratio": 1.002,
+    "n": 6,
+    "per_clip": {
+     "music_synthwave": 320.56,
+     "music_ambient": 320.56,
+     "music_orchestral": 320.57,
+     "piano_solo": 320.56,
+     "percussion": 321.42,
+     "speech_en": 320.54
+    }
+   }
+  },
+  "VORBIS": {
+   "48": {
+    "median": 39.47,
+    "lo": 32.57,
+    "hi": 49.06,
+    "ratio": 0.822,
+    "n": 6,
+    "per_clip": {
+     "music_synthwave": 37.67,
+     "music_ambient": 49.06,
+     "music_orchestral": 46.02,
+     "piano_solo": 35.16,
+     "percussion": 41.27,
+     "speech_en": 32.57
+    }
+   },
+   "64": {
+    "median": 55.2,
+    "lo": 47.89,
+    "hi": 69.8,
+    "ratio": 0.863,
+    "n": 6,
+    "per_clip": {
+     "music_synthwave": 52.59,
+     "music_ambient": 69.8,
+     "music_orchestral": 64.27,
+     "piano_solo": 52.6,
+     "percussion": 57.81,
+     "speech_en": 47.89
+    }
+   },
+   "96": {
+    "median": 82.06,
+    "lo": 74.09,
+    "hi": 101.68,
+    "ratio": 0.855,
+    "n": 6,
+    "per_clip": {
+     "music_synthwave": 81.22,
+     "music_ambient": 101.68,
+     "music_orchestral": 97.45,
+     "piano_solo": 82.24,
+     "percussion": 81.89,
+     "speech_en": 74.09
+    }
+   },
+   "128": {
+    "median": 112.87,
+    "lo": 93.63,
+    "hi": 134.05,
+    "ratio": 0.882,
+    "n": 6,
+    "per_clip": {
+     "music_synthwave": 104.64,
+     "music_ambient": 134.05,
+     "music_orchestral": 124.27,
+     "piano_solo": 111.39,
+     "percussion": 114.34,
+     "speech_en": 93.63
+    }
+   },
+   "160": {
+    "median": 137.5,
+    "lo": 120.97,
+    "hi": 170.07,
+    "ratio": 0.859,
+    "n": 6,
+    "per_clip": {
+     "music_synthwave": 126.82,
+     "music_ambient": 170.07,
+     "music_orchestral": 157.32,
+     "piano_solo": 139.65,
+     "percussion": 135.35,
+     "speech_en": 120.97
+    }
+   },
+   "192": {
+    "median": 162.98,
+    "lo": 148.13,
+    "hi": 210.96,
+    "ratio": 0.849,
+    "n": 6,
+    "per_clip": {
+     "music_synthwave": 148.13,
+     "music_ambient": 210.96,
+     "music_orchestral": 187.23,
+     "piano_solo": 165.37,
+     "percussion": 160.59,
+     "speech_en": 148.7
+    }
+   },
+   "256": {
+    "median": 209.84,
+    "lo": 190.95,
+    "hi": 296.61,
+    "ratio": 0.82,
+    "n": 6,
+    "per_clip": {
+     "music_synthwave": 190.95,
+     "music_ambient": 296.61,
+     "music_orchestral": 255.71,
+     "piano_solo": 211.23,
+     "percussion": 208.46,
+     "speech_en": 201.18
+    }
+   },
+   "320": {
+    "median": 269.71,
+    "lo": 242.05,
+    "hi": 352.66,
+    "ratio": 0.843,
+    "n": 6,
+    "per_clip": {
+     "music_synthwave": 242.05,
+     "music_ambient": 352.66,
+     "music_orchestral": 328.99,
+     "piano_solo": 270.78,
+     "percussion": 268.65,
+     "speech_en": 261.37
+    }
+   }
+  }
+ },
+ "bandwidth": {
+  "OPUS": {
+   "32": {
+    "probe": 20338,
+    "music_median": null,
+    "music_n": 0,
+    "music_of": 5
+   },
+   "48": {
+    "probe": 20402,
+    "music_median": null,
+    "music_n": 0,
+    "music_of": 5
+   },
+   "64": {
+    "probe": 20484,
+    "music_median": null,
+    "music_n": 0,
+    "music_of": 5
+   },
+   "96": {
+    "probe": 20162,
+    "music_median": null,
+    "music_n": 0,
+    "music_of": 5
+   },
+   "128": {
+    "probe": 20109,
+    "music_median": 20186,
+    "music_n": 1,
+    "music_of": 5
+   },
+   "160": {
+    "probe": 20109,
+    "music_median": 20326.5,
+    "music_n": 2,
+    "music_of": 5
+   },
+   "192": {
+    "probe": 20115,
+    "music_median": 20326.5,
+    "music_n": 2,
+    "music_of": 5
+   },
+   "256": {
+    "probe": 20115,
+    "music_median": 20326.5,
+    "music_n": 2,
+    "music_of": 5
+   },
+   "320": {
+    "probe": 20115,
+    "music_median": 20326.5,
+    "music_n": 2,
+    "music_of": 5
+   }
+  },
+  "AAC": {
+   "32": {
+    "probe": 3785,
+    "music_median": 3832.0,
+    "music_n": 4,
+    "music_of": 5
+   },
+   "48": {
+    "probe": 7535,
+    "music_median": 8332,
+    "music_n": 3,
+    "music_of": 5
+   },
+   "64": {
+    "probe": 12076,
+    "music_median": 17856.5,
+    "music_n": 2,
+    "music_of": 5
+   },
+   "96": {
+    "probe": 15785,
+    "music_median": null,
+    "music_n": 0,
+    "music_of": 5
+   },
+   "128": {
+    "probe": 17285,
+    "music_median": 18047,
+    "music_n": 1,
+    "music_of": 5
+   },
+   "160": {
+    "probe": 18035,
+    "music_median": 18105.0,
+    "music_n": 2,
+    "music_of": 5
+   },
+   "192": {
+    "probe": 19529,
+    "music_median": null,
+    "music_n": 0,
+    "music_of": 5
+   },
+   "256": {
+    "probe": 21779,
+    "music_median": null,
+    "music_n": 0,
+    "music_of": 5
+   },
+   "320": {
+    "probe": null,
+    "music_median": null,
+    "music_n": 0,
+    "music_of": 5
+   }
+  },
+  "MP3": {
+   "32": {
+    "probe": 5900,
+    "music_median": 6111,
+    "music_n": 5,
+    "music_of": 5
+   },
+   "48": {
+    "probe": 7564,
+    "music_median": 7658,
+    "music_n": 5,
+    "music_of": 5
+   },
+   "64": {
+    "probe": 11355,
+    "music_median": 11385.0,
+    "music_n": 4,
+    "music_of": 5
+   },
+   "96": {
+    "probe": 15141,
+    "music_median": 15152.0,
+    "music_n": 4,
+    "music_of": 5
+   },
+   "128": {
+    "probe": 16611,
+    "music_median": 16491.0,
+    "music_n": 2,
+    "music_of": 5
+   },
+   "160": {
+    "probe": 17531,
+    "music_median": 17332.0,
+    "music_n": 2,
+    "music_of": 5
+   },
+   "192": {
+    "probe": 18891,
+    "music_median": 18861,
+    "music_n": 3,
+    "music_of": 5
+   },
+   "256": {
+    "probe": 19658,
+    "music_median": 19661.0,
+    "music_n": 2,
+    "music_of": 5
+   },
+   "320": {
+    "probe": 20426,
+    "music_median": 20490,
+    "music_n": 1,
+    "music_of": 5
+   }
+  },
+  "VORBIS": {
+   "48": {
+    "probe": 14268,
+    "music_median": 15094,
+    "music_n": 1,
+    "music_of": 5
+   },
+   "64": {
+    "probe": 15398,
+    "music_median": 15407.0,
+    "music_n": 2,
+    "music_of": 5
+   },
+   "96": {
+    "probe": 16535,
+    "music_median": 16661.0,
+    "music_n": 2,
+    "music_of": 5
+   },
+   "128": {
+    "probe": 19125,
+    "music_median": 19655.5,
+    "music_n": 2,
+    "music_of": 5
+   },
+   "160": {
+    "probe": 20238,
+    "music_median": 21158,
+    "music_n": 1,
+    "music_of": 5
+   },
+   "192": {
+    "probe": null,
+    "music_median": null,
+    "music_n": 0,
+    "music_of": 5
+   },
+   "256": {
+    "probe": null,
+    "music_median": null,
+    "music_n": 0,
+    "music_of": 5
+   },
+   "320": {
+    "probe": null,
+    "music_median": null,
+    "music_n": 0,
+    "music_of": 5
+   }
+  }
+ },
+ "size": {
+  "OPUS": {
+   "32": {
+    "bytes": 730112,
+    "vs_wav": 0.0231
+   },
+   "48": {
+    "bytes": 1075571,
+    "vs_wav": 0.034
+   },
+   "64": {
+    "bytes": 1528615,
+    "vs_wav": 0.0484
+   },
+   "96": {
+    "bytes": 2268670,
+    "vs_wav": 0.0718
+   },
+   "128": {
+    "bytes": 2977088,
+    "vs_wav": 0.0942
+   },
+   "160": {
+    "bytes": 3678178,
+    "vs_wav": 0.1163
+   },
+   "192": {
+    "bytes": 4360052,
+    "vs_wav": 0.1379
+   },
+   "256": {
+    "bytes": 5723654,
+    "vs_wav": 0.181
+   },
+   "320": {
+    "bytes": 6996197,
+    "vs_wav": 0.2213
+   }
+  },
+  "AAC": {
+   "32": {
+    "bytes": 681641,
+    "vs_wav": 0.0216
+   },
+   "48": {
+    "bytes": 1018813,
+    "vs_wav": 0.0322
+   },
+   "64": {
+    "bytes": 1367261,
+    "vs_wav": 0.0432
+   },
+   "96": {
+    "bytes": 2032194,
+    "vs_wav": 0.0643
+   },
+   "128": {
+    "bytes": 2726381,
+    "vs_wav": 0.0862
+   },
+   "160": {
+    "bytes": 3402980,
+    "vs_wav": 0.1076
+   },
+   "192": {
+    "bytes": 4081473,
+    "vs_wav": 0.1291
+   },
+   "256": {
+    "bytes": 5411389,
+    "vs_wav": 0.1712
+   },
+   "320": {
+    "bytes": 6467861,
+    "vs_wav": 0.2046
+   }
+  },
+  "MP3": {
+   "32": {
+    "bytes": 661401,
+    "vs_wav": 0.0209
+   },
+   "48": {
+    "bytes": 991017,
+    "vs_wav": 0.0313
+   },
+   "64": {
+    "bytes": 1320633,
+    "vs_wav": 0.0418
+   },
+   "96": {
+    "bytes": 1980441,
+    "vs_wav": 0.0626
+   },
+   "128": {
+    "bytes": 2640249,
+    "vs_wav": 0.0835
+   },
+   "160": {
+    "bytes": 3300057,
+    "vs_wav": 0.1044
+   },
+   "192": {
+    "bytes": 3959865,
+    "vs_wav": 0.1253
+   },
+   "256": {
+    "bytes": 5279481,
+    "vs_wav": 0.167
+   },
+   "320": {
+    "bytes": 6599097,
+    "vs_wav": 0.2087
+   }
+  },
+  "VORBIS": {
+   "48": {
+    "bytes": 827376,
+    "vs_wav": 0.0262
+   },
+   "64": {
+    "bytes": 1182710,
+    "vs_wav": 0.0374
+   },
+   "96": {
+    "bytes": 1787472,
+    "vs_wav": 0.0565
+   },
+   "128": {
+    "bytes": 2339330,
+    "vs_wav": 0.074
+   },
+   "160": {
+    "bytes": 2928453,
+    "vs_wav": 0.0926
+   },
+   "192": {
+    "bytes": 3520510,
+    "vs_wav": 0.1114
+   },
+   "256": {
+    "bytes": 4715488,
+    "vs_wav": 0.1492
+   },
+   "320": {
+    "bytes": 5951401,
+    "vs_wav": 0.1883
+   }
+  }
+ },
+ "speed": {
+  "OPUS": {
+   "encode_x": 34.25,
+   "decode_x": 251.1,
+   "encode_x_all": 34.55,
+   "decode_x_all": 249.45
+  },
+  "AAC": {
+   "encode_x": 35.95,
+   "decode_x": 396.9,
+   "encode_x_all": 36.4,
+   "decode_x_all": 455.5
+  },
+  "MP3": {
+   "encode_x": 55.05,
+   "decode_x": 385.15,
+   "encode_x_all": 58.55,
+   "decode_x_all": 405.0
+  },
+  "VORBIS": {
+   "encode_x": 54.4,
+   "decode_x": 365.7,
+   "encode_x_all": 50.05,
+   "decode_x_all": 409.25
+  }
+ },
+ "lossless": {
+  "FLAC-0": {
+   "bytes": 17213267,
+   "ratio": 0.5445,
+   "saving": 45.6,
+   "kbps": 836.4,
+   "bit_exact": true,
+   "n_exact": 6,
+   "n": 6,
+   "encode_x": 210.5,
+   "decode_x": 333.75,
+   "per_clip": {
+    "music_synthwave": {
+     "ratio": 0.4087,
+     "exact": true
+    },
+    "music_ambient": {
+     "ratio": 0.6861,
+     "exact": true
+    },
+    "music_orchestral": {
+     "ratio": 0.7595,
+     "exact": true
+    },
+    "piano_solo": {
+     "ratio": 0.3642,
+     "exact": true
+    },
+    "percussion": {
+     "ratio": 0.581,
+     "exact": true
+    },
+    "speech_en": {
+     "ratio": 0.4861,
+     "exact": true
+    }
+   }
+  },
+  "FLAC-5": {
+   "bytes": 14895925,
+   "ratio": 0.4712,
+   "saving": 52.9,
+   "kbps": 723.8,
+   "bit_exact": true,
+   "n_exact": 6,
+   "n": 6,
+   "encode_x": 273.5,
+   "decode_x": 545.2,
+   "per_clip": {
+    "music_synthwave": {
+     "ratio": 0.3399,
+     "exact": true
+    },
+    "music_ambient": {
+     "ratio": 0.604,
+     "exact": true
+    },
+    "music_orchestral": {
+     "ratio": 0.681,
+     "exact": true
+    },
+    "piano_solo": {
+     "ratio": 0.3159,
+     "exact": true
+    },
+    "percussion": {
+     "ratio": 0.5427,
+     "exact": true
+    },
+    "speech_en": {
+     "ratio": 0.3801,
+     "exact": true
+    }
+   }
+  },
+  "FLAC-8": {
+   "bytes": 14499668,
+   "ratio": 0.4586,
+   "saving": 54.1,
+   "kbps": 704.5,
+   "bit_exact": true,
+   "n_exact": 6,
+   "n": 6,
+   "encode_x": 201.5,
+   "decode_x": 564.95,
+   "per_clip": {
+    "music_synthwave": {
+     "ratio": 0.3297,
+     "exact": true
+    },
+    "music_ambient": {
+     "ratio": 0.5831,
+     "exact": true
+    },
+    "music_orchestral": {
+     "ratio": 0.6662,
+     "exact": true
+    },
+    "piano_solo": {
+     "ratio": 0.3144,
+     "exact": true
+    },
+    "percussion": {
+     "ratio": 0.5411,
+     "exact": true
+    },
+    "speech_en": {
+     "ratio": 0.3596,
+     "exact": true
+    }
+   }
+  },
+  "FLAC-12": {
+   "bytes": 14252883,
+   "ratio": 0.4508,
+   "saving": 54.9,
+   "kbps": 692.5,
+   "bit_exact": true,
+   "n_exact": 6,
+   "n": 6,
+   "encode_x": 40.95,
+   "decode_x": 480.1,
+   "per_clip": {
+    "music_synthwave": {
+     "ratio": 0.3243,
+     "exact": true
+    },
+    "music_ambient": {
+     "ratio": 0.5673,
+     "exact": true
+    },
+    "music_orchestral": {
+     "ratio": 0.6637,
+     "exact": true
+    },
+    "piano_solo": {
+     "ratio": 0.314,
+     "exact": true
+    },
+    "percussion": {
+     "ratio": 0.5398,
+     "exact": true
+    },
+    "speech_en": {
+     "ratio": 0.3416,
+     "exact": true
+    }
+   }
+  },
+  "ALAC": {
+   "bytes": 16005671,
+   "ratio": 0.5063,
+   "saving": 49.4,
+   "kbps": 777.7,
+   "bit_exact": true,
+   "n_exact": 6,
+   "n": 6,
+   "encode_x": 175.8,
+   "decode_x": 245.05,
+   "per_clip": {
+    "music_synthwave": {
+     "ratio": 0.3955,
+     "exact": true
+    },
+    "music_ambient": {
+     "ratio": 0.6255,
+     "exact": true
+    },
+    "music_orchestral": {
+     "ratio": 0.7106,
+     "exact": true
+    },
+    "piano_solo": {
+     "ratio": 0.3591,
+     "exact": true
+    },
+    "percussion": {
+     "ratio": 0.5523,
+     "exact": true
+    },
+    "speech_en": {
+     "ratio": 0.4182,
+     "exact": true
+    }
+   }
+  }
+ },
+ "native": {
+  "MP3": {
+   "kind": "V",
+   "points": [
+    {
+     "setting": 0,
+     "kbps": 249.0,
+     "lo": 224.0,
+     "hi": 277.0,
+     "bandwidth": null
+    },
+    {
+     "setting": 2,
+     "kbps": 174.75,
+     "lo": 140.2,
+     "hi": 219.2,
+     "bandwidth": 17988
+    },
+    {
+     "setting": 4,
+     "kbps": 133.3,
+     "lo": 113.8,
+     "hi": 180.9,
+     "bandwidth": 17514
+    },
+    {
+     "setting": 5,
+     "kbps": 108.99,
+     "lo": 99.9,
+     "hi": 157.7,
+     "bandwidth": 15562
+    },
+    {
+     "setting": 7,
+     "kbps": 81.87,
+     "lo": 75.9,
+     "hi": 122.7,
+     "bandwidth": 15141
+    },
+    {
+     "setting": 9,
+     "kbps": 71.51,
+     "lo": 60.8,
+     "hi": 89.5,
+     "bandwidth": 7617
+    }
+   ]
+  },
+  "VORBIS": {
+   "kind": "q",
+   "points": [
+    {
+     "setting": 0,
+     "kbps": 55.2,
+     "lo": 47.9,
+     "hi": 69.8,
+     "bandwidth": 15398
+    },
+    {
+     "setting": 2,
+     "kbps": 82.06,
+     "lo": 74.1,
+     "hi": 101.7,
+     "bandwidth": 16535
+    },
+    {
+     "setting": 4,
+     "kbps": 112.87,
+     "lo": 93.6,
+     "hi": 134.1,
+     "bandwidth": 19125
+    },
+    {
+     "setting": 6,
+     "kbps": 162.98,
+     "lo": 148.1,
+     "hi": 211.0,
+     "bandwidth": null
+    },
+    {
+     "setting": 8,
+     "kbps": 209.84,
+     "lo": 190.9,
+     "hi": 296.6,
+     "bandwidth": null
+    }
+   ]
+  }
+ },
+ "speech": {
+  "OPUS": {
+   "32": {
+    "kbps": 33.93,
+    "bandwidth": null
+   },
+   "48": {
+    "kbps": 50.01,
+    "bandwidth": null
+   },
+   "64": {
+    "kbps": 95.24,
+    "bandwidth": null
+   },
+   "96": {
+    "kbps": 138.65,
+    "bandwidth": null
+   },
+   "128": {
+    "kbps": 174.85,
+    "bandwidth": null
+   },
+   "160": {
+    "kbps": 210.4,
+    "bandwidth": null
+   },
+   "192": {
+    "kbps": 246.21,
+    "bandwidth": null
+   },
+   "256": {
+    "kbps": 317.28,
+    "bandwidth": null
+   },
+   "320": {
+    "kbps": 381.43,
+    "bandwidth": null
+   }
+  },
+  "AAC": {
+   "32": {
+    "kbps": 32.22,
+    "bandwidth": null
+   },
+   "48": {
+    "kbps": 48.13,
+    "bandwidth": null
+   },
+   "64": {
+    "kbps": 67.0,
+    "bandwidth": null
+   },
+   "96": {
+    "kbps": 99.97,
+    "bandwidth": null
+   },
+   "128": {
+    "kbps": 133.81,
+    "bandwidth": null
+   },
+   "160": {
+    "kbps": 166.41,
+    "bandwidth": null
+   },
+   "192": {
+    "kbps": 199.03,
+    "bandwidth": null
+   },
+   "256": {
+    "kbps": 263.74,
+    "bandwidth": null
+   },
+   "320": {
+    "kbps": 304.27,
+    "bandwidth": null
+   }
+  },
+  "MP3": {
+   "32": {
+    "kbps": 32.11,
+    "bandwidth": 6164
+   },
+   "48": {
+    "kbps": 48.12,
+    "bandwidth": 7395
+   },
+   "64": {
+    "kbps": 64.13,
+    "bandwidth": null
+   },
+   "96": {
+    "kbps": 96.19,
+    "bandwidth": null
+   },
+   "128": {
+    "kbps": 128.24,
+    "bandwidth": null
+   },
+   "160": {
+    "kbps": 160.29,
+    "bandwidth": null
+   },
+   "192": {
+    "kbps": 192.34,
+    "bandwidth": null
+   },
+   "256": {
+    "kbps": 256.44,
+    "bandwidth": null
+   },
+   "320": {
+    "kbps": 320.54,
+    "bandwidth": null
+   }
+  },
+  "VORBIS": {
+   "48": {
+    "kbps": 32.57,
+    "bandwidth": null
+   },
+   "64": {
+    "kbps": 47.89,
+    "bandwidth": null
+   },
+   "96": {
+    "kbps": 74.09,
+    "bandwidth": null
+   },
+   "128": {
+    "kbps": 93.63,
+    "bandwidth": null
+   },
+   "160": {
+    "kbps": 120.97,
+    "bandwidth": null
+   },
+   "192": {
+    "kbps": 148.7,
+    "bandwidth": null
+   },
+   "256": {
+    "kbps": 201.18,
+    "bandwidth": null
+   },
+   "320": {
+    "kbps": 261.37,
+    "bandwidth": null
+   }
+  }
+ },
+ "failures": [
+  {
+   "codec": "VORBIS",
+   "setting": "b32",
+   "clip": "music_synthwave"
+  },
+  {
+   "codec": "VORBIS",
+   "setting": "b32",
+   "clip": "music_ambient"
+  },
+  {
+   "codec": "VORBIS",
+   "setting": "b32",
+   "clip": "music_orchestral"
+  },
+  {
+   "codec": "VORBIS",
+   "setting": "b32",
+   "clip": "piano_solo"
+  },
+  {
+   "codec": "VORBIS",
+   "setting": "b32",
+   "clip": "percussion"
+  },
+  {
+   "codec": "VORBIS",
+   "setting": "b32",
+   "clip": "speech_en"
+  },
+  {
+   "codec": "VORBIS",
+   "setting": "b32",
+   "clip": "probe_sweep"
+  },
+  {
+   "codec": "VORBIS",
+   "setting": "b32",
+   "clip": "probe_noise"
+  }
+ ],
+ "drop_db": 20.0,
+ "ref_floor_db": 70.0
+}

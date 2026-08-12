@@ -1,0 +1,74 @@
+[
+ {
+  "corpus": "prices",
+  "scale": "small",
+  "rows": 105216,
+  "cols": 3,
+  "mem_bytes": 1789019,
+  "path": "testdata/data_formats/prices_small.arrow",
+  "blurb": "Day-ahead prices per bidding zone, long format. Narrow, strongly autocorrelated, one tz-aware timestamp column."
+ },
+ {
+  "corpus": "prices",
+  "scale": "large",
+  "rows": 4208256,
+  "cols": 3,
+  "mem_bytes": 71540910,
+  "path": "testdata/data_formats/prices_large.arrow",
+  "blurb": "Day-ahead prices per bidding zone, long format. Narrow, strongly autocorrelated, one tz-aware timestamp column."
+ },
+ {
+  "corpus": "powerflow",
+  "scale": "small",
+  "rows": 100000,
+  "cols": 41,
+  "mem_bytes": 32800132,
+  "path": "testdata/data_formats/powerflow_small.arrow",
+  "blurb": "Power flow solver output: one row per snapshot, 40 float columns across 20 corridors, half full precision and half rounded."
+ },
+ {
+  "corpus": "powerflow",
+  "scale": "large",
+  "rows": 1200000,
+  "cols": 41,
+  "mem_bytes": 393600132,
+  "path": "testdata/data_formats/powerflow_large.arrow",
+  "blurb": "Power flow solver output: one row per snapshot, 40 float columns across 20 corridors, half full precision and half rounded."
+ },
+ {
+  "corpus": "weather",
+  "scale": "small",
+  "rows": 100000,
+  "cols": 11,
+  "mem_bytes": 6521002,
+  "path": "testdata/data_formats/weather_small.arrow",
+  "blurb": "KNMI-shaped observations: mixed dtypes, two categoricals, nullable integers and real sensor gaps."
+ },
+ {
+  "corpus": "weather",
+  "scale": "large",
+  "rows": 3000000,
+  "cols": 11,
+  "mem_bytes": 195610466,
+  "path": "testdata/data_formats/weather_large.arrow",
+  "blurb": "KNMI-shaped observations: mixed dtypes, two categoricals, nullable integers and real sensor gaps."
+ },
+ {
+  "corpus": "assets",
+  "scale": "small",
+  "rows": 100000,
+  "cols": 8,
+  "mem_bytes": 11869940,
+  "path": "testdata/data_formats/assets_small.arrow",
+  "blurb": "Connection register: EAN18 and connection id are unique per row, plus gemeente and netbeheerder categories and a free-text field."
+ },
+ {
+  "corpus": "assets",
+  "scale": "large",
+  "rows": 2000000,
+  "cols": 8,
+  "mem_bytes": 237118203,
+  "path": "testdata/data_formats/assets_large.arrow",
+  "blurb": "Connection register: EAN18 and connection id are unique per row, plus gemeente and netbeheerder categories and a free-text field."
+ }
+]

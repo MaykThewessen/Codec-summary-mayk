@@ -1,0 +1,68 @@
+{
+ "available": true,
+ "corpus": "powerflow",
+ "scale": "large",
+ "method": "sync + drop_caches=3 before every read, one read each, in a fresh process",
+ "runs": [
+  {
+   "seconds": 10.6211,
+   "rows": 1200000,
+   "fmt": "csv",
+   "size_bytes": 619098003
+  },
+  {
+   "seconds": 13.8295,
+   "rows": 1200000,
+   "fmt": "csv_gz",
+   "size_bytes": 294066895
+  },
+  {
+   "seconds": 0.5799,
+   "rows": 1200000,
+   "fmt": "feather",
+   "size_bytes": 393657210
+  },
+  {
+   "seconds": 0.453,
+   "rows": 1200000,
+   "fmt": "feather_lz4",
+   "size_bytes": 304884714
+  },
+  {
+   "seconds": 0.8768,
+   "rows": 1200000,
+   "fmt": "feather_zstd",
+   "size_bytes": 257618050
+  },
+  {
+   "seconds": 0.6149,
+   "rows": 1200000,
+   "fmt": "parquet_none",
+   "size_bytes": 254749206
+  },
+  {
+   "seconds": 0.8002,
+   "rows": 1200000,
+   "fmt": "parquet_snappy",
+   "size_bytes": 251634348
+  },
+  {
+   "seconds": 0.7596,
+   "rows": 1200000,
+   "fmt": "parquet_zstd",
+   "size_bytes": 239785679
+  },
+  {
+   "seconds": 0.7258,
+   "rows": 1200000,
+   "fmt": "parquet_gzip",
+   "size_bytes": 237176186
+  },
+  {
+   "seconds": 1.5609,
+   "rows": 1200000,
+   "fmt": "duckdb",
+   "size_bytes": 257961984
+  }
+ ]
+}

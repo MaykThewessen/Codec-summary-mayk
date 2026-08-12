@@ -1,0 +1,209 @@
+[
+ {
+  "corpus": "code",
+  "id": "gzip-1",
+  "codec": "gzip",
+  "level": 1,
+  "c_kb": 0,
+  "window_bytes": 32768,
+  "out_bytes": 2320932
+ },
+ {
+  "corpus": "code",
+  "id": "gzip-6",
+  "codec": "gzip",
+  "level": 6,
+  "c_kb": 0,
+  "window_bytes": 32768,
+  "out_bytes": 1870581
+ },
+ {
+  "corpus": "code",
+  "id": "gzip-9",
+  "codec": "gzip",
+  "level": 9,
+  "c_kb": 0,
+  "window_bytes": 32768,
+  "out_bytes": 1847043
+ },
+ {
+  "corpus": "code",
+  "id": "zstd-1",
+  "codec": "zstd",
+  "level": 1,
+  "c_kb": 0,
+  "window_bytes": 524288,
+  "out_bytes": 1986272
+ },
+ {
+  "corpus": "code",
+  "id": "zstd-3",
+  "codec": "zstd",
+  "level": 3,
+  "c_kb": 0,
+  "window_bytes": 2097152,
+  "out_bytes": 1812286
+ },
+ {
+  "corpus": "code",
+  "id": "zstd-6",
+  "codec": "zstd",
+  "level": 6,
+  "c_kb": 0,
+  "window_bytes": 2097152,
+  "out_bytes": 1604150
+ },
+ {
+  "corpus": "code",
+  "id": "zstd-9",
+  "codec": "zstd",
+  "level": 9,
+  "c_kb": 0,
+  "window_bytes": 4194304,
+  "out_bytes": 1547948
+ },
+ {
+  "corpus": "code",
+  "id": "zstd-12",
+  "codec": "zstd",
+  "level": 12,
+  "c_kb": 20968,
+  "window_bytes": 4194304,
+  "out_bytes": 1520868
+ },
+ {
+  "corpus": "code",
+  "id": "zstd-15",
+  "codec": "zstd",
+  "level": 15,
+  "c_kb": 45192,
+  "window_bytes": 4194304,
+  "out_bytes": 1480890
+ },
+ {
+  "corpus": "code",
+  "id": "zstd-19",
+  "codec": "zstd",
+  "level": 19,
+  "c_kb": 66504,
+  "window_bytes": 8388608,
+  "out_bytes": 1354233
+ },
+ {
+  "corpus": "code",
+  "id": "zstd-22",
+  "codec": "zstd",
+  "level": 22,
+  "c_kb": 705468,
+  "window_bytes": 134217728,
+  "out_bytes": 1352274
+ },
+ {
+  "corpus": "code",
+  "id": "brotli-1",
+  "codec": "brotli",
+  "level": 1,
+  "c_kb": 0,
+  "window_bytes": 16777200,
+  "out_bytes": 2087084
+ },
+ {
+  "corpus": "code",
+  "id": "brotli-5",
+  "codec": "brotli",
+  "level": 5,
+  "c_kb": 1864,
+  "window_bytes": 16777200,
+  "out_bytes": 1609416
+ },
+ {
+  "corpus": "code",
+  "id": "brotli-9",
+  "codec": "brotli",
+  "level": 9,
+  "c_kb": 29132,
+  "window_bytes": 16777200,
+  "out_bytes": 1479911
+ },
+ {
+  "corpus": "code",
+  "id": "brotli-11",
+  "codec": "brotli",
+  "level": 11,
+  "c_kb": 78364,
+  "window_bytes": 16777200,
+  "out_bytes": 1319709
+ },
+ {
+  "corpus": "code",
+  "id": "xz-1",
+  "codec": "xz",
+  "level": 1,
+  "c_kb": 0,
+  "window_bytes": 1048576,
+  "out_bytes": 1633392
+ },
+ {
+  "corpus": "code",
+  "id": "xz-6",
+  "codec": "xz",
+  "level": 6,
+  "c_kb": 65380,
+  "window_bytes": 8388608,
+  "out_bytes": 1330104
+ },
+ {
+  "corpus": "code",
+  "id": "xz-9",
+  "codec": "xz",
+  "level": 9,
+  "c_kb": 74152,
+  "window_bytes": 67108864,
+  "out_bytes": 1330104
+ },
+ {
+  "corpus": "code",
+  "id": "lz4-1",
+  "codec": "lz4",
+  "level": 1,
+  "c_kb": 0,
+  "window_bytes": 65536,
+  "out_bytes": 2963021
+ },
+ {
+  "corpus": "code",
+  "id": "lz4-9",
+  "codec": "lz4",
+  "level": 9,
+  "c_kb": 0,
+  "window_bytes": 65536,
+  "out_bytes": 2114555
+ },
+ {
+  "corpus": "code",
+  "id": "lz4-12",
+  "codec": "lz4",
+  "level": 12,
+  "c_kb": 0,
+  "window_bytes": 65536,
+  "out_bytes": 2087146
+ },
+ {
+  "corpus": "code",
+  "id": "bzip2-1",
+  "codec": "bzip2",
+  "level": 1,
+  "c_kb": 0,
+  "window_bytes": 100000,
+  "out_bytes": 1661686
+ },
+ {
+  "corpus": "code",
+  "id": "bzip2-9",
+  "codec": "bzip2",
+  "level": 9,
+  "c_kb": 0,
+  "window_bytes": 900000,
+  "out_bytes": 1455599
+ }
+]
